@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NOIRCASE — Minimalistyczne etui</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #faf9f7;
+      color: #111111;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 7%;
+      background: #111111;
+      color: white;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 14px;
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      background: #f1ede7;
+    }
+
+    .hero-content {
+      max-width: 700px;
+    }
+
+    .hero h1 {
+      font-size: clamp(50px, 12vw, 110px);
+      letter-spacing: 10px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: #555;
+      margin-bottom: 35px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #111111;
+      color: white;
+      padding: 16px 35px;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: #8a6246;
+    }
+
+    .section {
+      padding: 90px 7%;
+    }
+
+    .section h2 {
+      font-size: 32px;
+      margin-bottom: 45px;
+      letter-spacing: 2px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .product {
+      background: white;
+      padding: 20px;
+    }
+
+    .product-image {
+      height: 380px;
+      background: #111111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    .product:nth-child(2) .product-image {
+      background: #8a6246;
+    }
+
+    .product:nth-child(3) .product-image {
+      background: #d8d0c8;
+      color: #111;
+    }
+
+    .product h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #8a6246;
+      font-weight: bold;
+    }
+
+    .about {
+      background: #111111;
+      color: white;
+      text-align: center;
+    }
+
+    .about p {
+      max-width: 650px;
+      margin: auto;
+      line-height: 1.8;
+      color: #cccccc;
+    }
+
+    footer {
+      background: #111111;
+      color: #777;
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid #333;
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 20px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .product-image {
+        height: 330px;
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">NOIRCASE</div>
+
+    <nav>
+      <a href="#shop">SHOP</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+
+      <h1>NOIRCASE</h1>
+
+      <p>
+        Minimalistyczne etui stworzone dla codziennego stylu.
+      </p>
+
+      <a href="#shop" class="button">
+        SHOP CASES
+      </a>
+
+    </div>
+  </section>
+
+  <section class="section" id="shop">
+
+    <h2>BESTSELLERS</h2>
+
+    <div class="products">
+
+      <div class="product">
+
+        <div class="product-image">
+          NOIR
+        </div>
+
+        <h3>NOIR CASE</h3>
+
+        <p class="price">79,99 zł</p>
+
+      </div>
+
+      <div class="product">
+
+        <div class="product-image">
+          MOCHA
+        </div>
+
+        <h3>MOCHA CASE</h3>
+
+        <p class="price">79,99 zł</p>
+
+      </div>
+
+      <div class="product">
+
+        <div class="product-image">
+          IVORY
+        </div>
+
+        <h3>IVORY CASE</h3>
+
+        <p class="price">79,99 zł</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="section about" id="about">
+
+    <h2>MINIMAL. PROTECTIVE. YOURS.</h2>
+
+    <p>
+      NOIRCASE to minimalistyczne etui stworzone dla osób,
+      które cenią prosty design, elegancję i codzienną funkcjonalność.
+    </p>
+
+  </section>
+
+  <footer id="contact">
+
+    © 2026 NOIRCASE
+
+  </footer>
+
+</body>
+</html>
