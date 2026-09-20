@@ -8,6 +8,7 @@
     <title>NOIRCASE — Minimalistyczne etui</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -17,11 +18,11 @@
         body {
             font-family: Arial, Helvetica, sans-serif;
             background: #faf9f7;
-            color: #111111;
+            color: #111;
         }
 
         header {
-            background: #111111;
+            background: #111;
             color: white;
             padding: 55px 20px;
             text-align: center;
@@ -34,7 +35,7 @@
         }
 
         header p {
-            color: #cccccc;
+            color: #ccc;
             font-size: 16px;
         }
 
@@ -72,11 +73,6 @@
             text-decoration: none;
             letter-spacing: 2px;
             font-size: 13px;
-            transition: 0.3s;
-        }
-
-        .button:hover {
-            background: #333;
         }
 
         .section {
@@ -141,11 +137,11 @@
             display: inline-block;
             background: #111;
             color: white;
+            border: none;
             padding: 17px 35px;
-            text-decoration: none;
             letter-spacing: 2px;
             font-size: 13px;
-            transition: 0.3s;
+            cursor: pointer;
         }
 
         .buy:hover {
@@ -185,8 +181,87 @@
         footer p {
             color: #aaa;
             font-size: 13px;
-            letter-spacing: 1px;
         }
+
+
+        /* =========================
+           OKNO WYBORU MODELU
+        ========================= */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            padding: 35px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-box h2 {
+            font-size: 28px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .modal-box p {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            border: none;
+            background: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #111;
+        }
+
+        .phone-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .phone {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .phone:hover {
+            background: #111;
+            color: white;
+        }
+
+        .selected-product {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+            color: #555;
+        }
+
 
         @media (max-width: 800px) {
 
@@ -197,7 +272,6 @@
             .product img {
                 height: auto;
                 max-height: 650px;
-                object-fit: cover;
             }
 
             .product-info {
@@ -211,168 +285,332 @@
             .hero {
                 min-height: 40vh;
             }
+
+            .phone-list {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-box {
+                padding: 30px 20px;
+            }
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <header>
-        <h1>NOIRCASE</h1>
-        <p>Minimalistyczne etui. Charakterystyczny design.</p>
-    </header>
+
+<header>
+
+    <h1>NOIRCASE</h1>
+
+    <p>
+        Minimalistyczne etui. Charakterystyczny design.
+    </p>
+
+</header>
 
 
-    <section class="hero">
 
-        <div class="hero-content">
+<section class="hero">
 
-            <h2>NOIRCASE</h2>
+    <div class="hero-content">
 
-            <p>
-                Ochrona telefonu połączona z charakterystycznym stylem.
-            </p>
-
-            <a href="#collection" class="button">
-                ZOBACZ KOLEKCJĘ
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <section class="section" id="collection">
-
-        <div class="section-title">
-
-            <h2>KOLEKCJA</h2>
-
-            <p>
-                Wybierz swoje etui NOIRCASE.
-            </p>
-
-        </div>
-
-
-        <div class="products">
-
-
-            <!-- WHITE -->
-
-            <div class="product">
-
-                <img
-                    src="IMG_8706.jpeg"
-                    alt="Etui NOIRCASE White"
-                >
-
-                <div class="product-info">
-
-                    <h3>
-                        MARVEL COLLECTION — WHITE
-                    </h3>
-
-                    <p class="price">
-                        79,99 zł
-                    </p>
-
-                    <a href="#" class="buy">
-                        WYBIERZ
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- PINK -->
-
-            <div class="product">
-
-                <img
-                    src="IMG_8707.jpeg"
-                    alt="Etui NOIRCASE Pink"
-                >
-
-                <div class="product-info">
-
-                    <h3>
-                        MARVEL COLLECTION — PINK
-                    </h3>
-
-                    <p class="price">
-                        79,99 zł
-                    </p>
-
-                    <a href="#" class="buy">
-                        WYBIERZ
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- BLACK -->
-
-            <div class="product">
-
-                <img
-                    src="IMG_8708.jpeg"
-                    alt="Etui NOIRCASE Black"
-                >
-
-                <div class="product-info">
-
-                    <h3>
-                        MARVEL COLLECTION — BLACK
-                    </h3>
-
-                    <p class="price">
-                        79,99 zł
-                    </p>
-
-                    <a href="#" class="buy">
-                        WYBIERZ
-                    </a>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <section class="section about" id="about">
-
-        <div class="about-content">
-
-            <h2>
-                MINIMAL. PROTECTIVE. YOURS.
-            </h2>
-
-            <p>
-                NOIRCASE łączy charakterystyczny design
-                z codzienną ochroną telefonu.
-                Wybierz swój styl i dopasuj etui do siebie.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <footer>
+        <h2>NOIRCASE</h2>
 
         <p>
-            © 2026 NOIRCASE — Wszystkie prawa zastrzeżone.
+            Ochrona telefonu połączona z charakterystycznym stylem.
         </p>
 
-    </footer>
+        <a href="#collection" class="button">
+            ZOBACZ KOLEKCJĘ
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<section class="section" id="collection">
+
+
+    <div class="section-title">
+
+        <h2>KOLEKCJA</h2>
+
+        <p>
+            Wybierz swoje etui NOIRCASE.
+        </p>
+
+    </div>
+
+
+
+    <div class="products">
+
+
+        <!-- WHITE -->
+
+        <div class="product">
+
+            <img
+                src="IMG_8706.jpeg"
+                alt="Etui NOIRCASE White"
+            >
+
+            <div class="product-info">
+
+                <h3>
+                    MARVEL COLLECTION — WHITE
+                </h3>
+
+                <p class="price">
+                    79,99 zł
+                </p>
+
+                <button
+                    class="buy"
+                    onclick="openModal('MARVEL COLLECTION — WHITE')"
+                >
+                    WYBIERZ
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PINK -->
+
+        <div class="product">
+
+            <img
+                src="IMG_8707.jpeg"
+                alt="Etui NOIRCASE Pink"
+            >
+
+            <div class="product-info">
+
+                <h3>
+                    MARVEL COLLECTION — PINK
+                </h3>
+
+                <p class="price">
+                    79,99 zł
+                </p>
+
+                <button
+                    class="buy"
+                    onclick="openModal('MARVEL COLLECTION — PINK')"
+                >
+                    WYBIERZ
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BLACK -->
+
+        <div class="product">
+
+            <img
+                src="IMG_8708.jpeg"
+                alt="Etui NOIRCASE Black"
+            >
+
+            <div class="product-info">
+
+                <h3>
+                    MARVEL COLLECTION — BLACK
+                </h3>
+
+                <p class="price">
+                    79,99 zł
+                </p>
+
+                <button
+                    class="buy"
+                    onclick="openModal('MARVEL COLLECTION — BLACK')"
+                >
+                    WYBIERZ
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<section class="section about">
+
+    <div class="about-content">
+
+        <h2>
+            MINIMAL. PROTECTIVE. YOURS.
+        </h2>
+
+        <p>
+            NOIRCASE łączy charakterystyczny design
+            z codzienną ochroną telefonu.
+            Wybierz swój styl i dopasuj etui do siebie.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<footer>
+
+    <p>
+        © 2026 NOIRCASE — Wszystkie prawa zastrzeżone.
+    </p>
+
+</footer>
+
+
+
+<!-- =========================
+     OKNO WYBORU TELEFONU
+========================= -->
+
+<div
+    class="modal"
+    id="phoneModal"
+    onclick="closeOutside(event)"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal()"
+        >
+            ×
+        </button>
+
+
+        <h2>
+            Wybierz model
+        </h2>
+
+        <p>
+            Wybierz model telefonu dla swojego etui.
+        </p>
+
+
+        <div class="phone-list">
+
+            <button class="phone" onclick="selectPhone('iPhone 15')">
+                iPhone 15
+            </button>
+
+            <button class="phone" onclick="selectPhone('iPhone 15 Pro')">
+                iPhone 15 Pro
+            </button>
+
+            <button class="phone" onclick="selectPhone('iPhone 15 Pro Max')">
+                iPhone 15 Pro Max
+            </button>
+
+            <button class="phone" onclick="selectPhone('iPhone 16')">
+                iPhone 16
+            </button>
+
+            <button class="phone" onclick="selectPhone('iPhone 16 Pro')">
+                iPhone 16 Pro
+            </button>
+
+            <button class="phone" onclick="selectPhone('iPhone 16 Pro Max')">
+                iPhone 16 Pro Max
+            </button>
+
+            <button class="phone" onclick="selectPhone('iPhone 17')">
+                iPhone 17
+            </button>
+
+            <button class="phone" onclick="selectPhone('iPhone 17 Pro')">
+                iPhone 17 Pro
+            </button>
+
+            <button class="phone" onclick="selectPhone('iPhone 17 Pro Max')">
+                iPhone 17 Pro Max
+            </button>
+
+        </div>
+
+
+        <div
+            class="selected-product"
+            id="selectedProduct"
+        >
+            Wybierz model telefonu.
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    let selectedCase = "";
+
+    function openModal(caseName) {
+
+        selectedCase = caseName;
+
+        document.getElementById("phoneModal").classList.add("active");
+
+        document.getElementById("selectedProduct").innerHTML =
+            "Wybrane etui: <strong>" + caseName + "</strong><br><br>Wybierz model telefonu.";
+
+    }
+
+
+    function closeModal() {
+
+        document.getElementById("phoneModal").classList.remove("active");
+
+    }
+
+
+    function closeOutside(event) {
+
+        if (event.target.id === "phoneModal") {
+
+            closeModal();
+
+        }
+
+    }
+
+
+    function selectPhone(phone) {
+
+        document.getElementById("selectedProduct").innerHTML =
+            "Etui: <strong>" + selectedCase + "</strong><br>" +
+            "Model: <strong>" + phone + "</strong><br><br>" +
+            "✅ Wybrano poprawnie!";
+
+    }
+
+</script>
+
 
 </body>
 
