@@ -7,6 +7,7 @@
 <title>NOIRCASE — Minimalistyczne etui</title>
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -19,7 +20,7 @@ body {
     color: #111;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 header {
     background: #111;
@@ -46,11 +47,7 @@ header {
     letter-spacing: 1px;
 }
 
-.cart-button span {
-    font-weight: bold;
-}
-
-/* HERO */
+/* ================= HERO ================= */
 
 .hero {
     min-height: 45vh;
@@ -84,7 +81,7 @@ header {
     font-size: 13px;
 }
 
-/* PRODUCTS */
+/* ================= PRODUCTS ================= */
 
 .section {
     max-width: 1200px;
@@ -152,7 +149,7 @@ header {
     font-size: 12px;
 }
 
-/* ABOUT */
+/* ================= ABOUT ================= */
 
 .about {
     background: #eee9e2;
@@ -176,7 +173,7 @@ header {
     line-height: 1.8;
 }
 
-/* MODAL */
+/* ================= MODAL ================= */
 
 .modal {
     display: none;
@@ -199,6 +196,8 @@ header {
     max-width: 500px;
     padding: 35px;
     position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .close {
@@ -220,6 +219,8 @@ header {
     color: #777;
     margin-bottom: 25px;
 }
+
+/* ================= PHONE ================= */
 
 .phone-list {
     display: grid;
@@ -262,7 +263,7 @@ header {
     cursor: not-allowed;
 }
 
-/* CART */
+/* ================= CART ================= */
 
 .cart {
     position: fixed;
@@ -349,7 +350,110 @@ header {
     letter-spacing: 2px;
 }
 
-/* FOOTER */
+/* ================= FORMULARZ ================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    background: white;
+    font-size: 15px;
+}
+
+.form-group textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.order-summary {
+    background: #f4f1ed;
+    padding: 20px;
+    margin: 25px 0;
+}
+
+.order-summary h3 {
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.summary-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.summary-total {
+    padding-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.submit-order {
+    width: 100%;
+    background: #111;
+    color: white;
+    border: none;
+    padding: 18px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+.submit-order:hover {
+    background: #333;
+}
+
+/* ================= SUCCESS ================= */
+
+.success {
+    text-align: center;
+    padding: 25px 5px;
+}
+
+.success-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.success h2 {
+    margin-bottom: 15px;
+}
+
+.success p {
+    color: #666;
+    line-height: 1.7;
+}
+
+.success-button {
+    margin-top: 25px;
+    padding: 15px 25px;
+    border: none;
+    background: #111;
+    color: white;
+    cursor: pointer;
+}
+
+/* ================= FOOTER ================= */
 
 footer {
     background: #111;
@@ -363,7 +467,7 @@ footer p {
     font-size: 13px;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media (max-width: 800px) {
 
@@ -394,14 +498,19 @@ footer p {
     .cart {
         width: 100%;
     }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -417,7 +526,7 @@ footer p {
 </header>
 
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
@@ -438,7 +547,7 @@ footer p {
 </section>
 
 
-<!-- PRODUCTS -->
+<!-- ================= PRODUKTY ================= -->
 
 <section class="section" id="collection">
 
@@ -554,7 +663,7 @@ footer p {
 </section>
 
 
-<!-- ABOUT -->
+<!-- ================= ABOUT ================= -->
 
 <section class="section about">
 
@@ -575,7 +684,7 @@ footer p {
 </section>
 
 
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -586,7 +695,7 @@ footer p {
 </footer>
 
 
-<!-- PHONE MODAL -->
+<!-- ================= WYBÓR TELEFONU ================= -->
 
 <div class="modal" id="phoneModal">
 
@@ -665,7 +774,7 @@ footer p {
 </div>
 
 
-<!-- CART -->
+<!-- ================= KOSZYK ================= -->
 
 <div class="cart" id="cart">
 
@@ -692,22 +801,276 @@ footer p {
 
 
     <div class="cart-total">
-        Razem: <span id="cartTotal">0,00 zł</span>
+        Razem:
+        <span id="cartTotal">
+            0,00 zł
+        </span>
     </div>
 
 
-    <button class="checkout" onclick="checkout()">
+    <button class="checkout" onclick="openCheckout()">
         PRZEJDŹ DO ZAMÓWIENIA
     </button>
 
 </div>
 
 
+<!-- ================= FORMULARZ ZAMÓWIENIA ================= -->
+
+<div class="modal" id="checkoutModal">
+
+    <div class="modal-box">
+
+        <button class="close" onclick="closeCheckout()">
+            ×
+        </button>
+
+
+        <h2>
+            ZAMÓWIENIE
+        </h2>
+
+        <p>
+            Uzupełnij dane do dostawy.
+        </p>
+
+
+        <form id="orderForm" onsubmit="submitOrder(event)">
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Imię
+                    </label>
+
+                    <input
+                        type="text"
+                        id="firstName"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Nazwisko
+                    </label>
+
+                    <input
+                        type="text"
+                        id="lastName"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="twoj@email.pl"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Numer telefonu
+                </label>
+
+                <input
+                    type="tel"
+                    id="phoneNumber"
+                    placeholder="123 456 789"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Ulica i numer
+                </label>
+
+                <input
+                    type="text"
+                    id="street"
+                    placeholder="np. Główna 12"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Kod pocztowy
+                    </label>
+
+                    <input
+                        type="text"
+                        id="postalCode"
+                        placeholder="00-000"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Miasto
+                    </label>
+
+                    <input
+                        type="text"
+                        id="city"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Sposób dostawy
+                </label>
+
+                <select id="delivery" required>
+
+                    <option value="">
+                        Wybierz dostawę
+                    </option>
+
+                    <option value="Paczkomat">
+                        Paczkomat
+                    </option>
+
+                    <option value="Kurier">
+                        Kurier
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Dodatkowe informacje
+                </label>
+
+                <textarea
+                    id="notes"
+                    placeholder="Opcjonalnie..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="order-summary">
+
+                <h3>
+                    PODSUMOWANIE
+                </h3>
+
+                <div id="checkoutItems"></div>
+
+                <div class="summary-total">
+
+                    Razem:
+                    <span id="checkoutTotal">
+                        0,00 zł
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-order"
+            >
+                POTWIERDŹ ZAMÓWIENIE
+            </button>
+
+
+        </form>
+
+
+        <div
+            id="successMessage"
+            style="display:none;"
+        >
+
+            <div class="success">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h2>
+                    ZAMÓWIENIE PRZYJĘTE
+                </h2>
+
+                <p>
+                    Dziękujemy za zamówienie w NOIRCASE.
+                </p>
+
+                <p>
+                    Numer zamówienia:
+                    <strong id="orderNumber"></strong>
+                </p>
+
+                <button
+                    class="success-button"
+                    onclick="finishOrder()"
+                >
+                    WRÓĆ DO SKLEPU
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
 <script>
 
-/* =========================
-   KOSZYK
-========================= */
+/* =========================================
+   ZMIENNE
+========================================= */
 
 let cart = [];
 
@@ -715,26 +1078,40 @@ let selectedCase = "";
 let selectedPhone = "";
 
 
-/* OTWIERANIE WYBORU TELEFONU */
+/* =========================================
+   WYBÓR ETUI
+========================================= */
 
 function openModal(caseName) {
 
     selectedCase = caseName;
+
     selectedPhone = "";
 
-    document.getElementById("phoneModal").classList.add("active");
+    document
+        .getElementById("phoneModal")
+        .classList.add("active");
 
-    document.getElementById("selectedProduct").innerHTML =
+
+    document
+        .getElementById("selectedProduct")
+        .innerHTML =
         "Wybrane etui: <strong>" +
         caseName +
         "</strong><br><br>" +
         "Wybierz model telefonu.";
 
-    document.getElementById("addCartButton").disabled = true;
+
+    document
+        .getElementById("addCartButton")
+        .disabled = true;
+
 }
 
 
-/* ZAMYKANIE */
+/* =========================================
+   ZAMKNIJ WYBÓR
+========================================= */
 
 function closeModal() {
 
@@ -745,13 +1122,18 @@ function closeModal() {
 }
 
 
-/* WYBÓR TELEFONU */
+/* =========================================
+   WYBÓR TELEFONU
+========================================= */
 
 function selectPhone(phone) {
 
     selectedPhone = phone;
 
-    document.getElementById("selectedProduct").innerHTML =
+
+    document
+        .getElementById("selectedProduct")
+        .innerHTML =
         "Etui: <strong>" +
         selectedCase +
         "</strong><br>" +
@@ -759,11 +1141,17 @@ function selectPhone(phone) {
         selectedPhone +
         "</strong>";
 
-    document.getElementById("addCartButton").disabled = false;
+
+    document
+        .getElementById("addCartButton")
+        .disabled = false;
+
 }
 
 
-/* DODANIE DO KOSZYKA */
+/* =========================================
+   DODAJ DO KOSZYKA
+========================================= */
 
 function addToCart() {
 
@@ -771,43 +1159,58 @@ function addToCart() {
         return;
     }
 
+
     cart.push({
+
         caseName: selectedCase,
+
         phone: selectedPhone,
+
         price: 79.99
+
     });
+
 
     updateCart();
 
     closeModal();
 
     openCart();
+
 }
 
 
-/* AKTUALIZACJA KOSZYKA */
+/* =========================================
+   AKTUALIZACJA KOSZYKA
+========================================= */
 
 function updateCart() {
 
     const cartItems =
         document.getElementById("cartItems");
 
+
     const cartCount =
         document.getElementById("cartCount");
+
 
     const cartTotal =
         document.getElementById("cartTotal");
 
 
-    cartCount.innerText = cart.length;
+    cartCount.innerText =
+        cart.length;
 
 
     if (cart.length === 0) {
 
         cartItems.innerHTML =
-            '<div class="cart-empty">Twój koszyk jest pusty.</div>';
+            '<div class="cart-empty">' +
+            'Twój koszyk jest pusty.' +
+            '</div>';
 
-        cartTotal.innerText = "0,00 zł";
+        cartTotal.innerText =
+            "0,00 zł";
 
         return;
     }
@@ -837,7 +1240,9 @@ function updateCart() {
                 </p>
 
                 <p>
-                    ${item.price.toFixed(2).replace(".", ",")} zł
+                    ${item.price
+                        .toFixed(2)
+                        .replace(".", ",")} zł
                 </p>
 
                 <button
@@ -855,21 +1260,28 @@ function updateCart() {
 
 
     cartTotal.innerText =
-        total.toFixed(2).replace(".", ",") + " zł";
+        total.toFixed(2).replace(".", ",") +
+        " zł";
+
 }
 
 
-/* USUWANIE */
+/* =========================================
+   USUŃ PRODUKT
+========================================= */
 
 function removeItem(index) {
 
     cart.splice(index, 1);
 
     updateCart();
+
 }
 
 
-/* OTWIERANIE KOSZYKA */
+/* =========================================
+   OTWÓRZ KOSZYK
+========================================= */
 
 function openCart() {
 
@@ -880,7 +1292,9 @@ function openCart() {
 }
 
 
-/* ZAMYKANIE KOSZYKA */
+/* =========================================
+   ZAMKNIJ KOSZYK
+========================================= */
 
 function closeCart() {
 
@@ -891,26 +1305,269 @@ function closeCart() {
 }
 
 
-/* ZAMÓWIENIE */
+/* =========================================
+   OTWÓRZ FORMULARZ
+========================================= */
 
-function checkout() {
+function openCheckout() {
 
     if (cart.length === 0) {
 
-        alert("Twój koszyk jest pusty.");
+        alert(
+            "Twój koszyk jest pusty."
+        );
 
         return;
     }
 
 
-    alert(
-        "Koszyk działa! Następnym krokiem będzie formularz zamówienia."
+    closeCart();
+
+
+    document
+        .getElementById("checkoutModal")
+        .classList.add("active");
+
+
+    showCheckoutSummary();
+
+}
+
+
+/* =========================================
+   ZAMKNIJ FORMULARZ
+========================================= */
+
+function closeCheckout() {
+
+    document
+        .getElementById("checkoutModal")
+        .classList.remove("active");
+
+}
+
+
+/* =========================================
+   PODSUMOWANIE
+========================================= */
+
+function showCheckoutSummary() {
+
+    const container =
+        document.getElementById("checkoutItems");
+
+
+    const totalElement =
+        document.getElementById("checkoutTotal");
+
+
+    let total = 0;
+
+
+    container.innerHTML = "";
+
+
+    cart.forEach(function(item) {
+
+        total += item.price;
+
+
+        container.innerHTML += `
+
+            <div class="summary-item">
+
+                <strong>
+                    ${item.caseName}
+                </strong>
+
+                <br>
+
+                Model: ${item.phone}
+
+                <br>
+
+                ${item.price
+                    .toFixed(2)
+                    .replace(".", ",")} zł
+
+            </div>
+
+        `;
+
+    });
+
+
+    totalElement.innerText =
+        total.toFixed(2).replace(".", ",") +
+        " zł";
+
+}
+
+
+/* =========================================
+   ZŁOŻENIE ZAMÓWIENIA
+========================================= */
+
+function submitOrder(event) {
+
+    event.preventDefault();
+
+
+    if (cart.length === 0) {
+
+        alert(
+            "Koszyk jest pusty."
+        );
+
+        return;
+    }
+
+
+    const firstName =
+        document.getElementById("firstName").value;
+
+
+    const lastName =
+        document.getElementById("lastName").value;
+
+
+    const email =
+        document.getElementById("email").value;
+
+
+    const phone =
+        document.getElementById("phoneNumber").value;
+
+
+    const street =
+        document.getElementById("street").value;
+
+
+    const postalCode =
+        document.getElementById("postalCode").value;
+
+
+    const city =
+        document.getElementById("city").value;
+
+
+    const delivery =
+        document.getElementById("delivery").value;
+
+
+    const notes =
+        document.getElementById("notes").value;
+
+
+    const total =
+        cart.reduce(
+            function(sum, item) {
+                return sum + item.price;
+            },
+            0
+        );
+
+
+    const orderNumber =
+        "NC-" +
+        Date.now().toString().slice(-8);
+
+
+    const order = {
+
+        orderNumber: orderNumber,
+
+        customer: {
+
+            firstName: firstName,
+
+            lastName: lastName,
+
+            email: email,
+
+            phone: phone,
+
+            street: street,
+
+            postalCode: postalCode,
+
+            city: city,
+
+            delivery: delivery,
+
+            notes: notes
+
+        },
+
+        products: cart,
+
+        total: total,
+
+        date: new Date().toLocaleString("pl-PL")
+
+    };
+
+
+    /*
+       Na razie zapisujemy testowe
+       zamówienie w przeglądarce.
+    */
+
+    localStorage.setItem(
+        "noircase_last_order",
+        JSON.stringify(order)
     );
+
+
+    document
+        .getElementById("orderForm")
+        .style.display = "none";
+
+
+    document
+        .getElementById("successMessage")
+        .style.display = "block";
+
+
+    document
+        .getElementById("orderNumber")
+        .innerText = orderNumber;
+
+
+    cart = [];
+
+
+    updateCart();
+
+}
+
+
+/* =========================================
+   KONIEC ZAMÓWIENIA
+========================================= */
+
+function finishOrder() {
+
+    closeCheckout();
+
+
+    document
+        .getElementById("orderForm")
+        .reset();
+
+
+    document
+        .getElementById("orderForm")
+        .style.display = "block";
+
+
+    document
+        .getElementById("successMessage")
+        .style.display = "none";
 
 }
 
 </script>
-
 
 </body>
 </html>
