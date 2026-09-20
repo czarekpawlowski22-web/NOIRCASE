@@ -1,51 +1,379 @@
-<section class="section collection" id="collection">
+<!DOCTYPE html>
+<html lang="pl">
 
-  <h2>KOLEKCJA</h2>
-  <p class="section-subtitle">Wybierz swoje etui NOIRCASE.</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <div class="products">
+    <title>NOIRCASE — Minimalistyczne etui</title>
 
-    <!-- BLACK -->
-    <div class="product">
-      <img src="noircase_case_1.jpg" alt="Etui NOIRCASE Marvel Collection Black">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      <div class="product-info">
-        <h3>MARVEL COLLECTION — BLACK</h3>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #faf9f7;
+            color: #111111;
+        }
 
-        <p>79,99 zł</p>
+        header {
+            background: #111111;
+            color: white;
+            padding: 55px 20px;
+            text-align: center;
+        }
 
-        <a href="#" class="buy">WYBIERZ</a>
-      </div>
-    </div>
+        header h1 {
+            font-size: clamp(35px, 9vw, 70px);
+            letter-spacing: 10px;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            color: #cccccc;
+            font-size: 16px;
+        }
+
+        .hero {
+            min-height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 70px 20px;
+            background: #eee9e2;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h2 {
+            font-size: clamp(40px, 10vw, 80px);
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #111;
+            color: white;
+            padding: 17px 35px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #333;
+        }
+
+        .section {
+            padding: 70px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(30px, 7vw, 55px);
+            letter-spacing: 6px;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #777;
+            font-size: 17px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .product {
+            background: white;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        .product img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-info {
+            padding: 35px;
+        }
+
+        .product-info h3 {
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .price {
+            color: #8b6b52;
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .buy {
+            display: inline-block;
+            background: #111;
+            color: white;
+            padding: 17px 35px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .buy:hover {
+            background: #333;
+        }
+
+        .about {
+            background: #eee9e2;
+            max-width: none;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .about h2 {
+            font-size: clamp(30px, 7vw, 55px);
+            letter-spacing: 5px;
+            margin-bottom: 25px;
+        }
+
+        .about p {
+            color: #555;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer p {
+            color: #aaa;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 800px) {
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .product img {
+                height: auto;
+                max-height: 650px;
+                object-fit: cover;
+            }
+
+            .product-info {
+                padding: 30px;
+            }
+
+            header {
+                padding: 45px 20px;
+            }
+
+            .hero {
+                min-height: 40vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>NOIRCASE</h1>
+        <p>Minimalistyczne etui. Charakterystyczny design.</p>
+    </header>
 
 
-    <!-- PINK -->
-    <div class="product">
-      <img src="noircase_case_2.jpg" alt="Etui NOIRCASE Marvel Collection Pink">
+    <section class="hero">
 
-      <div class="product-info">
-        <h3>MARVEL COLLECTION — PINK</h3>
+        <div class="hero-content">
 
-        <p>79,99 zł</p>
+            <h2>NOIRCASE</h2>
 
-        <a href="#" class="buy">WYBIERZ</a>
-      </div>
-    </div>
+            <p>
+                Ochrona telefonu połączona z charakterystycznym stylem.
+            </p>
+
+            <a href="#collection" class="button">
+                ZOBACZ KOLEKCJĘ
+            </a>
+
+        </div>
+
+    </section>
 
 
-    <!-- WHITE -->
-    <div class="product">
-      <img src="noircase_case_3.jpg" alt="Etui NOIRCASE Marvel Collection White">
+    <section class="section" id="collection">
 
-      <div class="product-info">
-        <h3>MARVEL COLLECTION — WHITE</h3>
+        <div class="section-title">
 
-        <p>79,99 zł</p>
+            <h2>KOLEKCJA</h2>
 
-        <a href="#" class="buy">WYBIERZ</a>
-      </div>
-    </div>
+            <p>
+                Wybierz swoje etui NOIRCASE.
+            </p>
 
-  </div>
+        </div>
 
-</section>
+
+        <div class="products">
+
+
+            <!-- WHITE -->
+
+            <div class="product">
+
+                <img
+                    src="IMG_8706.jpeg"
+                    alt="Etui NOIRCASE White"
+                >
+
+                <div class="product-info">
+
+                    <h3>
+                        MARVEL COLLECTION — WHITE
+                    </h3>
+
+                    <p class="price">
+                        79,99 zł
+                    </p>
+
+                    <a href="#" class="buy">
+                        WYBIERZ
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PINK -->
+
+            <div class="product">
+
+                <img
+                    src="IMG_8707.jpeg"
+                    alt="Etui NOIRCASE Pink"
+                >
+
+                <div class="product-info">
+
+                    <h3>
+                        MARVEL COLLECTION — PINK
+                    </h3>
+
+                    <p class="price">
+                        79,99 zł
+                    </p>
+
+                    <a href="#" class="buy">
+                        WYBIERZ
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- BLACK -->
+
+            <div class="product">
+
+                <img
+                    src="IMG_8708.jpeg"
+                    alt="Etui NOIRCASE Black"
+                >
+
+                <div class="product-info">
+
+                    <h3>
+                        MARVEL COLLECTION — BLACK
+                    </h3>
+
+                    <p class="price">
+                        79,99 zł
+                    </p>
+
+                    <a href="#" class="buy">
+                        WYBIERZ
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <section class="section about" id="about">
+
+        <div class="about-content">
+
+            <h2>
+                MINIMAL. PROTECTIVE. YOURS.
+            </h2>
+
+            <p>
+                NOIRCASE łączy charakterystyczny design
+                z codzienną ochroną telefonu.
+                Wybierz swój styl i dopasuj etui do siebie.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            © 2026 NOIRCASE — Wszystkie prawa zastrzeżone.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
