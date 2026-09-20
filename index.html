@@ -1,330 +1,435 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NOIRCASE — Minimalistyczne etui</title>
+<title>NOIRCASE — Minimalistyczne etui</title>
 
-    <style>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #faf9f7;
+    color: #111;
+}
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #faf9f7;
-            color: #111;
-        }
+/* HEADER */
 
-        header {
-            background: #111;
-            color: white;
-            padding: 55px 20px;
-            text-align: center;
-        }
+header {
+    background: #111;
+    color: white;
+    padding: 28px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        header h1 {
-            font-size: clamp(35px, 9vw, 70px);
-            letter-spacing: 10px;
-            margin-bottom: 15px;
-        }
+.logo {
+    font-size: 28px;
+    letter-spacing: 7px;
+    font-weight: bold;
+}
 
-        header p {
-            color: #ccc;
-            font-size: 16px;
-        }
+.cart-button {
+    background: white;
+    color: #111;
+    border: none;
+    padding: 13px 18px;
+    cursor: pointer;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
 
-        .hero {
-            min-height: 45vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 70px 20px;
-            background: #eee9e2;
-        }
+.cart-button span {
+    font-weight: bold;
+}
 
-        .hero-content {
-            max-width: 800px;
-        }
+/* HERO */
 
-        .hero h2 {
-            font-size: clamp(40px, 10vw, 80px);
-            letter-spacing: 8px;
-            margin-bottom: 20px;
-        }
+.hero {
+    min-height: 45vh;
+    background: #eee9e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+}
 
-        .hero p {
-            color: #555;
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
+.hero h2 {
+    font-size: clamp(45px, 10vw, 85px);
+    letter-spacing: 9px;
+    margin-bottom: 20px;
+}
 
-        .button {
-            display: inline-block;
-            background: #111;
-            color: white;
-            padding: 17px 35px;
-            text-decoration: none;
-            letter-spacing: 2px;
-            font-size: 13px;
-        }
+.hero p {
+    color: #555;
+    font-size: 17px;
+    margin-bottom: 30px;
+}
 
-        .section {
-            padding: 70px 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
+.hero-button {
+    display: inline-block;
+    background: #111;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
+/* PRODUCTS */
 
-        .section-title h2 {
-            font-size: clamp(30px, 7vw, 55px);
-            letter-spacing: 6px;
-            margin-bottom: 15px;
-        }
+.section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 75px 20px;
+}
 
-        .section-title p {
-            color: #777;
-            font-size: 17px;
-        }
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
 
-        .products {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
+.section-title h2 {
+    font-size: 42px;
+    letter-spacing: 5px;
+    margin-bottom: 15px;
+}
 
-        .product {
-            background: white;
-            border: 1px solid #ddd;
-            overflow: hidden;
-        }
+.section-title p {
+    color: #777;
+}
 
-        .product img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: block;
-        }
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
 
-        .product-info {
-            padding: 35px;
-        }
+.product {
+    background: white;
+    border: 1px solid #ddd;
+}
 
-        .product-info h3 {
-            font-size: 24px;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-        }
+.product img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+}
 
-        .price {
-            color: #8b6b52;
-            font-size: 25px;
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
+.product-info {
+    padding: 28px;
+}
 
-        .buy {
-            display: inline-block;
-            background: #111;
-            color: white;
-            border: none;
-            padding: 17px 35px;
-            letter-spacing: 2px;
-            font-size: 13px;
-            cursor: pointer;
-        }
+.product-info h3 {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
 
-        .buy:hover {
-            background: #333;
-        }
+.price {
+    color: #8b6b52;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 22px;
+}
 
-        .about {
-            background: #eee9e2;
-            max-width: none;
-            text-align: center;
-        }
+.buy {
+    background: #111;
+    color: white;
+    border: none;
+    padding: 15px 28px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
 
-        .about-content {
-            max-width: 800px;
-            margin: auto;
-        }
+/* ABOUT */
 
-        .about h2 {
-            font-size: clamp(30px, 7vw, 55px);
-            letter-spacing: 5px;
-            margin-bottom: 25px;
-        }
+.about {
+    background: #eee9e2;
+    max-width: none;
+    text-align: center;
+}
 
-        .about p {
-            color: #555;
-            font-size: 17px;
-            line-height: 1.8;
-        }
+.about-inner {
+    max-width: 750px;
+    margin: auto;
+}
 
-        footer {
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 35px 20px;
-        }
+.about h2 {
+    font-size: 38px;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
 
-        footer p {
-            color: #aaa;
-            font-size: 13px;
-        }
+.about p {
+    color: #555;
+    line-height: 1.8;
+}
 
+/* MODAL */
 
-        /* =========================
-           OKNO WYBORU MODELU
-        ========================= */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.65);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.65);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+.modal.active {
+    display: flex;
+}
 
-        .modal.active {
-            display: flex;
-        }
+.modal-box {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    padding: 35px;
+    position: relative;
+}
 
-        .modal-box {
-            background: white;
-            width: 100%;
-            max-width: 500px;
-            padding: 35px;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: none;
+    background: none;
+    font-size: 30px;
+    cursor: pointer;
+}
 
-        .modal-box h2 {
-            font-size: 28px;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
+.modal-box h2 {
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
 
-        .modal-box p {
-            color: #777;
-            margin-bottom: 25px;
-        }
+.modal-box > p {
+    color: #777;
+    margin-bottom: 25px;
+}
 
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 18px;
-            border: none;
-            background: none;
-            font-size: 30px;
-            cursor: pointer;
-            color: #111;
-        }
+.phone-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
 
-        .phone-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
+.phone {
+    border: 1px solid #ddd;
+    background: #f5f5f5;
+    padding: 15px;
+    cursor: pointer;
+}
 
-        .phone {
-            background: #f4f4f4;
-            border: 1px solid #ddd;
-            padding: 15px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: 0.2s;
-        }
+.phone:hover {
+    background: #111;
+    color: white;
+}
 
-        .phone:hover {
-            background: #111;
-            color: white;
-        }
+.selected-product {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    line-height: 1.7;
+}
 
-        .selected-product {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            font-size: 14px;
-            color: #555;
-        }
+.add-cart {
+    width: 100%;
+    margin-top: 20px;
+    background: #111;
+    color: white;
+    border: none;
+    padding: 17px;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
 
+.add-cart:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}
 
-        @media (max-width: 800px) {
+/* CART */
 
-            .products {
-                grid-template-columns: 1fr;
-            }
+.cart {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    width: 430px;
+    max-width: 100%;
+    height: 100vh;
+    background: white;
+    z-index: 2000;
+    padding: 30px;
+    box-shadow: -10px 0 40px rgba(0,0,0,.2);
+    transition: .3s;
+    overflow-y: auto;
+}
 
-            .product img {
-                height: auto;
-                max-height: 650px;
-            }
+.cart.active {
+    right: 0;
+}
 
-            .product-info {
-                padding: 30px;
-            }
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #ddd;
+}
 
-            header {
-                padding: 45px 20px;
-            }
+.cart-header h2 {
+    letter-spacing: 3px;
+}
 
-            .hero {
-                min-height: 40vh;
-            }
+.cart-close {
+    border: none;
+    background: none;
+    font-size: 30px;
+    cursor: pointer;
+}
 
-            .phone-list {
-                grid-template-columns: 1fr;
-            }
+.cart-empty {
+    text-align: center;
+    color: #777;
+    padding: 50px 10px;
+}
 
-            .modal-box {
-                padding: 30px 20px;
-            }
-        }
+.cart-item {
+    padding: 22px 0;
+    border-bottom: 1px solid #ddd;
+}
 
-    </style>
+.cart-item h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.cart-item p {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.remove {
+    border: none;
+    background: none;
+    color: #999;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.cart-total {
+    padding-top: 25px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.checkout {
+    width: 100%;
+    margin-top: 20px;
+    padding: 17px;
+    background: #111;
+    color: white;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
+
+/* FOOTER */
+
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 35px;
+}
+
+footer p {
+    color: #aaa;
+    font-size: 13px;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .product img {
+        height: auto;
+    }
+
+    header {
+        padding: 22px 20px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .section-title h2 {
+        font-size: 32px;
+    }
+
+    .phone-list {
+        grid-template-columns: 1fr;
+    }
+
+    .cart {
+        width: 100%;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
 
+<!-- HEADER -->
+
 <header>
 
-    <h1>NOIRCASE</h1>
+    <div class="logo">
+        NOIRCASE
+    </div>
 
-    <p>
-        Minimalistyczne etui. Charakterystyczny design.
-    </p>
+    <button class="cart-button" onclick="openCart()">
+        🛒 KOSZYK
+        (<span id="cartCount">0</span>)
+    </button>
 
 </header>
 
 
+<!-- HERO -->
 
 <section class="hero">
 
-    <div class="hero-content">
+    <div>
 
         <h2>NOIRCASE</h2>
 
         <p>
-            Ochrona telefonu połączona z charakterystycznym stylem.
+            Minimalistyczne etui. Charakterystyczny design.
         </p>
 
-        <a href="#collection" class="button">
+        <a href="#collection" class="hero-button">
             ZOBACZ KOLEKCJĘ
         </a>
 
@@ -333,9 +438,9 @@
 </section>
 
 
+<!-- PRODUCTS -->
 
 <section class="section" id="collection">
-
 
     <div class="section-title">
 
@@ -346,7 +451,6 @@
         </p>
 
     </div>
-
 
 
     <div class="products">
@@ -367,9 +471,9 @@
                     MARVEL COLLECTION — WHITE
                 </h3>
 
-                <p class="price">
+                <div class="price">
                     79,99 zł
-                </p>
+                </div>
 
                 <button
                     class="buy"
@@ -381,7 +485,6 @@
             </div>
 
         </div>
-
 
 
         <!-- PINK -->
@@ -399,9 +502,9 @@
                     MARVEL COLLECTION — PINK
                 </h3>
 
-                <p class="price">
+                <div class="price">
                     79,99 zł
-                </p>
+                </div>
 
                 <button
                     class="buy"
@@ -413,7 +516,6 @@
             </div>
 
         </div>
-
 
 
         <!-- BLACK -->
@@ -431,9 +533,9 @@
                     MARVEL COLLECTION — BLACK
                 </h3>
 
-                <p class="price">
+                <div class="price">
                     79,99 zł
-                </p>
+                </div>
 
                 <button
                     class="buy"
@@ -452,10 +554,11 @@
 </section>
 
 
+<!-- ABOUT -->
 
 <section class="section about">
 
-    <div class="about-content">
+    <div class="about-inner">
 
         <h2>
             MINIMAL. PROTECTIVE. YOURS.
@@ -472,6 +575,7 @@
 </section>
 
 
+<!-- FOOTER -->
 
 <footer>
 
@@ -482,26 +586,15 @@
 </footer>
 
 
+<!-- PHONE MODAL -->
 
-<!-- =========================
-     OKNO WYBORU TELEFONU
-========================= -->
-
-<div
-    class="modal"
-    id="phoneModal"
-    onclick="closeOutside(event)"
->
+<div class="modal" id="phoneModal">
 
     <div class="modal-box">
 
-        <button
-            class="close"
-            onclick="closeModal()"
-        >
+        <button class="close" onclick="closeModal()">
             ×
         </button>
-
 
         <h2>
             Wybierz model
@@ -553,65 +646,271 @@
         </div>
 
 
-        <div
-            class="selected-product"
-            id="selectedProduct"
-        >
+        <div class="selected-product" id="selectedProduct">
             Wybierz model telefonu.
         </div>
+
+
+        <button
+            class="add-cart"
+            id="addCartButton"
+            onclick="addToCart()"
+            disabled
+        >
+            DODAJ DO KOSZYKA
+        </button>
 
     </div>
 
 </div>
 
 
+<!-- CART -->
+
+<div class="cart" id="cart">
+
+    <div class="cart-header">
+
+        <h2>
+            KOSZYK
+        </h2>
+
+        <button class="cart-close" onclick="closeCart()">
+            ×
+        </button>
+
+    </div>
+
+
+    <div id="cartItems">
+
+        <div class="cart-empty">
+            Twój koszyk jest pusty.
+        </div>
+
+    </div>
+
+
+    <div class="cart-total">
+        Razem: <span id="cartTotal">0,00 zł</span>
+    </div>
+
+
+    <button class="checkout" onclick="checkout()">
+        PRZEJDŹ DO ZAMÓWIENIA
+    </button>
+
+</div>
+
 
 <script>
 
-    let selectedCase = "";
+/* =========================
+   KOSZYK
+========================= */
 
-    function openModal(caseName) {
+let cart = [];
 
-        selectedCase = caseName;
+let selectedCase = "";
+let selectedPhone = "";
 
-        document.getElementById("phoneModal").classList.add("active");
 
-        document.getElementById("selectedProduct").innerHTML =
-            "Wybrane etui: <strong>" + caseName + "</strong><br><br>Wybierz model telefonu.";
+/* OTWIERANIE WYBORU TELEFONU */
 
+function openModal(caseName) {
+
+    selectedCase = caseName;
+    selectedPhone = "";
+
+    document.getElementById("phoneModal").classList.add("active");
+
+    document.getElementById("selectedProduct").innerHTML =
+        "Wybrane etui: <strong>" +
+        caseName +
+        "</strong><br><br>" +
+        "Wybierz model telefonu.";
+
+    document.getElementById("addCartButton").disabled = true;
+}
+
+
+/* ZAMYKANIE */
+
+function closeModal() {
+
+    document
+        .getElementById("phoneModal")
+        .classList.remove("active");
+
+}
+
+
+/* WYBÓR TELEFONU */
+
+function selectPhone(phone) {
+
+    selectedPhone = phone;
+
+    document.getElementById("selectedProduct").innerHTML =
+        "Etui: <strong>" +
+        selectedCase +
+        "</strong><br>" +
+        "Model: <strong>" +
+        selectedPhone +
+        "</strong>";
+
+    document.getElementById("addCartButton").disabled = false;
+}
+
+
+/* DODANIE DO KOSZYKA */
+
+function addToCart() {
+
+    if (!selectedCase || !selectedPhone) {
+        return;
+    }
+
+    cart.push({
+        caseName: selectedCase,
+        phone: selectedPhone,
+        price: 79.99
+    });
+
+    updateCart();
+
+    closeModal();
+
+    openCart();
+}
+
+
+/* AKTUALIZACJA KOSZYKA */
+
+function updateCart() {
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+    const cartCount =
+        document.getElementById("cartCount");
+
+    const cartTotal =
+        document.getElementById("cartTotal");
+
+
+    cartCount.innerText = cart.length;
+
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML =
+            '<div class="cart-empty">Twój koszyk jest pusty.</div>';
+
+        cartTotal.innerText = "0,00 zł";
+
+        return;
     }
 
 
-    function closeModal() {
+    let total = 0;
 
-        document.getElementById("phoneModal").classList.remove("active");
 
+    cartItems.innerHTML = "";
+
+
+    cart.forEach(function(item, index) {
+
+        total += item.price;
+
+
+        cartItems.innerHTML += `
+
+            <div class="cart-item">
+
+                <h3>
+                    ${item.caseName}
+                </h3>
+
+                <p>
+                    Model: ${item.phone}
+                </p>
+
+                <p>
+                    ${item.price.toFixed(2).replace(".", ",")} zł
+                </p>
+
+                <button
+                    class="remove"
+                    onclick="removeItem(${index})"
+                >
+                    Usuń
+                </button>
+
+            </div>
+
+        `;
+
+    });
+
+
+    cartTotal.innerText =
+        total.toFixed(2).replace(".", ",") + " zł";
+}
+
+
+/* USUWANIE */
+
+function removeItem(index) {
+
+    cart.splice(index, 1);
+
+    updateCart();
+}
+
+
+/* OTWIERANIE KOSZYKA */
+
+function openCart() {
+
+    document
+        .getElementById("cart")
+        .classList.add("active");
+
+}
+
+
+/* ZAMYKANIE KOSZYKA */
+
+function closeCart() {
+
+    document
+        .getElementById("cart")
+        .classList.remove("active");
+
+}
+
+
+/* ZAMÓWIENIE */
+
+function checkout() {
+
+    if (cart.length === 0) {
+
+        alert("Twój koszyk jest pusty.");
+
+        return;
     }
 
 
-    function closeOutside(event) {
+    alert(
+        "Koszyk działa! Następnym krokiem będzie formularz zamówienia."
+    );
 
-        if (event.target.id === "phoneModal") {
-
-            closeModal();
-
-        }
-
-    }
-
-
-    function selectPhone(phone) {
-
-        document.getElementById("selectedProduct").innerHTML =
-            "Etui: <strong>" + selectedCase + "</strong><br>" +
-            "Model: <strong>" + phone + "</strong><br><br>" +
-            "✅ Wybrano poprawnie!";
-
-    }
+}
 
 </script>
 
 
 </body>
-
 </html>
