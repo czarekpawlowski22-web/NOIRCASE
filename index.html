@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>NOIRCASE — Minimalistyczne etui</title>
+  <title>NOIRCASE — Etui premium</title>
 
   <style>
     * {
@@ -15,67 +15,66 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #faf9f7;
-      color: #111111;
+      background: #f7f5f1;
+      color: #111;
     }
 
     header {
+      background: #111;
+      color: white;
+      padding: 22px 6%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 25px 7%;
-      background: #111111;
-      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     .logo {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 4px;
+      font-size: 21px;
+      font-weight: bold;
+      letter-spacing: 5px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      margin-left: 25px;
-      font-size: 14px;
+      margin-left: 22px;
+      font-size: 12px;
+      letter-spacing: 1px;
     }
 
     .hero {
-      min-height: 80vh;
+      min-height: 70vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 60px 20px;
-      background: #f1ede7;
-    }
-
-    .hero-content {
-      max-width: 700px;
+      padding: 70px 20px;
+      background: #eee9e2;
     }
 
     .hero h1 {
-      font-size: clamp(50px, 12vw, 110px);
+      font-size: clamp(55px, 13vw, 120px);
       letter-spacing: 10px;
       margin-bottom: 20px;
     }
 
     .hero p {
-      font-size: 17px;
       color: #555;
-      margin-bottom: 35px;
+      font-size: 17px;
+      margin-bottom: 32px;
     }
 
     .button {
       display: inline-block;
-      background: #111111;
+      background: #111;
       color: white;
-      padding: 16px 35px;
+      padding: 17px 35px;
       text-decoration: none;
-      font-size: 13px;
       letter-spacing: 2px;
-      transition: 0.3s;
+      font-size: 12px;
     }
 
     .button:hover {
@@ -83,13 +82,13 @@
     }
 
     .section {
-      padding: 90px 7%;
+      padding: 80px 6%;
     }
 
-    .section h2 {
-      font-size: 32px;
-      margin-bottom: 45px;
-      letter-spacing: 2px;
+    .section-title {
+      font-size: 30px;
+      letter-spacing: 3px;
+      margin-bottom: 40px;
     }
 
     .products {
@@ -100,66 +99,73 @@
 
     .product {
       background: white;
+      padding-bottom: 25px;
+      transition: transform 0.2s;
+    }
+
+    .product:hover {
+      transform: translateY(-4px);
+    }
+
+    .product img {
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-info {
       padding: 20px;
     }
 
-    .product-image {
-      height: 380px;
-      background: #111111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 20px;
-      letter-spacing: 3px;
-      margin-bottom: 20px;
-    }
-
-    .product:nth-child(2) .product-image {
-      background: #8a6246;
-    }
-
-    .product:nth-child(3) .product-image {
-      background: #d8d0c8;
-      color: #111;
-    }
-
     .product h3 {
-      font-size: 18px;
+      font-size: 17px;
       margin-bottom: 8px;
+      letter-spacing: 1px;
     }
 
-    .price {
+    .product p {
       color: #8a6246;
       font-weight: bold;
     }
 
+    .buy {
+      display: inline-block;
+      margin-top: 15px;
+      background: #111;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
     .about {
-      background: #111111;
+      background: #111;
       color: white;
       text-align: center;
+    }
+
+    .about h2 {
+      margin-bottom: 20px;
     }
 
     .about p {
       max-width: 650px;
       margin: auto;
       line-height: 1.8;
-      color: #cccccc;
+      color: #ccc;
     }
 
     footer {
-      background: #111111;
+      background: #111;
       color: #777;
       text-align: center;
       padding: 30px;
-      border-top: 1px solid #333;
-      font-size: 13px;
+      font-size: 12px;
     }
 
     @media (max-width: 700px) {
-      header {
-        padding: 20px;
-      }
 
       nav {
         display: none;
@@ -169,12 +175,12 @@
         grid-template-columns: 1fr;
       }
 
-      .product-image {
-        height: 330px;
+      .product img {
+        height: 460px;
       }
 
       .section {
-        padding: 60px 20px;
+        padding: 60px 18px;
       }
     }
   </style>
@@ -182,94 +188,141 @@
 
 <body>
 
-  <header>
-    <div class="logo">NOIRCASE</div>
+<header>
 
-    <nav>
-      <a href="#shop">SHOP</a>
-      <a href="#about">ABOUT</a>
-      <a href="#contact">CONTACT</a>
-    </nav>
-  </header>
+  <div class="logo">
+    NOIRCASE
+  </div>
 
-  <section class="hero">
-    <div class="hero-content">
+  <nav>
+    <a href="#shop">SHOP</a>
+    <a href="#about">ABOUT</a>
+  </nav>
 
-      <h1>NOIRCASE</h1>
+</header>
 
-      <p>
-        Minimalistyczne etui stworzone dla codziennego stylu.
-      </p>
 
-      <a href="#shop" class="button">
-        SHOP CASES
-      </a>
+<section class="hero">
 
-    </div>
-  </section>
+  <div>
 
-  <section class="section" id="shop">
-
-    <h2>BESTSELLERS</h2>
-
-    <div class="products">
-
-      <div class="product">
-
-        <div class="product-image">
-          NOIR
-        </div>
-
-        <h3>NOIR CASE</h3>
-
-        <p class="price">79,99 zł</p>
-
-      </div>
-
-      <div class="product">
-
-        <div class="product-image">
-          MOCHA
-        </div>
-
-        <h3>MOCHA CASE</h3>
-
-        <p class="price">79,99 zł</p>
-
-      </div>
-
-      <div class="product">
-
-        <div class="product-image">
-          IVORY
-        </div>
-
-        <h3>IVORY CASE</h3>
-
-        <p class="price">79,99 zł</p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <section class="section about" id="about">
-
-    <h2>MINIMAL. PROTECTIVE. YOURS.</h2>
+    <h1>NOIRCASE</h1>
 
     <p>
-      NOIRCASE to minimalistyczne etui stworzone dla osób,
-      które cenią prosty design, elegancję i codzienną funkcjonalność.
+      Minimalistyczne etui dla Twojego stylu.
     </p>
 
-  </section>
+    <a href="#shop" class="button">
+      ZOBACZ KOLEKCJĘ
+    </a>
 
-  <footer id="contact">
+  </div>
 
-    © 2026 NOIRCASE
+</section>
 
-  </footer>
+
+<section class="section" id="shop">
+
+  <h2 class="section-title">
+    KOLEKCJA
+  </h2>
+
+  <div class="products">
+
+
+    <div class="product">
+
+      <img src="noircase_case_1.jpg" alt="Etui NOIRCASE">
+
+      <div class="product-info">
+
+        <h3>
+          MARVEL COLLECTION — BLACK
+        </h3>
+
+        <p>
+          79,99 zł
+        </p>
+
+        <a href="#" class="buy">
+          WYBIERZ
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <img src="noircase_case_2.jpg" alt="Etui NOIRCASE">
+
+      <div class="product-info">
+
+        <h3>
+          MARVEL COLLECTION — PINK
+        </h3>
+
+        <p>
+          79,99 zł
+        </p>
+
+        <a href="#" class="buy">
+          WYBIERZ
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <img src="noircase_case_3.jpg" alt="Etui NOIRCASE">
+
+      <div class="product-info">
+
+        <h3>
+          MARVEL COLLECTION — WHITE
+        </h3>
+
+        <p>
+          79,99 zł
+        </p>
+
+        <a href="#" class="buy">
+          WYBIERZ
+        </a>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<section class="section about" id="about">
+
+  <h2>
+    MINIMAL. PROTECTIVE. YOURS.
+  </h2>
+
+  <p>
+    NOIRCASE łączy charakterystyczny design
+    z codzienną ochroną telefonu.
+  </p>
+
+</section>
+
+
+<footer>
+
+  © 2026 NOIRCASE
+
+</footer>
 
 </body>
 </html>
