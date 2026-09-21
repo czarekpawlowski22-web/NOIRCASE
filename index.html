@@ -708,6 +708,134 @@ footer p{
   font-size:14px
 }
 
+
+/* LEPSZY WYBOR MODELU TELEFONU */
+.phone-search-wrap{
+  position:relative;
+  margin:0 0 18px
+}
+.phone-search{
+  width:100%;
+  border:1px solid #ddd;
+  background:#fafafa;
+  border-radius:14px;
+  padding:15px 16px 15px 44px;
+  font-size:15px;
+  outline:none;
+  transition:.2s
+}
+.phone-search:focus{
+  border-color:#111;
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(0,0,0,.05)
+}
+.phone-search-icon{
+  position:absolute;
+  left:16px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#777;
+  pointer-events:none
+}
+.phone-group{
+  margin-bottom:18px
+}
+.phone-group:last-child{
+  margin-bottom:0
+}
+.phone-group-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:0 0 9px;
+  font-size:11px;
+  letter-spacing:1.8px;
+  color:#777;
+  text-transform:uppercase
+}
+.phone-group-title span:last-child{
+  letter-spacing:0;
+  text-transform:none;
+  font-size:11px;
+  color:#aaa
+}
+.phone-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px
+}
+.phone{
+  position:relative;
+  min-height:56px;
+  border:1px solid #e1e1e1;
+  background:#f8f8f8;
+  padding:12px 34px 12px 14px;
+  cursor:pointer;
+  border-radius:12px;
+  transition:.2s;
+  text-align:left;
+  font-size:14px;
+  font-weight:600
+}
+.phone::after{
+  content:'›';
+  position:absolute;
+  right:13px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#aaa;
+  font-size:20px;
+  transition:.2s
+}
+.phone:hover{
+  border-color:#bbb;
+  background:#fff;
+  transform:translateY(-1px)
+}
+.phone:hover::after{
+  color:#111
+}
+.phone.selected{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+  transform:translateY(-1px);
+  box-shadow:0 8px 20px rgba(0,0,0,.14)
+}
+.phone.selected::after{
+  content:'✓';
+  color:#fff;
+  font-size:14px;
+  font-weight:bold
+}
+.phone-empty{
+  display:none;
+  padding:18px;
+  border:1px dashed #ccc;
+  border-radius:12px;
+  color:#777;
+  text-align:center;
+  font-size:13px;
+  line-height:1.6
+}
+.phone-help{
+  margin-top:12px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:#f5f2ee;
+  color:#6f6963;
+  font-size:12px;
+  line-height:1.55
+}
+.phone-help strong{
+  color:#222
+}
+@media(max-width:800px){
+  .phone-list{
+    grid-template-columns:1fr
+  }
+}
+
 /* MOBILE */
 
 @media(max-width:800px){
@@ -927,6 +1055,290 @@ footer p{
 
   .footer-links{
     gap:14px 18px;
+  }
+}
+
+
+/* NOIRCASE VISUAL REFRESH — TEST */
+body{
+  background:#f4f1ec;
+  color:#141414;
+}
+
+.dropshipping-banner{
+  background:#0a0a0a;
+  border-bottom:1px solid #292929;
+}
+
+header{
+  padding:16px 6%;
+  background:rgba(10,10,10,.94);
+  backdrop-filter:blur(14px);
+}
+
+.logo{
+  font-size:22px;
+  letter-spacing:7px;
+}
+
+.cart-button{
+  background:transparent;
+  color:#fff;
+  border-color:rgba(255,255,255,.35);
+}
+
+.cart-button:hover{
+  background:#fff;
+  color:#111;
+  border-color:#fff;
+}
+
+.hero{
+  min-height:68vh;
+  background:
+    radial-gradient(circle at 78% 32%,rgba(167,123,86,.20),transparent 26%),
+    radial-gradient(circle at 20% 15%,rgba(255,255,255,.10),transparent 28%),
+    linear-gradient(135deg,#111 0%,#1b1917 55%,#0b0b0b 100%);
+  color:#fff;
+  text-align:left;
+  justify-content:flex-start;
+  padding:100px 8%;
+}
+
+.hero>div{
+  max-width:900px;
+}
+
+.hero h2{
+  font-size:clamp(58px,10vw,120px);
+  letter-spacing:14px;
+  margin-bottom:22px;
+  text-shadow:0 15px 45px rgba(0,0,0,.35);
+}
+
+.hero p{
+  margin:0 0 34px;
+  color:#c9c2ba;
+  font-size:18px;
+}
+
+.hero-button{
+  background:#f5f1eb;
+  color:#111;
+  box-shadow:0 14px 35px rgba(0,0,0,.28);
+}
+
+.hero-button:hover{
+  background:#fff;
+}
+
+.section{
+  max-width:1320px;
+  padding:105px 28px;
+}
+
+#collection{
+  background:#f4f1ec;
+}
+
+.section-title{
+  margin-bottom:48px;
+}
+
+.section-title h2{
+  font-size:clamp(30px,4vw,44px);
+  letter-spacing:5px;
+}
+
+.section-title p{
+  color:#817a73;
+}
+
+.products{
+  gap:22px;
+}
+
+.product{
+  border:0;
+  border-radius:22px;
+  background:#fff;
+  box-shadow:0 10px 35px rgba(28,22,17,.07);
+}
+
+.product:hover{
+  transform:translateY(-10px);
+  box-shadow:0 25px 55px rgba(28,22,17,.13);
+}
+
+.product img{
+  height:460px;
+  background:#eee9e2;
+}
+
+.product-info{
+  padding:28px 28px 30px;
+}
+
+.product-info h3{
+  font-size:16px;
+  letter-spacing:1.5px;
+  min-height:44px;
+}
+
+.price{
+  color:#111;
+  font-size:20px;
+}
+
+.buy{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  background:#111;
+  color:#fff;
+  padding:16px;
+  letter-spacing:2px;
+  font-size:12px;
+  font-weight:700;
+  transition:.25s;
+}
+
+.buy:hover{
+  background:#a77b56;
+  transform:translateY(-2px);
+}
+
+.why{
+  max-width:none;
+  background:#111;
+  color:#fff;
+}
+
+.why-inner{
+  max-width:1120px;
+  margin:auto;
+}
+
+.why-grid{
+  gap:16px;
+}
+
+.why-card{
+  border-radius:20px;
+  padding:30px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.10);
+}
+
+.info-strip{
+  max-width:none;
+  background:#eeeae4;
+}
+
+.info-card{
+  border:0;
+  border-radius:20px;
+  box-shadow:0 8px 25px rgba(28,22,17,.045);
+}
+
+.faq-section{
+  background:#f4f1ec !important;
+}
+
+.faq-list details{
+  background:#fff !important;
+  border-radius:16px !important;
+  border:1px solid #e2ddd6 !important;
+  box-shadow:0 7px 22px rgba(28,22,17,.04);
+}
+
+.faq-list summary{
+  padding:22px 24px !important;
+}
+
+footer{
+  background:#0b0b0b !important;
+  padding:55px 20px !important;
+}
+
+.footer-inner{
+  max-width:1100px !important;
+}
+
+.footer-logo{
+  letter-spacing:8px !important;
+}
+
+/* WYBÓR TELEFONU */
+.phone-list{
+  gap:12px;
+}
+
+.phone{
+  background:#f7f5f2;
+  border:1px solid #ded8d0;
+  border-radius:14px;
+  padding:16px 15px;
+  text-align:left;
+  font-weight:600;
+}
+
+.phone:hover,.phone.selected{
+  background:#111;
+  border-color:#111;
+  color:#fff;
+  box-shadow:0 8px 20px rgba(0,0,0,.14);
+}
+
+.modal{
+  background:rgba(8,8,8,.78);
+}
+
+.modal-box{
+  border-radius:24px;
+  padding:34px;
+  box-shadow:0 30px 100px rgba(0,0,0,.35);
+}
+
+.close{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#f3f0ec;
+  font-size:24px;
+  line-height:1;
+}
+
+.add-cart{
+  background:#111;
+  border-radius:12px;
+}
+
+.add-cart:not(:disabled):hover{
+  background:#a77b56;
+}
+
+@media(max-width:800px){
+  .hero{
+    min-height:62vh;
+    padding:80px 22px;
+  }
+  .hero h2{
+    font-size:clamp(48px,15vw,78px);
+    letter-spacing:8px;
+  }
+  .hero p{
+    font-size:16px;
+  }
+  .section{
+    padding:78px 18px;
+  }
+  .product img{
+    height:auto;
+    max-height:none;
+  }
+  .product-info h3{
+    min-height:0;
   }
 }
 
@@ -1342,54 +1754,69 @@ footer p{
       Wybierz model telefonu dla swojego etui.
     </p>
 
-    <div class="phone-list">
+    <div class="phone-search-wrap">
 
-      <button class="phone"
-        onclick="selectPhone('iPhone 15',this)">
-        iPhone 15
-      </button>
+      <span class="phone-search-icon">⌕</span>
 
-      <button class="phone"
-        onclick="selectPhone('iPhone 15 Pro',this)">
-        iPhone 15 Pro
-      </button>
-
-      <button class="phone"
-        onclick="selectPhone('iPhone 15 Pro Max',this)">
-        iPhone 15 Pro Max
-      </button>
-
-      <button class="phone"
-        onclick="selectPhone('iPhone 16',this)">
-        iPhone 16
-      </button>
-
-      <button class="phone"
-        onclick="selectPhone('iPhone 16 Pro',this)">
-        iPhone 16 Pro
-      </button>
-
-      <button class="phone"
-        onclick="selectPhone('iPhone 16 Pro Max',this)">
-        iPhone 16 Pro Max
-      </button>
-
-      <button class="phone"
-        onclick="selectPhone('iPhone 17',this)">
-        iPhone 17
-      </button>
-
-      <button class="phone"
-        onclick="selectPhone('iPhone 17 Pro',this)">
-        iPhone 17 Pro
-      </button>
-
-      <button class="phone"
-        onclick="selectPhone('iPhone 17 Pro Max',this)">
-        iPhone 17 Pro Max
-      </button>
+      <input
+        class="phone-search"
+        id="phoneSearch"
+        type="search"
+        placeholder="Szukaj modelu, np. iPhone 17 Pro"
+        autocomplete="off"
+        oninput="filterPhones()"
+      >
 
     </div>
+
+    <div class="phone-groups" id="phoneGroups">
+
+      <div class="phone-group" data-group="15">
+        <div class="phone-group-title">
+          <span>iPhone 15</span>
+          <span>3 modele</span>
+        </div>
+        <div class="phone-list">
+          <button class="phone" data-phone="iPhone 15" onclick="selectPhone('iPhone 15',this)">iPhone 15</button>
+          <button class="phone" data-phone="iPhone 15 Pro" onclick="selectPhone('iPhone 15 Pro',this)">iPhone 15 Pro</button>
+          <button class="phone" data-phone="iPhone 15 Pro Max" onclick="selectPhone('iPhone 15 Pro Max',this)">iPhone 15 Pro Max</button>
+        </div>
+      </div>
+
+      <div class="phone-group" data-group="16">
+        <div class="phone-group-title">
+          <span>iPhone 16</span>
+          <span>3 modele</span>
+        </div>
+        <div class="phone-list">
+          <button class="phone" data-phone="iPhone 16" onclick="selectPhone('iPhone 16',this)">iPhone 16</button>
+          <button class="phone" data-phone="iPhone 16 Pro" onclick="selectPhone('iPhone 16 Pro',this)">iPhone 16 Pro</button>
+          <button class="phone" data-phone="iPhone 16 Pro Max" onclick="selectPhone('iPhone 16 Pro Max',this)">iPhone 16 Pro Max</button>
+        </div>
+      </div>
+
+      <div class="phone-group" data-group="17">
+        <div class="phone-group-title">
+          <span>iPhone 17</span>
+          <span>3 modele</span>
+        </div>
+        <div class="phone-list">
+          <button class="phone" data-phone="iPhone 17" onclick="selectPhone('iPhone 17',this)">iPhone 17</button>
+          <button class="phone" data-phone="iPhone 17 Pro" onclick="selectPhone('iPhone 17 Pro',this)">iPhone 17 Pro</button>
+          <button class="phone" data-phone="iPhone 17 Pro Max" onclick="selectPhone('iPhone 17 Pro Max',this)">iPhone 17 Pro Max</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="phone-empty" id="phoneEmpty">
+      Nie znaleziono takiego modelu. Spróbuj wpisać np. <strong>17 Pro</strong>.
+    </div>
+
+    <div class="phone-help">
+      <strong>Nie wiesz, który wybrać?</strong> Sprawdź dokładną nazwę modelu w ustawieniach telefonu przed dodaniem etui do koszyka.
+    </div>
+</div>
 
     <div
       class="selected-product"
@@ -1766,6 +2193,9 @@ function openModal(caseName){
     .getElementById("phoneModal")
     .classList.add("active");
 
+  document.getElementById("phoneSearch").value="";
+  filterPhones();
+
   document.getElementById("selectedProduct").innerHTML=
     "Wybrane etui: <strong>"+
     caseName+
@@ -1787,6 +2217,52 @@ function closeModal(){
   document
     .getElementById("phoneModal")
     .classList.remove("active");
+
+}
+
+
+function filterPhones(){
+
+  const search=document
+    .getElementById("phoneSearch")
+    .value
+    .trim()
+    .toLowerCase();
+
+  let visibleCount=0;
+
+  document
+    .querySelectorAll(".phone-group")
+    .forEach(function(group){
+
+      let groupVisible=0;
+
+      group
+        .querySelectorAll(".phone")
+        .forEach(function(button){
+
+          const name=button
+            .getAttribute("data-phone")
+            .toLowerCase();
+
+          const match=!search || name.includes(search);
+
+          button.style.display=match ? "block" : "none";
+
+          if(match){
+            groupVisible++;
+            visibleCount++;
+          }
+
+        });
+
+      group.style.display=groupVisible ? "block" : "none";
+
+    });
+
+  document
+    .getElementById("phoneEmpty")
+    .style.display=visibleCount ? "none" : "block";
 
 }
 
