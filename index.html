@@ -787,6 +787,149 @@ footer p{
     padding:28px 20px
   }
 }
+
+/* FAQ + PROFESSIONAL FOOTER */
+
+.faq-section{
+  background:#fff;
+  padding:95px 24px;
+  border-top:1px solid var(--line);
+}
+
+.faq-inner{
+  max-width:900px;
+  margin:auto;
+}
+
+.faq-heading{
+  text-align:center;
+  margin-bottom:48px;
+}
+
+.faq-heading span{
+  display:block;
+  color:var(--accent);
+  font-size:11px;
+  font-weight:bold;
+  letter-spacing:4px;
+  margin-bottom:14px;
+}
+
+.faq-heading h2{
+  font-size:clamp(32px,5vw,46px);
+  letter-spacing:5px;
+  margin-bottom:14px;
+}
+
+.faq-heading p{
+  color:#777;
+  font-size:15px;
+}
+
+.faq-list{
+  border-top:1px solid var(--line);
+}
+
+.faq-list details{
+  border-bottom:1px solid var(--line);
+}
+
+.faq-list summary{
+  list-style:none;
+  cursor:pointer;
+  padding:23px 5px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.faq-list summary::-webkit-details-marker{
+  display:none;
+}
+
+.faq-list summary span{
+  font-size:25px;
+  font-weight:normal;
+  transition:.2s;
+  flex-shrink:0;
+}
+
+.faq-list details[open] summary span{
+  transform:rotate(45deg);
+}
+
+.faq-list details p{
+  color:#666;
+  font-size:14px;
+  line-height:1.8;
+  padding:0 45px 24px 5px;
+  max-width:780px;
+}
+
+.footer-inner{
+  max-width:1100px;
+  margin:auto;
+}
+
+.footer-logo{
+  font-size:22px;
+  font-weight:bold;
+  letter-spacing:7px;
+  margin-bottom:18px;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px 24px;
+  margin:24px 0;
+}
+
+.footer-links a{
+  color:#ccc;
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:1px;
+}
+
+.footer-links a:hover{
+  color:#fff;
+}
+
+.footer-test{
+  max-width:800px;
+  margin:0 auto;
+  padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.12);
+  color:#888;
+  font-size:12px;
+  line-height:1.7;
+}
+
+@media(max-width:800px){
+  .faq-section{
+    padding:70px 18px;
+  }
+
+  .faq-list summary{
+    font-size:15px;
+    padding:21px 3px;
+  }
+
+  .faq-list details p{
+    padding-left:3px;
+    padding-right:15px;
+  }
+
+  .footer-links{
+    gap:14px 18px;
+  }
+}
+
 </style>
 </head>
 
@@ -978,7 +1121,7 @@ footer p{
   </div>
 </section>
 
-<section class="section info-strip">
+<section class="section info-strip" id="information">
 
   <div class="section-title">
 
@@ -1044,7 +1187,7 @@ footer p{
 
 </section>
 
-<section class="section about">
+<section class="section about" id="contact">
 
   <div class="about-inner">
 
@@ -1062,12 +1205,126 @@ footer p{
 
 </section>
 
+
+<section class="faq-section" id="faq">
+
+  <div class="faq-inner">
+
+    <div class="faq-heading">
+      <span>NOIRCASE</span>
+      <h2>NAJCZĘSTSZE PYTANIA</h2>
+      <p>Najważniejsze informacje dotyczące testowej wersji sklepu.</p>
+    </div>
+
+    <div class="faq-list">
+
+      <details>
+        <summary>
+          Jak wybrać odpowiednie etui?
+          <span>+</span>
+        </summary>
+        <p>
+          Wybierz interesujący Cię kolor etui, a następnie konkretny
+          model telefonu. Przed dodaniem produktu do koszyka sprawdź,
+          czy wybrany model telefonu się zgadza.
+        </p>
+      </details>
+
+      <details>
+        <summary>
+          Czy NOIRCASE korzysta z dropshippingu?
+          <span>+</span>
+        </summary>
+        <p>
+          Sklep jest przygotowywany w modelu dropshippingowym.
+          Oznacza to, że realizacja zamówienia może odbywać się
+          przy udziale zewnętrznego partnera.
+        </p>
+      </details>
+
+      <details>
+        <summary>
+          Jak wygląda dostawa?
+          <span>+</span>
+        </summary>
+        <p>
+          Metody, koszty i przewidywane terminy dostawy zostaną
+          określone przed uruchomieniem rzeczywistej sprzedaży,
+          po ustaleniu warunków realizacji zamówień.
+        </p>
+      </details>
+
+      <details>
+        <summary>
+          Czy mogę zwrócić produkt?
+          <span>+</span>
+        </summary>
+        <p>
+          Zasady odstąpienia od umowy, zwrotów i reklamacji zostaną
+          opisane przed rozpoczęciem rzeczywistej sprzedaży.
+          Obecna strona jest wersją testową.
+        </p>
+      </details>
+
+      <details>
+        <summary>
+          Czy płatność na stronie jest prawdziwa?
+          <span>+</span>
+        </summary>
+        <p>
+          Nie. Obecna wersja korzysta wyłącznie ze środowiska
+          testowego Stripe Sandbox. Sklep nie prowadzi obecnie
+          rzeczywistej sprzedaży.
+        </p>
+      </details>
+
+      <details>
+        <summary>
+          Gdzie znajdę dane sprzedawcy?
+          <span>+</span>
+        </summary>
+        <p>
+          Dane prawnego sprzedawcy oraz wymagane informacje
+          kontaktowe i regulaminowe zostaną uzupełnione przed
+          uruchomieniem sprzedaży.
+        </p>
+      </details>
+
+    </div>
+
+  </div>
+
+</section>
+
 <footer>
 
-  <p>
-    © 2026 NOIRCASE — Wersja testowa.<br>
-    Sprzedaż rzeczywista nie została uruchomiona.
-  </p>
+  <div class="footer-inner">
+
+    <div class="footer-logo">NOIRCASE</div>
+
+    <p>
+      Minimalistyczne etui. Charakterystyczny design.
+    </p>
+
+    <div class="footer-links">
+      <a href="#collection">Kolekcja</a>
+      <a href="#faq">FAQ</a>
+      <a href="#information">Dostawa</a>
+      <a href="#information">Zwroty i reklamacje</a>
+      <a href="#information">Sprzedawca</a>
+      <a href="#contact">Kontakt</a>
+    </div>
+
+    <div class="footer-test">
+      WERSJA TESTOWA — sprzedaż rzeczywista nie została uruchomiona.
+      Przed startem sprzedaży zostaną uzupełnione wymagane dane
+      sprzedawcy, regulamin, polityka prywatności oraz zasady dostawy,
+      odstąpienia od umowy i reklamacji.
+      <br><br>
+      © 2026 NOIRCASE
+    </div>
+
+  </div>
 
 </footer>
 
