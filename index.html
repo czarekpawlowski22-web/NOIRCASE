@@ -1140,702 +1140,696 @@ let selectedCase = "";
 
 let selectedPhone = "";
 
-
-/*
-====================================================
-STRIPE TEST / SANDBOX
-====================================================
-*/
-
 const STRIPE_WORKER =
 "https://divine-lab-9cd4.czarekpawlowski22.workers.dev/";
 
 
-/*
-====================================================
-WYBÓR ETUI
-====================================================
-*/
+/* ================================
+   WYBÓR ETUI
+================================ */
 
 function openModal(caseName){
 
-selectedCase = caseName;
+    selectedCase = caseName;
+    selectedPhone = "";
 
-selectedPhone = "";
+    document
+        .getElementById("phoneModal")
+        .classList.add("active");
 
-document
-.getElementById("phoneModal")
-.classList.add("active");
+    document
+        .getElementById("selectedProduct")
+        .innerHTML =
+        "Wybrane etui: <strong>"
+        + caseName
+        + "</strong><br><br>Wybierz model telefonu.";
 
+    document
+        .getElementById("addCartButton")
+        .disabled = true;
 
-document
-.getElementById("selectedProduct")
-.innerHTML =
-"Wybrane etui: <strong>"
-+ caseName
-+ "</strong><br><br>Wybierz model telefonu.";
+    document
+        .querySelectorAll(".phone")
+        .forEach(function(button){
 
+            button.classList.remove("selected");
 
-document
-.getElementById("addCartButton")
-.disabled = true;
-
-
-document
-.querySelectorAll(".phone")
-.forEach(function(button){
-
-button.classList.remove("selected");
-
-});
+        });
 
 }
 
+
+/* ================================
+   ZAMKNIĘCIE WYBORU
+================================ */
 
 function closeModal(){
 
-document
-.getElementById("phoneModal")
-.classList.remove("active");
+    document
+        .getElementById("phoneModal")
+        .classList.remove("active");
 
 }
 
 
-/*
-====================================================
-WYBÓR TELEFONU
-====================================================
-*/
+/* ================================
+   WYBÓR TELEFONU
+================================ */
 
-function selectPhone(phone,button){
+function selectPhone(phone, button){
 
-selectedPhone = phone;
+    selectedPhone = phone;
 
+    document
+        .querySelectorAll(".phone")
+        .forEach(function(button){
 
-document
-.querySelectorAll(".phone")
-.forEach(function(button){
+            button.classList.remove("selected");
 
-button.classList.remove("selected");
+        });
 
-});
+    if(button){
 
+        button.classList.add("selected");
 
-if(button){
+    }
 
-button.classList.add("selected");
+    document
+        .getElementById("selectedProduct")
+        .innerHTML =
+        "Etui: <strong>"
+        + selectedCase
+        + "</strong><br>Model: <strong>"
+        + selectedPhone
+        + "</strong>";
 
-}
-
-
-document
-.getElementById("selectedProduct")
-.innerHTML =
-"Etui: <strong>"
-+ selectedCase
-+ "</strong><br>Model: <strong>"
-+ selectedPhone
-+ "</strong>";
-
-
-document
-.getElementById("addCartButton")
-.disabled = false;
+    document
+        .getElementById("addCartButton")
+        .disabled = false;
 
 }
 
 
-/*
-====================================================
-DODANIE DO KOSZYKA
-====================================================
-*/
+/* ================================
+   DODAJ DO KOSZYKA
+================================ */
 
 function addToCart(){
 
-if(!selectedCase || !selectedPhone){
+    if(!selectedCase || !selectedPhone){
 
-return;
+        return;
 
-}
+    }
 
+    cart.push({
 
-cart.push({
+        caseName: selectedCase,
 
-caseName:selectedCase,
+        phone: selectedPhone,
 
-phone:selectedPhone,
+        price: 79.99
 
-price:79.99
+    });
 
-});
+    updateCart();
 
+    closeModal();
 
-updateCart();
-
-closeModal();
-
-openCart();
+    openCart();
 
 }
 
 
-/*
-====================================================
-AKTUALIZACJA KOSZYKA
-====================================================
-*/
+/* ================================
+   AKTUALIZACJA KOSZYKA
+================================ */
 
 function updateCart(){
 
-const items =
-document.getElementById("cartItems");
+    const items =
+        document.getElementById("cartItems");
 
-const count =
-document.getElementById("cartCount");
+    const count =
+        document.getElementById("cartCount");
 
-const totalEl =
-document.getElementById("cartTotal");
+    const totalEl =
+        document.getElementById("cartTotal");
 
+    count.innerText = cart.length;
 
-count.innerText = cart.length;
+    if(!cart.length){
 
+        items.innerHTML =
+        '<div class="cart-empty">Twój koszyk jest pusty.</div>';
 
-if(!cart.length){
+        totalEl.innerText =
+        "0,00 zł";
 
-items.innerHTML =
-'<div class="cart-empty">Twój koszyk jest pusty.</div>';
+        return;
 
-totalEl.innerText =
-"0,00 zł";
+    }
 
-return;
+    let total = 0;
 
-}
+    items.innerHTML = "";
 
+    cart.forEach(function(item,index){
 
-let total = 0;
+        total += item.price;
 
-items.innerHTML = "";
+        items.innerHTML +=
 
+        `<div class="cart-item">
 
-cart.forEach(function(item,index){
+            <h3>${item.caseName}</h3>
 
-total += item.price;
+            <p>Model: ${item.phone}</p>
 
+            <p>
+                ${item.price.toFixed(2).replace(".",",")} zł
+            </p>
 
-items.innerHTML +=
+            <button
+                class="remove"
+                onclick="removeItem(${index})"
+            >
+                Usuń
+            </button>
 
-`<div class="cart-item">
+        </div>`;
 
-<h3>
-${item.caseName}
-</h3>
+    });
 
-<p>
-Model: ${item.phone}
-</p>
-
-<p>
-${item.price.toFixed(2).replace(".",",")} zł
-</p>
-
-<button
-class="remove"
-onclick="removeItem(${index})"
->
-Usuń
-</button>
-
-</div>`;
-
-});
-
-
-totalEl.innerText =
-total.toFixed(2).replace(".",",")
-+ " zł";
+    totalEl.innerText =
+        total.toFixed(2).replace(".",",")
+        + " zł";
 
 }
 
 
-/*
-====================================================
-USUWANIE Z KOSZYKA
-====================================================
-*/
+/* ================================
+   USUŃ Z KOSZYKA
+================================ */
 
 function removeItem(index){
 
-cart.splice(index,1);
+    cart.splice(index,1);
 
-updateCart();
+    updateCart();
 
 }
 
 
-/*
-====================================================
-KOSZYK
-====================================================
-*/
+/* ================================
+   KOSZYK
+================================ */
 
 function openCart(){
 
-document
-.getElementById("cart")
-.classList.add("active");
+    document
+        .getElementById("cart")
+        .classList.add("active");
 
 }
 
 
 function closeCart(){
 
-document
-.getElementById("cart")
-.classList.remove("active");
+    document
+        .getElementById("cart")
+        .classList.remove("active");
 
 }
 
 
-/*
-====================================================
-CHECKOUT
-====================================================
-*/
+/* ================================
+   CHECKOUT
+================================ */
 
 function openCheckout(){
 
-if(!cart.length){
+    if(cart.length === 0){
 
-alert("Twój koszyk jest pusty.");
+        alert("Twój koszyk jest pusty.");
 
-return;
+        return;
 
-}
+    }
 
+    closeCart();
 
-closeCart();
+    document
+        .getElementById("checkoutModal")
+        .classList.add("active");
 
-
-document
-.getElementById("checkoutModal")
-.classList.add("active");
-
-
-showCheckoutSummary();
+    showCheckoutSummary();
 
 }
 
 
 function closeCheckout(){
 
-document
-.getElementById("checkoutModal")
-.classList.remove("active");
+    document
+        .getElementById("checkoutModal")
+        .classList.remove("active");
 
 }
 
 
-/*
-====================================================
-PODSUMOWANIE
-====================================================
-*/
+/* ================================
+   PODSUMOWANIE
+================================ */
 
 function showCheckoutSummary(){
 
-const container =
-document.getElementById("checkoutItems");
+    const container =
+        document.getElementById("checkoutItems");
 
-const totalElement =
-document.getElementById("checkoutTotal");
+    const totalElement =
+        document.getElementById("checkoutTotal");
+
+    let total = 0;
+
+    let productsText = "";
+
+    container.innerHTML = "";
+
+    cart.forEach(function(item){
+
+        total += item.price;
+
+        productsText +=
+            item.caseName
+            + " | "
+            + item.phone
+            + " | 79,99 zł\n";
+
+        container.innerHTML +=
+
+        `<div class="summary-item">
+
+            <strong>
+                ${item.caseName}
+            </strong>
+
+            <br>
+
+            Model:
+            ${item.phone}
+
+            <br>
+
+            79,99 zł
+
+        </div>`;
+
+    });
+
+    totalElement.innerText =
+        total.toFixed(2).replace(".",",")
+        + " zł";
+
+    document
+        .getElementById("productsField")
+        .value = productsText;
+
+    document
+        .getElementById("totalField")
+        .value =
+        total.toFixed(2)
+        + " zł";
+
+}
 
 
-let total = 0;
-
-let productsText = "";
-
-
-container.innerHTML = "";
-
-
-cart.forEach(function(item){
-
-total += item.price;
-
-
-productsText +=
-
-item.caseName
-+ " | "
-+ item.phone
-+ " | 79,99 zł\n";
-
-
-container.innerHTML +=
-
-`<div class="summary-item">
-
-<strong>
-${item.caseName}
-</strong>
-
-<br>
-
-Model:
-${item.phone}
-
-<br>
-
-79,99 zł
-
-</div>`;
-
-});
-
-
-totalElement.innerText =
-total.toFixed(2).replace(".",",")
-+ " zł";
-
+/* ================================
+   FORMULARZ + STRIPE TEST
+================================ */
 
 document
-.getElementById("productsField")
-.value = productsText;
+    .getElementById("orderForm")
+    .addEventListener(
+        "submit",
+        async function(event){
 
+            event.preventDefault();
 
-document
-.getElementById("totalField")
-.value =
-total.toFixed(2)
-+ " zł";
+            const form = event.target;
 
-}
+            const button =
+                document.getElementById("submitOrderButton");
 
+            const errorBox =
+                document.getElementById("formError");
 
-/*
-====================================================
-FORMULARZ + STRIPE TEST
-====================================================
-*/
+            if(!cart.length){
 
-document
-.getElementById("orderForm")
-.addEventListener(
-"submit",
-async function(event){
+                alert("Koszyk jest pusty.");
 
-event.preventDefault();
+                return;
 
+            }
 
-const form = event.target;
+            errorBox.style.display = "none";
 
+            errorBox.innerText = "";
 
-const button =
-document.getElementById("submitOrderButton");
+            const orderNumber =
+                "NC-"
+                +
+                Math.floor(
+                    10000000
+                    +
+                    Math.random() * 90000000
+                );
 
+            document
+                .getElementById("orderNumberField")
+                .value = orderNumber;
 
-const errorBox =
-document.getElementById("formError");
+            localStorage.setItem(
+                "NOIRCASE_TEST_ORDER",
+                orderNumber
+            );
 
+            const customerEmail =
+                document
+                    .getElementById("email")
+                    .value;
 
-if(!cart.length){
+            const formData =
+                new FormData(form);
 
-alert("Koszyk jest pusty.");
+            formData.append(
+                "_replyto",
+                customerEmail
+            );
 
-return;
+            button.disabled = true;
 
-}
+            button.innerText =
+                "PRZYGOTOWYWANIE PŁATNOŚCI...";
 
 
-errorBox.style.display = "none";
+            try{
 
-errorBox.innerText = "";
+                /* ================================
+                   FORMSPREE
+                ================================ */
 
+                const formResponse =
+                    await fetch(
+                        "https://formspree.io/f/myezewlp",
+                        {
+                            method: "POST",
 
-/*
-NUMER TESTOWEGO ZAMÓWIENIA
-*/
+                            body: formData,
 
-const orderNumber =
-"NC-"
-+
-Math.floor(
-10000000
-+
-Math.random()*90000000
-);
+                            headers:{
+                                "Accept":
+                                "application/json"
+                            }
+                        }
+                    );
 
 
-document
-.getElementById("orderNumberField")
-.value =
-orderNumber;
+                if(!formResponse.ok){
 
+                    throw new Error(
+                        "Formspree nie przyjął formularza."
+                    );
 
-localStorage.setItem(
-"NOIRCASE_TEST_ORDER",
-orderNumber
-);
+                }
 
 
-const customerEmail =
-document.getElementById("email").value;
+                /* ================================
+                   STRIPE CHECKOUT TEST
+                ================================ */
 
+                const stripeResponse =
+                    await fetch(
+                        STRIPE_WORKER,
+                        {
+                            method:"POST",
 
-const formData =
-new FormData(form);
+                            headers:{
+                                "Content-Type":
+                                "application/json"
+                            },
 
+                            body:JSON.stringify({
 
-formData.append(
-"_replyto",
-customerEmail
-);
+                                order_id:
+                                orderNumber,
 
+                                quantity:
+                                cart.length
 
-button.disabled = true;
+                            })
 
-button.innerText =
-"PRZYGOTOWYWANIE PŁATNOŚCI...";
+                        }
+                    );
 
 
-try{
+                const stripeData =
+                    await stripeResponse.json();
 
 
-/*
-====================================================
-1. WYSŁANIE DANYCH DO FORMSPREE
-====================================================
-*/
+                if(
+                    !stripeResponse.ok
+                    ||
+                    !stripeData.url
+                ){
 
-const formResponse =
-await fetch(
-"https://formspree.io/f/myezewlp",
-{
-method:"POST",
+                    throw new Error(
 
-body:formData,
+                        stripeData.error?.message
+                        ||
+                        stripeData.error
+                        ||
+                        "Nie udało się utworzyć płatności testowej."
 
-headers:{
-"Accept":"application/json"
-}
-}
-);
+                    );
 
+                }
 
-if(!formResponse.ok){
 
-throw new Error(
-"Formspree nie przyjął formularza."
-);
+                /* ================================
+                   PRZEJŚCIE DO STRIPE
+                ================================ */
 
-}
+                window.location.href =
+                    stripeData.url;
 
 
-/*
-====================================================
-2. UTWORZENIE STRIPE CHECKOUT TEST
-====================================================
-*/
+            }
+            catch(error){
 
-const stripeResponse =
-await fetch(
-STRIPE_WORKER,
-{
-method:"POST",
+                errorBox.innerText =
+                    error.message
+                    +
+                    " Spróbuj ponownie.";
 
-headers:{
-"Content-Type":"application/json"
-},
+                errorBox.style.display =
+                    "block";
 
-body:JSON.stringify({
+                button.disabled = false;
 
-order_id:orderNumber,
+                button.innerText =
+                    "PRZEJDŹ DO PŁATNOŚCI TESTOWEJ";
 
-quantity:cart.length
+            }
 
-})
+        }
+    );
 
-}
-);
 
-
-const stripeData =
-await stripeResponse.json();
-
-
-if(
-!stripeResponse.ok
-||
-!stripeData.url
-){
-
-throw new Error(
-
-stripeData.error?.message
-||
-stripeData.error
-||
-"Nie udało się utworzyć płatności testowej."
-
-);
-
-}
-
-
-/*
-====================================================
-3. PRZEJŚCIE DO STRIPE SANDBOX
-====================================================
-*/
-
-window.location.href =
-stripeData.url;
-
-
-}
-catch(error){
-
-
-errorBox.innerText =
-error.message
-+
-" Spróbuj ponownie.";
-
-
-errorBox.style.display =
-"block";
-
-
-button.disabled = false;
-
-
-button.innerText =
-"PRZEJDŹ DO PŁATNOŚCI TESTOWEJ";
-
-}
-
-});
-
-
-/*
-====================================================
-EKRAN PO POWROCIE ZE STRIPE
-====================================================
-*/
+/* ================================
+   EKRAN SUKCESU
+================================ */
 
 function showSuccess(){
 
-const order =
-localStorage.getItem(
-"NOIRCASE_TEST_ORDER"
-)
-||
-"TEST";
+    const order =
+        localStorage.getItem(
+            "NOIRCASE_TEST_ORDER"
+        )
+        ||
+        "TEST";
 
 
-document
-.getElementById("orderSection")
-.style.display =
-"none";
+    const orderSection =
+        document.getElementById(
+            "orderSection"
+        );
+
+    const successMessage =
+        document.getElementById(
+            "successMessage"
+        );
 
 
-document
-.getElementById("successMessage")
-.style.display =
-"block";
+    if(orderSection){
+
+        orderSection.style.display =
+            "none";
+
+    }
 
 
-document
-.getElementById("orderNumber")
-.innerText =
-order;
+    if(successMessage){
+
+        successMessage.style.display =
+            "block";
+
+    }
 
 
-cart = [];
+    const orderNumber =
+        document.getElementById(
+            "orderNumber"
+        );
 
 
-updateCart();
+    if(orderNumber){
+
+        orderNumber.innerText =
+            order;
+
+    }
+
+
+    /* TESTOWY STATUS */
+
+    const successText =
+        successMessage?.querySelector("p");
+
+
+    if(successText){
+
+        successText.innerText =
+            "Dziękujemy za test zamówienia w NOIRCASE.";
+
+    }
+
+
+    /* Czyścimy koszyk po udanym powrocie */
+
+    cart = [];
+
+    updateCart();
 
 }
 
 
-/*
-====================================================
-POWRÓT DO SKLEPU
-====================================================
-*/
+/* ================================
+   POWRÓT DO SKLEPU
+================================ */
 
 function finishOrder(){
 
-closeCheckout();
+    closeCheckout();
+
+    const form =
+        document.getElementById(
+            "orderForm"
+        );
+
+    if(form){
+
+        form.reset();
+
+    }
 
 
-document
-.getElementById("orderForm")
-.reset();
+    document
+        .getElementById("orderSection")
+        .style.display =
+        "block";
 
 
-document
-.getElementById("orderSection")
-.style.display =
-"block";
+    document
+        .getElementById("successMessage")
+        .style.display =
+        "none";
 
 
-document
-.getElementById("successMessage")
-.style.display =
-"none";
+    document
+        .getElementById("formError")
+        .style.display =
+        "none";
 
 
-document
-.getElementById("formError")
-.style.display =
-"none";
+    const button =
+        document.getElementById(
+            "submitOrderButton"
+        );
 
 
-document
-.getElementById("submitOrderButton")
-.disabled =
-false;
+    if(button){
+
+        button.disabled = false;
+
+        button.innerText =
+            "PRZEJDŹ DO PŁATNOŚCI TESTOWEJ";
+
+    }
 
 
-document
-.getElementById("submitOrderButton")
-.innerText =
-"PRZEJDŹ DO PŁATNOŚCI TESTOWEJ";
+    localStorage.removeItem(
+        "NOIRCASE_TEST_ORDER"
+    );
 
 
-localStorage.removeItem(
-"NOIRCASE_TEST_ORDER"
-);
+    /* Czyścimy parametr z adresu */
 
-}
-
-
-/*
-====================================================
-POWRÓT ZE STRIPE
-====================================================
-*/
-
-const paymentStatus =
-new URLSearchParams(
-window.location.search
-).get("payment");
-
-
-if(paymentStatus === "success"){
-
-document
-.getElementById("checkoutModal")
-.classList.add("active");
-
-showSuccess();
+    window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+    );
 
 }
-}
+
+
+/* ================================
+   POWRÓT ZE STRIPE
+================================ */
+
+(function(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const paymentStatus =
+        params.get("payment");
+
+
+    if(paymentStatus === "success"){
+
+        const checkoutModal =
+            document.getElementById(
+                "checkoutModal"
+            );
+
+
+        if(checkoutModal){
+
+            checkoutModal.classList.add(
+                "active"
+            );
+
+        }
+
+
+        showSuccess();
+
+    }
+
+})();
 
 </script>
 
