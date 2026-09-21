@@ -836,9 +836,87 @@ footer p{
   }
 }
 
+/* TELEFONY — MOBILE FIX */
+.phone-groups{
+  max-height:360px;
+  overflow-y:auto;
+  padding-right:3px;
+  scrollbar-width:thin
+}
+.phone-groups::-webkit-scrollbar{width:5px}
+.phone-groups::-webkit-scrollbar-thumb{background:#ccc;border-radius:99px}
+.phone-list .phone{
+  width:100%;
+  min-height:54px
+}
+
 /* MOBILE */
 
 @media(max-width:800px){
+
+  #phoneModal{
+    align-items:flex-end;
+    padding:0
+  }
+
+  #phoneModal .modal-box{
+    max-width:100%;
+    width:100%;
+    max-height:92vh;
+    padding:22px 16px 18px;
+    border-radius:24px 24px 0 0;
+    overflow-y:auto
+  }
+
+  #phoneModal .close{
+    top:10px;
+    right:14px;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#f3f3f3;
+    font-size:25px
+  }
+
+  #phoneModal h2{
+    font-size:21px;
+    padding-right:45px;
+    margin-bottom:7px
+  }
+
+  #phoneModal .modal-box>p{
+    font-size:13px;
+    margin-bottom:15px
+  }
+
+  #phoneModal .phone-search{
+    padding:13px 14px 13px 40px;
+    font-size:14px;
+    border-radius:12px
+  }
+
+  #phoneModal .phone-search-wrap{margin-bottom:14px}
+  #phoneModal .phone-group{margin-bottom:13px}
+  #phoneModal .phone-group-title{margin-bottom:7px}
+
+  #phoneModal .phone-help{
+    margin-top:10px;
+    padding:10px 12px;
+    font-size:11px
+  }
+
+  #phoneModal .selected-product{
+    margin-top:13px;
+    padding:12px 0 0;
+    font-size:13px
+  }
+
+  #phoneModal .add-cart{
+    margin-top:13px;
+    padding:15px;
+    position:sticky;
+    bottom:0
+  }
 
   .dropshipping-inner{
     padding:10px 16px;
@@ -1816,7 +1894,6 @@ footer{
     <div class="phone-help">
       <strong>Nie wiesz, który wybrać?</strong> Sprawdź dokładną nazwę modelu w ustawieniach telefonu przed dodaniem etui do koszyka.
     </div>
-</div>
 
     <div
       class="selected-product"
