@@ -20,7 +20,7 @@ body {
     color: #111;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 header {
     background: #111;
@@ -47,7 +47,7 @@ header {
     letter-spacing: 1px;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero {
     min-height: 45vh;
@@ -81,7 +81,7 @@ header {
     font-size: 13px;
 }
 
-/* ================= PRODUCTS ================= */
+/* PRODUCTS */
 
 .section {
     max-width: 1200px;
@@ -149,7 +149,7 @@ header {
     font-size: 12px;
 }
 
-/* ================= ABOUT ================= */
+/* ABOUT */
 
 .about {
     background: #eee9e2;
@@ -173,7 +173,7 @@ header {
     line-height: 1.8;
 }
 
-/* ================= MODAL ================= */
+/* MODAL */
 
 .modal {
     display: none;
@@ -220,7 +220,7 @@ header {
     margin-bottom: 25px;
 }
 
-/* ================= PHONE ================= */
+/* PHONE */
 
 .phone-list {
     display: grid;
@@ -263,7 +263,7 @@ header {
     cursor: not-allowed;
 }
 
-/* ================= CART ================= */
+/* CART */
 
 .cart {
     position: fixed;
@@ -350,7 +350,7 @@ header {
     letter-spacing: 2px;
 }
 
-/* ================= FORMULARZ ================= */
+/* FORMULARZ */
 
 .form-group {
     margin-bottom: 18px;
@@ -419,11 +419,7 @@ header {
     font-size: 13px;
 }
 
-.submit-order:hover {
-    background: #333;
-}
-
-/* ================= SUCCESS ================= */
+/* SUCCESS */
 
 .success {
     text-align: center;
@@ -453,7 +449,7 @@ header {
     cursor: pointer;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer {
     background: #111;
@@ -467,7 +463,7 @@ footer p {
     font-size: 13px;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media (max-width: 800px) {
 
@@ -502,15 +498,13 @@ footer p {
     .form-row {
         grid-template-columns: 1fr;
     }
+
 }
 
 </style>
 </head>
 
 <body>
-
-
-<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -525,8 +519,6 @@ footer p {
 
 </header>
 
-
-<!-- ================= HERO ================= -->
 
 <section class="hero">
 
@@ -547,8 +539,6 @@ footer p {
 </section>
 
 
-<!-- ================= PRODUKTY ================= -->
-
 <section class="section" id="collection">
 
     <div class="section-title">
@@ -564,8 +554,6 @@ footer p {
 
     <div class="products">
 
-
-        <!-- WHITE -->
 
         <div class="product">
 
@@ -596,8 +584,6 @@ footer p {
         </div>
 
 
-        <!-- PINK -->
-
         <div class="product">
 
             <img
@@ -626,8 +612,6 @@ footer p {
 
         </div>
 
-
-        <!-- BLACK -->
 
         <div class="product">
 
@@ -663,8 +647,6 @@ footer p {
 </section>
 
 
-<!-- ================= ABOUT ================= -->
-
 <section class="section about">
 
     <div class="about-inner">
@@ -684,8 +666,6 @@ footer p {
 </section>
 
 
-<!-- ================= FOOTER ================= -->
-
 <footer>
 
     <p>
@@ -695,7 +675,7 @@ footer p {
 </footer>
 
 
-<!-- ================= WYBÓR TELEFONU ================= -->
+<!-- WYBÓR TELEFONU -->
 
 <div class="modal" id="phoneModal">
 
@@ -774,7 +754,7 @@ footer p {
 </div>
 
 
-<!-- ================= KOSZYK ================= -->
+<!-- KOSZYK -->
 
 <div class="cart" id="cart">
 
@@ -801,10 +781,12 @@ footer p {
 
 
     <div class="cart-total">
+
         Razem:
         <span id="cartTotal">
             0,00 zł
         </span>
+
     </div>
 
 
@@ -815,7 +797,7 @@ footer p {
 </div>
 
 
-<!-- ================= FORMULARZ ZAMÓWIENIA ================= -->
+<!-- FORMULARZ ZAMÓWIENIA -->
 
 <div class="modal" id="checkoutModal">
 
@@ -826,204 +808,248 @@ footer p {
         </button>
 
 
-        <h2>
-            ZAMÓWIENIE
-        </h2>
+        <div id="orderSection">
 
-        <p>
-            Uzupełnij dane do dostawy.
-        </p>
+            <h2>
+                ZAMÓWIENIE
+            </h2>
 
+            <p>
+                Uzupełnij dane do dostawy.
+            </p>
 
-        <form id="orderForm" onsubmit="submitOrder(event)">
 
+            <!-- FORMULARZ FORMSpree -->
 
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label>
-                        Imię
-                    </label>
-
-                    <input
-                        type="text"
-                        id="firstName"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Nazwisko
-                    </label>
-
-                    <input
-                        type="text"
-                        id="lastName"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    E-mail
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="twoj@email.pl"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Numer telefonu
-                </label>
-
-                <input
-                    type="tel"
-                    id="phoneNumber"
-                    placeholder="123 456 789"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Ulica i numer
-                </label>
-
-                <input
-                    type="text"
-                    id="street"
-                    placeholder="np. Główna 12"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label>
-                        Kod pocztowy
-                    </label>
-
-                    <input
-                        type="text"
-                        id="postalCode"
-                        placeholder="00-000"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Miasto
-                    </label>
-
-                    <input
-                        type="text"
-                        id="city"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Sposób dostawy
-                </label>
-
-                <select id="delivery" required>
-
-                    <option value="">
-                        Wybierz dostawę
-                    </option>
-
-                    <option value="Paczkomat">
-                        Paczkomat
-                    </option>
-
-                    <option value="Kurier">
-                        Kurier
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Dodatkowe informacje
-                </label>
-
-                <textarea
-                    id="notes"
-                    placeholder="Opcjonalnie..."
-                ></textarea>
-
-            </div>
-
-
-            <div class="order-summary">
-
-                <h3>
-                    PODSUMOWANIE
-                </h3>
-
-                <div id="checkoutItems"></div>
-
-                <div class="summary-total">
-
-                    Razem:
-                    <span id="checkoutTotal">
-                        0,00 zł
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="submit-order"
+            <form
+                id="orderForm"
+                action="https://formspree.io/f/myezewlp"
+                method="POST"
+                onsubmit="submitOrder(event)"
             >
-                POTWIERDŹ ZAMÓWIENIE
-            </button>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Imię
+                        </label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            name="Imię"
+                            required
+                        >
+
+                    </div>
 
 
-        </form>
+                    <div class="form-group">
 
+                        <label>
+                            Nazwisko
+                        </label>
+
+                        <input
+                            type="text"
+                            id="lastName"
+                            name="Nazwisko"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="Email"
+                        placeholder="twoj@email.pl"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Numer telefonu
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phoneNumber"
+                        name="Telefon"
+                        placeholder="123 456 789"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Ulica i numer
+                    </label>
+
+                    <input
+                        type="text"
+                        id="street"
+                        name="Ulica i numer"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Kod pocztowy
+                        </label>
+
+                        <input
+                            type="text"
+                            id="postalCode"
+                            name="Kod pocztowy"
+                            placeholder="00-000"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Miasto
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            name="Miasto"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Sposób dostawy
+                    </label>
+
+                    <select
+                        id="delivery"
+                        name="Dostawa"
+                        required
+                    >
+
+                        <option value="">
+                            Wybierz dostawę
+                        </option>
+
+                        <option value="Paczkomat">
+                            Paczkomat
+                        </option>
+
+                        <option value="Kurier">
+                            Kurier
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Dodatkowe informacje
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        name="Uwagi"
+                        placeholder="Opcjonalnie..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- UKRYTE DANE O PRODUKTACH -->
+
+                <input
+                    type="hidden"
+                    name="Produkty"
+                    id="productsField"
+                >
+
+                <input
+                    type="hidden"
+                    name="Suma"
+                    id="totalField"
+                >
+
+                <input
+                    type="hidden"
+                    name="Numer zamówienia"
+                    id="orderNumberField"
+                >
+
+
+                <div class="order-summary">
+
+                    <h3>
+                        PODSUMOWANIE
+                    </h3>
+
+                    <div id="checkoutItems"></div>
+
+                    <div class="summary-total">
+
+                        Razem:
+                        <span id="checkoutTotal">
+                            0,00 zł
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-order"
+                >
+                    POTWIERDŹ ZAMÓWIENIE
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- SUKCES -->
 
         <div
             id="successMessage"
@@ -1037,7 +1063,7 @@ footer p {
                 </div>
 
                 <h2>
-                    ZAMÓWIENIE PRZYJĘTE
+                    ZAMÓWIENIE WYSŁANE
                 </h2>
 
                 <p>
@@ -1068,25 +1094,27 @@ footer p {
 
 <script>
 
-/* =========================================
+/* ==========================================
    ZMIENNE
-========================================= */
+========================================== */
 
 let cart = [];
 
 let selectedCase = "";
+
 let selectedPhone = "";
 
 
-/* =========================================
+/* ==========================================
    WYBÓR ETUI
-========================================= */
+========================================== */
 
 function openModal(caseName) {
 
     selectedCase = caseName;
 
     selectedPhone = "";
+
 
     document
         .getElementById("phoneModal")
@@ -1109,9 +1137,9 @@ function openModal(caseName) {
 }
 
 
-/* =========================================
-   ZAMKNIJ WYBÓR
-========================================= */
+/* ==========================================
+   ZAMKNIJ MODAL
+========================================== */
 
 function closeModal() {
 
@@ -1122,9 +1150,9 @@ function closeModal() {
 }
 
 
-/* =========================================
+/* ==========================================
    WYBÓR TELEFONU
-========================================= */
+========================================== */
 
 function selectPhone(phone) {
 
@@ -1149,9 +1177,9 @@ function selectPhone(phone) {
 }
 
 
-/* =========================================
+/* ==========================================
    DODAJ DO KOSZYKA
-========================================= */
+========================================== */
 
 function addToCart() {
 
@@ -1180,9 +1208,9 @@ function addToCart() {
 }
 
 
-/* =========================================
+/* ==========================================
    AKTUALIZACJA KOSZYKA
-========================================= */
+========================================== */
 
 function updateCart() {
 
@@ -1213,6 +1241,7 @@ function updateCart() {
             "0,00 zł";
 
         return;
+
     }
 
 
@@ -1266,9 +1295,9 @@ function updateCart() {
 }
 
 
-/* =========================================
-   USUŃ PRODUKT
-========================================= */
+/* ==========================================
+   USUWANIE
+========================================== */
 
 function removeItem(index) {
 
@@ -1279,9 +1308,9 @@ function removeItem(index) {
 }
 
 
-/* =========================================
-   OTWÓRZ KOSZYK
-========================================= */
+/* ==========================================
+   KOSZYK
+========================================== */
 
 function openCart() {
 
@@ -1292,10 +1321,6 @@ function openCart() {
 }
 
 
-/* =========================================
-   ZAMKNIJ KOSZYK
-========================================= */
-
 function closeCart() {
 
     document
@@ -1305,9 +1330,9 @@ function closeCart() {
 }
 
 
-/* =========================================
-   OTWÓRZ FORMULARZ
-========================================= */
+/* ==========================================
+   CHECKOUT
+========================================== */
 
 function openCheckout() {
 
@@ -1318,6 +1343,7 @@ function openCheckout() {
         );
 
         return;
+
     }
 
 
@@ -1334,9 +1360,9 @@ function openCheckout() {
 }
 
 
-/* =========================================
-   ZAMKNIJ FORMULARZ
-========================================= */
+/* ==========================================
+   ZAMKNIJ CHECKOUT
+========================================== */
 
 function closeCheckout() {
 
@@ -1347,9 +1373,9 @@ function closeCheckout() {
 }
 
 
-/* =========================================
+/* ==========================================
    PODSUMOWANIE
-========================================= */
+========================================== */
 
 function showCheckoutSummary() {
 
@@ -1363,6 +1389,8 @@ function showCheckoutSummary() {
 
     let total = 0;
 
+    let productsText = "";
+
 
     container.innerHTML = "";
 
@@ -1370,6 +1398,13 @@ function showCheckoutSummary() {
     cart.forEach(function(item) {
 
         total += item.price;
+
+
+        productsText +=
+            item.caseName +
+            " | " +
+            item.phone +
+            " | 79,99 zł\n";
 
 
         container.innerHTML += `
@@ -1386,9 +1421,7 @@ function showCheckoutSummary() {
 
                 <br>
 
-                ${item.price
-                    .toFixed(2)
-                    .replace(".", ",")} zł
+                79,99 zł
 
             </div>
 
@@ -1401,14 +1434,26 @@ function showCheckoutSummary() {
         total.toFixed(2).replace(".", ",") +
         " zł";
 
+
+    document
+        .getElementById("productsField")
+        .value = productsText;
+
+
+    document
+        .getElementById("totalField")
+        .value =
+        total.toFixed(2) + " zł";
+
+
 }
 
 
-/* =========================================
-   ZŁOŻENIE ZAMÓWIENIA
-========================================= */
+/* ==========================================
+   WYSŁANIE ZAMÓWIENIA
+========================================== */
 
-function submitOrder(event) {
+async function submitOrder(event) {
 
     event.preventDefault();
 
@@ -1420,131 +1465,92 @@ function submitOrder(event) {
         );
 
         return;
+
     }
-
-
-    const firstName =
-        document.getElementById("firstName").value;
-
-
-    const lastName =
-        document.getElementById("lastName").value;
-
-
-    const email =
-        document.getElementById("email").value;
-
-
-    const phone =
-        document.getElementById("phoneNumber").value;
-
-
-    const street =
-        document.getElementById("street").value;
-
-
-    const postalCode =
-        document.getElementById("postalCode").value;
-
-
-    const city =
-        document.getElementById("city").value;
-
-
-    const delivery =
-        document.getElementById("delivery").value;
-
-
-    const notes =
-        document.getElementById("notes").value;
-
-
-    const total =
-        cart.reduce(
-            function(sum, item) {
-                return sum + item.price;
-            },
-            0
-        );
 
 
     const orderNumber =
         "NC-" +
-        Date.now().toString().slice(-8);
-
-
-    const order = {
-
-        orderNumber: orderNumber,
-
-        customer: {
-
-            firstName: firstName,
-
-            lastName: lastName,
-
-            email: email,
-
-            phone: phone,
-
-            street: street,
-
-            postalCode: postalCode,
-
-            city: city,
-
-            delivery: delivery,
-
-            notes: notes
-
-        },
-
-        products: cart,
-
-        total: total,
-
-        date: new Date().toLocaleString("pl-PL")
-
-    };
-
-
-    /*
-       Na razie zapisujemy testowe
-       zamówienie w przeglądarce.
-    */
-
-    localStorage.setItem(
-        "noircase_last_order",
-        JSON.stringify(order)
-    );
+        Date.now()
+            .toString()
+            .slice(-8);
 
 
     document
-        .getElementById("orderForm")
-        .style.display = "none";
+        .getElementById("orderNumberField")
+        .value = orderNumber;
 
 
-    document
-        .getElementById("successMessage")
-        .style.display = "block";
+    const form =
+        document.getElementById("orderForm");
 
 
-    document
-        .getElementById("orderNumber")
-        .innerText = orderNumber;
+    const formData =
+        new FormData(form);
 
 
-    cart = [];
+    try {
+
+        const response =
+            await fetch(
+                form.action,
+                {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "Accept":
+                            "application/json"
+                    }
+                }
+            );
 
 
-    updateCart();
+        if (response.ok) {
+
+            document
+                .getElementById("orderSection")
+                .style.display = "none";
+
+
+            document
+                .getElementById("successMessage")
+                .style.display = "block";
+
+
+            document
+                .getElementById("orderNumber")
+                .innerText =
+                orderNumber;
+
+
+            cart = [];
+
+            updateCart();
+
+
+        } else {
+
+            alert(
+                "Nie udało się wysłać zamówienia. Spróbuj ponownie."
+            );
+
+        }
+
+
+    } catch (error) {
+
+        alert(
+            "Wystąpił problem z połączeniem. Spróbuj ponownie."
+        );
+
+    }
 
 }
 
 
-/* =========================================
-   KONIEC ZAMÓWIENIA
-========================================= */
+/* ==========================================
+   KONIEC
+========================================== */
 
 function finishOrder() {
 
@@ -1557,7 +1563,7 @@ function finishOrder() {
 
 
     document
-        .getElementById("orderForm")
+        .getElementById("orderSection")
         .style.display = "block";
 
 
