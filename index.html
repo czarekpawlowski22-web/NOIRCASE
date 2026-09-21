@@ -5,2987 +5,4369 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SAFEBAT — PowerGuard</title>
-<meta name="description" content="SAFEBAT PowerGuard — inteligentny separator ładowania. Wersja testowa sklepu.">
 
 <style>
-:root{
-    --bg:#070b12;
-    --bg2:#0d1420;
-    --card:#111b2a;
-    --card2:#162235;
-    --line:rgba(255,255,255,.09);
-    --text:#f4f7fb;
-    --muted:#91a0b5;
-    --blue:#3d8bff;
-    --blue2:#6eb0ff;
-    --orange:#ff7b32;
-    --purple:#9c6cff;
-    --silver:#b9c1cd;
-    --green:#43d17a;
-    --danger:#ff5c67;
-    --white:#fff;
-    --shadow:0 25px 80px rgba(0,0,0,.35);
-    --radius:24px;
-}
 
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --bg:#07090d;
+  --bg2:#0d1118;
+  --card:#111722;
+  --card2:#151c28;
+  --white:#f7f9fc;
+  --text:#dce2eb;
+  --muted:#8993a3;
+  --line:rgba(255,255,255,.09);
+  --blue:#4f8cff;
+  --blue2:#76a7ff;
+  --green:#62d89b;
+  --orange:#ff7b35;
+  --purple:#9c78ff;
+  --silver:#d7dce3;
+  --black:#252b35;
 }
 
 html{
-    scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.6;
-}
-
-body.locked{
-    overflow:hidden;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(79,140,255,.13),transparent 35%),
+    var(--bg);
+  color:var(--white);
+  line-height:1.5;
 }
 
 button,
 input,
+textarea,
 select{
-    font:inherit;
+  font:inherit;
 }
 
 button{
-    cursor:pointer;
+  cursor:pointer;
 }
 
 a{
-    color:inherit;
-    text-decoration:none;
+  color:inherit;
+  text-decoration:none;
 }
 
-.container{
-    width:min(1180px,calc(100% - 32px));
-    margin:auto;
-}
 
-/* =========================
+/* =========================================================
    TEST BAR
-========================= */
+========================================================= */
 
 .test-bar{
-    background:#111827;
-    border-bottom:1px solid rgba(255,255,255,.08);
-    color:#b9c8dc;
-    text-align:center;
-    padding:9px 15px;
-    font-size:12px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
+  background:#05070a;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  color:#aab3c1;
+  text-align:center;
+  padding:9px 16px;
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
 }
 
-/* =========================
+.test-bar strong{
+  color:#fff;
+}
+
+
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 header{
-    position:sticky;
-    top:0;
-    z-index:50;
-    background:rgba(7,11,18,.86);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid var(--line);
-}
+  position:sticky;
+  top:0;
+  z-index:1000;
 
-.nav{
-    min-height:76px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:25px;
+  height:76px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 6%;
+
+  background:rgba(7,9,13,.84);
+  backdrop-filter:blur(18px);
+
+  border-bottom:1px solid rgba(255,255,255,.07);
 }
 
 .logo{
-    font-size:22px;
-    font-weight:900;
-    letter-spacing:.16em;
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:5px;
 }
 
 .logo span{
-    color:var(--blue);
+  color:var(--blue);
 }
 
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:28px;
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:18px;
 }
 
-.nav-links a{
-    color:#aebbd0;
-    font-size:14px;
-    transition:.2s;
+.header-link{
+  color:#aeb7c5;
+  font-size:13px;
+  transition:.2s;
 }
 
-.nav-links a:hover{
-    color:white;
+.header-link:hover{
+  color:#fff;
 }
 
 .cart-button{
-    border:1px solid var(--line);
-    background:#101827;
-    color:white;
-    padding:11px 15px;
-    border-radius:13px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  border:1px solid rgba(255,255,255,.14);
+  background:#fff;
+  color:#080a0e;
+
+  padding:11px 17px;
+  border-radius:999px;
+
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.7px;
+
+  transition:.25s;
+}
+
+.cart-button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
 }
 
 .cart-count{
-    min-width:22px;
-    height:22px;
-    padding:0 6px;
-    display:grid;
-    place-items:center;
-    border-radius:50px;
-    background:var(--blue);
-    font-size:12px;
+  min-width:21px;
+  height:21px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#0b0e14;
+  color:#fff;
+
+  border-radius:50%;
+  font-size:10px;
 }
 
-/* =========================
+
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
 .hero{
-    position:relative;
-    overflow:hidden;
-    padding:100px 0 80px;
+  position:relative;
+  overflow:hidden;
+
+  min-height:650px;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+
+  max-width:1400px;
+  margin:auto;
+
+  padding:90px 6% 100px;
 }
 
-.hero:before{
-    content:"";
-    position:absolute;
-    width:500px;
-    height:500px;
-    border-radius:50%;
-    background:rgba(61,139,255,.13);
-    filter:blur(90px);
-    top:-220px;
-    right:-100px;
+.hero::before{
+  content:"";
+
+  position:absolute;
+
+  width:550px;
+  height:550px;
+
+  right:-180px;
+  top:-150px;
+
+  background:radial-gradient(
+    circle,
+    rgba(79,140,255,.18),
+    transparent 68%
+  );
+
+  pointer-events:none;
 }
 
-.hero-grid{
-    display:grid;
-    grid-template-columns:1.05fr .95fr;
-    gap:70px;
-    align-items:center;
+.hero::after{
+  content:"";
+
+  position:absolute;
+
+  width:400px;
+  height:400px;
+
+  left:-220px;
+  bottom:-200px;
+
+  background:radial-gradient(
+    circle,
+    rgba(156,120,255,.10),
+    transparent 70%
+  );
+
+  pointer-events:none;
+}
+
+.hero-copy{
+  position:relative;
+  z-index:2;
+
+  max-width:650px;
 }
 
 .eyebrow{
-    color:var(--blue2);
-    text-transform:uppercase;
-    letter-spacing:.18em;
-    font-weight:800;
-    font-size:12px;
-    margin-bottom:20px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  padding:8px 12px;
+
+  border:1px solid rgba(79,140,255,.22);
+  border-radius:999px;
+
+  background:rgba(79,140,255,.07);
+
+  color:#9dbdff;
+
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+
+  margin-bottom:25px;
+}
+
+.eyebrow-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#62d89b;
+  box-shadow:0 0 12px rgba(98,216,155,.7);
 }
 
 .hero h1{
-    font-size:clamp(44px,6vw,78px);
-    line-height:.98;
-    letter-spacing:-.05em;
-    margin-bottom:25px;
+  font-size:clamp(48px,7vw,88px);
+  line-height:.96;
+  letter-spacing:-4px;
+  font-weight:950;
+  margin-bottom:26px;
 }
 
 .hero h1 span{
-    color:var(--blue);
+  color:var(--blue);
 }
 
 .hero-text{
-    max-width:590px;
-    color:var(--muted);
-    font-size:18px;
-    margin-bottom:30px;
+  max-width:570px;
+
+  color:#9aa5b5;
+
+  font-size:17px;
+  line-height:1.75;
+
+  margin-bottom:32px;
 }
 
-.hero-actions{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
-.btn{
-    border:0;
-    border-radius:14px;
-    padding:15px 21px;
-    font-weight:800;
-    transition:.2s;
+.primary-button{
+  border:0;
+
+  padding:15px 24px;
+
+  border-radius:999px;
+
+  background:#fff;
+  color:#080a0d;
+
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1px;
+
+  transition:.25s;
 }
 
-.btn-primary{
-    background:var(--blue);
-    color:white;
+.primary-button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 15px 35px rgba(255,255,255,.12);
 }
 
-.btn-primary:hover{
-    transform:translateY(-2px);
-    background:#559aff;
+.secondary-button{
+  border:1px solid rgba(255,255,255,.13);
+
+  padding:15px 24px;
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,.03);
+  color:#fff;
+
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1px;
+
+  transition:.25s;
 }
 
-.btn-secondary{
-    background:#101827;
-    border:1px solid var(--line);
-    color:white;
+.secondary-button:hover{
+  background:rgba(255,255,255,.07);
+  transform:translateY(-2px);
 }
+
+.hero-points{
+  display:flex;
+  gap:25px;
+  flex-wrap:wrap;
+
+  margin-top:36px;
+}
+
+.hero-point{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  color:#9ba5b4;
+  font-size:12px;
+}
+
+.hero-point-icon{
+  width:28px;
+  height:28px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.05);
+
+  color:#fff;
+}
+
+
+/* =========================================================
+   HERO PRODUCT
+========================================================= */
 
 .hero-product{
-    min-height:420px;
-    display:grid;
-    place-items:center;
-    position:relative;
+  position:relative;
+  z-index:2;
+
+  min-height:480px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-glow{
+  position:absolute;
+
+  width:420px;
+  height:420px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(79,140,255,.18),
+      rgba(79,140,255,.02) 50%,
+      transparent 72%
+    );
+
+  filter:blur(8px);
 }
 
 .device{
-    width:290px;
-    height:180px;
-    border-radius:35px;
-    background:
-        linear-gradient(145deg,#202c3c,#0a1018);
-    border:1px solid rgba(255,255,255,.13);
-    box-shadow:
-        0 35px 80px rgba(0,0,0,.55),
-        inset 0 1px 0 rgba(255,255,255,.12);
-    position:relative;
-    transform:rotate(-8deg);
+  position:relative;
+
+  width:330px;
+  height:245px;
+
+  border-radius:42px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #1b2029 0%,
+      #080b10 42%,
+      #151a22 100%
+    );
+
+  border:2px solid rgba(255,255,255,.22);
+
+  box-shadow:
+    0 45px 90px rgba(0,0,0,.55),
+    inset 0 1px 1px rgba(255,255,255,.22),
+    inset 0 -18px 30px rgba(0,0,0,.45);
+
+  transform:
+    perspective(900px)
+    rotateY(-13deg)
+    rotateX(5deg);
+
+  transition:.45s;
 }
 
-.device:before{
-    content:"SAFEBAT";
-    position:absolute;
-    top:48%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-weight:900;
-    letter-spacing:.2em;
-    color:#dce6f5;
+.device:hover{
+  transform:
+    perspective(900px)
+    rotateY(-5deg)
+    rotateX(2deg)
+    translateY(-7px);
 }
 
-.device:after{
-    content:"POWERGUARD";
-    position:absolute;
-    bottom:31px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:10px;
-    letter-spacing:.22em;
-    color:#60718a;
+.device::before{
+  content:"";
+
+  position:absolute;
+
+  left:22px;
+  right:22px;
+  top:18px;
+
+  height:2px;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.25),
+    transparent
+  );
+}
+
+.device-screen{
+  position:absolute;
+
+  left:32px;
+  right:32px;
+  top:36px;
+  bottom:48px;
+
+  border-radius:25px;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(79,140,255,.16),
+      transparent 55%
+    ),
+    linear-gradient(145deg,#111722,#080b10);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+    inset 0 0 35px rgba(0,0,0,.7);
+}
+
+.device-brand{
+  position:absolute;
+
+  left:0;
+  right:0;
+  top:85px;
+
+  text-align:center;
+
+  font-size:17px;
+  font-weight:900;
+  letter-spacing:4px;
+
+  color:#fff;
+}
+
+.device-brand span{
+  color:var(--blue);
+}
+
+.device-led{
+  position:absolute;
+
+  width:11px;
+  height:11px;
+
+  left:50%;
+  bottom:24px;
+
+  transform:translateX(-50%);
+
+  border-radius:50%;
+
+  background:var(--blue);
+
+  box-shadow:
+    0 0 12px var(--blue),
+    0 0 30px rgba(79,140,255,.45);
 }
 
 .device-port{
-    position:absolute;
-    right:-18px;
-    top:65px;
-    width:30px;
-    height:50px;
-    border-radius:9px;
-    background:#060a10;
-    border:1px solid #29384c;
+  position:absolute;
+
+  width:46px;
+  height:9px;
+
+  left:50%;
+  top:-8px;
+
+  transform:translateX(-50%);
+
+  border-radius:6px 6px 0 0;
+
+  background:#c5cad1;
+
+  box-shadow:
+    inset 0 -2px 3px rgba(0,0,0,.45);
 }
 
-.glow{
-    position:absolute;
-    width:250px;
-    height:250px;
-    border-radius:50%;
-    background:rgba(61,139,255,.2);
-    filter:blur(70px);
+.floating-tag{
+  position:absolute;
+
+  right:2%;
+  bottom:55px;
+
+  padding:12px 15px;
+
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:15px;
+
+  background:rgba(13,17,24,.85);
+
+  backdrop-filter:blur(15px);
+
+  box-shadow:0 20px 50px rgba(0,0,0,.3);
 }
 
-/* =========================
-   TRUST
-========================= */
+.floating-tag strong{
+  display:block;
 
-.trust{
-    padding:25px 0 70px;
+  font-size:12px;
+  letter-spacing:1px;
+
+  margin-bottom:3px;
 }
 
-.trust-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    border:1px solid var(--line);
-    border-radius:20px;
-    overflow:hidden;
-    background:#0c131f;
+.floating-tag span{
+  color:#818b9b;
+  font-size:11px;
 }
 
-.trust-item{
-    padding:23px;
-    text-align:center;
-    border-right:1px solid var(--line);
-}
 
-.trust-item:last-child{
-    border-right:0;
-}
-
-.trust-item strong{
-    display:block;
-    margin-bottom:4px;
-}
-
-.trust-item span{
-    color:var(--muted);
-    font-size:13px;
-}
-
-/* =========================
-   PRODUCT
-========================= */
+/* =========================================================
+   SECTION BASE
+========================================================= */
 
 .section{
-    padding:100px 0;
+  padding:105px 6%;
+}
+
+.section-inner{
+  max-width:1180px;
+  margin:auto;
 }
 
 .section-head{
-    max-width:700px;
-    margin-bottom:50px;
+  max-width:720px;
+  margin-bottom:45px;
+}
+
+.section-kicker{
+  color:var(--blue);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+
+  margin-bottom:12px;
 }
 
 .section-head h2{
-    font-size:clamp(34px,5vw,54px);
-    line-height:1.05;
-    margin-bottom:15px;
+  font-size:clamp(34px,5vw,55px);
+  line-height:1;
+  letter-spacing:-2px;
+
+  margin-bottom:18px;
 }
 
 .section-head p{
-    color:var(--muted);
+  color:#8993a3;
+  font-size:15px;
+  line-height:1.8;
 }
 
-.product-card{
-    display:grid;
-    grid-template-columns:.95fr 1.05fr;
-    gap:45px;
-    padding:30px;
-    border:1px solid var(--line);
-    background:linear-gradient(145deg,#101a29,#0c131e);
-    border-radius:30px;
-    box-shadow:var(--shadow);
+
+/* =========================================================
+   PRODUCT SECTION
+========================================================= */
+
+.product-section{
+  background:
+    linear-gradient(
+      180deg,
+      #090c11 0%,
+      #0c1017 100%
+    );
+
+  border-top:1px solid rgba(255,255,255,.05);
+  border-bottom:1px solid rgba(255,255,255,.05);
 }
 
-.product-visual{
-    min-height:500px;
-    border-radius:22px;
-    background:
-        radial-gradient(circle at 50% 30%,rgba(61,139,255,.22),transparent 35%),
-        #080d15;
-    display:grid;
-    place-items:center;
-    position:relative;
-    overflow:hidden;
+.product-layout{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:55px;
+  align-items:start;
+}
+
+
+/* MAIN PRODUCT SHOWCASE */
+
+.product-showcase{
+  position:sticky;
+  top:105px;
+
+  min-height:610px;
+
+  display:flex;
+  flex-direction:column;
+
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:30px;
+
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(79,140,255,.08),
+      transparent 40%
+    ),
+    #0b0f15;
+
+  overflow:hidden;
+}
+
+.product-showcase-top{
+  flex:1;
+
+  min-height:490px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  position:relative;
+}
+
+.showcase-glow{
+  position:absolute;
+
+  width:390px;
+  height:390px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      var(--product-glow),
+      transparent 67%
+    );
+
+  transition:.4s;
 }
 
 .product-device{
-    width:260px;
-    height:160px;
-    border-radius:30px;
-    background:linear-gradient(145deg,#25354a,#080d14);
-    border:1px solid rgba(255,255,255,.13);
-    box-shadow:0 35px 70px rgba(0,0,0,.5);
-    position:relative;
+  position:relative;
+
+  width:390px;
+  height:285px;
+
+  border-radius:48px;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--product-light),
+      var(--product-main) 42%,
+      var(--product-dark)
+    );
+
+  border:2px solid var(--product-border);
+
+  box-shadow:
+    0 45px 80px rgba(0,0,0,.55),
+    inset 0 1px 2px rgba(255,255,255,.4),
+    inset 0 -22px 30px rgba(0,0,0,.3);
+
+  transform:
+    perspective(1100px)
+    rotateY(-10deg)
+    rotateX(5deg);
+
+  transition:.4s;
 }
 
-.product-device-label{
-    position:absolute;
-    inset:0;
-    display:grid;
-    place-items:center;
-    font-weight:900;
-    letter-spacing:.16em;
+.product-device:hover{
+  transform:
+    perspective(1100px)
+    rotateY(-4deg)
+    rotateX(2deg)
+    translateY(-8px);
 }
 
-.product-device-port{
-    position:absolute;
-    right:-17px;
-    top:57px;
-    width:30px;
-    height:47px;
-    border-radius:8px;
-    background:#020407;
-    border:1px solid #35455a;
+.product-device::before{
+  content:"";
+
+  position:absolute;
+
+  left:28px;
+  right:28px;
+  top:18px;
+
+  height:2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.4),
+      transparent
+    );
 }
 
-.product-info h2{
-    font-size:40px;
-    line-height:1.05;
-    margin-bottom:12px;
+.product-face{
+  position:absolute;
+
+  left:35px;
+  right:35px;
+  top:42px;
+  bottom:55px;
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.07),
+      rgba(0,0,0,.28)
+    );
+
+  border:1px solid rgba(255,255,255,.13);
+
+  box-shadow:
+    inset 0 0 45px rgba(0,0,0,.32);
 }
 
-.product-description{
-    color:var(--muted);
-    margin-bottom:25px;
+.product-face::after{
+  content:"";
+
+  position:absolute;
+
+  width:150px;
+  height:80px;
+
+  left:25px;
+  top:22px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,255,255,.13),
+      transparent 70%
+    );
+
+  transform:rotate(-20deg);
 }
 
-.price{
-    font-size:38px;
-    font-weight:900;
-    margin-bottom:25px;
+.product-name-on-device{
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  top:102px;
+
+  text-align:center;
+
+  font-size:22px;
+  font-weight:950;
+  letter-spacing:5px;
+
+  color:#fff;
+
+  text-shadow:
+    0 2px 12px rgba(0,0,0,.45);
 }
 
-.price small{
-    font-size:13px;
-    color:var(--muted);
-    font-weight:500;
+.product-name-on-device span{
+  color:var(--product-accent);
 }
 
-.option-title{
-    font-weight:800;
-    margin-bottom:10px;
+.product-led{
+  position:absolute;
+
+  width:15px;
+  height:15px;
+
+  left:50%;
+  bottom:28px;
+
+  transform:translateX(-50%);
+
+  border-radius:50%;
+
+  background:var(--product-accent);
+
+  box-shadow:
+    0 0 14px var(--product-accent),
+    0 0 35px var(--product-glow);
 }
 
-.colors{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-bottom:25px;
+.product-port{
+  position:absolute;
+
+  width:55px;
+  height:10px;
+
+  top:-9px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  border-radius:7px 7px 0 0;
+
+  background:#c8cdd5;
+
+  box-shadow:
+    inset 0 -2px 3px rgba(0,0,0,.5);
 }
 
-.color-btn{
-    border:1px solid var(--line);
-    background:#0d1623;
-    color:white;
-    border-radius:12px;
-    padding:10px 15px;
+.showcase-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:20px 24px;
+
+  border-top:1px solid rgba(255,255,255,.07);
 }
 
-.color-btn.active{
-    border-color:var(--blue);
-    background:rgba(61,139,255,.12);
+.current-variant{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
-.quantity{
-    display:flex;
-    align-items:center;
-    width:max-content;
-    border:1px solid var(--line);
-    border-radius:13px;
-    overflow:hidden;
-    margin-bottom:18px;
+.current-dot{
+  width:15px;
+  height:15px;
+
+  border-radius:50%;
+
+  background:var(--product-main);
+
+  border:2px solid rgba(255,255,255,.55);
+
+  box-shadow:0 0 14px var(--product-glow);
 }
 
-.quantity button{
-    width:42px;
-    height:42px;
-    border:0;
-    background:#111b29;
-    color:white;
-    font-size:20px;
+.current-variant small{
+  display:block;
+  color:#737e8e;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
 }
 
-.quantity span{
-    width:45px;
-    text-align:center;
-    font-weight:800;
+.current-variant strong{
+  font-size:14px;
 }
 
-.add-cart{
-    width:100%;
-    padding:17px;
-    border:0;
-    border-radius:14px;
-    background:var(--blue);
-    color:white;
-    font-weight:900;
-    font-size:16px;
+.showcase-label{
+  color:#6f7988;
+  font-size:11px;
+  letter-spacing:1px;
 }
 
-.product-note{
-    color:#708198;
-    font-size:12px;
-    margin-top:15px;
+
+/* PRODUCT INFO */
+
+.product-info-panel{
+  padding-top:8px;
 }
 
-/* =========================
-   FEATURES
-========================= */
+.product-info-panel h3{
+  font-size:34px;
+  line-height:1.05;
+  letter-spacing:-1.5px;
 
-.dark-section{
-    background:#0a1019;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
+  margin-bottom:12px;
 }
 
-.features{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+.product-subtitle{
+  color:#7f8998;
+  font-size:14px;
+  line-height:1.7;
+
+  margin-bottom:28px;
 }
 
-.feature{
-    padding:28px;
-    border:1px solid var(--line);
-    border-radius:22px;
-    background:#0f1826;
+.product-price{
+  display:flex;
+  align-items:end;
+  gap:12px;
+
+  margin-bottom:30px;
 }
 
-.feature-icon{
-    width:45px;
-    height:45px;
-    display:grid;
-    place-items:center;
-    border-radius:14px;
-    background:rgba(61,139,255,.13);
-    margin-bottom:20px;
+.product-price strong{
+  font-size:37px;
+  letter-spacing:-1px;
 }
 
-.feature h3{
-    margin-bottom:10px;
+.product-price span{
+  color:#6e7887;
+  font-size:12px;
+  padding-bottom:7px;
 }
 
-.feature p{
-    color:var(--muted);
-    font-size:14px;
+.selector-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:13px;
 }
 
-/* =========================
-   HOW
-========================= */
+.selector-title strong{
+  font-size:12px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.selector-title span{
+  color:#7b8696;
+  font-size:12px;
+}
+
+
+/* COLOR CARDS */
+
+.color-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
+
+  margin-bottom:28px;
+}
+
+.color-option{
+  position:relative;
+
+  min-height:104px;
+
+  padding:12px 8px;
+
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+
+  background:rgba(255,255,255,.025);
+
+  color:#fff;
+
+  transition:.25s;
+}
+
+.color-option:hover{
+  transform:translateY(-3px);
+  border-color:rgba(255,255,255,.18);
+}
+
+.color-option.active{
+  border-color:var(--option-accent);
+  background:rgba(255,255,255,.055);
+
+  box-shadow:
+    0 0 0 1px var(--option-accent),
+    0 10px 30px rgba(0,0,0,.22);
+}
+
+.color-preview{
+  width:47px;
+  height:34px;
+
+  margin:0 auto 11px;
+
+  border-radius:10px;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--preview-light),
+      var(--preview-main) 50%,
+      var(--preview-dark)
+    );
+
+  border:1px solid rgba(255,255,255,.22);
+
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.3),
+    0 6px 12px rgba(0,0,0,.25);
+}
+
+.color-option strong{
+  display:block;
+
+  font-size:10px;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+}
+
+.color-option span{
+  display:block;
+
+  color:#687383;
+  font-size:9px;
+
+  margin-top:3px;
+}
+
+.color-check{
+  position:absolute;
+
+  right:7px;
+  top:7px;
+
+  width:17px;
+  height:17px;
+
+  display:none;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#fff;
+  color:#080a0d;
+
+  font-size:9px;
+  font-weight:900;
+}
+
+.color-option.active .color-check{
+  display:flex;
+}
+
+
+/* QUANTITY */
+
+.quantity-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:18px;
+}
+
+.quantity-label{
+  color:#8d97a7;
+  font-size:12px;
+}
+
+.quantity-control{
+  display:flex;
+  align-items:center;
+
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;
+
+  overflow:hidden;
+}
+
+.quantity-control button{
+  width:38px;
+  height:38px;
+
+  border:0;
+  background:#111720;
+  color:#fff;
+
+  font-size:17px;
+}
+
+.quantity-control span{
+  min-width:38px;
+
+  text-align:center;
+
+  font-size:13px;
+  font-weight:800;
+}
+
+
+/* ADD */
+
+.add-button{
+  width:100%;
+
+  padding:17px;
+
+  border:0;
+  border-radius:15px;
+
+  background:#fff;
+  color:#080a0d;
+
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:1.5px;
+
+  transition:.25s;
+}
+
+.add-button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 18px 35px rgba(255,255,255,.09);
+}
+
+.delivery-mini{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  color:#697585;
+
+  margin-top:15px;
+
+  font-size:11px;
+}
+
+.delivery-mini strong{
+  color:#9ca6b4;
+}
+
+
+/* =========================================================
+   BENEFITS
+========================================================= */
+
+.benefits{
+  background:#07090d;
+}
+
+.benefit-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.benefit-card{
+  padding:28px;
+
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.035),
+      rgba(255,255,255,.015)
+    );
+
+  transition:.3s;
+}
+
+.benefit-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(79,140,255,.22);
+}
+
+.benefit-icon{
+  width:42px;
+  height:42px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:13px;
+
+  background:rgba(79,140,255,.1);
+  color:#8eb2ff;
+
+  margin-bottom:20px;
+
+  font-size:18px;
+}
+
+.benefit-card h3{
+  font-size:14px;
+  margin-bottom:9px;
+}
+
+.benefit-card p{
+  color:#737e8e;
+  font-size:12px;
+  line-height:1.7;
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+========================================================= */
+
+.how{
+  background:
+    linear-gradient(
+      180deg,
+      #0c1017,
+      #080b10
+    );
+}
 
 .steps{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
 
 .step{
-    padding:30px;
-    border:1px solid var(--line);
-    border-radius:22px;
-    background:#0d1522;
+  position:relative;
+
+  min-height:220px;
+
+  padding:30px;
+
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:23px;
+
+  background:#0e131b;
 }
 
 .step-number{
-    font-size:13px;
-    color:var(--blue2);
-    font-weight:900;
-    margin-bottom:25px;
+  color:#4f8cff;
+
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:2px;
+
+  margin-bottom:35px;
 }
 
 .step h3{
-    margin-bottom:10px;
+  font-size:19px;
+  margin-bottom:10px;
 }
 
 .step p{
-    color:var(--muted);
+  color:#747f8f;
+  font-size:13px;
+  line-height:1.7;
 }
 
-/* =========================
+
+/* =========================================================
    FAQ
-========================= */
+========================================================= */
 
 .faq{
-    max-width:850px;
+  background:#07090d;
+}
+
+.faq-list{
+  max-width:900px;
 }
 
 .faq-item{
-    border-bottom:1px solid var(--line);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .faq-question{
-    width:100%;
-    padding:22px 0;
-    background:none;
-    color:white;
-    border:0;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    text-align:left;
-    font-weight:800;
-}
+  width:100%;
 
-.faq-answer{
-    display:none;
-    color:var(--muted);
-    padding:0 0 22px;
-}
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 
-.faq-item.open .faq-answer{
-    display:block;
+  padding:22px 0;
+
+  border:0;
+  background:none;
+
+  color:#fff;
+
+  text-align:left;
+
+  font-size:14px;
+  font-weight:800;
 }
 
 .faq-plus{
-    font-size:22px;
-    color:var(--blue2);
+  color:#6f7b8c;
+  font-size:22px;
+
+  transition:.25s;
 }
 
-/* =========================
+.faq-answer{
+  display:none;
+
+  color:#7f8998;
+
+  font-size:13px;
+  line-height:1.8;
+
+  padding:0 40px 22px 0;
+}
+
+.faq-item.open .faq-answer{
+  display:block;
+}
+
+.faq-item.open .faq-plus{
+  transform:rotate(45deg);
+  color:#fff;
+}
+
+
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 footer{
-    border-top:1px solid var(--line);
-    padding:50px 0;
-    background:#060a10;
+  padding:60px 6% 35px;
+
+  border-top:1px solid rgba(255,255,255,.07);
+
+  background:#05070a;
 }
 
-.footer-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:30px;
+.footer-inner{
+  max-width:1180px;
+  margin:auto;
+
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+
+  gap:30px;
+}
+
+.footer-logo{
+  font-size:19px;
+  font-weight:900;
+  letter-spacing:4px;
+  margin-bottom:12px;
+}
+
+.footer-logo span{
+  color:var(--blue);
 }
 
 .footer-text{
-    color:var(--muted);
-    max-width:500px;
-    margin-top:12px;
-}
+  max-width:400px;
 
-.footer-right{
-    text-align:right;
-    color:#738198;
-    font-size:13px;
+  color:#626d7c;
+
+  font-size:11px;
+  line-height:1.8;
 }
 
 .footer-test{
-    margin-top:25px;
-    padding-top:20px;
-    border-top:1px solid var(--line);
-    color:#59677a;
-    font-size:12px;
+  margin-top:35px;
+
+  padding-top:20px;
+
+  border-top:1px solid rgba(255,255,255,.06);
+
+  color:#4f5967;
+
+  font-size:10px;
+  text-align:center;
+
+  letter-spacing:.5px;
 }
 
-/* =========================
-   OVERLAY
-========================= */
+
+/* =========================================================
+   CART OVERLAY
+========================================================= */
 
 .overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.68);
-    opacity:0;
-    visibility:hidden;
-    transition:.25s;
-    z-index:90;
+  position:fixed;
+  inset:0;
+
+  z-index:1998;
+
+  background:rgba(0,0,0,.68);
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.3s;
 }
 
-.overlay.show{
-    opacity:1;
-    visibility:visible;
+.overlay.active{
+  opacity:1;
+  visibility:visible;
 }
 
-/* =========================
-   CART DRAWER
-========================= */
+
+/* =========================================================
+   CART
+========================================================= */
 
 .cart-drawer{
-    position:fixed;
-    right:0;
-    top:0;
-    width:min(470px,100%);
-    height:100vh;
-    background:#0b121d;
-    border-left:1px solid var(--line);
-    transform:translateX(100%);
-    transition:.3s ease;
-    z-index:100;
-    display:flex;
-    flex-direction:column;
+  position:fixed;
+
+  top:0;
+  right:0;
+
+  z-index:1999;
+
+  width:min(440px,100%);
+
+  height:100vh;
+
+  display:flex;
+  flex-direction:column;
+
+  background:#0b0f15;
+
+  border-left:1px solid rgba(255,255,255,.09);
+
+  transform:translateX(105%);
+
+  transition:.35s cubic-bezier(.22,.61,.36,1);
+
+  box-shadow:-25px 0 80px rgba(0,0,0,.35);
 }
 
-.cart-drawer.open{
-    transform:translateX(0);
+.cart-drawer.active{
+  transform:translateX(0);
 }
 
 .cart-header{
-    padding:22px;
-    border-bottom:1px solid var(--line);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:23px;
+
+  border-bottom:1px solid rgba(255,255,255,.07);
 }
 
-.cart-header h3{
-    font-size:20px;
+.cart-header h2{
+  font-size:17px;
+  letter-spacing:1px;
 }
 
-.close-btn{
-    width:38px;
-    height:38px;
-    border-radius:12px;
-    border:1px solid var(--line);
-    background:#101a28;
-    color:white;
-    font-size:20px;
+.close-button{
+  width:37px;
+  height:37px;
+
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:50%;
+
+  background:rgba(255,255,255,.04);
+  color:#fff;
+
+  font-size:20px;
 }
 
 .cart-content{
-    flex:1;
-    overflow:auto;
-    padding:20px;
+  flex:1;
+
+  overflow:auto;
+
+  padding:20px;
 }
 
 .cart-empty{
-    padding:60px 20px;
-    text-align:center;
-    color:var(--muted);
+  min-height:300px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  color:#687383;
+  font-size:13px;
 }
 
 .cart-item{
-    display:grid;
-    grid-template-columns:75px 1fr;
-    gap:14px;
-    padding:15px 0;
-    border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:74px 1fr;
+  gap:14px;
+
+  padding:15px 0;
+
+  border-bottom:1px solid rgba(255,255,255,.07);
 }
 
 .cart-thumb{
-    width:75px;
-    height:75px;
-    border-radius:16px;
-    background:linear-gradient(145deg,#172538,#080d14);
-    display:grid;
-    place-items:center;
-    font-size:11px;
-    font-weight:900;
-    color:#8e9db3;
+  width:74px;
+  height:74px;
+
+  border-radius:17px;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--thumb-light),
+      var(--thumb-main) 48%,
+      var(--thumb-dark)
+    );
+
+  border:1px solid rgba(255,255,255,.16);
+
+  position:relative;
+
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.3);
 }
 
-.cart-info h4{
-    font-size:14px;
-    margin-bottom:3px;
+.cart-thumb::after{
+  content:"";
+
+  position:absolute;
+
+  width:9px;
+  height:9px;
+
+  left:50%;
+  bottom:11px;
+
+  transform:translateX(-50%);
+
+  border-radius:50%;
+
+  background:#61a0ff;
+
+  box-shadow:0 0 10px #61a0ff;
 }
 
-.cart-info small{
-    color:var(--muted);
+.cart-info h3{
+  font-size:13px;
+  margin-bottom:4px;
+}
+
+.cart-info p{
+  color:#737e8e;
+  font-size:11px;
+}
+
+.cart-item-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-top:10px;
 }
 
 .cart-item-price{
-    margin-top:5px;
-    font-weight:900;
+  font-weight:900;
+  font-size:13px;
 }
 
-.cart-controls{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-top:10px;
+.cart-qty{
+  display:flex;
+  align-items:center;
+
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:9px;
+
+  overflow:hidden;
 }
 
-.cart-controls button{
-    width:28px;
-    height:28px;
-    border-radius:8px;
-    border:1px solid var(--line);
-    background:#101a28;
-    color:white;
+.cart-qty button{
+  width:27px;
+  height:27px;
+
+  border:0;
+  background:#111720;
+  color:#fff;
 }
 
-.cart-controls span{
-    min-width:22px;
-    text-align:center;
+.cart-qty span{
+  min-width:27px;
+
+  text-align:center;
+
+  font-size:11px;
 }
 
 .remove-item{
-    margin-left:auto;
-    border:0 !important;
-    color:#ff737c !important;
-    background:transparent !important;
+  margin-top:8px;
+
+  border:0;
+  background:none;
+
+  color:#667181;
+
+  font-size:10px;
+
+  text-decoration:underline;
 }
 
 .cart-footer{
-    padding:20px;
-    border-top:1px solid var(--line);
+  padding:20px;
+
+  border-top:1px solid rgba(255,255,255,.07);
 }
 
-.cart-row{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:8px;
-    color:#aebbd0;
+.cart-line{
+  display:flex;
+  justify-content:space-between;
+
+  color:#798494;
+
+  font-size:12px;
+
+  margin-bottom:10px;
 }
 
-.cart-row.total{
-    color:white;
-    font-size:20px;
-    font-weight:900;
-    padding-top:10px;
-    border-top:1px solid var(--line);
-    margin-top:12px;
+.cart-line strong{
+  color:#fff;
+}
+
+.cart-total{
+  display:flex;
+  justify-content:space-between;
+
+  font-size:19px;
+  font-weight:900;
+
+  margin:15px 0 18px;
 }
 
 .checkout-button{
-    width:100%;
-    margin-top:17px;
-    padding:16px;
-    border:0;
-    border-radius:14px;
-    background:var(--blue);
-    color:white;
-    font-weight:900;
+  width:100%;
+
+  padding:16px;
+
+  border:0;
+  border-radius:14px;
+
+  background:#fff;
+  color:#080a0d;
+
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:1.4px;
+
+  transition:.25s;
+}
+
+.checkout-button:hover{
+  transform:translateY(-2px);
 }
 
 .checkout-button:disabled{
-    opacity:.4;
-    cursor:not-allowed;
+  opacity:.35;
+  cursor:not-allowed;
+  transform:none;
 }
 
-/* =========================
-   CHECKOUT MODAL
-========================= */
 
-.checkout-modal{
-    position:fixed;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-46%);
-    width:min(940px,calc(100% - 24px));
-    max-height:92vh;
-    overflow:auto;
-    background:#0b121d;
-    border:1px solid var(--line);
-    border-radius:25px;
-    box-shadow:0 40px 100px rgba(0,0,0,.6);
-    z-index:110;
-    opacity:0;
-    visibility:hidden;
-    transition:.25s;
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+
+  z-index:2100;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  background:rgba(0,0,0,.76);
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.25s;
 }
 
-.checkout-modal.show{
-    opacity:1;
-    visibility:visible;
-    transform:translate(-50%,-50%);
+.modal.active{
+  opacity:1;
+  visibility:visible;
 }
 
-.checkout-header{
-    padding:22px 25px;
-    border-bottom:1px solid var(--line);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.modal-box{
+  width:min(650px,100%);
+  max-height:90vh;
+
+  overflow:auto;
+
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:25px;
+
+  background:#0c1118;
+
+  box-shadow:0 35px 100px rgba(0,0,0,.5);
+
+  padding:30px;
 }
 
-.checkout-header h2{
-    font-size:23px;
+.modal-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:start;
+
+  margin-bottom:25px;
 }
 
-.checkout-grid{
-    display:grid;
-    grid-template-columns:1fr .8fr;
-    gap:0;
+.modal-box h2{
+  font-size:24px;
+  letter-spacing:-.5px;
 }
 
-.checkout-form{
-    padding:28px;
+.modal-box > p{
+  color:#778292;
+  font-size:12px;
+  margin-top:7px;
 }
 
-.checkout-summary{
-    padding:28px;
-    border-left:1px solid var(--line);
-    background:#0e1724;
+.form-error{
+  display:none;
+
+  padding:13px;
+
+  margin-bottom:18px;
+
+  border-radius:12px;
+
+  background:rgba(255,75,75,.08);
+  border:1px solid rgba(255,75,75,.15);
+
+  color:#ff9a9a;
+
+  font-size:12px;
 }
 
-.form-section{
-    margin-bottom:28px;
+.form-group{
+  margin-bottom:15px;
 }
 
-.form-section h3{
-    font-size:16px;
-    margin-bottom:16px;
+.form-group label{
+  display:block;
+
+  margin-bottom:7px;
+
+  color:#9da7b5;
+
+  font-size:11px;
+  font-weight:800;
 }
 
-.form-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:13px;
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;
+
+  padding:13px 14px;
+
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;
+
+  outline:none;
+
+  background:#080c12;
+  color:#fff;
+
+  font-size:13px;
+
+  transition:.2s;
 }
 
-.field{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+  border-color:rgba(79,140,255,.65);
+  box-shadow:0 0 0 3px rgba(79,140,255,.08);
 }
 
-.field.full{
-    grid-column:1 / -1;
+.form-group textarea{
+  min-height:85px;
+  resize:vertical;
 }
 
-.field label{
-    font-size:12px;
-    color:#9eacc0;
-    font-weight:700;
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
 
-.field input,
-.field select{
-    width:100%;
-    border:1px solid var(--line);
-    border-radius:12px;
-    background:#101a28;
-    color:white;
-    padding:13px;
-    outline:none;
+.delivery-box{
+  margin:22px 0;
+
+  padding:16px;
+
+  border:1px solid rgba(79,140,255,.18);
+  border-radius:16px;
+
+  background:rgba(79,140,255,.045);
 }
 
-.field input:focus,
-.field select:focus{
-    border-color:var(--blue);
+.delivery-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:10px;
 }
 
-.delivery-options{
-    display:grid;
-    gap:10px;
+.delivery-title strong{
+  font-size:12px;
+}
+
+.delivery-free{
+  color:#62d89b;
+  font-size:11px;
+  font-weight:900;
 }
 
 .delivery-option{
-    position:relative;
-}
+  display:flex;
+  align-items:center;
+  gap:12px;
 
-.delivery-option input{
-    position:absolute;
-    opacity:0;
-}
+  padding:13px;
 
-.delivery-label{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    padding:15px;
-    border:1px solid var(--line);
-    border-radius:14px;
-    background:#101a28;
-    cursor:pointer;
-}
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;
 
-.delivery-left{
-    display:flex;
-    gap:12px;
-    align-items:center;
+  background:#0a0e14;
 }
 
 .delivery-radio{
-    width:18px;
-    height:18px;
-    border:2px solid #526178;
-    border-radius:50%;
-    flex-shrink:0;
+  width:16px;
+  height:16px;
+
+  accent-color:var(--blue);
 }
 
-.delivery-option input:checked + .delivery-label{
-    border-color:var(--blue);
-    background:rgba(61,139,255,.09);
+.delivery-option strong{
+  display:block;
+  font-size:12px;
 }
 
-.delivery-option input:checked + .delivery-label .delivery-radio{
-    border-color:var(--blue);
-    box-shadow:inset 0 0 0 4px #101a28;
-    background:var(--blue);
+.delivery-option span{
+  color:#697585;
+  font-size:10px;
 }
 
-.delivery-name{
-    font-weight:800;
-    font-size:14px;
+.summary-box{
+  margin:22px 0;
+
+  padding:18px;
+
+  border-radius:16px;
+
+  background:#080c12;
+  border:1px solid rgba(255,255,255,.07);
 }
 
-.delivery-description{
-    color:#78879c;
-    font-size:11px;
-}
-
-.delivery-price{
-    font-weight:900;
-    white-space:nowrap;
-}
-
-.checkout-summary h3{
-    margin-bottom:18px;
-}
-
-.summary-items{
-    border-bottom:1px solid var(--line);
-    padding-bottom:15px;
-    margin-bottom:15px;
+.summary-box h3{
+  font-size:11px;
+  letter-spacing:1px;
+  margin-bottom:12px;
 }
 
 .summary-item{
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    margin-bottom:10px;
-    color:#c0ccdc;
-    font-size:13px;
-}
+  padding:10px 0;
 
-.summary-item span:last-child{
-    white-space:nowrap;
-    font-weight:800;
-}
+  border-bottom:1px solid rgba(255,255,255,.06);
 
-.summary-line{
-    display:flex;
-    justify-content:space-between;
-    color:#8f9db1;
-    margin-bottom:9px;
+  color:#8c96a5;
+
+  font-size:11px;
+  line-height:1.6;
 }
 
 .summary-total{
-    display:flex;
-    justify-content:space-between;
-    margin-top:15px;
-    padding-top:15px;
-    border-top:1px solid var(--line);
-    font-size:22px;
-    font-weight:900;
-}
+  display:flex;
+  justify-content:space-between;
 
-.test-payment{
-    margin-top:22px;
-    padding:13px;
-    border:1px solid rgba(61,139,255,.25);
-    border-radius:13px;
-    background:rgba(61,139,255,.06);
-    color:#9bbdf0;
-    font-size:12px;
+  padding-top:15px;
+
+  font-size:18px;
+  font-weight:900;
 }
 
 .submit-order{
-    width:100%;
-    margin-top:20px;
-    padding:16px;
-    border:0;
-    border-radius:14px;
-    background:var(--blue);
-    color:white;
-    font-weight:900;
+  width:100%;
+
+  padding:16px;
+
+  border:0;
+  border-radius:14px;
+
+  background:#fff;
+  color:#080a0d;
+
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:1.4px;
+
+  transition:.25s;
 }
 
-.checkout-disclaimer{
-    margin-top:12px;
-    color:#66758a;
-    font-size:11px;
-    line-height:1.5;
+.submit-order:hover{
+  transform:translateY(-2px);
 }
 
-/* =========================
+.submit-order:disabled{
+  opacity:.5;
+  cursor:wait;
+}
+
+.test-disclaimer{
+  margin-top:15px;
+
+  color:#586372;
+
+  font-size:10px;
+  line-height:1.6;
+
+  text-align:center;
+}
+
+.success{
+  text-align:center;
+  padding:25px 5px;
+}
+
+.success-icon{
+  width:65px;
+  height:65px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:0 auto 20px;
+
+  border-radius:50%;
+
+  background:rgba(98,216,155,.1);
+  border:1px solid rgba(98,216,155,.2);
+
+  color:#62d89b;
+
+  font-size:30px;
+}
+
+.success h2{
+  font-size:22px;
+  margin-bottom:12px;
+}
+
+.success p{
+  color:#778292;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.success-button{
+  margin-top:22px;
+
+  padding:14px 22px;
+
+  border:0;
+  border-radius:999px;
+
+  background:#fff;
+  color:#080a0d;
+
+  font-size:11px;
+  font-weight:900;
+}
+
+
+/* =========================================================
    TOAST
-========================= */
+========================================================= */
 
 .toast{
-    position:fixed;
-    left:50%;
-    bottom:25px;
-    transform:translate(-50%,20px);
-    background:#152236;
-    border:1px solid var(--line);
-    color:white;
-    padding:13px 18px;
-    border-radius:14px;
-    opacity:0;
-    visibility:hidden;
-    transition:.25s;
-    z-index:200;
-    box-shadow:var(--shadow);
+  position:fixed;
+
+  left:50%;
+  bottom:25px;
+
+  z-index:3000;
+
+  transform:
+    translate(-50%,20px);
+
+  opacity:0;
+  pointer-events:none;
+
+  padding:12px 17px;
+
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+
+  background:#111720;
+  color:#fff;
+
+  box-shadow:0 15px 40px rgba(0,0,0,.35);
+
+  font-size:11px;
+  font-weight:800;
+
+  transition:.3s;
 }
 
 .toast.show{
-    opacity:1;
-    visibility:visible;
-    transform:translate(-50%,0);
+  opacity:1;
+  transform:translate(-50%,0);
 }
 
-/* =========================
+
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
-@media(max-width:850px){
+@media(max-width:1000px){
 
-    .nav-links{
-        display:none;
-    }
+  .hero{
+    grid-template-columns:1fr;
+    text-align:center;
+    gap:45px;
+  }
 
-    .hero{
-        padding:70px 0 50px;
-    }
+  .hero-copy{
+    margin:auto;
+  }
 
-    .hero-grid,
-    .product-card,
-    .checkout-grid{
-        grid-template-columns:1fr;
-    }
+  .hero-text{
+    margin-left:auto;
+    margin-right:auto;
+  }
 
-    .hero-product{
-        min-height:300px;
-    }
+  .hero-buttons,
+  .hero-points{
+    justify-content:center;
+  }
 
-    .trust-grid{
-        grid-template-columns:1fr 1fr;
-    }
+  .product-layout{
+    grid-template-columns:1fr;
+  }
 
-    .trust-item:nth-child(2){
-        border-right:0;
-    }
+  .product-showcase{
+    position:relative;
+    top:auto;
+  }
 
-    .trust-item:nth-child(-n+2){
-        border-bottom:1px solid var(--line);
-    }
+  .benefit-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-    .features,
-    .steps{
-        grid-template-columns:1fr;
-    }
-
-    .product-visual{
-        min-height:330px;
-    }
-
-    .checkout-summary{
-        border-left:0;
-        border-top:1px solid var(--line);
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr;
-    }
-
-    .footer-right{
-        text-align:left;
-    }
 }
 
-@media(max-width:550px){
+@media(max-width:700px){
 
-    .container{
-        width:min(100% - 22px,1180px);
-    }
+  header{
+    height:68px;
+    padding:0 18px;
+  }
 
-    .nav{
-        min-height:68px;
-    }
+  .logo{
+    font-size:18px;
+    letter-spacing:4px;
+  }
 
-    .logo{
-        font-size:18px;
-    }
+  .header-link{
+    display:none;
+  }
 
-    .cart-button{
-        padding:9px 11px;
-    }
+  .cart-button{
+    padding:9px 12px;
+  }
 
-    .hero h1{
-        font-size:46px;
-    }
+  .hero{
+    min-height:auto;
+    padding:75px 20px 80px;
+  }
 
-    .hero-text{
-        font-size:16px;
-    }
+  .hero h1{
+    letter-spacing:-2.5px;
+  }
 
-    .hero-actions .btn{
-        width:100%;
-    }
+  .hero-text{
+    font-size:14px;
+  }
 
-    .trust-grid{
-        grid-template-columns:1fr;
-    }
+  .hero-product{
+    min-height:370px;
+  }
 
-    .trust-item{
-        border-right:0 !important;
-        border-bottom:1px solid var(--line);
-    }
+  .device{
+    width:275px;
+    height:205px;
+  }
 
-    .trust-item:last-child{
-        border-bottom:0;
-    }
+  .floating-tag{
+    right:0;
+    bottom:20px;
+  }
 
-    .section{
-        padding:70px 0;
-    }
+  .section{
+    padding:75px 18px;
+  }
 
-    .product-card{
-        padding:15px;
-    }
+  .section-head{
+    margin-bottom:32px;
+  }
 
-    .product-info h2{
-        font-size:32px;
-    }
+  .section-head h2{
+    letter-spacing:-1.5px;
+  }
 
-    .form-grid{
-        grid-template-columns:1fr;
-    }
+  .product-showcase{
+    min-height:510px;
+    border-radius:23px;
+  }
 
-    .field.full{
-        grid-column:auto;
-    }
+  .product-showcase-top{
+    min-height:405px;
+  }
 
-    .checkout-form,
-    .checkout-summary{
-        padding:20px;
-    }
+  .product-device{
+    width:285px;
+    height:210px;
+    border-radius:34px;
+  }
 
-    .checkout-modal{
-        max-height:96vh;
-        border-radius:20px;
-    }
+  .product-face{
+    left:25px;
+    right:25px;
+    top:31px;
+    bottom:40px;
+    border-radius:23px;
+  }
 
-    .delivery-label{
-        padding:13px;
-    }
+  .product-name-on-device{
+    top:73px;
+    font-size:15px;
+    letter-spacing:3px;
+  }
+
+  .product-led{
+    width:11px;
+    height:11px;
+    bottom:20px;
+  }
+
+  .product-port{
+    width:42px;
+  }
+
+  .showcase-glow{
+    width:300px;
+    height:300px;
+  }
+
+  .product-info-panel h3{
+    font-size:29px;
+  }
+
+  .color-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .benefit-grid{
+    grid-template-columns:1fr;
+  }
+
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+  .form-row{
+    grid-template-columns:1fr;
+  }
+
+  .modal{
+    padding:10px;
+    align-items:flex-end;
+  }
+
+  .modal-box{
+    width:100%;
+    max-height:94vh;
+    border-radius:24px 24px 0 0;
+    padding:23px 18px;
+  }
+
+  .footer-inner{
+    flex-direction:column;
+  }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =======================================================
+     TEST BAR
+======================================================= -->
+
 <div class="test-bar">
-    SAFEBAT • WERSJA TESTOWA • SPRZEDAŻ RZECZYWISTA NIE JEST URUCHOMIONA
+  <strong>SAFEBAT</strong>
+  &nbsp;•&nbsp;
+  WERSJA TESTOWA
+  &nbsp;•&nbsp;
+  SPRZEDAŻ RZECZYWISTA NIE JEST URUCHOMIONA
 </div>
 
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
 <header>
-    <div class="container nav">
 
-        <a href="#" class="logo">
-            SAFE<span>BAT</span>
-        </a>
+  <a href="#" class="logo">
+    SAFE<span>BAT</span>
+  </a>
 
-        <nav class="nav-links">
-            <a href="#produkt">Produkt</a>
-            <a href="#zalety">Zalety</a>
-            <a href="#jak-dziala">Jak działa</a>
-            <a href="#faq">FAQ</a>
-        </nav>
+  <div class="header-right">
 
-        <button class="cart-button" onclick="openCart()">
-            🛒 Koszyk
-            <span class="cart-count" id="cartCount">0</span>
-        </button>
+    <a href="#product" class="header-link">
+      PRODUKT
+    </a>
 
-    </div>
+    <a href="#faq" class="header-link">
+      FAQ
+    </a>
+
+    <button
+      class="cart-button"
+      onclick="openCart()"
+    >
+      🛒
+      KOSZYK
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+  </div>
+
 </header>
 
 
-<!-- HERO -->
+<!-- =======================================================
+     HERO
+======================================================= -->
 
 <section class="hero">
-    <div class="container hero-grid">
 
-        <div>
+  <div class="hero-copy">
 
-            <div class="eyebrow">
-                SAFEBAT POWERGUARD
-            </div>
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      SAFEBAT POWERGUARD
+    </div>
 
-            <h1>
-                Ładuj<br>
-                <span>spokojniej.</span>
-            </h1>
+    <h1>
+      Ładowanie.<br>
+      <span>Prościej.</span>
+    </h1>
 
-            <p class="hero-text">
-                Kompaktowy separator ładowania zaprojektowany z myślą
-                o automatycznym odłączaniu urządzenia po zakończeniu
-                ładowania — zgodnie z deklarowaną funkcją produktu.
-            </p>
+    <p class="hero-text">
+      Kompaktowy adapter USB-C zaprojektowany jako
+      praktyczny element codziennego ładowania.
+      Wybierz wariant kolorystyczny i sprawdź produkt
+      w naszej wersji testowej.
+    </p>
 
-            <div class="hero-actions">
-                <a href="#produkt" class="btn btn-primary">
-                    Zobacz produkt
-                </a>
+    <div class="hero-buttons">
 
-                <button class="btn btn-secondary" onclick="openCart()">
-                    Otwórz koszyk
-                </button>
-            </div>
+      <a
+        href="#product"
+        class="primary-button"
+      >
+        ZOBACZ PRODUKT
+      </a>
 
-        </div>
-
-        <div class="hero-product">
-
-            <div class="glow"></div>
-
-            <div class="device">
-                <div class="device-port"></div>
-            </div>
-
-        </div>
+      <a
+        href="#how"
+        class="secondary-button"
+      >
+        JAK TO DZIAŁA
+      </a>
 
     </div>
-</section>
 
+    <div class="hero-points">
 
-<!-- TRUST -->
+      <div class="hero-point">
+        <span class="hero-point-icon">✓</span>
+        4 warianty
+      </div>
 
-<section class="trust">
-    <div class="container">
+      <div class="hero-point">
+        <span class="hero-point-icon">⚡</span>
+        USB-C
+      </div>
 
-        <div class="trust-grid">
-
-            <div class="trust-item">
-                <strong>Do 140W*</strong>
-                <span>Deklarowane wsparcie produktu</span>
-            </div>
-
-            <div class="trust-item">
-                <strong>Auto Disconnect</strong>
-                <span>Deklarowana funkcja odłączenia</span>
-            </div>
-
-            <div class="trust-item">
-                <strong>Kompaktowy</strong>
-                <span>Mała konstrukcja</span>
-            </div>
-
-            <div class="trust-item">
-                <strong>USB</strong>
-                <span>Do zastosowań z kompatybilnymi kablami</span>
-            </div>
-
-        </div>
+      <div class="hero-point">
+        <span class="hero-point-icon">◉</span>
+        Kompaktowa forma
+      </div>
 
     </div>
-</section>
+
+  </div>
 
 
-<!-- PRODUCT -->
+  <div class="hero-product">
 
-<section class="section" id="produkt">
+    <div class="hero-glow"></div>
 
-    <div class="container">
+    <div class="device">
 
-        <div class="section-head">
-            <div class="eyebrow">PRODUKT</div>
+      <div class="device-port"></div>
 
-            <h2>
-                SAFEBAT PowerGuard
-            </h2>
+      <div class="device-screen"></div>
 
-            <p>
-                Prosty moduł pomiędzy ładowarką a przewodem.
-                Wersja sklepu pozostaje obecnie wyłącznie testowa.
-            </p>
-        </div>
+      <div class="device-brand">
+        SAFE<span>BAT</span>
+      </div>
 
-
-        <div class="product-card">
-
-            <div class="product-visual">
-
-                <div class="product-device">
-                    <div class="product-device-label">
-                        SAFEBAT
-                    </div>
-
-                    <div class="product-device-port"></div>
-                </div>
-
-            </div>
-
-
-            <div class="product-info">
-
-                <h2>PowerGuard</h2>
-
-                <p class="product-description">
-                    Kompaktowy separator ładowania do kompatybilnych
-                    zastosowań USB.
-                </p>
-
-                <div class="price">
-                    79,99 zł
-                    <small>• cena TESTOWA</small>
-                </div>
-
-
-                <div class="option-title">
-                    Kolor
-                </div>
-
-                <div class="colors">
-
-                    <button
-                        class="color-btn active"
-                        data-color="Black"
-                        onclick="selectColor(this)"
-                    >
-                        Black
-                    </button>
-
-                    <button
-                        class="color-btn"
-                        data-color="Silver"
-                        onclick="selectColor(this)"
-                    >
-                        Silver
-                    </button>
-
-                    <button
-                        class="color-btn"
-                        data-color="Orange"
-                        onclick="selectColor(this)"
-                    >
-                        Orange
-                    </button>
-
-                    <button
-                        class="color-btn"
-                        data-color="Purple"
-                        onclick="selectColor(this)"
-                    >
-                        Purple
-                    </button>
-
-                </div>
-
-
-                <div class="option-title">
-                    Ilość
-                </div>
-
-                <div class="quantity">
-
-                    <button onclick="changeProductQuantity(-1)">
-                        −
-                    </button>
-
-                    <span id="productQuantity">
-                        1
-                    </span>
-
-                    <button onclick="changeProductQuantity(1)">
-                        +
-                    </button>
-
-                </div>
-
-
-                <button class="add-cart" onclick="addToCart()">
-                    Dodaj do koszyka
-                </button>
-
-                <p class="product-note">
-                    * Wartości i funkcje produktu wymagają potwierdzenia
-                    dokumentacją producenta przed rzeczywistą sprzedażą.
-                </p>
-
-            </div>
-
-        </div>
+      <div class="device-led"></div>
 
     </div>
+
+    <div class="floating-tag">
+      <strong>POWERGUARD</strong>
+      <span>Wersja testowa produktu</span>
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- FEATURES -->
+<!-- =======================================================
+     PRODUCT
+======================================================= -->
 
-<section class="section dark-section" id="zalety">
+<section
+  class="section product-section"
+  id="product"
+>
 
-    <div class="container">
+  <div class="section-inner">
 
-        <div class="section-head">
-            <div class="eyebrow">DLACZEGO SAFEBAT?</div>
+    <div class="section-head">
 
-            <h2>
-                Mały moduł.<br>
-                Dużo wygody.
-            </h2>
+      <div class="section-kicker">
+        SAFEBAT POWERGUARD
+      </div>
 
-            <p>
-                Sekcja demonstracyjna przygotowana na potrzeby wersji testowej.
-            </p>
-        </div>
+      <h2>
+        Wybierz swój wariant.
+      </h2>
 
-
-        <div class="features">
-
-            <div class="feature">
-                <div class="feature-icon">⚡</div>
-
-                <h3>
-                    Szybkie ładowanie
-                </h3>
-
-                <p>
-                    Produkt jest reklamowany jako obsługujący wysoką moc
-                    ładowania. Dokładne parametry wymagają weryfikacji.
-                </p>
-            </div>
-
-
-            <div class="feature">
-                <div class="feature-icon">🔌</div>
-
-                <h3>
-                    Automatyczne odłączenie
-                </h3>
-
-                <p>
-                    Producent deklaruje funkcję automatycznego odłączenia
-                    po zakończeniu lub odpowiednim poziomie ładowania.
-                </p>
-            </div>
-
-
-            <div class="feature">
-                <div class="feature-icon">📦</div>
-
-                <h3>
-                    Kompaktowa konstrukcja
-                </h3>
-
-                <p>
-                    Niewielki format pozwala zachować prostą i wygodną
-                    konstrukcję całego zestawu.
-                </p>
-            </div>
-
-        </div>
+      <p>
+        Cztery kolory, jeden minimalistyczny produkt.
+        Kliknij wariant, aby zobaczyć go na głównym
+        podglądzie.
+      </p>
 
     </div>
+
+
+    <div class="product-layout">
+
+
+      <!-- =================================================
+           SHOWCASE
+      ================================================== -->
+
+      <div
+        class="product-showcase"
+        id="productShowcase"
+        style="
+          --product-main:#252b35;
+          --product-light:#4b5360;
+          --product-dark:#10141a;
+          --product-border:rgba(255,255,255,.3);
+          --product-accent:#61a0ff;
+          --product-glow:rgba(79,140,255,.18);
+        "
+      >
+
+        <div class="product-showcase-top">
+
+          <div class="showcase-glow"></div>
+
+          <div class="product-device">
+
+            <div class="product-port"></div>
+
+            <div class="product-face"></div>
+
+            <div class="product-name-on-device">
+              SAFE<span>BAT</span>
+            </div>
+
+            <div class="product-led"></div>
+
+          </div>
+
+        </div>
+
+
+        <div class="showcase-bottom">
+
+          <div class="current-variant">
+
+            <span class="current-dot"></span>
+
+            <div>
+              <small>Wybrany wariant</small>
+              <strong id="currentVariant">
+                Black
+              </strong>
+            </div>
+
+          </div>
+
+          <div class="showcase-label">
+            POWERGUARD
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           PRODUCT INFO
+      ================================================== -->
+
+      <div class="product-info-panel">
+
+        <h3>
+          SAFEBAT PowerGuard
+        </h3>
+
+        <p class="product-subtitle">
+          Kompaktowy adapter do codziennego ładowania
+          urządzeń wyposażonych w USB-C.
+        </p>
+
+
+        <div class="product-price">
+
+          <strong>
+            79,99 zł
+          </strong>
+
+          <span>
+            cena testowa
+          </span>
+
+        </div>
+
+
+        <div class="selector-title">
+
+          <strong>
+            Kolor
+          </strong>
+
+          <span id="selectedColorLabel">
+            Black
+          </span>
+
+        </div>
+
+
+        <div class="color-grid">
+
+
+          <!-- BLACK -->
+
+          <button
+            class="color-option active"
+            data-color="Black"
+            data-main="#252b35"
+            data-light="#4b5360"
+            data-dark="#10141a"
+            data-accent="#61a0ff"
+            data-glow="rgba(79,140,255,.18)"
+            style="
+              --option-accent:#61a0ff;
+              --preview-main:#252b35;
+              --preview-light:#4b5360;
+              --preview-dark:#10141a;
+            "
+            onclick="selectColor(this)"
+          >
+
+            <span class="color-check">✓</span>
+
+            <div class="color-preview"></div>
+
+            <strong>Black</strong>
+            <span>Czarny</span>
+
+          </button>
+
+
+          <!-- SILVER -->
+
+          <button
+            class="color-option"
+            data-color="Silver"
+            data-main="#aeb5be"
+            data-light="#eef1f4"
+            data-dark="#68717c"
+            data-accent="#8db4ff"
+            data-glow="rgba(185,205,255,.18)"
+            style="
+              --option-accent:#bfc8d3;
+              --preview-main:#aeb5be;
+              --preview-light:#eef1f4;
+              --preview-dark:#68717c;
+            "
+            onclick="selectColor(this)"
+          >
+
+            <span class="color-check">✓</span>
+
+            <div class="color-preview"></div>
+
+            <strong>Silver</strong>
+            <span>Srebrny</span>
+
+          </button>
+
+
+          <!-- ORANGE -->
+
+          <button
+            class="color-option"
+            data-color="Orange"
+            data-main="#c96025"
+            data-light="#ff9b5e"
+            data-dark="#71300f"
+            data-accent="#ffad6d"
+            data-glow="rgba(255,123,53,.22)"
+            style="
+              --option-accent:#ff7b35;
+              --preview-main:#c96025;
+              --preview-light:#ff9b5e;
+              --preview-dark:#71300f;
+            "
+            onclick="selectColor(this)"
+          >
+
+            <span class="color-check">✓</span>
+
+            <div class="color-preview"></div>
+
+            <strong>Orange</strong>
+            <span>Pomarańczowy</span>
+
+          </button>
+
+
+          <!-- PURPLE -->
+
+          <button
+            class="color-option"
+            data-color="Purple"
+            data-main="#7655c5"
+            data-light="#b598ff"
+            data-dark="#392567"
+            data-accent="#b89aff"
+            data-glow="rgba(156,120,255,.22)"
+            style="
+              --option-accent:#9c78ff;
+              --preview-main:#7655c5;
+              --preview-light:#b598ff;
+              --preview-dark:#392567;
+            "
+            onclick="selectColor(this)"
+          >
+
+            <span class="color-check">✓</span>
+
+            <div class="color-preview"></div>
+
+            <strong>Purple</strong>
+            <span>Fioletowy</span>
+
+          </button>
+
+        </div>
+
+
+        <div class="quantity-row">
+
+          <span class="quantity-label">
+            Ilość
+          </span>
+
+          <div class="quantity-control">
+
+            <button onclick="changeProductQuantity(-1)">
+              −
+            </button>
+
+            <span id="productQuantity">
+              1
+            </span>
+
+            <button onclick="changeProductQuantity(1)">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="add-button"
+          onclick="addToCart()"
+        >
+          DODAJ DO KOSZYKA
+        </button>
+
+
+        <div class="delivery-mini">
+          🚚
+          <strong>Dostawa testowa:</strong>
+          AliExpress Selection Standard — 0 zł
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- HOW IT WORKS -->
+<!-- =======================================================
+     BENEFITS
+======================================================= -->
 
-<section class="section" id="jak-dziala">
+<section class="section benefits">
 
-    <div class="container">
+  <div class="section-inner">
 
-        <div class="section-head">
+    <div class="section-head">
 
-            <div class="eyebrow">
-                JAK DZIAŁA
-            </div>
+      <div class="section-kicker">
+        POWERGUARD
+      </div>
 
-            <h2>
-                3 proste kroki
-            </h2>
+      <h2>
+        Prosta forma.<br>
+        Konkretne zastosowanie.
+      </h2>
 
-            <p>
-                Schemat działania prezentowany w celach demonstracyjnych.
-            </p>
-
-        </div>
-
-
-        <div class="steps">
-
-            <div class="step">
-                <div class="step-number">01 / PODŁĄCZ</div>
-
-                <h3>
-                    Podłącz ładowarkę
-                </h3>
-
-                <p>
-                    Podłącz kompatybilną ładowarkę do modułu SAFEBAT.
-                </p>
-            </div>
-
-
-            <div class="step">
-                <div class="step-number">02 / ŁADUJ</div>
-
-                <h3>
-                    Rozpocznij ładowanie
-                </h3>
-
-                <p>
-                    Podłącz kompatybilny przewód oraz urządzenie.
-                </p>
-            </div>
-
-
-            <div class="step">
-                <div class="step-number">03 / STOP</div>
-
-                <h3>
-                    Automatyczne odłączenie
-                </h3>
-
-                <p>
-                    Funkcja automatycznego odłączenia jest deklarowana
-                    przez ofertę produktu i wymaga potwierdzenia dokumentacją.
-                </p>
-            </div>
-
-        </div>
+      <p>
+        Sekcję szczegółowego opisu produktu oraz instrukcję
+        obsługi dodamy po otrzymaniu materiałów od Ciebie.
+      </p>
 
     </div>
+
+
+    <div class="benefit-grid">
+
+
+      <div class="benefit-card">
+
+        <div class="benefit-icon">
+          ⚡
+        </div>
+
+        <h3>
+          Kompaktowy format
+        </h3>
+
+        <p>
+          Mała forma produktu została przygotowana
+          z myślą o codziennym użytkowaniu.
+        </p>
+
+      </div>
+
+
+      <div class="benefit-card">
+
+        <div class="benefit-icon">
+          ◉
+        </div>
+
+        <h3>
+          USB-C
+        </h3>
+
+        <p>
+          Produkt przeznaczony do zastosowań związanych
+          z ładowaniem przez złącze USB-C.
+        </p>
+
+      </div>
+
+
+      <div class="benefit-card">
+
+        <div class="benefit-icon">
+          ✓
+        </div>
+
+        <h3>
+          4 warianty
+        </h3>
+
+        <p>
+          Black, Silver, Orange oraz Purple —
+          wybierz wariant dopasowany do swojego stylu.
+        </p>
+
+      </div>
+
+
+      <div class="benefit-card">
+
+        <div class="benefit-icon">
+          ↗
+        </div>
+
+        <h3>
+          Wersja testowa
+        </h3>
+
+        <p>
+          Obecnie testujemy wygląd strony, koszyk,
+          formularz i cały proces zamówienia.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- FAQ -->
+<!-- =======================================================
+     HOW
+======================================================= -->
 
-<section class="section dark-section" id="faq">
+<section
+  class="section how"
+  id="how"
+>
 
-    <div class="container">
+  <div class="section-inner">
 
-        <div class="section-head">
+    <div class="section-head">
 
-            <div class="eyebrow">
-                FAQ
-            </div>
+      <div class="section-kicker">
+        JAK TO DZIAŁA
+      </div>
 
-            <h2>
-                Najczęstsze pytania
-            </h2>
+      <h2>
+        Trzy proste kroki.
+      </h2>
 
-        </div>
-
-
-        <div class="faq">
-
-            <div class="faq-item">
-
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    Czy SAFEBAT działa z każdym urządzeniem?
-                    <span class="faq-plus">+</span>
-                </button>
-
-                <div class="faq-answer">
-                    Kompatybilność zależy od urządzenia, przewodu,
-                    ładowarki oraz parametrów technicznych. Przed
-                    sprzedażą rzeczywistą należy potwierdzić zakres
-                    kompatybilności producenta.
-                </div>
-
-            </div>
-
-
-            <div class="faq-item">
-
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    Czy obsługuje 140W?
-                    <span class="faq-plus">+</span>
-                </button>
-
-                <div class="faq-answer">
-                    Oferta produktu deklaruje wsparcie do 140W.
-                    Nie traktujemy tego obecnie jako niezależnie
-                    potwierdzonego parametru.
-                </div>
-
-            </div>
-
-
-            <div class="faq-item">
-
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    Czy produkt odłącza ładowanie?
-                    <span class="faq-plus">+</span>
-                </button>
-
-                <div class="faq-answer">
-                    Jest to deklarowana funkcja produktu. Przed
-                    rzeczywistą sprzedażą należy zweryfikować ją
-                    na podstawie dokumentacji i testów produktu.
-                </div>
-
-            </div>
-
-
-            <div class="faq-item">
-
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    Ile kosztuje dostawa?
-                    <span class="faq-plus">+</span>
-                </button>
-
-                <div class="faq-answer">
-                    W aktualnej wersji testowej pokazujemy metodę
-                    AliExpress Selection Standard z kosztem 0,00 zł.
-                    Termin dostawy jest szacunkowy i może zależeć od
-                    adresu, wariantu produktu, sprzedawcy oraz aktualnej
-                    oferty AliExpress. Dostawa może być realizowana przez
-                    różnych przewoźników, np. InPost lub DHL.
-                </div>
-
-            </div>
-
-
-            <div class="faq-item">
-
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    Czy sklep już sprzedaje?
-                    <span class="faq-plus">+</span>
-                </button>
-
-                <div class="faq-answer">
-                    Nie. Ta wersja SAFEBAT jest projektem testowym.
-                    Zamówienie nie jest przekazywane do Stripe ani
-                    do AliExpress.
-                </div>
-
-            </div>
-
-
-            <div class="faq-item">
-
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    Czy płatność jest prawdziwa?
-                    <span class="faq-plus">+</span>
-                </button>
-
-                <div class="faq-answer">
-                    Nie. Checkout zapisuje testowe zamówienie lokalnie
-                    w przeglądarce. Nie pobiera prawdziwych pieniędzy.
-                </div>
-
-            </div>
-
-        </div>
+      <p>
+        Na tym etapie sprawdzamy przede wszystkim
+        doświadczenie użytkownika.
+      </p>
 
     </div>
+
+
+    <div class="steps">
+
+
+      <div class="step">
+
+        <div class="step-number">
+          01 / WYBIERZ
+        </div>
+
+        <h3>
+          Wybierz kolor
+        </h3>
+
+        <p>
+          Wybierz Black, Silver, Orange albo Purple.
+          Podgląd produktu zmieni się automatycznie.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          02 / KOSZYK
+        </div>
+
+        <h3>
+          Dodaj produkt
+        </h3>
+
+        <p>
+          Ustaw ilość i dodaj wybrany wariant
+          do testowego koszyka.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          03 / TEST
+        </div>
+
+        <h3>
+          Sprawdź checkout
+        </h3>
+
+        <p>
+          Wypełnij formularz i sprawdźmy cały
+          proces zamówienia w wersji testowej.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- FOOTER -->
+<!-- =======================================================
+     FAQ
+======================================================= -->
+
+<section
+  class="section faq"
+  id="faq"
+>
+
+  <div class="section-inner">
+
+    <div class="section-head">
+
+      <div class="section-kicker">
+        FAQ
+      </div>
+
+      <h2>
+        Najczęstsze pytania.
+      </h2>
+
+    </div>
+
+
+    <div class="faq-list">
+
+
+      <div class="faq-item">
+
+        <button
+          class="faq-question"
+          onclick="toggleFaq(this)"
+        >
+          Czy sklep działa już naprawdę?
+          <span class="faq-plus">+</span>
+        </button>
+
+        <div class="faq-answer">
+          Nie. To wersja testowa SAFEBAT. Nie uruchomiliśmy
+          jeszcze rzeczywistej sprzedaży.
+        </div>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <button
+          class="faq-question"
+          onclick="toggleFaq(this)"
+        >
+          Jakie kolory są dostępne?
+          <span class="faq-plus">+</span>
+        </button>
+
+        <div class="faq-answer">
+          Obecnie przygotowane są cztery warianty:
+          Black, Silver, Orange oraz Purple.
+        </div>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <button
+          class="faq-question"
+          onclick="toggleFaq(this)"
+        >
+          Ile kosztuje produkt?
+          <span class="faq-plus">+</span>
+        </button>
+
+        <div class="faq-answer">
+          Cena wyświetlana na stronie to 79,99 zł
+          i jest obecnie ceną testową.
+        </div>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <button
+          class="faq-question"
+          onclick="toggleFaq(this)"
+        >
+          Jaka jest dostawa?
+          <span class="faq-plus">+</span>
+        </button>
+
+        <div class="faq-answer">
+          W obecnym teście pokazujemy metodę
+          AliExpress Selection Standard z kosztem
+          0,00 zł. Rzeczywiste warunki dostawy
+          zostaną ustalone przed uruchomieniem sprzedaży.
+        </div>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <button
+          class="faq-question"
+          onclick="toggleFaq(this)"
+        >
+          Czy opis produktu jest już kompletny?
+          <span class="faq-plus">+</span>
+        </button>
+
+        <div class="faq-answer">
+          Jeszcze nie. Najpierw dodajemy wygląd produktu
+          i warianty kolorystyczne. Instrukcję, specyfikację,
+          opis i ostrzeżenia dodamy na podstawie materiałów,
+          które prześlesz.
+        </div>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <button
+          class="faq-question"
+          onclick="toggleFaq(this)"
+        >
+          Czy mogę zamówić teraz?
+          <span class="faq-plus">+</span>
+        </button>
+
+        <div class="faq-answer">
+          Nie — strona pozostaje wersją testową i nie jest
+          uruchomiona jako rzeczywisty sklep.
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
 
 <footer>
 
-    <div class="container">
+  <div class="footer-inner">
 
-        <div class="footer-grid">
+    <div>
 
-            <div>
+      <div class="footer-logo">
+        SAFE<span>BAT</span>
+      </div>
 
-                <div class="logo">
-                    SAFE<span>BAT</span>
-                </div>
-
-                <p class="footer-text">
-                    Projekt sklepu SAFEBAT przygotowany jako wersja testowa.
-                </p>
-
-            </div>
-
-
-            <div class="footer-right">
-                PowerGuard<br>
-                Wersja demonstracyjna
-            </div>
-
-        </div>
-
-
-        <div class="footer-test">
-            © 2026 SAFEBAT — WERSJA TESTOWA.
-            Sprzedaż rzeczywista nie została uruchomiona.
-            Płatności i realizacja zamówień nie są obecnie aktywne.
-        </div>
+      <p class="footer-text">
+        SAFEBAT PowerGuard — projekt testowy.
+        Szczegółowy opis produktu, instrukcja oraz
+        informacje dotyczące bezpieczeństwa zostaną
+        dodane po przygotowaniu materiałów produktu.
+      </p>
 
     </div>
+
+  </div>
+
+
+  <div class="footer-test">
+    © 2026 SAFEBAT — WERSJA TESTOWA.
+    SPRZEDAŻ RZECZYWISTA NIE ZOSTAŁA URUCHOMIONA.
+  </div>
 
 </footer>
 
 
-<!-- OVERLAY -->
+<!-- =======================================================
+     OVERLAY
+======================================================= -->
 
 <div
-    class="overlay"
-    id="overlay"
-    onclick="closeEverything()"
+  class="overlay"
+  id="overlay"
+  onclick="closeCart()"
 ></div>
 
 
-<!-- CART -->
+<!-- =======================================================
+     CART
+======================================================= -->
 
-<aside class="cart-drawer" id="cartDrawer">
+<aside
+  class="cart-drawer"
+  id="cartDrawer"
+>
 
-    <div class="cart-header">
+  <div class="cart-header">
 
-        <h3>
-            Twój koszyk
-        </h3>
+    <h2>
+      Twój koszyk
+    </h2>
 
-        <button
-            class="close-btn"
-            onclick="closeCart()"
-        >
-            ×
-        </button>
+    <button
+      class="close-button"
+      onclick="closeCart()"
+    >
+      ×
+    </button>
 
+  </div>
+
+
+  <div
+    class="cart-content"
+    id="cartContent"
+  >
+  </div>
+
+
+  <div class="cart-footer">
+
+    <div class="cart-line">
+      <span>Produkty</span>
+      <strong id="cartItemsCount">0</strong>
     </div>
 
-
-    <div class="cart-content" id="cartContent">
-
+    <div class="cart-line">
+      <span>Dostawa</span>
+      <strong>0,00 zł</strong>
     </div>
 
-
-    <div class="cart-footer">
-
-        <div class="cart-row">
-            <span>Produkty</span>
-            <strong id="cartProductsTotal">0,00 zł</strong>
-        </div>
-
-        <div class="cart-row">
-            <span>Dostawa</span>
-            <strong>0,00 zł</strong>
-        </div>
-
-        <div class="cart-row total">
-            <span>Razem</span>
-            <strong id="cartTotal">0,00 zł</strong>
-        </div>
-
-        <button
-            class="checkout-button"
-            id="checkoutButton"
-            onclick="openCheckout()"
-            disabled
-        >
-            Przejdź do checkoutu
-        </button>
-
+    <div class="cart-total">
+      <span>Razem</span>
+      <span id="cartTotal">0,00 zł</span>
     </div>
+
+    <button
+      class="checkout-button"
+      id="checkoutButton"
+      onclick="openCheckout()"
+      disabled
+    >
+      PRZEJDŹ DO CHECKOUTU
+    </button>
+
+  </div>
 
 </aside>
 
 
-<!-- CHECKOUT -->
+<!-- =======================================================
+     CHECKOUT
+======================================================= -->
 
 <div
-    class="checkout-modal"
-    id="checkoutModal"
+  class="modal"
+  id="checkoutModal"
 >
 
-    <div class="checkout-header">
+  <div class="modal-box">
+
+    <div class="modal-top">
+
+      <div>
 
         <h2>
-            Finalizacja zamówienia
+          Testowe zamówienie
         </h2>
 
-        <button
-            class="close-btn"
-            onclick="closeCheckout()"
+        <p>
+          Uzupełnij dane, aby sprawdzić checkout.
+        </p>
+
+      </div>
+
+      <button
+        class="close-button"
+        onclick="closeCheckout()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      class="form-error"
+      id="formError"
+    ></div>
+
+
+    <form id="orderForm">
+
+
+      <div class="form-row">
+
+        <div class="form-group">
+
+          <label for="firstName">
+            Imię
+          </label>
+
+          <input
+            id="firstName"
+            name="Imię"
+            type="text"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="lastName">
+            Nazwisko
+          </label>
+
+          <input
+            id="lastName"
+            name="Nazwisko"
+            type="text"
+            required
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="email">
+          E-mail
+        </label>
+
+        <input
+          id="email"
+          name="Email"
+          type="email"
+          placeholder="twoj@email.pl"
+          required
         >
-            ×
-        </button>
 
-    </div>
+      </div>
 
 
-    <div class="checkout-grid">
+      <div class="form-group">
 
-        <!-- FORM -->
+        <label for="phone">
+          Numer telefonu
+        </label>
 
-        <div class="checkout-form">
+        <input
+          id="phone"
+          name="Telefon"
+          type="tel"
+          placeholder="123 456 789"
+          required
+        >
 
-            <form id="checkoutForm">
+      </div>
 
-                <div class="form-section">
 
-                    <h3>
-                        1. Dane kontaktowe
-                    </h3>
+      <div class="form-group">
 
-                    <div class="form-grid">
+        <label for="street">
+          Ulica i numer
+        </label>
 
-                        <div class="field">
+        <input
+          id="street"
+          name="Ulica i numer"
+          type="text"
+          required
+        >
 
-                            <label for="name">
-                                Imię i nazwisko
-                            </label>
+      </div>
 
-                            <input
-                                id="name"
-                                name="name"
-                                type="text"
-                                placeholder="Jan Kowalski"
-                                required
-                            >
 
-                        </div>
+      <div class="form-row">
 
+        <div class="form-group">
 
-                        <div class="field">
+          <label for="postalCode">
+            Kod pocztowy
+          </label>
 
-                            <label for="phone">
-                                Telefon
-                            </label>
-
-                            <input
-                                id="phone"
-                                name="phone"
-                                type="tel"
-                                placeholder="+48 123 456 789"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="field full">
-
-                            <label for="email">
-                                E-mail
-                            </label>
-
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                placeholder="jan@example.com"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-section">
-
-                    <h3>
-                        2. Adres dostawy
-                    </h3>
-
-                    <div class="form-grid">
-
-                        <div class="field full">
-
-                            <label for="street">
-                                Ulica i numer
-                            </label>
-
-                            <input
-                                id="street"
-                                name="street"
-                                type="text"
-                                placeholder="Przykładowa 12/4"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label for="postal">
-                                Kod pocztowy
-                            </label>
-
-                            <input
-                                id="postal"
-                                name="postal"
-                                type="text"
-                                placeholder="00-001"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label for="city">
-                                Miasto
-                            </label>
-
-                            <input
-                                id="city"
-                                name="city"
-                                type="text"
-                                placeholder="Warszawa"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-section">
-
-                    <h3>
-                        3. Dostawa
-                    </h3>
-
-
-                    <div class="delivery-options">
-
-                        <div class="delivery-option">
-
-                            <input
-                                type="radio"
-                                id="deliveryStandard"
-                                name="delivery"
-                                value="standard"
-                                data-price="0"
-                                checked
-                            >
-
-                            <label
-                                class="delivery-label"
-                                for="deliveryStandard"
-                            >
-
-                                <div class="delivery-left">
-
-                                    <div class="delivery-radio"></div>
-
-                                    <div>
-
-                                        <div class="delivery-name">
-                                            AliExpress Selection Standard
-                                        </div>
-
-                                        <div class="delivery-description">
-                                            Szacowany termin zależny od aktualnej oferty AliExpress • możliwy InPost / DHL
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="delivery-price">
-                                    0,00 zł
-                                </div>
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="submit-order"
-                >
-                    Złóż TESTOWE zamówienie
-                </button>
-
-
-                <div class="checkout-disclaimer">
-                    To jest wyłącznie test. Dane nie są przekazywane
-                    do AliExpress, Stripe ani przewoźnika.
-                </div>
-
-            </form>
+          <input
+            id="postalCode"
+            name="Kod pocztowy"
+            type="text"
+            placeholder="00-000"
+            required
+          >
 
         </div>
 
 
-        <!-- SUMMARY -->
+        <div class="form-group">
 
-        <div class="checkout-summary">
+          <label for="city">
+            Miasto
+          </label>
 
-            <h3>
-                Podsumowanie
-            </h3>
-
-
-            <div
-                class="summary-items"
-                id="checkoutSummaryItems"
-            >
-            </div>
-
-
-            <div class="summary-line">
-
-                <span>
-                    Produkty
-                </span>
-
-                <strong id="checkoutProductsPrice">
-                    0,00 zł
-                </strong>
-
-            </div>
-
-
-            <div class="summary-line">
-
-                <span>
-                    Dostawa
-                </span>
-
-                <strong id="checkoutDeliveryPrice">
-                    0,00 zł
-                </strong>
-
-            </div>
-
-
-            <div class="summary-total">
-
-                <span>
-                    Razem
-                </span>
-
-                <strong id="checkoutGrandTotal">
-                    0,00 zł
-                </strong>
-
-            </div>
-
-
-            <div class="test-payment">
-
-                🧪 <strong>TRYB TESTOWY</strong><br>
-
-                To zamówienie zostanie zapisane wyłącznie
-                lokalnie w przeglądarce. Nie nastąpi płatność
-                i nie zostanie wysłane do żadnego dostawcy.
-
-            </div>
+          <input
+            id="city"
+            name="Miasto"
+            type="text"
+            required
+          >
 
         </div>
 
+      </div>
+
+
+      <!-- DELIVERY -->
+
+      <div class="delivery-box">
+
+        <div class="delivery-title">
+
+          <strong>
+            Sposób dostawy
+          </strong>
+
+          <span class="delivery-free">
+            0,00 zł
+          </span>
+
+        </div>
+
+
+        <label class="delivery-option">
+
+          <input
+            class="delivery-radio"
+            type="radio"
+            name="Dostawa"
+            value="AliExpress Selection Standard — 0,00 zł"
+            checked
+          >
+
+          <div>
+
+            <strong>
+              AliExpress Selection Standard
+            </strong>
+
+            <span>
+              Dostawa testowa • przewoźnik zależny
+              od aktualnej trasy i oferty dostawcy
+            </span>
+
+          </div>
+
+        </label>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="notes">
+          Dodatkowe informacje
+        </label>
+
+        <textarea
+          id="notes"
+          name="Uwagi"
+          placeholder="Opcjonalnie..."
+        ></textarea>
+
+      </div>
+
+
+      <!-- SUMMARY -->
+
+      <div class="summary-box">
+
+        <h3>
+          PODSUMOWANIE
+        </h3>
+
+        <div id="checkoutItems"></div>
+
+        <div class="summary-total">
+
+          <span>
+            Razem
+          </span>
+
+          <span id="checkoutTotal">
+            0,00 zł
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="submit-order"
+      >
+        ZŁÓŻ TESTOWE ZAMÓWIENIE
+      </button>
+
+
+      <div class="test-disclaimer">
+
+        To jest wyłącznie test formularza.
+        Dane nie są przekazywane do AliExpress
+        ani przewoźnika i nie powodują rzeczywistego
+        zamówienia produktu.
+
+      </div>
+
+
+    </form>
+
+
+    <!-- SUCCESS -->
+
+    <div
+      class="success"
+      id="successMessage"
+      style="display:none"
+    >
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h2>
+        TEST ZAKOŃCZONY
+      </h2>
+
+      <p>
+        Testowe zamówienie zostało zapisane
+        lokalnie w przeglądarce.
+      </p>
+
+      <p>
+        Numer:
+        <strong id="orderNumber"></strong>
+      </p>
+
+      <button
+        class="success-button"
+        onclick="finishOrder()"
+      >
+        WRÓĆ DO SKLEPU
+      </button>
+
     </div>
+
+  </div>
 
 </div>
 
 
-<!-- TOAST -->
+<!-- =======================================================
+     TOAST
+======================================================= -->
 
 <div
-    class="toast"
-    id="toast"
+  class="toast"
+  id="toast"
 >
-    Dodano do koszyka
+  Dodano do koszyka
 </div>
 
 
 <script>
 
-/* ==========================================
-   PRODUCT
-========================================== */
+/* =========================================================
+   PRODUCT DATA
+========================================================= */
 
 const PRODUCT = {
-    name: "SAFEBAT PowerGuard",
-    price: 79.99
+  name:"SAFEBAT PowerGuard",
+  price:79.99
 };
 
 
-/* ==========================================
-   STATE
-========================================== */
+const COLORS = {
+  Black:{
+    main:"#252b35",
+    light:"#4b5360",
+    dark:"#10141a",
+    accent:"#61a0ff",
+    glow:"rgba(79,140,255,.18)"
+  },
+
+  Silver:{
+    main:"#aeb5be",
+    light:"#eef1f4",
+    dark:"#68717c",
+    accent:"#8db4ff",
+    glow:"rgba(185,205,255,.18)"
+  },
+
+  Orange:{
+    main:"#c96025",
+    light:"#ff9b5e",
+    dark:"#71300f",
+    accent:"#ffad6d",
+    glow:"rgba(255,123,53,.22)"
+  },
+
+  Purple:{
+    main:"#7655c5",
+    light:"#b598ff",
+    dark:"#392567",
+    accent:"#b89aff",
+    glow:"rgba(156,120,255,.22)"
+  }
+};
+
 
 let selectedColor = "Black";
+
 let productQuantity = 1;
 
-let cart = [];
-
-try {
-    cart = JSON.parse(
-        localStorage.getItem("safebat_test_cart") || "[]"
-    );
-} catch(e) {
-    cart = [];
-}
+let cart = JSON.parse(
+  localStorage.getItem("safebat_test_cart") || "[]"
+);
 
 
-/* ==========================================
+/* =========================================================
    HELPERS
-========================================== */
+========================================================= */
 
 function money(value){
 
-    return value.toLocaleString("pl-PL", {
-        minimumFractionDigits:2,
-        maximumFractionDigits:2
-    }) + " zł";
+  return value
+    .toFixed(2)
+    .replace(".",",")
+    + " zł";
 
 }
 
 
-function saveCart(){
+function escapeHtml(value){
 
-    localStorage.setItem(
-        "safebat_test_cart",
-        JSON.stringify(cart)
-    );
+  return String(value).replace(
+    /[&<>"']/g,
+    function(char){
 
-}
+      return {
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      }[char];
 
-
-function getCartCount(){
-
-    return cart.reduce(
-        (sum,item) => sum + item.quantity,
-        0
-    );
-
-}
-
-
-function getCartProductsTotal(){
-
-    return cart.reduce(
-        (sum,item) => sum + item.price * item.quantity,
-        0
-    );
+    }
+  );
 
 }
 
 
-/* ==========================================
-   PRODUCT COLOR
-========================================== */
+/* =========================================================
+   COLOR SELECTOR
+========================================================= */
 
 function selectColor(button){
 
-    document
-        .querySelectorAll(".color-btn")
-        .forEach(btn => {
-            btn.classList.remove("active");
-        });
+  document
+    .querySelectorAll(".color-option")
+    .forEach(function(item){
 
-    button.classList.add("active");
+      item.classList.remove("active");
 
-    selectedColor = button.dataset.color;
+    });
+
+
+  button.classList.add("active");
+
+
+  selectedColor =
+    button.dataset.color;
+
+
+  document
+    .getElementById("selectedColorLabel")
+    .textContent =
+      selectedColor;
+
+
+  document
+    .getElementById("currentVariant")
+    .textContent =
+      selectedColor;
+
+
+  const showcase =
+    document.getElementById(
+      "productShowcase"
+    );
+
+
+  showcase.style.setProperty(
+    "--product-main",
+    button.dataset.main
+  );
+
+  showcase.style.setProperty(
+    "--product-light",
+    button.dataset.light
+  );
+
+  showcase.style.setProperty(
+    "--product-dark",
+    button.dataset.dark
+  );
+
+  showcase.style.setProperty(
+    "--product-accent",
+    button.dataset.accent
+  );
+
+  showcase.style.setProperty(
+    "--product-glow",
+    button.dataset.glow
+  );
+
+
+  showToast(
+    "Wybrano kolor: " + selectedColor
+  );
 
 }
 
 
-/* ==========================================
+/* =========================================================
    PRODUCT QUANTITY
-========================================== */
+========================================================= */
 
 function changeProductQuantity(change){
 
-    productQuantity += change;
+  productQuantity += change;
 
-    if(productQuantity < 1){
-        productQuantity = 1;
-    }
 
-    if(productQuantity > 20){
-        productQuantity = 20;
-    }
+  if(productQuantity < 1){
+    productQuantity = 1;
+  }
 
-    document.getElementById(
-        "productQuantity"
-    ).textContent = productQuantity;
+
+  if(productQuantity > 20){
+    productQuantity = 20;
+  }
+
+
+  document
+    .getElementById("productQuantity")
+    .textContent =
+      productQuantity;
 
 }
 
 
-/* ==========================================
+/* =========================================================
    ADD TO CART
-========================================== */
+========================================================= */
 
 function addToCart(){
 
-    const existing = cart.find(item =>
-        item.name === PRODUCT.name &&
-        item.color === selectedColor
-    );
+  const existing =
+    cart.find(function(item){
+
+      return item.color === selectedColor;
+
+    });
 
 
-    if(existing){
+  if(existing){
 
-        existing.quantity += productQuantity;
+    existing.quantity += productQuantity;
 
-    } else {
-
-        cart.push({
-            id:Date.now(),
-            name:PRODUCT.name,
-            price:PRODUCT.price,
-            color:selectedColor,
-            quantity:productQuantity
-        });
-
+    if(existing.quantity > 20){
+      existing.quantity = 20;
     }
 
+  }else{
 
-    saveCart();
+    cart.push({
 
-    updateCart();
+      name:PRODUCT.name,
 
-    showToast(
-        "Dodano " +
-        productQuantity +
-        " × " +
-        PRODUCT.name
-    );
+      color:selectedColor,
+
+      quantity:productQuantity,
+
+      price:PRODUCT.price
+
+    });
+
+  }
+
+
+  productQuantity = 1;
+
+  document
+    .getElementById("productQuantity")
+    .textContent = "1";
+
+
+  saveCart();
+
+  updateCart();
+
+  showToast(
+    "Dodano " +
+    selectedColor +
+    " do koszyka"
+  );
 
 }
 
 
-/* ==========================================
-   CART UPDATE
-========================================== */
+/* =========================================================
+   CART STORAGE
+========================================================= */
+
+function saveCart(){
+
+  localStorage.setItem(
+    "safebat_test_cart",
+    JSON.stringify(cart)
+  );
+
+}
+
+
+/* =========================================================
+   CART COLOR VARIABLES
+========================================================= */
+
+function getColorStyle(color){
+
+  const c =
+    COLORS[color] ||
+    COLORS.Black;
+
+
+  return `
+    --thumb-main:${c.main};
+    --thumb-light:${c.light};
+    --thumb-dark:${c.dark};
+  `;
+
+}
+
+
+/* =========================================================
+   UPDATE CART
+========================================================= */
 
 function updateCart(){
 
-    const count = getCartCount();
-    const productsTotal = getCartProductsTotal();
-
-    document.getElementById(
-        "cartCount"
-    ).textContent = count;
-
-    document.getElementById(
-        "cartProductsTotal"
-    ).textContent = money(productsTotal);
-
-    document.getElementById(
-        "cartTotal"
-    ).textContent = money(productsTotal);
-
-
-    const content = document.getElementById(
-        "cartContent"
+  const count =
+    cart.reduce(
+      function(total,item){
+        return total + item.quantity;
+      },
+      0
     );
 
 
-    const checkoutButton = document.getElementById(
-        "checkoutButton"
+  const total =
+    cart.reduce(
+      function(sum,item){
+        return sum +
+          (item.price * item.quantity);
+      },
+      0
     );
 
 
-    if(cart.length === 0){
-
-        content.innerHTML = `
-            <div class="cart-empty">
-                <div style="font-size:45px;margin-bottom:15px;">
-                    🛒
-                </div>
-
-                <h3>
-                    Koszyk jest pusty
-                </h3>
-
-                <p style="margin-top:8px;">
-                    Dodaj SAFEBAT PowerGuard,
-                    żeby kontynuować.
-                </p>
-            </div>
-        `;
-
-        checkoutButton.disabled = true;
-
-        return;
-    }
+  document
+    .getElementById("cartCount")
+    .textContent =
+      count;
 
 
-    checkoutButton.disabled = false;
+  document
+    .getElementById("cartItemsCount")
+    .textContent =
+      count;
 
 
-    content.innerHTML = cart.map(item => `
+  document
+    .getElementById("cartTotal")
+    .textContent =
+      money(total);
 
-        <div class="cart-item">
 
-            <div class="cart-thumb">
-                SAFEBAT
-            </div>
+  const button =
+    document.getElementById(
+      "checkoutButton"
+    );
+
+
+  button.disabled =
+    cart.length === 0;
+
+
+  const content =
+    document.getElementById(
+      "cartContent"
+    );
+
+
+  if(cart.length === 0){
+
+    content.innerHTML = `
+      <div class="cart-empty">
+        Koszyk jest pusty.<br>
+        Wybierz wariant produktu.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  content.innerHTML =
+    cart.map(
+      function(item,index){
+
+        return `
+
+          <div class="cart-item">
+
+            <div
+              class="cart-thumb"
+              style="${getColorStyle(item.color)}"
+            ></div>
 
             <div class="cart-info">
 
-                <h4>
-                    ${escapeHtml(item.name)}
-                </h4>
+              <h3>
+                ${escapeHtml(item.name)}
+              </h3>
 
-                <small>
-                    Kolor: ${escapeHtml(item.color)}
-                </small>
+              <p>
+                Kolor:
+                ${escapeHtml(item.color)}
+              </p>
 
-                <div class="cart-item-price">
-                    ${money(item.price * item.quantity)}
+              <div class="cart-item-bottom">
+
+                <span class="cart-item-price">
+                  ${money(
+                    item.price *
+                    item.quantity
+                  )}
+                </span>
+
+                <div class="cart-qty">
+
+                  <button
+                    onclick="changeCartQuantity(${index},-1)"
+                  >
+                    −
+                  </button>
+
+                  <span>
+                    ${item.quantity}
+                  </span>
+
+                  <button
+                    onclick="changeCartQuantity(${index},1)"
+                  >
+                    +
+                  </button>
+
                 </div>
 
-                <div class="cart-controls">
+              </div>
 
-                    <button
-                        onclick="changeCartQuantity(${item.id}, -1)"
-                    >
-                        −
-                    </button>
-
-                    <span>
-                        ${item.quantity}
-                    </span>
-
-                    <button
-                        onclick="changeCartQuantity(${item.id}, 1)"
-                    >
-                        +
-                    </button>
-
-                    <button
-                        class="remove-item"
-                        onclick="removeItem(${item.id})"
-                    >
-                        Usuń
-                    </button>
-
-                </div>
+              <button
+                class="remove-item"
+                onclick="removeItem(${index})"
+              >
+                Usuń
+              </button>
 
             </div>
 
-        </div>
+          </div>
 
-    `).join("");
+        `;
 
-}
-
-
-/* ==========================================
-   CHANGE CART QUANTITY
-========================================== */
-
-function changeCartQuantity(id, change){
-
-    const item = cart.find(
-        item => item.id === id
-    );
-
-    if(!item){
-        return;
-    }
-
-    item.quantity += change;
-
-
-    if(item.quantity <= 0){
-
-        cart = cart.filter(
-            item => item.id !== id
-        );
-
-    }
-
-
-    if(item.quantity > 20){
-
-        item.quantity = 20;
-
-    }
-
-
-    saveCart();
-
-    updateCart();
+      }
+    ).join("");
 
 }
 
 
-/* ==========================================
-   REMOVE ITEM
-========================================== */
+/* =========================================================
+   CART QUANTITY
+========================================================= */
 
-function removeItem(id){
+function changeCartQuantity(index,change){
 
-    cart = cart.filter(
-        item => item.id !== id
-    );
+  if(!cart[index]){
+    return;
+  }
 
-    saveCart();
 
-    updateCart();
+  cart[index].quantity += change;
+
+
+  if(cart[index].quantity <= 0){
+
+    cart.splice(index,1);
+
+  }
+
+
+  if(
+    cart[index] &&
+    cart[index].quantity > 20
+  ){
+
+    cart[index].quantity = 20;
+
+  }
+
+
+  saveCart();
+
+  updateCart();
 
 }
 
 
-/* ==========================================
-   OPEN CART
-========================================== */
+/* =========================================================
+   REMOVE
+========================================================= */
+
+function removeItem(index){
+
+  cart.splice(index,1);
+
+  saveCart();
+
+  updateCart();
+
+}
+
+
+/* =========================================================
+   CART OPEN/CLOSE
+========================================================= */
 
 function openCart(){
 
-    document
-        .getElementById("cartDrawer")
-        .classList.add("open");
+  document
+    .getElementById("cartDrawer")
+    .classList.add("active");
 
-    document
-        .getElementById("overlay")
-        .classList.add("show");
 
-    document.body.classList.add("locked");
+  document
+    .getElementById("overlay")
+    .classList.add("active");
+
+
+  document.body.style.overflow =
+    "hidden";
 
 }
 
-
-/* ==========================================
-   CLOSE CART
-========================================== */
 
 function closeCart(){
 
-    document
-        .getElementById("cartDrawer")
-        .classList.remove("open");
+  document
+    .getElementById("cartDrawer")
+    .classList.remove("active");
 
-    if(
-        !document
-            .getElementById("checkoutModal")
-            .classList.contains("show")
-    ){
 
-        document
-            .getElementById("overlay")
-            .classList.remove("show");
+  document
+    .getElementById("overlay")
+    .classList.remove("active");
 
-        document.body.classList.remove("locked");
 
-    }
+  document.body.style.overflow =
+    "";
 
 }
 
 
-/* ==========================================
+/* =========================================================
    CHECKOUT
-========================================== */
+========================================================= */
 
 function openCheckout(){
 
-    if(cart.length === 0){
+  if(cart.length === 0){
 
-        showToast("Koszyk jest pusty");
+    showToast(
+      "Koszyk jest pusty"
+    );
 
-        return;
+    return;
 
-    }
+  }
 
 
-    closeCart();
+  closeCart();
 
-    renderCheckoutSummary();
+  renderCheckout();
 
-    document
-        .getElementById("checkoutModal")
-        .classList.add("show");
 
-    document
-        .getElementById("overlay")
-        .classList.add("show");
+  document
+    .getElementById("checkoutModal")
+    .classList.add("active");
 
-    document.body.classList.add("locked");
 
-    updateCheckoutTotals();
+  document.body.style.overflow =
+    "hidden";
 
 }
 
 
 function closeCheckout(){
 
-    document
-        .getElementById("checkoutModal")
-        .classList.remove("show");
+  document
+    .getElementById("checkoutModal")
+    .classList.remove("active");
 
-    document
-        .getElementById("overlay")
-        .classList.remove("show");
 
-    document.body.classList.remove("locked");
+  document.body.style.overflow =
+    "";
 
 }
 
 
-/* ==========================================
-   CHECKOUT SUMMARY
-========================================== */
+/* =========================================================
+   RENDER CHECKOUT
+========================================================= */
 
-function renderCheckoutSummary(){
+function renderCheckout(){
 
-    const container = document.getElementById(
-        "checkoutSummaryItems"
-    );
-
-
-    container.innerHTML = cart.map(item => `
-
-        <div class="summary-item">
-
-            <span>
-                ${escapeHtml(item.name)}
-                × ${item.quantity}
-                <br>
-                <small style="color:#66758a;">
-                    ${escapeHtml(item.color)}
-                </small>
-            </span>
-
-            <span>
-                ${money(item.price * item.quantity)}
-            </span>
-
-        </div>
-
-    `).join("");
-
-}
-
-
-/* ==========================================
-   DELIVERY
-========================================== */
-
-function getSelectedDeliveryPrice(){
-
-    const selected = document.querySelector(
-        'input[name="delivery"]:checked'
-    );
-
-    if(!selected){
-        return 0;
-    }
-
-    return Number(
-        selected.dataset.price
-    );
-
-}
-
-
-function getSelectedDeliveryName(){
-
-    const selected = document.querySelector(
-        'input[name="delivery"]:checked'
-    );
-
-    if(!selected){
-        return "";
-    }
-
-    const labels = {
-        standard:"AliExpress Selection Standard"
-    };
-
-    return labels[selected.value] || "";
-
-}
-
-
-/* ==========================================
-   CHECKOUT TOTALS
-========================================== */
-
-function updateCheckoutTotals(){
-
-    const productsTotal = getCartProductsTotal();
-    const deliveryPrice = getSelectedDeliveryPrice();
-
-    const total =
-        productsTotal +
-        deliveryPrice;
-
-
+  const list =
     document.getElementById(
-        "checkoutProductsPrice"
-    ).textContent = money(productsTotal);
+      "checkoutItems"
+    );
 
 
-    document.getElementById(
-        "checkoutDeliveryPrice"
-    ).textContent = money(deliveryPrice);
+  list.innerHTML =
+    cart.map(
+      function(item){
+
+        return `
+
+          <div class="summary-item">
+
+            <strong>
+              ${escapeHtml(item.name)}
+            </strong>
+
+            <br>
+
+            Kolor:
+            ${escapeHtml(item.color)}
+
+            <br>
+
+            Ilość:
+            ${item.quantity}
+
+            <br>
+
+            ${money(
+              item.price *
+              item.quantity
+            )}
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
 
 
-    document.getElementById(
-        "checkoutGrandTotal"
-    ).textContent = money(total);
+  const total =
+    cart.reduce(
+      function(sum,item){
+
+        return sum +
+          item.price *
+          item.quantity;
+
+      },
+      0
+    );
+
+
+  document
+    .getElementById("checkoutTotal")
+    .textContent =
+      money(total);
 
 }
 
 
-/* ==========================================
-   DELIVERY EVENTS
-========================================== */
+/* =========================================================
+   FORM SUBMIT — TEST ONLY
+========================================================= */
 
 document
-    .querySelectorAll('input[name="delivery"]')
-    .forEach(input => {
+  .getElementById("orderForm")
+  .addEventListener(
+    "submit",
+    function(event){
 
-        input.addEventListener(
-            "change",
-            updateCheckoutTotals
+      event.preventDefault();
+
+
+      if(cart.length === 0){
+
+        showFormError(
+          "Koszyk jest pusty."
         );
 
-    });
+        return;
+
+      }
 
 
-/* ==========================================
-   CHECKOUT FORM
-========================================== */
-
-document
-    .getElementById("checkoutForm")
-    .addEventListener("submit", function(event){
-
-        event.preventDefault();
-
-
-        if(cart.length === 0){
-
-            showToast("Koszyk jest pusty");
-
-            closeCheckout();
-
-            return;
-
-        }
-
-
-        const formData = new FormData(
-            this
+      const button =
+        document.querySelector(
+          ".submit-order"
         );
 
 
-        const productsTotal =
-            getCartProductsTotal();
+      button.disabled = true;
 
-        const deliveryPrice =
-            getSelectedDeliveryPrice();
-
-        const grandTotal =
-            productsTotal +
-            deliveryPrice;
+      button.textContent =
+        "ZAPISYWANIE TESTU...";
 
 
-        const deliveryName =
-            getSelectedDeliveryName();
+      setTimeout(
+        function(){
 
-
-        const orderNumber =
+          const orderNumber =
             "SB-TEST-" +
-            Date.now();
+            Date.now()
+              .toString()
+              .slice(-8);
 
 
-        const order = {
-
-            orderNumber,
-
-            createdAt:
-                new Date().toISOString(),
-
-            status:
-                "TEST",
-
-            customer:{
-
-                name:
-                    formData.get("name"),
-
-                email:
-                    formData.get("email"),
-
-                phone:
-                    formData.get("phone")
-
-            },
-
-            shipping:{
-
-                street:
-                    formData.get("street"),
-
-                postal:
-                    formData.get("postal"),
-
-                city:
-                    formData.get("city"),
-
-                method:
-                    deliveryName,
-
-                price:
-                    deliveryPrice,
-
-                estimatedDelivery:
-                    "Szacunkowy termin według aktualnej oferty AliExpress",
-
-                possibleCarriers:
-                    "InPost / DHL / inni przewoźnicy zależnie od aktualnej oferty"
-
-            },
-
-            products:
-                cart.map(item => ({
-                    name:item.name,
-                    color:item.color,
-                    price:item.price,
-                    quantity:item.quantity
-                })),
-
-            productsTotal,
-
-            deliveryPrice,
-
-            total:
-                grandTotal
-
-        };
-
-
-        localStorage.setItem(
+          localStorage.setItem(
             "safebat_test_order",
-            JSON.stringify(order)
-        );
+            orderNumber
+          );
 
 
-        cart = [];
-
-        saveCart();
-
-        updateCart();
-
-
-        this.reset();
+          document
+            .getElementById("orderNumber")
+            .textContent =
+              orderNumber;
 
 
-        document.getElementById(
-            "deliveryStandard"
-        ).checked = true;
+          document
+            .getElementById("orderForm")
+            .style.display =
+              "none";
 
 
-        updateCheckoutTotals();
+          document
+            .getElementById("successMessage")
+            .style.display =
+              "block";
 
 
-        closeCheckout();
+          cart = [];
+
+          saveCart();
+
+          updateCart();
 
 
-        showToast(
-            "TEST: zamówienie " +
-            orderNumber +
-            " zostało zapisane"
-        );
+          button.disabled = false;
+
+          button.textContent =
+            "ZŁÓŻ TESTOWE ZAMÓWIENIE";
+
+        },
+        700
+      );
+
+    }
+  );
 
 
-        setTimeout(() => {
+/* =========================================================
+   FORM ERROR
+========================================================= */
 
-            alert(
-                "SAFEBAT — TEST\n\n" +
-                "Numer zamówienia: " +
-                orderNumber +
-                "\n\n" +
-                "Kwota: " +
-                money(grandTotal) +
-                "\n\n" +
-                "Dostawa: " +
-                deliveryName +
-                " — 0,00 zł" +
-                "\n\n" +
-                "Nie pobrano żadnej płatności.\n" +
-                "Zamówienie nie zostało wysłane do AliExpress."
-            );
+function showFormError(message){
 
-        },300);
-
-    });
+  const box =
+    document.getElementById(
+      "formError"
+    );
 
 
-/* ==========================================
+  box.textContent =
+    message;
+
+
+  box.style.display =
+    "block";
+
+}
+
+
+function hideFormError(){
+
+  const box =
+    document.getElementById(
+      "formError"
+    );
+
+
+  box.textContent =
+    "";
+
+
+  box.style.display =
+    "none";
+
+}
+
+
+/* =========================================================
+   SUCCESS
+========================================================= */
+
+function finishOrder(){
+
+  document
+    .getElementById("successMessage")
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById("orderForm")
+    .style.display =
+      "block";
+
+
+  document
+    .getElementById("checkoutModal")
+    .classList.remove("active");
+
+
+  document
+    .getElementById("orderForm")
+    .reset();
+
+
+  document.body.style.overflow =
+    "";
+
+}
+
+
+/* =========================================================
    FAQ
-========================================== */
+========================================================= */
 
 function toggleFaq(button){
 
-    const item =
-        button.closest(".faq-item");
-
-    item.classList.toggle("open");
+  const item =
+    button.closest(".faq-item");
 
 
-    const plus =
-        button.querySelector(".faq-plus");
-
-
-    plus.textContent =
-        item.classList.contains("open")
-            ? "−"
-            : "+";
+  item.classList.toggle("open");
 
 }
 
 
-/* ==========================================
+/* =========================================================
    TOAST
-========================================== */
+========================================================= */
 
 let toastTimer;
 
+
 function showToast(message){
 
-    const toast =
-        document.getElementById("toast");
-
-    toast.textContent =
-        message;
-
-    toast.classList.add("show");
+  const toast =
+    document.getElementById(
+      "toast"
+    );
 
 
-    clearTimeout(toastTimer);
+  toast.textContent =
+    message;
 
 
-    toastTimer = setTimeout(() => {
-
-        toast.classList.remove("show");
-
-    },2500);
-
-}
+  toast.classList.add("show");
 
 
-/* ==========================================
-   ESCAPE HTML
-========================================== */
+  clearTimeout(toastTimer);
 
-function escapeHtml(value){
 
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+  toastTimer =
+    setTimeout(
+      function(){
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2200
+    );
 
 }
 
 
-/* ==========================================
-   CLOSE EVERYTHING
-========================================== */
-
-function closeEverything(){
-
-    closeCart();
-
-    closeCheckout();
-
-}
-
-
-/* ==========================================
-   ESC KEY
-========================================== */
+/* =========================================================
+   ESC
+========================================================= */
 
 document.addEventListener(
-    "keydown",
-    function(event){
+  "keydown",
+  function(event){
 
-        if(event.key !== "Escape"){
-            return;
-        }
+    if(event.key === "Escape"){
 
-        closeCart();
+      closeCart();
 
-        closeCheckout();
+      closeCheckout();
 
     }
+
+  }
 );
 
 
-/* ==========================================
-   INITIALIZE
-========================================== */
+/* =========================================================
+   INIT
+========================================================= */
 
 updateCart();
 
