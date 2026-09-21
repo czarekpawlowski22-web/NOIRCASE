@@ -1,618 +1,120 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOIRCASE — Minimalistyczne etui</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,Helvetica,sans-serif;background:#faf9f7;color:#111}
-button,input,textarea,select{font-family:inherit}
 
-header{
-background:#111;
-color:#fff;
-padding:28px 6%;
-display:flex;
-justify-content:space-between;
-align-items:center
+:root{
+  --noir:#0b0b0b;
+  --ink:#151515;
+  --cream:#f5f1eb;
+  --line:#e4dfd8;
+  --muted:#77716b;
+  --accent:#a77b56
 }
 
-.logo{
-font-size:28px;
-letter-spacing:7px;
-font-weight:bold
+html{
+  scroll-behavior:smooth
 }
 
-.cart-button{
-background:#fff;
-color:#111;
-border:0;
-padding:13px 18px;
-cursor:pointer;
-font-size:13px;
-letter-spacing:1px
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f8f7f5;
+  color:var(--ink)
 }
 
-.hero{
-min-height:45vh;
-background:#eee9e2;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:60px 20px
+button,input,textarea,select{
+  font-family:inherit
 }
 
-.hero h2{
-font-size:clamp(45px,10vw,85px);
-letter-spacing:9px;
-margin-bottom:20px
-}
-
-.hero p{
-color:#555;
-font-size:17px;
-margin-bottom:30px
-}
-
-.hero-button{
-display:inline-block;
-background:#111;
-color:#fff;
-padding:16px 32px;
-text-decoration:none;
-letter-spacing:2px;
-font-size:13px
-}
-
-.section{
-max-width:1200px;
-margin:auto;
-padding:75px 20px
-}
-
-.section-title{
-text-align:center;
-margin-bottom:50px
-}
-
-.section-title h2{
-font-size:42px;
-letter-spacing:5px;
-margin-bottom:15px
-}
-
-.section-title p{
-color:#777
-}
-
-.products{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px
-}
-
-.product{
-background:#fff;
-border:1px solid #ddd
-}
-
-.product img{
-width:100%;
-height:500px;
-object-fit:cover;
-display:block
-}
-
-.product-info{
-padding:28px
-}
-
-.product-info h3{
-font-size:20px;
-letter-spacing:2px;
-margin-bottom:18px
-}
-
-.price{
-color:#8b6b52;
-font-size:22px;
-font-weight:bold;
-margin-bottom:22px
-}
-
-.buy{
-background:#111;
-color:#fff;
-border:0;
-padding:15px 28px;
-cursor:pointer;
-letter-spacing:2px;
-font-size:12px
-}
-
-.about{
-background:#eee9e2;
-max-width:none;
-text-align:center
-}
-
-.about-inner{
-max-width:750px;
-margin:auto
-}
-
-.about h2{
-font-size:38px;
-letter-spacing:4px;
-margin-bottom:20px
-}
-
-.about p{
-color:#555;
-line-height:1.8
-}
-
-footer{
-background:#111;
-color:#fff;
-text-align:center;
-padding:35px
-}
-
-footer p{
-color:#aaa;
-font-size:13px
-}
-
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.65);
-z-index:1000;
-align-items:center;
-justify-content:center;
-padding:20px
-}
-
-.modal.active{
-display:flex
-}
-
-.modal-box{
-background:#fff;
-width:100%;
-max-width:500px;
-padding:35px;
-position:relative;
-max-height:90vh;
-overflow-y:auto
-}
-
-.close{
-position:absolute;
-top:10px;
-right:15px;
-border:0;
-background:none;
-font-size:30px;
-cursor:pointer
-}
-
-.modal-box h2{
-margin-bottom:10px;
-letter-spacing:2px
-}
-
-.modal-box>p{
-color:#777;
-margin-bottom:25px
-}
-
-.phone-list{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
-}
-
-.phone{
-border:1px solid #ddd;
-background:#f5f5f5;
-padding:15px;
-cursor:pointer
-}
-
-.phone:hover,
-.phone.selected{
-background:#111;
-color:#fff
-}
-
-.selected-product{
-margin-top:25px;
-padding-top:20px;
-border-top:1px solid #ddd;
-line-height:1.7
-}
-
-.add-cart{
-width:100%;
-margin-top:20px;
-background:#111;
-color:#fff;
-border:0;
-padding:17px;
-cursor:pointer;
-letter-spacing:2px
-}
-
-.add-cart:disabled{
-background:#aaa;
-cursor:not-allowed
-}
-
-.cart{
-position:fixed;
-top:0;
-right:-450px;
-width:430px;
-max-width:100%;
-height:100vh;
-background:#fff;
-z-index:2000;
-padding:30px;
-box-shadow:-10px 0 40px rgba(0,0,0,.2);
-transition:.3s;
-overflow-y:auto
-}
-
-.cart.active{
-right:0
-}
-
-.cart-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding-bottom:25px;
-border-bottom:1px solid #ddd
-}
-
-.cart-header h2{
-letter-spacing:3px
-}
-
-.cart-close{
-border:0;
-background:none;
-font-size:30px;
-cursor:pointer
-}
-
-.cart-empty{
-text-align:center;
-color:#777;
-padding:50px 10px
-}
-
-.cart-item{
-padding:22px 0;
-border-bottom:1px solid #ddd
-}
-
-.cart-item h3{
-font-size:16px;
-margin-bottom:8px
-}
-
-.cart-item p{
-color:#777;
-font-size:14px;
-margin-bottom:10px
-}
-
-.remove{
-border:0;
-background:none;
-color:#999;
-cursor:pointer;
-text-decoration:underline
-}
-
-.cart-total{
-padding-top:25px;
-font-size:22px;
-font-weight:bold
-}
-
-.checkout{
-width:100%;
-margin-top:20px;
-padding:17px;
-background:#111;
-color:#fff;
-border:0;
-cursor:pointer;
-letter-spacing:2px
-}
-
-.form-group{
-margin-bottom:18px
-}
-
-.form-group label{
-display:block;
-margin-bottom:7px;
-font-size:13px;
-font-weight:bold
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-width:100%;
-padding:14px;
-border:1px solid #ccc;
-background:#fff;
-font-size:15px
-}
-
-.form-group textarea{
-min-height:90px;
-resize:vertical
-}
-
-.form-row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px
-}
-
-.order-summary{
-background:#f4f1ed;
-padding:20px;
-margin:25px 0
-}
-
-.order-summary h3{
-margin-bottom:15px;
-letter-spacing:1px
-}
-
-.summary-item{
-padding:10px 0;
-border-bottom:1px solid #ddd;
-font-size:14px;
-line-height:1.6
-}
-
-.summary-total{
-padding-top:15px;
-font-size:20px;
-font-weight:bold
-}
+/* DROPSHIPPING */
 
-.submit-order{
-width:100%;
-background:#111;
-color:#fff;
-border:0;
-padding:18px;
-cursor:pointer;
-letter-spacing:2px;
-font-size:13px
-}
-
-.submit-order:disabled{
-background:#777;
-cursor:wait
-}
-
-.success{
-text-align:center;
-padding:25px 5px
-}
-
-.success-icon{
-font-size:60px;
-margin-bottom:20px
-}
-
-.success h2{
-margin-bottom:15px;
-letter-spacing:2px
-}
-
-.success p{
-color:#666;
-line-height:1.7;
-margin-bottom:8px
-}
-
-.success-button{
-margin-top:25px;
-padding:15px 25px;
-border:0;
-background:#111;
-color:#fff;
-cursor:pointer
-}
-
-.form-error{
-display:none;
-background:#f8e5e5;
-color:#8b2222;
-padding:15px;
-margin-bottom:20px;
-line-height:1.5;
-font-size:14px
-}
-
-@media(max-width:800px){
-
-.products{
-grid-template-columns:1fr
-}
-
-.product img{
-height:auto
-}
-
-header{
-padding:22px 20px
-}
-
-.logo{
-font-size:21px
-}
-
-.section-title h2{
-font-size:32px
-}
-
-.phone-list{
-grid-template-columns:1fr
-}
-
-.cart{
-width:100%
-}
-
-.form-row{
-grid-template-columns:1fr
-}
-
-.modal-box{
-padding:28px 20px
-}
-
-}
-</style>
-<style>
 .dropshipping-banner{
   background:#111;
   color:#fff;
-  border-bottom:1px solid rgba(255,255,255,.12);
+  border-bottom:1px solid rgba(255,255,255,.12)
 }
 
 .dropshipping-inner{
   max-width:1200px;
-  margin:0 auto;
-  padding:11px 24px;
+  margin:auto;
+  padding:10px 20px;
   display:flex;
   align-items:center;
   justify-content:center;
   gap:12px;
-  text-align:left;
+  text-align:left
 }
 
 .dropshipping-icon{
-  width:30px;
-  height:30px;
+  width:28px;
+  height:28px;
   border:1px solid rgba(255,255,255,.35);
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  flex-shrink:0;
-  font-size:12px;
-}
-
-.dropshipping-inner div{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
+  flex-shrink:0
 }
 
 .dropshipping-inner strong{
   font-size:12px;
   letter-spacing:1.5px;
-  text-transform:uppercase;
+  text-transform:uppercase
 }
 
 .dropshipping-inner span:last-child{
   color:#c9c9c9;
   font-size:12px;
-}
-
-@media(max-width:700px){
-  .dropshipping-inner{
-    padding:10px 16px;
-    justify-content:flex-start;
-  }
-
-  .dropshipping-inner div{
-    display:block;
-  }
-
-  .dropshipping-inner strong{
-    display:block;
-    margin-bottom:3px;
-  }
-
-  .dropshipping-inner span:last-child{
-    line-height:1.4;
-  }
-}
-</style>
-:root{
-  --noir:#0b0b0b;
-  --ink:#151515;
-  --cream:#f5f1eb;
-  --warm:#e9e1d7;
-  --line:#e4dfd8;
-  --muted:#77716b;
-  --accent:#a77b56;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  background:#f8f7f5;
-  color:var(--ink);
-  font-family:Inter,Arial,Helvetica,sans-serif;
-  letter-spacing:.01em;
+  margin-left:8px
 }
 
 /* HEADER */
+
 header{
   position:sticky;
   top:0;
   z-index:900;
+  background:rgba(11,11,11,.97);
+  color:#fff;
   padding:18px 6%;
-  background:rgba(11,11,11,.96);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,255,255,.08);
-  box-shadow:0 8px 30px rgba(0,0,0,.12);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 8px 30px rgba(0,0,0,.12)
 }
 
 .logo{
   font-size:25px;
   letter-spacing:8px;
+  font-weight:bold
 }
 
 .cart-button{
+  background:#fff;
+  color:#111;
   border:1px solid rgba(255,255,255,.25);
   border-radius:999px;
   padding:12px 20px;
-  transition:.25s ease;
+  cursor:pointer;
+  font-size:13px;
+  letter-spacing:1px;
+  transition:.25s
 }
 
 .cart-button:hover{
   background:#111;
   color:#fff;
   border-color:#fff;
-  transform:translateY(-1px);
+  transform:translateY(-1px)
 }
 
 /* HERO */
+
 .hero{
   min-height:62vh;
   position:relative;
@@ -620,10 +122,11 @@ header{
   background:
     radial-gradient(circle at 50% 20%,rgba(255,255,255,.75),transparent 35%),
     linear-gradient(135deg,#f2ede6 0%,#e7dfd5 100%);
-}
-
-.hero>div{
-  max-width:850px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:70px 20px
 }
 
 .hero h2{
@@ -631,1565 +134,1895 @@ header{
   font-weight:800;
   letter-spacing:12px;
   line-height:.95;
+  margin-bottom:24px
 }
 
 .hero p{
   max-width:520px;
   margin:0 auto 32px;
   color:#5f5a55;
-  font-size:18px;
+  font-size:18px
 }
 
 .hero-button{
-  border-radius:999px;
+  display:inline-block;
+  background:#111;
+  color:#fff;
   padding:16px 30px;
+  text-decoration:none;
+  letter-spacing:2px;
+  font-size:13px;
+  border-radius:999px;
   box-shadow:0 12px 30px rgba(0,0,0,.15);
-  transition:.25s ease;
+  transition:.25s
 }
 
 .hero-button:hover{
   transform:translateY(-3px);
-  box-shadow:0 18px 35px rgba(0,0,0,.2);
+  box-shadow:0 18px 35px rgba(0,0,0,.2)
 }
 
 /* SEKCJE */
+
 .section{
   max-width:1280px;
-  padding:95px 24px;
+  margin:auto;
+  padding:95px 24px
 }
 
 .section-title{
-  margin-bottom:55px;
+  text-align:center;
+  margin-bottom:55px
 }
 
 .section-title h2{
   font-size:clamp(34px,5vw,48px);
   letter-spacing:6px;
+  margin-bottom:15px
 }
 
 .section-title p{
-  font-size:16px;
+  color:#777
 }
 
 /* PRODUKTY */
+
 .products{
-  gap:24px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px
 }
 
 .product{
+  background:#fff;
   overflow:hidden;
   border:1px solid var(--line);
   border-radius:18px;
   box-shadow:0 8px 30px rgba(0,0,0,.05);
-  transition:transform .3s ease,box-shadow .3s ease;
+  transition:.3s
 }
 
 .product:hover{
   transform:translateY(-8px);
-  box-shadow:0 20px 45px rgba(0,0,0,.12);
+  box-shadow:0 20px 45px rgba(0,0,0,.12)
 }
 
 .product img{
-  transition:transform .5s ease;
+  width:100%;
+  height:500px;
+  object-fit:cover;
+  display:block;
+  transition:.5s
 }
 
 .product:hover img{
-  transform:scale(1.035);
+  transform:scale(1.035)
 }
 
 .product-info{
-  padding:26px;
+  padding:26px
 }
 
 .product-info h3{
   font-size:18px;
   line-height:1.35;
+  letter-spacing:1px;
+  margin-bottom:18px
 }
 
 .price{
   color:var(--accent);
   font-size:21px;
+  font-weight:bold;
+  margin-bottom:22px
 }
 
 .buy{
+  background:#111;
+  color:#fff;
+  border:0;
   border-radius:999px;
   padding:14px 26px;
-  transition:.25s ease;
+  cursor:pointer;
+  letter-spacing:2px;
+  font-size:12px;
+  transition:.25s
 }
 
 .buy:hover{
   background:#2a2a2a;
-  transform:translateY(-2px);
+  transform:translateY(-2px)
 }
 
 /* ABOUT */
+
 .about{
-  max-width:none;
-  padding:90px 24px;
   background:var(--cream);
+  max-width:none;
+  text-align:center;
   border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid var(--line)
 }
 
 .about-inner{
   max-width:800px;
+  margin:auto
 }
 
 .about h2{
   font-size:clamp(30px,5vw,46px);
   letter-spacing:5px;
+  margin-bottom:20px
 }
 
 .about p{
-  max-width:680px;
+  color:#555;
+  line-height:1.8;
+  font-size:17px
+}
+
+/* DLACZEGO */
+
+.why{
+  background:#111;
+  color:#fff;
+  max-width:none
+}
+
+.why-inner{
+  max-width:1100px;
+  margin:auto
+}
+
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:35px
+}
+
+.why-card{
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:16px;
+  padding:28px;
+  background:rgba(255,255,255,.03)
+}
+
+.why-card strong{
+  display:block;
+  font-size:14px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:12px
+}
+
+.why-card p{
+  color:#bbb;
+  line-height:1.7;
+  font-size:14px
+}
+
+/* INFORMACJE */
+
+.info-strip{
+  max-width:none;
+  background:#f8f7f5
+}
+
+.info-grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px
+}
+
+.info-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:25px
+}
+
+.info-card h3{
+  font-size:14px;
+  letter-spacing:1.5px;
+  margin-bottom:10px
+}
+
+.info-card p{
+  color:#666;
+  line-height:1.7;
+  font-size:14px
+}
+
+.legal-note{
+  max-width:1100px;
   margin:0 auto;
-  font-size:17px;
+  padding:25px 24px 0;
+  color:#777;
+  font-size:12px;
+  line-height:1.6;
+  text-align:center
 }
 
 /* FOOTER */
+
 footer{
-  padding:42px 20px;
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:40px 20px
 }
 
-/* MODALE */
+footer p{
+  color:#aaa;
+  font-size:13px;
+  line-height:1.7
+}
+
+/* MODAL */
+
 .modal{
+  display:none;
+  position:fixed;
+  inset:0;
   background:rgba(0,0,0,.72);
   backdrop-filter:blur(5px);
+  z-index:1000;
+  align-items:center;
+  justify-content:center;
+  padding:20px
+}
+
+.modal.active{
+  display:flex
 }
 
 .modal-box{
+  background:#fff;
+  width:100%;
+  max-width:500px;
+  padding:35px;
+  position:relative;
+  max-height:90vh;
+  overflow-y:auto;
   border-radius:20px;
-  box-shadow:0 30px 80px rgba(0,0,0,.3);
+  box-shadow:0 30px 80px rgba(0,0,0,.3)
+}
+
+.close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  border:0;
+  background:none;
+  font-size:30px;
+  cursor:pointer
+}
+
+.modal-box h2{
+  margin-bottom:10px;
+  letter-spacing:2px
+}
+
+.modal-box>p{
+  color:#777;
+  margin-bottom:25px
+}
+
+/* TELEFONY */
+
+.phone-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
 }
 
 .phone{
+  border:1px solid #ddd;
+  background:#f5f5f5;
+  padding:15px;
+  cursor:pointer;
   border-radius:12px;
-  transition:.2s ease;
+  transition:.2s
 }
 
-.phone:hover{
-  transform:translateY(-2px);
+.phone:hover,
+.phone.selected{
+  background:#111;
+  color:#fff;
+  transform:translateY(-2px)
 }
 
-.add-cart,
-.checkout,
-.submit-order{
+.selected-product{
+  margin-top:25px;
+  padding-top:20px;
+  border-top:1px solid #ddd;
+  line-height:1.7
+}
+
+.add-cart{
+  width:100%;
+  margin-top:20px;
+  background:#111;
+  color:#fff;
+  border:0;
   border-radius:999px;
-  transition:.25s ease;
+  padding:17px;
+  cursor:pointer;
+  letter-spacing:2px;
+  transition:.25s
 }
 
-.add-cart:not(:disabled):hover,
-.checkout:hover,
-.submit-order:not(:disabled):hover{
-  background:#2a2a2a;
-  transform:translateY(-2px);
+.add-cart:disabled{
+  background:#aaa;
+  cursor:not-allowed
 }
 
 /* KOSZYK */
+
 .cart{
+  position:fixed;
+  top:0;
+  right:-450px;
+  width:430px;
+  max-width:100%;
+  height:100vh;
+  background:#fff;
+  z-index:2000;
+  padding:30px;
   box-shadow:-20px 0 60px rgba(0,0,0,.18);
+  transition:.3s;
+  overflow-y:auto
+}
+
+.cart.active{
+  right:0
+}
+
+.cart-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:25px;
+  border-bottom:1px solid #ddd
+}
+
+.cart-header h2{
+  letter-spacing:3px
+}
+
+.cart-close{
+  border:0;
+  background:none;
+  font-size:30px;
+  cursor:pointer
+}
+
+.cart-empty{
+  text-align:center;
+  color:#777;
+  padding:50px 10px
+}
+
+.cart-item{
+  padding:22px 0;
+  border-bottom:1px solid #ddd
+}
+
+.cart-item h3{
+  font-size:16px;
+  margin-bottom:8px
+}
+
+.cart-item p{
+  color:#777;
+  font-size:14px;
+  margin-bottom:10px
+}
+
+.remove{
+  border:0;
+  background:none;
+  color:#999;
+  cursor:pointer;
+  text-decoration:underline
+}
+
+.cart-total{
+  padding-top:25px;
+  font-size:22px;
+  font-weight:bold
+}
+
+.checkout{
+  width:100%;
+  margin-top:20px;
+  padding:17px;
+  background:#111;
+  color:#fff;
+  border:0;
+  border-radius:999px;
+  cursor:pointer;
+  letter-spacing:2px;
+  transition:.25s
+}
+
+.checkout:hover{
+  background:#2a2a2a;
+  transform:translateY(-2px)
 }
 
 /* FORMULARZ */
+
+.form-group{
+  margin-bottom:18px
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:7px;
+  font-size:13px;
+  font-weight:bold
+}
+
 .form-group input,
 .form-group textarea,
 .form-group select{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd6ce;
   border-radius:10px;
-  border-color:#ddd6ce;
+  background:#fff;
+  font-size:15px;
   outline:none;
-  transition:.2s ease;
+  transition:.2s
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus{
   border-color:#111;
-  box-shadow:0 0 0 3px rgba(17,17,17,.08);
+  box-shadow:0 0 0 3px rgba(17,17,17,.08)
 }
 
-/* TELEFON */
+.form-group textarea{
+  min-height:90px;
+  resize:vertical
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px
+}
+
+.order-summary{
+  background:#f4f1ed;
+  padding:20px;
+  margin:25px 0
+}
+
+.order-summary h3{
+  margin-bottom:15px;
+  letter-spacing:1px
+}
+
+.summary-item{
+  padding:10px 0;
+  border-bottom:1px solid #ddd;
+  font-size:14px;
+  line-height:1.6
+}
+
+.summary-total{
+  padding-top:15px;
+  font-size:20px;
+  font-weight:bold
+}
+
+.submit-order{
+  width:100%;
+  background:#111;
+  color:#fff;
+  border:0;
+  border-radius:999px;
+  padding:18px;
+  cursor:pointer;
+  letter-spacing:2px;
+  font-size:13px;
+  transition:.25s
+}
+
+.submit-order:hover{
+  background:#2a2a2a;
+  transform:translateY(-2px)
+}
+
+.submit-order:disabled{
+  background:#777;
+  cursor:wait
+}
+
+/* SUKCES */
+
+.success{
+  text-align:center;
+  padding:25px 5px
+}
+
+.success-icon{
+  font-size:60px;
+  margin-bottom:20px
+}
+
+.success h2{
+  margin-bottom:15px;
+  letter-spacing:2px
+}
+
+.success p{
+  color:#666;
+  line-height:1.7;
+  margin-bottom:8px
+}
+
+.success-button{
+  margin-top:25px;
+  padding:15px 25px;
+  border:0;
+  border-radius:999px;
+  background:#111;
+  color:#fff;
+  cursor:pointer
+}
+
+.form-error{
+  display:none;
+  background:#f8e5e5;
+  color:#8b2222;
+  padding:15px;
+  margin-bottom:20px;
+  line-height:1.5;
+  font-size:14px
+}
+
+/* MOBILE */
+
 @media(max-width:800px){
 
+  .dropshipping-inner{
+    padding:10px 16px;
+    justify-content:flex-start
+  }
+
+  .dropshipping-inner div{
+    display:block
+  }
+
+  .dropshipping-inner strong{
+    display:block;
+    margin-bottom:3px
+  }
+
+  .dropshipping-inner span:last-child{
+    margin-left:0;
+    line-height:1.4
+  }
+
   header{
-    padding:16px 18px;
+    padding:16px 18px
   }
 
   .logo{
     font-size:19px;
-    letter-spacing:6px;
+    letter-spacing:6px
   }
 
   .cart-button{
     padding:10px 14px;
-    font-size:12px;
+    font-size:12px
   }
 
   .hero{
-    min-height:58vh;
+    min-height:58vh
   }
 
   .hero h2{
-    letter-spacing:7px;
+    letter-spacing:7px
   }
 
   .section{
-    padding:70px 18px;
+    padding:70px 18px
+  }
+
+  .products,
+  .why-grid,
+  .info-grid{
+    grid-template-columns:1fr
   }
 
   .product{
-    border-radius:14px;
+    border-radius:14px
+  }
+
+  .product img{
+    height:auto
+  }
+
+  .phone-list{
+    grid-template-columns:1fr
+  }
+
+  .cart{
+    width:100%
+  }
+
+  .form-row{
+    grid-template-columns:1fr
+  }
+
+  .modal-box{
+    padding:28px 20px
   }
 }
 </style>
 </head>
 
 <body>
+
 <div class="dropshipping-banner">
   <div class="dropshipping-inner">
     <span class="dropshipping-icon">◈</span>
     <div>
       <strong>NOIRCASE — model dropshipping</strong>
-      <span>
-        Zamówienia mogą być realizowane przy udziale zewnętrznego partnera logistycznego.
-        Informacje o sprzedawcy, dostawie, zwrotach i reklamacjach zostaną udostępnione przed zakupem.
-      </span>
+      <span>Zewnętrzny partner może uczestniczyć w realizacji zamówienia. Przed uruchomieniem sprzedaży uzupełnimy dane sprzedawcy, dostawy, zwrotów i reklamacji.</span>
     </div>
   </div>
 </div>
-<header>
-<div class="logo">NOIRCASE</div>
 
-<button class="cart-button" onclick="openCart()">
-🛒 KOSZYK (<span id="cartCount">0</span>)
-</button>
+<header>
+  <div class="logo">NOIRCASE</div>
+
+  <button class="cart-button" onclick="openCart()">
+    🛒 KOSZYK (<span id="cartCount">0</span>)
+  </button>
 </header>
 
-
 <section class="hero">
+  <div>
+    <h2>NOIRCASE</h2>
 
-<div>
+    <p>
+      Minimalistyczne etui. Charakterystyczny design.
+    </p>
 
-<h2>NOIRCASE</h2>
-
-<p>
-Minimalistyczne etui. Charakterystyczny design.
-</p>
-
-<a href="#collection" class="hero-button">
-ZOBACZ KOLEKCJĘ
-</a>
-
-</div>
-
+    <a href="#collection" class="hero-button">
+      ZOBACZ KOLEKCJĘ
+    </a>
+  </div>
 </section>
-
 
 <section class="section" id="collection">
 
-<div class="section-title">
+  <div class="section-title">
+    <h2>KOLEKCJA</h2>
+    <p>Wybierz swoje etui NOIRCASE.</p>
+  </div>
 
-<h2>KOLEKCJA</h2>
+  <div class="products">
 
-<p>
-Wybierz swoje etui NOIRCASE.
-</p>
+    <div class="product">
 
-</div>
+      <img
+        src="IMG_8706.jpeg"
+        alt="Etui NOIRCASE White"
+      >
 
+      <div class="product-info">
 
-<div class="products">
+        <h3>
+          NOIRCASE COLLECTION — WHITE
+        </h3>
 
+        <div class="price">
+          79,99 zł
+        </div>
 
-<div class="product">
+        <button
+          class="buy"
+          onclick="openModal('NOIRCASE COLLECTION — WHITE')"
+        >
+          WYBIERZ
+        </button>
 
-<img
-src="IMG_8706.jpeg"
-alt="Etui NOIRCASE White"
->
+      </div>
+    </div>
 
-<div class="product-info">
+    <div class="product">
 
-<h3>
-MARVEL COLLECTION — WHITE
-</h3>
+      <img
+        src="IMG_8707.jpeg"
+        alt="Etui NOIRCASE Pink"
+      >
 
-<div class="price">
-79,99 zł
-</div>
+      <div class="product-info">
 
-<button
-class="buy"
-onclick="openModal('MARVEL COLLECTION — WHITE')"
->
-WYBIERZ
-</button>
+        <h3>
+          NOIRCASE COLLECTION — PINK
+        </h3>
 
-</div>
+        <div class="price">
+          79,99 zł
+        </div>
 
-</div>
+        <button
+          class="buy"
+          onclick="openModal('NOIRCASE COLLECTION — PINK')"
+        >
+          WYBIERZ
+        </button>
 
+      </div>
+    </div>
 
-<div class="product">
+    <div class="product">
 
-<img
-src="IMG_8707.jpeg"
-alt="Etui NOIRCASE Pink"
->
+      <img
+        src="IMG_8708.jpeg"
+        alt="Etui NOIRCASE Black"
+      >
 
-<div class="product-info">
+      <div class="product-info">
 
-<h3>
-MARVEL COLLECTION — PINK
-</h3>
+        <h3>
+          NOIRCASE COLLECTION — BLACK
+        </h3>
 
-<div class="price">
-79,99 zł
-</div>
+        <div class="price">
+          79,99 zł
+        </div>
 
-<button
-class="buy"
-onclick="openModal('MARVEL COLLECTION — PINK')"
->
-WYBIERZ
-</button>
+        <button
+          class="buy"
+          onclick="openModal('NOIRCASE COLLECTION — BLACK')"
+        >
+          WYBIERZ
+        </button>
 
-</div>
+      </div>
+    </div>
 
-</div>
-
-
-<div class="product">
-
-<img
-src="IMG_8708.jpeg"
-alt="Etui NOIRCASE Black"
->
-
-<div class="product-info">
-
-<h3>
-MARVEL COLLECTION — BLACK
-</h3>
-
-<div class="price">
-79,99 zł
-</div>
-
-<button
-class="buy"
-onclick="openModal('MARVEL COLLECTION — BLACK')"
->
-WYBIERZ
-</button>
-
-</div>
-
-</div>
-
-
-</div>
-
+  </div>
 </section>
 
+<section class="section why">
+
+  <div class="why-inner">
+
+    <div class="section-title">
+
+      <h2>DLACZEGO NOIRCASE?</h2>
+
+      <p style="color:#aaa">
+        Prosty wybór. Wyrazisty styl. Codzienna ochrona.
+      </p>
+
+    </div>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+
+        <strong>
+          Minimalistyczny design
+        </strong>
+
+        <p>
+          Prosta forma i charakterystyczny wygląd,
+          który pasuje do codziennego stylu.
+        </p>
+
+      </div>
+
+      <div class="why-card">
+
+        <strong>
+          Dopasowanie do telefonu
+        </strong>
+
+        <p>
+          Przed dodaniem produktu wybierasz
+          konkretny model telefonu.
+        </p>
+
+      </div>
+
+      <div class="why-card">
+
+        <strong>
+          Model dropshipping
+        </strong>
+
+        <p>
+          Na etapie testowym sprawdzamy proces
+          zamówienia i realizacji z udziałem
+          partnera zewnętrznego.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section info-strip">
+
+  <div class="section-title">
+
+    <h2>INFORMACJE</h2>
+
+    <p>
+      Przejrzyste informacje przed uruchomieniem sprzedaży.
+    </p>
+
+  </div>
+
+  <div class="info-grid">
+
+    <div class="info-card">
+
+      <h3>DOSTAWA</h3>
+
+      <p>
+        Metody i terminy dostawy zostaną podane
+        przed rozpoczęciem prawdziwej sprzedaży,
+        po ustaleniu warunków z partnerem
+        realizującym zamówienia.
+      </p>
+
+    </div>
+
+    <div class="info-card">
+
+      <h3>ZWROTY I REKLAMACJE</h3>
+
+      <p>
+        Przed uruchomieniem sprzedaży uzupełnimy
+        zasady odstąpienia od umowy, zwrotów
+        i reklamacji zgodnie z obowiązującymi
+        przepisami.
+      </p>
+
+    </div>
+
+    <div class="info-card">
+
+      <h3>SPRZEDAWCA</h3>
+
+      <p>
+        Dane prawnego sprzedawcy, adres, kontakt
+        i pozostałe wymagane informacje zostaną
+        uzupełnione przed uruchomieniem sprzedaży.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="legal-note">
+
+    Wersja testowa sklepu. Nie jest to oferta przeznaczona
+    do zawierania rzeczywistych transakcji. Prawdziwa sprzedaż
+    zostanie uruchomiona dopiero po uzupełnieniu danych
+    sprzedawcy, regulaminu, polityki prywatności, zasad dostawy,
+    zwrotów i reklamacji oraz po sprawdzeniu obowiązków prawnych.
+
+  </div>
+
+</section>
 
 <section class="section about">
 
-<div class="about-inner">
+  <div class="about-inner">
 
-<h2>
-MINIMAL. PROTECTIVE. YOURS.
-</h2>
+    <h2>
+      MINIMAL. PROTECTIVE. YOURS.
+    </h2>
 
-<p>
-NOIRCASE łączy charakterystyczny design z codzienną ochroną telefonu.
-Wybierz swój styl i dopasuj etui do siebie.
-</p>
+    <p>
+      NOIRCASE łączy charakterystyczny design
+      z codzienną ochroną telefonu.
+      Wybierz swój styl i dopasuj etui do siebie.
+    </p>
 
-</div>
+  </div>
 
 </section>
 
-
 <footer>
 
-<p>
-© 2026 NOIRCASE — Wszystkie prawa zastrzeżone.
-</p>
+  <p>
+    © 2026 NOIRCASE — Wersja testowa.<br>
+    Sprzedaż rzeczywista nie została uruchomiona.
+  </p>
 
 </footer>
 
-
+<!-- WYBÓR TELEFONU -->
 
 <div class="modal" id="phoneModal">
 
-<div class="modal-box">
+  <div class="modal-box">
 
-<button class="close" onclick="closeModal()">
-×
-</button>
+    <button class="close" onclick="closeModal()">×</button>
 
-<h2>
-Wybierz model
-</h2>
+    <h2>Wybierz model</h2>
 
-<p>
-Wybierz model telefonu dla swojego etui.
-</p>
+    <p>
+      Wybierz model telefonu dla swojego etui.
+    </p>
 
+    <div class="phone-list">
 
-<div class="phone-list">
+      <button class="phone"
+        onclick="selectPhone('iPhone 15',this)">
+        iPhone 15
+      </button>
 
-<button
-class="phone"
-onclick="selectPhone('iPhone 15',this)"
->
-iPhone 15
-</button>
+      <button class="phone"
+        onclick="selectPhone('iPhone 15 Pro',this)">
+        iPhone 15 Pro
+      </button>
 
-<button
-class="phone"
-onclick="selectPhone('iPhone 15 Pro',this)"
->
-iPhone 15 Pro
-</button>
+      <button class="phone"
+        onclick="selectPhone('iPhone 15 Pro Max',this)">
+        iPhone 15 Pro Max
+      </button>
 
-<button
-class="phone"
-onclick="selectPhone('iPhone 15 Pro Max',this)"
->
-iPhone 15 Pro Max
-</button>
+      <button class="phone"
+        onclick="selectPhone('iPhone 16',this)">
+        iPhone 16
+      </button>
 
-<button
-class="phone"
-onclick="selectPhone('iPhone 16',this)"
->
-iPhone 16
-</button>
+      <button class="phone"
+        onclick="selectPhone('iPhone 16 Pro',this)">
+        iPhone 16 Pro
+      </button>
 
-<button
-class="phone"
-onclick="selectPhone('iPhone 16 Pro',this)"
->
-iPhone 16 Pro
-</button>
+      <button class="phone"
+        onclick="selectPhone('iPhone 16 Pro Max',this)">
+        iPhone 16 Pro Max
+      </button>
 
-<button
-class="phone"
-onclick="selectPhone('iPhone 16 Pro Max',this)"
->
-iPhone 16 Pro Max
-</button>
+      <button class="phone"
+        onclick="selectPhone('iPhone 17',this)">
+        iPhone 17
+      </button>
 
-<button
-class="phone"
-onclick="selectPhone('iPhone 17',this)"
->
-iPhone 17
-</button>
+      <button class="phone"
+        onclick="selectPhone('iPhone 17 Pro',this)">
+        iPhone 17 Pro
+      </button>
 
-<button
-class="phone"
-onclick="selectPhone('iPhone 17 Pro',this)"
->
-iPhone 17 Pro
-</button>
+      <button class="phone"
+        onclick="selectPhone('iPhone 17 Pro Max',this)">
+        iPhone 17 Pro Max
+      </button>
 
-<button
-class="phone"
-onclick="selectPhone('iPhone 17 Pro Max',this)"
->
-iPhone 17 Pro Max
-</button>
+    </div>
 
+    <div
+      class="selected-product"
+      id="selectedProduct"
+    >
+      Wybierz model telefonu.
+    </div>
+
+    <button
+      class="add-cart"
+      id="addCartButton"
+      onclick="addToCart()"
+      disabled
+    >
+      DODAJ DO KOSZYKA
+    </button>
+
+  </div>
 </div>
 
-
-<div
-class="selected-product"
-id="selectedProduct"
->
-Wybierz model telefonu.
-</div>
-
-
-<button
-class="add-cart"
-id="addCartButton"
-onclick="addToCart()"
-disabled
->
-DODAJ DO KOSZYKA
-</button>
-
-</div>
-
-</div>
-
-
+<!-- KOSZYK -->
 
 <div class="cart" id="cart">
 
-<div class="cart-header">
+  <div class="cart-header">
 
-<h2>
-KOSZYK
-</h2>
+    <h2>KOSZYK</h2>
 
-<button
-class="cart-close"
-onclick="closeCart()"
->
-×
-</button>
+    <button
+      class="cart-close"
+      onclick="closeCart()"
+    >
+      ×
+    </button>
 
-</div>
+  </div>
 
+  <div id="cartItems">
 
-<div id="cartItems">
+    <div class="cart-empty">
+      Twój koszyk jest pusty.
+    </div>
 
-<div class="cart-empty">
-Twój koszyk jest pusty.
-</div>
+  </div>
 
-</div>
+  <div class="cart-total">
+    Razem:
+    <span id="cartTotal">
+      0,00 zł
+    </span>
+  </div>
 
-
-<div class="cart-total">
-
-Razem:
-<span id="cartTotal">
-0,00 zł
-</span>
-
-</div>
-
-
-<button
-class="checkout"
-onclick="openCheckout()"
->
-PRZEJDŹ DO ZAMÓWIENIA
-</button>
+  <button
+    class="checkout"
+    onclick="openCheckout()"
+  >
+    PRZEJDŹ DO ZAMÓWIENIA
+  </button>
 
 </div>
 
-
+<!-- CHECKOUT -->
 
 <div class="modal" id="checkoutModal">
 
-<div class="modal-box">
+  <div class="modal-box">
 
-<button
-class="close"
-onclick="closeCheckout()"
->
-×
-</button>
+    <button
+      class="close"
+      onclick="closeCheckout()"
+    >
+      ×
+    </button>
 
+    <div id="orderSection">
 
-<div id="orderSection">
+      <h2>ZAMÓWIENIE</h2>
 
-<h2>
-ZAMÓWIENIE
-</h2>
+      <p>
+        Uzupełnij dane do testowego zamówienia.
+      </p>
 
-<p>
-Uzupełnij dane do dostawy.
-</p>
+      <div
+        id="formError"
+        class="form-error"
+      ></div>
 
+      <form
+        id="orderForm"
+        action="https://formspree.io/f/myezewlp"
+        method="POST"
+      >
 
-<div
-id="formError"
-class="form-error"
-></div>
+        <input
+          type="hidden"
+          name="_subject"
+          value="Nowe zamówienie NOIRCASE — TEST"
+        >
 
+        <input
+          type="hidden"
+          name="_language"
+          value="pl"
+        >
 
-<form
-id="orderForm"
-action="https://formspree.io/f/myezewlp"
-method="POST"
->
+        <div class="form-row">
 
+          <div class="form-group">
 
-<input
-type="hidden"
-name="_subject"
-value="Nowe zamówienie NOIRCASE"
->
+            <label for="firstName">
+              Imię
+            </label>
 
-<input
-type="hidden"
-name="_language"
-value="pl"
->
+            <input
+              type="text"
+              id="firstName"
+              name="Imię"
+              required
+            >
 
+          </div>
 
-<div class="form-row">
+          <div class="form-group">
 
+            <label for="lastName">
+              Nazwisko
+            </label>
 
-<div class="form-group">
+            <input
+              type="text"
+              id="lastName"
+              name="Nazwisko"
+              required
+            >
 
-<label for="firstName">
-Imię
-</label>
+          </div>
 
-<input
-type="text"
-id="firstName"
-name="Imię"
-required
->
+        </div>
+
+        <div class="form-group">
+
+          <label for="email">
+            E-mail
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="Email"
+            placeholder="twoj@email.pl"
+            required
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="phoneNumber">
+            Numer telefonu
+          </label>
+
+          <input
+            type="tel"
+            id="phoneNumber"
+            name="Telefon"
+            placeholder="123 456 789"
+            required
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="street">
+            Ulica i numer
+          </label>
+
+          <input
+            type="text"
+            id="street"
+            name="Ulica i numer"
+            required
+          >
+
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label for="postalCode">
+              Kod pocztowy
+            </label>
+
+            <input
+              type="text"
+              id="postalCode"
+              name="Kod pocztowy"
+              placeholder="00-000"
+              required
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="city">
+              Miasto
+            </label>
+
+            <input
+              type="text"
+              id="city"
+              name="Miasto"
+              required
+            >
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="delivery">
+            Sposób dostawy
+          </label>
+
+          <select
+            id="delivery"
+            name="Dostawa"
+            required
+          >
+
+            <option value="">
+              Wybierz dostawę
+            </option>
+
+            <option value="Paczkomat">
+              Paczkomat
+            </option>
+
+            <option value="Kurier">
+              Kurier
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="notes">
+            Dodatkowe informacje
+          </label>
+
+          <textarea
+            id="notes"
+            name="Uwagi"
+            placeholder="Opcjonalnie..."
+          ></textarea>
+
+        </div>
+
+        <input
+          type="hidden"
+          name="Produkty"
+          id="productsField"
+        >
+
+        <input
+          type="hidden"
+          name="Suma"
+          id="totalField"
+        >
+
+        <input
+          type="hidden"
+          name="Numer zamówienia"
+          id="orderNumberField"
+        >
+
+        <div class="order-summary">
+
+          <h3>
+            PODSUMOWANIE
+          </h3>
+
+          <div id="checkoutItems"></div>
+
+          <div class="summary-total">
+
+            Razem:
+
+            <span id="checkoutTotal">
+              0,00 zł
+            </span>
+
+          </div>
+
+        </div>
+
+        <button
+          type="submit"
+          class="submit-order"
+          id="submitOrderButton"
+        >
+          PRZEJDŹ DO PŁATNOŚCI TESTOWEJ
+        </button>
+
+      </form>
+
+    </div>
+
+    <!-- POTWIERDZENIE -->
+
+    <div
+      id="successMessage"
+      style="display:none"
+    >
+
+      <div class="success">
+
+        <div class="success-icon">
+          ✓
+        </div>
+
+        <h2>
+          PŁATNOŚĆ TESTOWA ZAKOŃCZONA
+        </h2>
+
+        <p>
+          Dziękujemy za test zamówienia w NOIRCASE.
+        </p>
+
+        <p>
+          Numer zamówienia:
+          <strong id="orderNumber"></strong>
+        </p>
+
+        <button
+          class="success-button"
+          onclick="finishOrder()"
+        >
+          WRÓĆ DO SKLEPU
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
-
-
-<div class="form-group">
-
-<label for="lastName">
-Nazwisko
-</label>
-
-<input
-type="text"
-id="lastName"
-name="Nazwisko"
-required
->
-
-</div>
-
-
-</div>
-
-
-<div class="form-group">
-
-<label for="email">
-E-mail
-</label>
-
-<input
-type="email"
-id="email"
-name="Email"
-placeholder="twoj@email.pl"
-required
->
-
-</div>
-
-
-<div class="form-group">
-
-<label for="phoneNumber">
-Numer telefonu
-</label>
-
-<input
-type="tel"
-id="phoneNumber"
-name="Telefon"
-placeholder="123 456 789"
-required
->
-
-</div>
-
-
-<div class="form-group">
-
-<label for="street">
-Ulica i numer
-</label>
-
-<input
-type="text"
-id="street"
-name="Ulica i numer"
-required
->
-
-</div>
-
-
-<div class="form-row">
-
-
-<div class="form-group">
-
-<label for="postalCode">
-Kod pocztowy
-</label>
-
-<input
-type="text"
-id="postalCode"
-name="Kod pocztowy"
-placeholder="00-000"
-required
->
-
-</div>
-
-
-<div class="form-group">
-
-<label for="city">
-Miasto
-</label>
-
-<input
-type="text"
-id="city"
-name="Miasto"
-required
->
-
-</div>
-
-
-</div>
-
-
-<div class="form-group">
-
-<label for="delivery">
-Sposób dostawy
-</label>
-
-<select
-id="delivery"
-name="Dostawa"
-required
->
-
-<option value="">
-Wybierz dostawę
-</option>
-
-<option value="Paczkomat">
-Paczkomat
-</option>
-
-<option value="Kurier">
-Kurier
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label for="notes">
-Dodatkowe informacje
-</label>
-
-<textarea
-id="notes"
-name="Uwagi"
-placeholder="Opcjonalnie..."
-></textarea>
-
-</div>
-
-
-<input
-type="hidden"
-name="Produkty"
-id="productsField"
->
-
-<input
-type="hidden"
-name="Suma"
-id="totalField"
->
-
-<input
-type="hidden"
-name="Numer zamówienia"
-id="orderNumberField"
->
-
-
-<div class="order-summary">
-
-<h3>
-PODSUMOWANIE
-</h3>
-
-<div id="checkoutItems"></div>
-
-<div class="summary-total">
-
-Razem:
-<span id="checkoutTotal">
-0,00 zł
-</span>
-
-</div>
-
-</div>
-
-
-<button
-type="submit"
-class="submit-order"
-id="submitOrderButton"
->
-PRZEJDŹ DO PŁATNOŚCI TESTOWEJ
-</button>
-
-
-</form>
-
-</div>
-
-
-
-<div
-id="successMessage"
-style="display:none"
->
-
-<div class="success">
-
-<div class="success-icon">
-✓
-</div>
-
-<h2>
-PŁATNOŚĆ TESTOWA ZAKOŃCZONA
-</h2>
-
-<p>
-Dziękujemy za test zamówienia w NOIRCASE.
-</p>
-
-<p>
-Numer zamówienia:
-<strong id="orderNumber"></strong>
-</p>
-
-<button
-class="success-button"
-onclick="finishOrder()"
->
-WRÓĆ DO SKLEPU
-</button>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-
 
 <script>
 
-let cart = [];
+let cart=[];
 
-let selectedCase = "";
+let selectedCase="";
 
-let selectedPhone = "";
+let selectedPhone="";
 
-const STRIPE_WORKER =
+const STRIPE_WORKER=
 "https://divine-lab-9cd4.czarekpawlowski22.workers.dev/";
 
 
-/* ================================
-   WYBÓR ETUI
-================================ */
-
 function openModal(caseName){
 
-    selectedCase = caseName;
-    selectedPhone = "";
+  selectedCase=caseName;
 
-    document
-        .getElementById("phoneModal")
-        .classList.add("active");
+  selectedPhone="";
 
-    document
-        .getElementById("selectedProduct")
-        .innerHTML =
-        "Wybrane etui: <strong>"
-        + caseName
-        + "</strong><br><br>Wybierz model telefonu.";
+  document
+    .getElementById("phoneModal")
+    .classList.add("active");
 
-    document
-        .getElementById("addCartButton")
-        .disabled = true;
+  document.getElementById("selectedProduct").innerHTML=
+    "Wybrane etui: <strong>"+
+    caseName+
+    "</strong><br><br>Wybierz model telefonu.";
 
-    document
-        .querySelectorAll(".phone")
-        .forEach(function(button){
+  document.getElementById("addCartButton").disabled=true;
 
-            button.classList.remove("selected");
-
-        });
+  document
+    .querySelectorAll(".phone")
+    .forEach(function(button){
+      button.classList.remove("selected");
+    });
 
 }
 
-
-/* ================================
-   ZAMKNIĘCIE WYBORU
-================================ */
 
 function closeModal(){
 
-    document
-        .getElementById("phoneModal")
-        .classList.remove("active");
+  document
+    .getElementById("phoneModal")
+    .classList.remove("active");
 
 }
 
 
-/* ================================
-   WYBÓR TELEFONU
-================================ */
+function selectPhone(phone,button){
 
-function selectPhone(phone, button){
+  selectedPhone=phone;
 
-    selectedPhone = phone;
+  document
+    .querySelectorAll(".phone")
+    .forEach(function(item){
+      item.classList.remove("selected");
+    });
 
-    document
-        .querySelectorAll(".phone")
-        .forEach(function(button){
+  button.classList.add("selected");
 
-            button.classList.remove("selected");
+  document.getElementById("selectedProduct").innerHTML=
+    "Wybrane etui: <strong>"+
+    selectedCase+
+    "</strong><br>Model: <strong>"+
+    selectedPhone+
+    "</strong><br>Cena: <strong>79,99 zł</strong>";
 
-        });
-
-    if(button){
-
-        button.classList.add("selected");
-
-    }
-
-    document
-        .getElementById("selectedProduct")
-        .innerHTML =
-        "Etui: <strong>"
-        + selectedCase
-        + "</strong><br>Model: <strong>"
-        + selectedPhone
-        + "</strong>";
-
-    document
-        .getElementById("addCartButton")
-        .disabled = false;
+  document.getElementById("addCartButton").disabled=false;
 
 }
 
-
-/* ================================
-   DODAJ DO KOSZYKA
-================================ */
 
 function addToCart(){
 
-    if(!selectedCase || !selectedPhone){
+  if(!selectedCase || !selectedPhone)return;
 
-        return;
+  cart.push({
+    case:selectedCase,
+    phone:selectedPhone,
+    price:79.99
+  });
 
-    }
+  updateCart();
 
-    cart.push({
-
-        caseName: selectedCase,
-
-        phone: selectedPhone,
-
-        price: 79.99
-
-    });
-
-    updateCart();
-
-    closeModal();
-
-    openCart();
+  closeModal();
 
 }
 
-
-/* ================================
-   AKTUALIZACJA KOSZYKA
-================================ */
 
 function updateCart(){
 
-    const items =
-        document.getElementById("cartItems");
+  const items=
+    document.getElementById("cartItems");
 
-    const count =
-        document.getElementById("cartCount");
+  const count=
+    document.getElementById("cartCount");
 
-    const totalEl =
-        document.getElementById("cartTotal");
+  const totalEl=
+    document.getElementById("cartTotal");
 
-    count.innerText = cart.length;
-
-    if(!cart.length){
-
-        items.innerHTML =
-        '<div class="cart-empty">Twój koszyk jest pusty.</div>';
-
-        totalEl.innerText =
-        "0,00 zł";
-
-        return;
-
-    }
-
-    let total = 0;
-
-    items.innerHTML = "";
-
-    cart.forEach(function(item,index){
-
-        total += item.price;
-
-        items.innerHTML +=
-
-        `<div class="cart-item">
-
-            <h3>${item.caseName}</h3>
-
-            <p>Model: ${item.phone}</p>
-
-            <p>
-                ${item.price.toFixed(2).replace(".",",")} zł
-            </p>
-
-            <button
-                class="remove"
-                onclick="removeItem(${index})"
-            >
-                Usuń
-            </button>
-
-        </div>`;
-
-    });
-
-    totalEl.innerText =
-        total.toFixed(2).replace(".",",")
-        + " zł";
-
-}
+  count.textContent=cart.length;
 
 
-/* ================================
-   USUŃ Z KOSZYKA
-================================ */
+  if(cart.length===0){
 
-function removeItem(index){
+    items.innerHTML=
+      '<div class="cart-empty">Twój koszyk jest pusty.</div>';
 
-    cart.splice(index,1);
+  }else{
 
-    updateCart();
+    items.innerHTML=
+
+      cart.map(function(item,index){
+
+        return
+
+          '<div class="cart-item">'+
+
+          '<h3>'+
+          escapeHtml(item.case)+
+          '</h3>'+
+
+          '<p>'+
+          'Model: '+
+          escapeHtml(item.phone)+
+          '<br>'+
+          item.price.toFixed(2).replace(".",",")+
+          ' zł</p>'+
+
+          '<button class="remove" onclick="removeFromCart('+
+          index+
+          ')">Usuń</button>'+
+
+          '</div>';
+
+      }).join("");
+
+  }
+
+
+  const total=
+    cart.reduce(function(sum,item){
+      return sum+item.price;
+    },0);
+
+  totalEl.textContent=
+    total.toFixed(2).replace(".",",")+
+    " zł";
 
 }
 
 
-/* ================================
-   KOSZYK
-================================ */
+function removeFromCart(index){
+
+  cart.splice(index,1);
+
+  updateCart();
+
+}
+
 
 function openCart(){
 
-    document
-        .getElementById("cart")
-        .classList.add("active");
+  document
+    .getElementById("cart")
+    .classList.add("active");
 
 }
 
 
 function closeCart(){
 
-    document
-        .getElementById("cart")
-        .classList.remove("active");
+  document
+    .getElementById("cart")
+    .classList.remove("active");
 
 }
 
 
-/* ================================
-   CHECKOUT
-================================ */
-
 function openCheckout(){
 
-    if(cart.length === 0){
+  if(cart.length===0){
 
-        alert("Twój koszyk jest pusty.");
+    alert("Koszyk jest pusty.");
 
-        return;
+    return;
 
-    }
+  }
 
-    closeCart();
+  closeCart();
 
-    document
-        .getElementById("checkoutModal")
-        .classList.add("active");
+  renderCheckout();
 
-    showCheckoutSummary();
+  document
+    .getElementById("checkoutModal")
+    .classList.add("active");
 
 }
 
 
 function closeCheckout(){
 
-    document
-        .getElementById("checkoutModal")
-        .classList.remove("active");
+  document
+    .getElementById("checkoutModal")
+    .classList.remove("active");
 
 }
 
 
-/* ================================
-   PODSUMOWANIE
-================================ */
+function renderCheckout(){
 
-function showCheckoutSummary(){
+  const list=
+    document.getElementById("checkoutItems");
 
-    const container =
-        document.getElementById("checkoutItems");
+  list.innerHTML=
 
-    const totalElement =
-        document.getElementById("checkoutTotal");
+    cart.map(function(item){
 
-    let total = 0;
+      return
 
-    let productsText = "";
+        '<div class="summary-item">'+
 
-    container.innerHTML = "";
+        '<strong>'+
+        escapeHtml(item.case)+
+        '</strong><br>'+
 
-    cart.forEach(function(item){
+        'Model: '+
+        escapeHtml(item.phone)+
+        '<br>79,99 zł</div>';
 
-        total += item.price;
+    }).join("");
 
-        productsText +=
-            item.caseName
-            + " | "
-            + item.phone
-            + " | 79,99 zł\n";
 
-        container.innerHTML +=
+  const total=
+    cart.reduce(function(sum,item){
+      return sum+item.price;
+    },0);
 
-        `<div class="summary-item">
 
-            <strong>
-                ${item.caseName}
-            </strong>
+  document
+    .getElementById("checkoutTotal")
+    .textContent=
+      total.toFixed(2).replace(".",",")+
+      " zł";
 
-            <br>
 
-            Model:
-            ${item.phone}
+  document
+    .getElementById("productsField")
+    .value=
+      cart.map(function(item){
+        return item.case+
+        " — "+
+        item.phone;
+      }).join(" | ");
 
-            <br>
 
-            79,99 zł
-
-        </div>`;
-
-    });
-
-    totalElement.innerText =
-        total.toFixed(2).replace(".",",")
-        + " zł";
-
-    document
-        .getElementById("productsField")
-        .value = productsText;
-
-    document
-        .getElementById("totalField")
-        .value =
-        total.toFixed(2)
-        + " zł";
+  document
+    .getElementById("totalField")
+    .value=
+      total.toFixed(2)+
+      " PLN";
 
 }
 
 
-/* ================================
-   FORMULARZ + STRIPE TEST
-================================ */
+function generateOrderNumber(){
 
-document
-    .getElementById("orderForm")
-    .addEventListener(
-        "submit",
-        async function(event){
+  return "NC-TEST-"+
+    Date.now().toString().slice(-8);
 
-            event.preventDefault();
-
-            const form = event.target;
-
-            const button =
-                document.getElementById("submitOrderButton");
-
-            const errorBox =
-                document.getElementById("formError");
-
-            if(!cart.length){
-
-                alert("Koszyk jest pusty.");
-
-                return;
-
-            }
-
-            errorBox.style.display = "none";
-
-            errorBox.innerText = "";
-
-            const orderNumber =
-                "NC-"
-                +
-                Math.floor(
-                    10000000
-                    +
-                    Math.random() * 90000000
-                );
-
-            document
-                .getElementById("orderNumberField")
-                .value = orderNumber;
-
-            localStorage.setItem(
-                "NOIRCASE_TEST_ORDER",
-                orderNumber
-            );
-
-            const customerEmail =
-                document
-                    .getElementById("email")
-                    .value;
-
-            const formData =
-                new FormData(form);
-
-            formData.append(
-                "_replyto",
-                customerEmail
-            );
-
-            button.disabled = true;
-
-            button.innerText =
-                "PRZYGOTOWYWANIE PŁATNOŚCI...";
+}
 
 
-            try{
+function showFormError(message){
 
-                /* ================================
-                   FORMSPREE
-                ================================ */
+  const box=
+    document.getElementById("formError");
 
-                const formResponse =
-                    await fetch(
-                        "https://formspree.io/f/myezewlp",
-                        {
-                            method: "POST",
+  box.textContent=message;
 
-                            body: formData,
+  box.style.display="block";
 
-                            headers:{
-                                "Accept":
-                                "application/json"
-                            }
-                        }
-                    );
+}
 
 
-                if(!formResponse.ok){
+function hideFormError(){
 
-                    throw new Error(
-                        "Formspree nie przyjął formularza."
-                    );
+  const box=
+    document.getElementById("formError");
 
-                }
+  box.style.display="none";
 
+  box.textContent="";
 
-                /* ================================
-                   STRIPE CHECKOUT TEST
-                ================================ */
-
-                const stripeResponse =
-                    await fetch(
-                        STRIPE_WORKER,
-                        {
-                            method:"POST",
-
-                            headers:{
-                                "Content-Type":
-                                "application/json"
-                            },
-
-                            body:JSON.stringify({
-
-                                order_id:
-                                orderNumber,
-
-                                quantity:
-                                cart.length
-
-                            })
-
-                        }
-                    );
+}
 
 
-                const stripeData =
-                    await stripeResponse.json();
+function escapeHtml(value){
+
+  return String(value).replace(
+    /[&<>"']/g,
+    function(char){
+
+      return {
+
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        "\"":"&quot;",
+        "'":"&#039;"
+
+      }[char];
+
+    }
+  );
+
+}
 
 
-                if(
-                    !stripeResponse.ok
-                    ||
-                    !stripeData.url
-                ){
+async function submitOrder(event){
 
-                    throw new Error(
+  event.preventDefault();
 
-                        stripeData.error?.message
-                        ||
-                        stripeData.error
-                        ||
-                        "Nie udało się utworzyć płatności testowej."
-
-                    );
-
-                }
+  hideFormError();
 
 
-                /* ================================
-                   PRZEJŚCIE DO STRIPE
-                ================================ */
+  if(cart.length===0){
 
-                window.location.href =
-                    stripeData.url;
+    showFormError("Koszyk jest pusty.");
+
+    return;
+
+  }
 
 
-            }
-            catch(error){
+  const button=
+    document.getElementById("submitOrderButton");
 
-                errorBox.innerText =
-                    error.message
-                    +
-                    " Spróbuj ponownie.";
+  const orderNumber=
+    generateOrderNumber();
 
-                errorBox.style.display =
-                    "block";
 
-                button.disabled = false;
+  document
+    .getElementById("orderNumberField")
+    .value=orderNumber;
 
-                button.innerText =
-                    "PRZEJDŹ DO PŁATNOŚCI TESTOWEJ";
 
-            }
+  const form=
+    document.getElementById("orderForm");
 
-        }
+
+  button.disabled=true;
+
+  button.textContent=
+    "PRZETWARZANIE TESTU...";
+
+
+  try{
+
+    const formData=
+      new FormData(form);
+
+    formData.set(
+      "_replyto",
+      document.getElementById("email").value
     );
 
 
-/* ================================
-   EKRAN SUKCESU
-================================ */
+    const formResponse=
+      await fetch(
+        form.action,
+        {
+          method:"POST",
+          body:formData,
+          headers:{
+            Accept:"application/json"
+          }
+        }
+      );
+
+
+    if(!formResponse.ok)
+
+      throw new Error(
+        "Formularz nie został wysłany."
+      );
+
+
+    const workerResponse=
+      await fetch(
+        STRIPE_WORKER,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:JSON.stringify({
+            order_id:orderNumber,
+            quantity:cart.length
+          })
+        }
+      );
+
+
+    const workerData=
+      await workerResponse.json();
+
+
+    if(
+      !workerResponse.ok ||
+      !workerData.url
+    ){
+
+      throw new Error(
+        workerData.error ||
+        "Nie udało się utworzyć płatności testowej."
+      );
+
+    }
+
+
+    localStorage.setItem(
+      "noircase_test_order",
+      orderNumber
+    );
+
+
+    window.location.href=
+      workerData.url;
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showFormError(
+      "Nie udało się przejść dalej w teście. Spróbuj ponownie."
+    );
+
+    button.disabled=false;
+
+    button.textContent=
+      "PRZEJDŹ DO PŁATNOŚCI TESTOWEJ";
+
+  }
+
+}
+
+
+document
+  .getElementById("orderForm")
+  .addEventListener(
+    "submit",
+    submitOrder
+  );
+
 
 function showSuccess(){
 
-    const order =
-        localStorage.getItem(
-            "NOIRCASE_TEST_ORDER"
-        )
-        ||
-        "TEST";
+  const savedOrder=
+    localStorage.getItem(
+      "noircase_test_order"
+    ) ||
+    generateOrderNumber();
 
 
-    const orderSection =
-        document.getElementById(
-            "orderSection"
-        );
-
-    const successMessage =
-        document.getElementById(
-            "successMessage"
-        );
+  document
+    .getElementById("orderNumber")
+    .textContent=savedOrder;
 
 
-    if(orderSection){
-
-        orderSection.style.display =
-            "none";
-
-    }
+  document
+    .getElementById("orderSection")
+    .style.display="none";
 
 
-    if(successMessage){
-
-        successMessage.style.display =
-            "block";
-
-    }
+  document
+    .getElementById("successMessage")
+    .style.display="block";
 
 
-    const orderNumber =
-        document.getElementById(
-            "orderNumber"
-        );
+  document
+    .getElementById("checkoutModal")
+    .classList.add("active");
 
 
-    if(orderNumber){
+  cart=[];
 
-        orderNumber.innerText =
-            order;
-
-    }
-
-
-    /* TESTOWY STATUS */
-
-    const successText =
-        successMessage?.querySelector("p");
-
-
-    if(successText){
-
-        successText.innerText =
-            "Dziękujemy za test zamówienia w NOIRCASE.";
-
-    }
-
-
-    /* Czyścimy koszyk po udanym powrocie */
-
-    cart = [];
-
-    updateCart();
+  updateCart();
 
 }
 
-
-/* ================================
-   POWRÓT DO SKLEPU
-================================ */
 
 function finishOrder(){
 
-    closeCheckout();
-
-    const form =
-        document.getElementById(
-            "orderForm"
-        );
-
-    if(form){
-
-        form.reset();
-
-    }
+  document
+    .getElementById("successMessage")
+    .style.display="none";
 
 
-    document
-        .getElementById("orderSection")
-        .style.display =
-        "block";
+  document
+    .getElementById("orderSection")
+    .style.display="block";
 
 
-    document
-        .getElementById("successMessage")
-        .style.display =
-        "none";
+  document
+    .getElementById("checkoutModal")
+    .classList.remove("active");
 
 
-    document
-        .getElementById("formError")
-        .style.display =
-        "none";
+  localStorage.removeItem(
+    "noircase_test_order"
+  );
 
 
-    const button =
-        document.getElementById(
-            "submitOrderButton"
-        );
-
-
-    if(button){
-
-        button.disabled = false;
-
-        button.innerText =
-            "PRZEJDŹ DO PŁATNOŚCI TESTOWEJ";
-
-    }
-
-
-    localStorage.removeItem(
-        "NOIRCASE_TEST_ORDER"
-    );
-
-
-    /* Czyścimy parametr z adresu */
-
-    window.history.replaceState(
-        {},
-        document.title,
-        window.location.pathname
-    );
+  document
+    .getElementById("orderForm")
+    .reset();
 
 }
 
 
-/* ================================
-   POWRÓT ZE STRIPE
-================================ */
+if(
+  new URLSearchParams(
+    window.location.search
+  ).get("payment")==="success"
+){
 
-(function(){
+  setTimeout(
+    showSuccess,
+    100
+  );
 
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
-    const paymentStatus =
-        params.get("payment");
-
-
-    if(paymentStatus === "success"){
-
-        const checkoutModal =
-            document.getElementById(
-                "checkoutModal"
-            );
-
-
-        if(checkoutModal){
-
-            checkoutModal.classList.add(
-                "active"
-            );
-
-        }
-
-
-        showSuccess();
-
-    }
-
-})();
+}
 
 </script>
 
