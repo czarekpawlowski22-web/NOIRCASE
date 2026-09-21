@@ -1,533 +1,495 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>NOIRCASE — Minimalistyczne etui</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#faf9f7;color:#111}
+button,input,textarea,select{font-family:inherit}
+
+header{
+background:#111;
+color:#fff;
+padding:28px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #faf9f7;
-    color: #111;
+.logo{
+font-size:28px;
+letter-spacing:7px;
+font-weight:bold
 }
 
-button,
-input,
-textarea,
-select {
-    font-family: inherit;
+.cart-button{
+background:#fff;
+color:#111;
+border:0;
+padding:13px 18px;
+cursor:pointer;
+font-size:13px;
+letter-spacing:1px
 }
 
-/* HEADER */
-
-header {
-    background: #111;
-    color: white;
-    padding: 28px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.hero{
+min-height:45vh;
+background:#eee9e2;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:60px 20px
 }
 
-.logo {
-    font-size: 28px;
-    letter-spacing: 7px;
-    font-weight: bold;
+.hero h2{
+font-size:clamp(45px,10vw,85px);
+letter-spacing:9px;
+margin-bottom:20px
 }
 
-.cart-button {
-    background: white;
-    color: #111;
-    border: none;
-    padding: 13px 18px;
-    cursor: pointer;
-    font-size: 13px;
-    letter-spacing: 1px;
+.hero p{
+color:#555;
+font-size:17px;
+margin-bottom:30px
 }
 
-/* HERO */
-
-.hero {
-    min-height: 45vh;
-    background: #eee9e2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 60px 20px;
+.hero-button{
+display:inline-block;
+background:#111;
+color:#fff;
+padding:16px 32px;
+text-decoration:none;
+letter-spacing:2px;
+font-size:13px
 }
 
-.hero h2 {
-    font-size: clamp(45px, 10vw, 85px);
-    letter-spacing: 9px;
-    margin-bottom: 20px;
+.section{
+max-width:1200px;
+margin:auto;
+padding:75px 20px
 }
 
-.hero p {
-    color: #555;
-    font-size: 17px;
-    margin-bottom: 30px;
+.section-title{
+text-align:center;
+margin-bottom:50px
 }
 
-.hero-button {
-    display: inline-block;
-    background: #111;
-    color: white;
-    padding: 16px 32px;
-    text-decoration: none;
-    letter-spacing: 2px;
-    font-size: 13px;
+.section-title h2{
+font-size:42px;
+letter-spacing:5px;
+margin-bottom:15px
 }
 
-/* PRODUCTS */
-
-.section {
-    max-width: 1200px;
-    margin: auto;
-    padding: 75px 20px;
+.section-title p{
+color:#777
 }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 50px;
+.products{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px
 }
 
-.section-title h2 {
-    font-size: 42px;
-    letter-spacing: 5px;
-    margin-bottom: 15px;
+.product{
+background:#fff;
+border:1px solid #ddd
 }
 
-.section-title p {
-    color: #777;
+.product img{
+width:100%;
+height:500px;
+object-fit:cover;
+display:block
 }
 
-.products {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+.product-info{
+padding:28px
 }
 
-.product {
-    background: white;
-    border: 1px solid #ddd;
+.product-info h3{
+font-size:20px;
+letter-spacing:2px;
+margin-bottom:18px
 }
 
-.product img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    display: block;
+.price{
+color:#8b6b52;
+font-size:22px;
+font-weight:bold;
+margin-bottom:22px
 }
 
-.product-info {
-    padding: 28px;
+.buy{
+background:#111;
+color:#fff;
+border:0;
+padding:15px 28px;
+cursor:pointer;
+letter-spacing:2px;
+font-size:12px
 }
 
-.product-info h3 {
-    font-size: 20px;
-    letter-spacing: 2px;
-    margin-bottom: 18px;
+.about{
+background:#eee9e2;
+max-width:none;
+text-align:center
 }
 
-.price {
-    color: #8b6b52;
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 22px;
+.about-inner{
+max-width:750px;
+margin:auto
 }
 
-.buy {
-    background: #111;
-    color: white;
-    border: none;
-    padding: 15px 28px;
-    cursor: pointer;
-    letter-spacing: 2px;
-    font-size: 12px;
+.about h2{
+font-size:38px;
+letter-spacing:4px;
+margin-bottom:20px
 }
 
-/* ABOUT */
-
-.about {
-    background: #eee9e2;
-    max-width: none;
-    text-align: center;
+.about p{
+color:#555;
+line-height:1.8
 }
 
-.about-inner {
-    max-width: 750px;
-    margin: auto;
+footer{
+background:#111;
+color:#fff;
+text-align:center;
+padding:35px
 }
 
-.about h2 {
-    font-size: 38px;
-    letter-spacing: 4px;
-    margin-bottom: 20px;
+footer p{
+color:#aaa;
+font-size:13px
 }
 
-.about p {
-    color: #555;
-    line-height: 1.8;
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+z-index:1000;
+align-items:center;
+justify-content:center;
+padding:20px
 }
 
-/* MODAL */
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.65);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+.modal.active{
+display:flex
 }
 
-.modal.active {
-    display: flex;
+.modal-box{
+background:#fff;
+width:100%;
+max-width:500px;
+padding:35px;
+position:relative;
+max-height:90vh;
+overflow-y:auto
 }
 
-.modal-box {
-    background: white;
-    width: 100%;
-    max-width: 500px;
-    padding: 35px;
-    position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
+.close{
+position:absolute;
+top:10px;
+right:15px;
+border:0;
+background:none;
+font-size:30px;
+cursor:pointer
 }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    border: none;
-    background: none;
-    font-size: 30px;
-    cursor: pointer;
+.modal-box h2{
+margin-bottom:10px;
+letter-spacing:2px
 }
 
-.modal-box h2 {
-    margin-bottom: 10px;
-    letter-spacing: 2px;
+.modal-box>p{
+color:#777;
+margin-bottom:25px
 }
 
-.modal-box > p {
-    color: #777;
-    margin-bottom: 25px;
+.phone-list{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
 }
 
-/* PHONE */
-
-.phone-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
-
-.phone {
-    border: 1px solid #ddd;
-    background: #f5f5f5;
-    padding: 15px;
-    cursor: pointer;
+.phone{
+border:1px solid #ddd;
+background:#f5f5f5;
+padding:15px;
+cursor:pointer
 }
 
 .phone:hover,
-.phone.selected {
-    background: #111;
-    color: white;
+.phone.selected{
+background:#111;
+color:#fff
 }
 
-.selected-product {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-    line-height: 1.7;
+.selected-product{
+margin-top:25px;
+padding-top:20px;
+border-top:1px solid #ddd;
+line-height:1.7
 }
 
-.add-cart {
-    width: 100%;
-    margin-top: 20px;
-    background: #111;
-    color: white;
-    border: none;
-    padding: 17px;
-    cursor: pointer;
-    letter-spacing: 2px;
+.add-cart{
+width:100%;
+margin-top:20px;
+background:#111;
+color:#fff;
+border:0;
+padding:17px;
+cursor:pointer;
+letter-spacing:2px
 }
 
-.add-cart:disabled {
-    background: #aaa;
-    cursor: not-allowed;
+.add-cart:disabled{
+background:#aaa;
+cursor:not-allowed
 }
 
-/* CART */
-
-.cart {
-    position: fixed;
-    top: 0;
-    right: -450px;
-    width: 430px;
-    max-width: 100%;
-    height: 100vh;
-    background: white;
-    z-index: 2000;
-    padding: 30px;
-    box-shadow: -10px 0 40px rgba(0,0,0,.2);
-    transition: .3s;
-    overflow-y: auto;
+.cart{
+position:fixed;
+top:0;
+right:-450px;
+width:430px;
+max-width:100%;
+height:100vh;
+background:#fff;
+z-index:2000;
+padding:30px;
+box-shadow:-10px 0 40px rgba(0,0,0,.2);
+transition:.3s;
+overflow-y:auto
 }
 
-.cart.active {
-    right: 0;
+.cart.active{
+right:0
 }
 
-.cart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 25px;
-    border-bottom: 1px solid #ddd;
+.cart-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding-bottom:25px;
+border-bottom:1px solid #ddd
 }
 
-.cart-header h2 {
-    letter-spacing: 3px;
+.cart-header h2{
+letter-spacing:3px
 }
 
-.cart-close {
-    border: none;
-    background: none;
-    font-size: 30px;
-    cursor: pointer;
+.cart-close{
+border:0;
+background:none;
+font-size:30px;
+cursor:pointer
 }
 
-.cart-empty {
-    text-align: center;
-    color: #777;
-    padding: 50px 10px;
+.cart-empty{
+text-align:center;
+color:#777;
+padding:50px 10px
 }
 
-.cart-item {
-    padding: 22px 0;
-    border-bottom: 1px solid #ddd;
+.cart-item{
+padding:22px 0;
+border-bottom:1px solid #ddd
 }
 
-.cart-item h3 {
-    font-size: 16px;
-    margin-bottom: 8px;
+.cart-item h3{
+font-size:16px;
+margin-bottom:8px
 }
 
-.cart-item p {
-    color: #777;
-    font-size: 14px;
-    margin-bottom: 10px;
+.cart-item p{
+color:#777;
+font-size:14px;
+margin-bottom:10px
 }
 
-.remove {
-    border: none;
-    background: none;
-    color: #999;
-    cursor: pointer;
-    text-decoration: underline;
+.remove{
+border:0;
+background:none;
+color:#999;
+cursor:pointer;
+text-decoration:underline
 }
 
-.cart-total {
-    padding-top: 25px;
-    font-size: 22px;
-    font-weight: bold;
+.cart-total{
+padding-top:25px;
+font-size:22px;
+font-weight:bold
 }
 
-.checkout {
-    width: 100%;
-    margin-top: 20px;
-    padding: 17px;
-    background: #111;
-    color: white;
-    border: none;
-    cursor: pointer;
-    letter-spacing: 2px;
+.checkout{
+width:100%;
+margin-top:20px;
+padding:17px;
+background:#111;
+color:#fff;
+border:0;
+cursor:pointer;
+letter-spacing:2px
 }
 
-/* FORMULARZ */
-
-.form-group {
-    margin-bottom: 18px;
+.form-group{
+margin-bottom:18px
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 7px;
-    font-size: 13px;
-    font-weight: bold;
+.form-group label{
+display:block;
+margin-bottom:7px;
+font-size:13px;
+font-weight:bold
 }
 
 .form-group input,
 .form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #ccc;
-    background: white;
-    font-size: 15px;
+.form-group select{
+width:100%;
+padding:14px;
+border:1px solid #ccc;
+background:#fff;
+font-size:15px
 }
 
-.form-group textarea {
-    min-height: 90px;
-    resize: vertical;
+.form-group textarea{
+min-height:90px;
+resize:vertical
 }
 
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+.form-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px
 }
 
-.order-summary {
-    background: #f4f1ed;
-    padding: 20px;
-    margin: 25px 0;
+.order-summary{
+background:#f4f1ed;
+padding:20px;
+margin:25px 0
 }
 
-.order-summary h3 {
-    margin-bottom: 15px;
-    letter-spacing: 1px;
+.order-summary h3{
+margin-bottom:15px;
+letter-spacing:1px
 }
 
-.summary-item {
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-    font-size: 14px;
-    line-height: 1.6;
+.summary-item{
+padding:10px 0;
+border-bottom:1px solid #ddd;
+font-size:14px;
+line-height:1.6
 }
 
-.summary-total {
-    padding-top: 15px;
-    font-size: 20px;
-    font-weight: bold;
+.summary-total{
+padding-top:15px;
+font-size:20px;
+font-weight:bold
 }
 
-.submit-order {
-    width: 100%;
-    background: #111;
-    color: white;
-    border: none;
-    padding: 18px;
-    cursor: pointer;
-    letter-spacing: 2px;
-    font-size: 13px;
+.submit-order{
+width:100%;
+background:#111;
+color:#fff;
+border:0;
+padding:18px;
+cursor:pointer;
+letter-spacing:2px;
+font-size:13px
 }
 
-.submit-order:disabled {
-    background: #777;
-    cursor: wait;
+.submit-order:disabled{
+background:#777;
+cursor:wait
 }
 
-/* SUCCESS */
-
-.success {
-    text-align: center;
-    padding: 25px 5px;
+.success{
+text-align:center;
+padding:25px 5px
 }
 
-.success-icon {
-    font-size: 60px;
-    margin-bottom: 20px;
+.success-icon{
+font-size:60px;
+margin-bottom:20px
 }
 
-.success h2 {
-    margin-bottom: 15px;
-    letter-spacing: 2px;
+.success h2{
+margin-bottom:15px;
+letter-spacing:2px
 }
 
-.success p {
-    color: #666;
-    line-height: 1.7;
-    margin-bottom: 8px;
+.success p{
+color:#666;
+line-height:1.7;
+margin-bottom:8px
 }
 
-.success-button {
-    margin-top: 25px;
-    padding: 15px 25px;
-    border: none;
-    background: #111;
-    color: white;
-    cursor: pointer;
+.success-button{
+margin-top:25px;
+padding:15px 25px;
+border:0;
+background:#111;
+color:#fff;
+cursor:pointer
 }
 
-/* ERROR */
-
-.form-error {
-    display: none;
-    background: #f8e5e5;
-    color: #8b2222;
-    padding: 15px;
-    margin-bottom: 20px;
-    line-height: 1.5;
-    font-size: 14px;
+.form-error{
+display:none;
+background:#f8e5e5;
+color:#8b2222;
+padding:15px;
+margin-bottom:20px;
+line-height:1.5;
+font-size:14px
 }
 
-/* FOOTER */
+@media(max-width:800px){
 
-footer {
-    background: #111;
-    color: white;
-    text-align: center;
-    padding: 35px;
+.products{
+grid-template-columns:1fr
 }
 
-footer p {
-    color: #aaa;
-    font-size: 13px;
+.product img{
+height:auto
 }
 
-/* MOBILE */
+header{
+padding:22px 20px
+}
 
-@media (max-width: 800px) {
+.logo{
+font-size:21px
+}
 
-    .products {
-        grid-template-columns: 1fr;
-    }
+.section-title h2{
+font-size:32px
+}
 
-    .product img {
-        height: auto;
-    }
+.phone-list{
+grid-template-columns:1fr
+}
 
-    header {
-        padding: 22px 20px;
-    }
+.cart{
+width:100%
+}
 
-    .logo {
-        font-size: 21px;
-    }
+.form-row{
+grid-template-columns:1fr
+}
 
-    .section-title h2 {
-        font-size: 32px;
-    }
+.modal-box{
+padding:28px 20px
+}
 
-    .phone-list {
-        grid-template-columns: 1fr;
-    }
-
-    .cart {
-        width: 100%;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-
-    .modal-box {
-        padding: 28px 20px;
-    }
 }
 </style>
 </head>
@@ -535,1095 +497,1341 @@ footer p {
 <body>
 
 <header>
+<div class="logo">NOIRCASE</div>
 
-    <div class="logo">
-        NOIRCASE
-    </div>
-
-    <button class="cart-button" onclick="openCart()">
-        🛒 KOSZYK
-        (<span id="cartCount">0</span>)
-    </button>
-
+<button class="cart-button" onclick="openCart()">
+🛒 KOSZYK (<span id="cartCount">0</span>)
+</button>
 </header>
+
 
 <section class="hero">
 
-    <div>
+<div>
 
-        <h2>NOIRCASE</h2>
+<h2>NOIRCASE</h2>
 
-        <p>
-            Minimalistyczne etui. Charakterystyczny design.
-        </p>
+<p>
+Minimalistyczne etui. Charakterystyczny design.
+</p>
 
-        <a href="#collection" class="hero-button">
-            ZOBACZ KOLEKCJĘ
-        </a>
+<a href="#collection" class="hero-button">
+ZOBACZ KOLEKCJĘ
+</a>
 
-    </div>
+</div>
 
 </section>
+
 
 <section class="section" id="collection">
 
-    <div class="section-title">
+<div class="section-title">
 
-        <h2>KOLEKCJA</h2>
+<h2>KOLEKCJA</h2>
 
-        <p>
-            Wybierz swoje etui NOIRCASE.
-        </p>
+<p>
+Wybierz swoje etui NOIRCASE.
+</p>
 
-    </div>
+</div>
 
-    <div class="products">
 
-        <div class="product">
+<div class="products">
 
-            <img
-                src="IMG_8706.jpeg"
-                alt="Etui NOIRCASE White"
-            >
 
-            <div class="product-info">
+<div class="product">
 
-                <h3>
-                    MARVEL COLLECTION — WHITE
-                </h3>
+<img
+src="IMG_8706.jpeg"
+alt="Etui NOIRCASE White"
+>
 
-                <div class="price">
-                    79,99 zł
-                </div>
+<div class="product-info">
 
-                <button
-                    class="buy"
-                    onclick="openModal('MARVEL COLLECTION — WHITE')"
-                >
-                    WYBIERZ
-                </button>
+<h3>
+MARVEL COLLECTION — WHITE
+</h3>
 
-            </div>
+<div class="price">
+79,99 zł
+</div>
 
-        </div>
+<button
+class="buy"
+onclick="openModal('MARVEL COLLECTION — WHITE')"
+>
+WYBIERZ
+</button>
 
-        <div class="product">
+</div>
 
-            <img
-                src="IMG_8707.jpeg"
-                alt="Etui NOIRCASE Pink"
-            >
+</div>
 
-            <div class="product-info">
 
-                <h3>
-                    MARVEL COLLECTION — PINK
-                </h3>
+<div class="product">
 
-                <div class="price">
-                    79,99 zł
-                </div>
+<img
+src="IMG_8707.jpeg"
+alt="Etui NOIRCASE Pink"
+>
 
-                <button
-                    class="buy"
-                    onclick="openModal('MARVEL COLLECTION — PINK')"
-                >
-                    WYBIERZ
-                </button>
+<div class="product-info">
 
-            </div>
+<h3>
+MARVEL COLLECTION — PINK
+</h3>
 
-        </div>
+<div class="price">
+79,99 zł
+</div>
 
-        <div class="product">
+<button
+class="buy"
+onclick="openModal('MARVEL COLLECTION — PINK')"
+>
+WYBIERZ
+</button>
 
-            <img
-                src="IMG_8708.jpeg"
-                alt="Etui NOIRCASE Black"
-            >
+</div>
 
-            <div class="product-info">
+</div>
 
-                <h3>
-                    MARVEL COLLECTION — BLACK
-                </h3>
 
-                <div class="price">
-                    79,99 zł
-                </div>
+<div class="product">
 
-                <button
-                    class="buy"
-                    onclick="openModal('MARVEL COLLECTION — BLACK')"
-                >
-                    WYBIERZ
-                </button>
+<img
+src="IMG_8708.jpeg"
+alt="Etui NOIRCASE Black"
+>
 
-            </div>
+<div class="product-info">
 
-        </div>
+<h3>
+MARVEL COLLECTION — BLACK
+</h3>
 
-    </div>
+<div class="price">
+79,99 zł
+</div>
+
+<button
+class="buy"
+onclick="openModal('MARVEL COLLECTION — BLACK')"
+>
+WYBIERZ
+</button>
+
+</div>
+
+</div>
+
+
+</div>
 
 </section>
+
 
 <section class="section about">
 
-    <div class="about-inner">
+<div class="about-inner">
 
-        <h2>
-            MINIMAL. PROTECTIVE. YOURS.
-        </h2>
+<h2>
+MINIMAL. PROTECTIVE. YOURS.
+</h2>
 
-        <p>
-            NOIRCASE łączy charakterystyczny design
-            z codzienną ochroną telefonu.
-            Wybierz swój styl i dopasuj etui do siebie.
-        </p>
+<p>
+NOIRCASE łączy charakterystyczny design z codzienną ochroną telefonu.
+Wybierz swój styl i dopasuj etui do siebie.
+</p>
 
-    </div>
+</div>
 
 </section>
 
+
 <footer>
 
-    <p>
-        © 2026 NOIRCASE — Wszystkie prawa zastrzeżone.
-    </p>
+<p>
+© 2026 NOIRCASE — Wszystkie prawa zastrzeżone.
+</p>
 
 </footer>
 
-<!-- WYBÓR TELEFONU -->
+
 
 <div class="modal" id="phoneModal">
 
-    <div class="modal-box">
+<div class="modal-box">
 
-        <button class="close" onclick="closeModal()">
-            ×
-        </button>
+<button class="close" onclick="closeModal()">
+×
+</button>
 
-        <h2>
-            Wybierz model
-        </h2>
+<h2>
+Wybierz model
+</h2>
 
-        <p>
-            Wybierz model telefonu dla swojego etui.
-        </p>
+<p>
+Wybierz model telefonu dla swojego etui.
+</p>
 
-        <div class="phone-list">
 
-            <button class="phone" onclick="selectPhone('iPhone 15', this)">
-                iPhone 15
-            </button>
+<div class="phone-list">
 
-            <button class="phone" onclick="selectPhone('iPhone 15 Pro', this)">
-                iPhone 15 Pro
-            </button>
+<button
+class="phone"
+onclick="selectPhone('iPhone 15',this)"
+>
+iPhone 15
+</button>
 
-            <button class="phone" onclick="selectPhone('iPhone 15 Pro Max', this)">
-                iPhone 15 Pro Max
-            </button>
+<button
+class="phone"
+onclick="selectPhone('iPhone 15 Pro',this)"
+>
+iPhone 15 Pro
+</button>
 
-            <button class="phone" onclick="selectPhone('iPhone 16', this)">
-                iPhone 16
-            </button>
+<button
+class="phone"
+onclick="selectPhone('iPhone 15 Pro Max',this)"
+>
+iPhone 15 Pro Max
+</button>
 
-            <button class="phone" onclick="selectPhone('iPhone 16 Pro', this)">
-                iPhone 16 Pro
-            </button>
+<button
+class="phone"
+onclick="selectPhone('iPhone 16',this)"
+>
+iPhone 16
+</button>
 
-            <button class="phone" onclick="selectPhone('iPhone 16 Pro Max', this)">
-                iPhone 16 Pro Max
-            </button>
+<button
+class="phone"
+onclick="selectPhone('iPhone 16 Pro',this)"
+>
+iPhone 16 Pro
+</button>
 
-            <button class="phone" onclick="selectPhone('iPhone 17', this)">
-                iPhone 17
-            </button>
+<button
+class="phone"
+onclick="selectPhone('iPhone 16 Pro Max',this)"
+>
+iPhone 16 Pro Max
+</button>
 
-            <button class="phone" onclick="selectPhone('iPhone 17 Pro', this)">
-                iPhone 17 Pro
-            </button>
+<button
+class="phone"
+onclick="selectPhone('iPhone 17',this)"
+>
+iPhone 17
+</button>
 
-            <button class="phone" onclick="selectPhone('iPhone 17 Pro Max', this)">
-                iPhone 17 Pro Max
-            </button>
+<button
+class="phone"
+onclick="selectPhone('iPhone 17 Pro',this)"
+>
+iPhone 17 Pro
+</button>
 
-        </div>
-
-        <div class="selected-product" id="selectedProduct">
-            Wybierz model telefonu.
-        </div>
-
-        <button
-            class="add-cart"
-            id="addCartButton"
-            onclick="addToCart()"
-            disabled
-        >
-            DODAJ DO KOSZYKA
-        </button>
-
-    </div>
+<button
+class="phone"
+onclick="selectPhone('iPhone 17 Pro Max',this)"
+>
+iPhone 17 Pro Max
+</button>
 
 </div>
 
-<!-- KOSZYK -->
+
+<div
+class="selected-product"
+id="selectedProduct"
+>
+Wybierz model telefonu.
+</div>
+
+
+<button
+class="add-cart"
+id="addCartButton"
+onclick="addToCart()"
+disabled
+>
+DODAJ DO KOSZYKA
+</button>
+
+</div>
+
+</div>
+
+
 
 <div class="cart" id="cart">
 
-    <div class="cart-header">
+<div class="cart-header">
 
-        <h2>
-            KOSZYK
-        </h2>
+<h2>
+KOSZYK
+</h2>
 
-        <button class="cart-close" onclick="closeCart()">
-            ×
-        </button>
-
-    </div>
-
-    <div id="cartItems">
-
-        <div class="cart-empty">
-            Twój koszyk jest pusty.
-        </div>
-
-    </div>
-
-    <div class="cart-total">
-
-        Razem:
-        <span id="cartTotal">
-            0,00 zł
-        </span>
-
-    </div>
-
-    <button class="checkout" onclick="openCheckout()">
-        PRZEJDŹ DO ZAMÓWIENIA
-    </button>
+<button
+class="cart-close"
+onclick="closeCart()"
+>
+×
+</button>
 
 </div>
 
-<!-- ZAMÓWIENIE -->
+
+<div id="cartItems">
+
+<div class="cart-empty">
+Twój koszyk jest pusty.
+</div>
+
+</div>
+
+
+<div class="cart-total">
+
+Razem:
+<span id="cartTotal">
+0,00 zł
+</span>
+
+</div>
+
+
+<button
+class="checkout"
+onclick="openCheckout()"
+>
+PRZEJDŹ DO ZAMÓWIENIA
+</button>
+
+</div>
+
+
 
 <div class="modal" id="checkoutModal">
 
-    <div class="modal-box">
+<div class="modal-box">
 
-        <button class="close" onclick="closeCheckout()">
-            ×
-        </button>
+<button
+class="close"
+onclick="closeCheckout()"
+>
+×
+</button>
 
-        <div id="orderSection">
 
-            <h2>
-                ZAMÓWIENIE
-            </h2>
+<div id="orderSection">
 
-            <p>
-                Uzupełnij dane do dostawy.
-            </p>
+<h2>
+ZAMÓWIENIE
+</h2>
 
-            <div
-                id="formError"
-                class="form-error"
-            ></div>
+<p>
+Uzupełnij dane do dostawy.
+</p>
 
-            <form
-                id="orderForm"
-                action="https://formspree.io/f/myezewlp"
-                method="POST"
-            >
 
-                <!-- DODATKOWE USTAWIENIA FORMSPREE -->
+<div
+id="formError"
+class="form-error"
+></div>
 
-                <input
-                    type="hidden"
-                    name="_subject"
-                    value="Nowe zamówienie NOIRCASE"
-                >
 
-                <input
-                    type="hidden"
-                    name="_language"
-                    value="pl"
-                >
+<form
+id="orderForm"
+action="https://formspree.io/f/myezewlp"
+method="POST"
+>
 
-                <div class="form-row">
 
-                    <div class="form-group">
+<input
+type="hidden"
+name="_subject"
+value="Nowe zamówienie NOIRCASE"
+>
 
-                        <label for="firstName">
-                            Imię
-                        </label>
+<input
+type="hidden"
+name="_language"
+value="pl"
+>
 
-                        <input
-                            type="text"
-                            id="firstName"
-                            name="Imię"
-                            required
-                        >
 
-                    </div>
+<div class="form-row">
 
-                    <div class="form-group">
 
-                        <label for="lastName">
-                            Nazwisko
-                        </label>
+<div class="form-group">
 
-                        <input
-                            type="text"
-                            id="lastName"
-                            name="Nazwisko"
-                            required
-                        >
+<label for="firstName">
+Imię
+</label>
 
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="email">
-                        E-mail
-                    </label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        name="Email"
-                        placeholder="twoj@email.pl"
-                        required
-                    >
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="phoneNumber">
-                        Numer telefonu
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="phoneNumber"
-                        name="Telefon"
-                        placeholder="123 456 789"
-                        required
-                    >
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="street">
-                        Ulica i numer
-                    </label>
-
-                    <input
-                        type="text"
-                        id="street"
-                        name="Ulica i numer"
-                        required
-                    >
-
-                </div>
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <label for="postalCode">
-                            Kod pocztowy
-                        </label>
-
-                        <input
-                            type="text"
-                            id="postalCode"
-                            name="Kod pocztowy"
-                            placeholder="00-000"
-                            required
-                        >
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="city">
-                            Miasto
-                        </label>
-
-                        <input
-                            type="text"
-                            id="city"
-                            name="Miasto"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="delivery">
-                        Sposób dostawy
-                    </label>
-
-                    <select
-                        id="delivery"
-                        name="Dostawa"
-                        required
-                    >
-
-                        <option value="">
-                            Wybierz dostawę
-                        </option>
-
-                        <option value="Paczkomat">
-                            Paczkomat
-                        </option>
-
-                        <option value="Kurier">
-                            Kurier
-                        </option>
-
-                    </select>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="notes">
-                        Dodatkowe informacje
-                    </label>
-
-                    <textarea
-                        id="notes"
-                        name="Uwagi"
-                        placeholder="Opcjonalnie..."
-                    ></textarea>
-
-                </div>
-
-                <!-- DANE ZAMÓWIENIA -->
-
-                <input
-                    type="hidden"
-                    name="Produkty"
-                    id="productsField"
-                >
-
-                <input
-                    type="hidden"
-                    name="Suma"
-                    id="totalField"
-                >
-
-                <input
-                    type="hidden"
-                    name="Numer zamówienia"
-                    id="orderNumberField"
-                >
-
-                <div class="order-summary">
-
-                    <h3>
-                        PODSUMOWANIE
-                    </h3>
-
-                    <div id="checkoutItems"></div>
-
-                    <div class="summary-total">
-
-                        Razem:
-                        <span id="checkoutTotal">
-                            0,00 zł
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <button
-                    type="submit"
-                    class="submit-order"
-                    id="submitOrderButton"
-                >
-                    POTWIERDŹ ZAMÓWIENIE
-                </button>
-
-            </form>
-
-        </div>
-
-        <!-- SUKCES -->
-
-        <div
-            id="successMessage"
-            style="display:none;"
-        >
-
-            <div class="success">
-
-                <div class="success-icon">
-                    ✓
-                </div>
-
-                <h2>
-                    ZAMÓWIENIE PRZYJĘTE
-                </h2>
-
-                <p>
-                    Dziękujemy za zamówienie w NOIRCASE.
-                </p>
-
-                <p>
-                    Numer zamówienia:
-                    <strong id="orderNumber"></strong>
-                </p>
-
-                <button
-                    class="success-button"
-                    onclick="finishOrder()"
-                >
-                    WRÓĆ DO SKLEPU
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
+<input
+type="text"
+id="firstName"
+name="Imię"
+required
+>
 
 </div>
 
+
+<div class="form-group">
+
+<label for="lastName">
+Nazwisko
+</label>
+
+<input
+type="text"
+id="lastName"
+name="Nazwisko"
+required
+>
+
+</div>
+
+
+</div>
+
+
+<div class="form-group">
+
+<label for="email">
+E-mail
+</label>
+
+<input
+type="email"
+id="email"
+name="Email"
+placeholder="twoj@email.pl"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="phoneNumber">
+Numer telefonu
+</label>
+
+<input
+type="tel"
+id="phoneNumber"
+name="Telefon"
+placeholder="123 456 789"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="street">
+Ulica i numer
+</label>
+
+<input
+type="text"
+id="street"
+name="Ulica i numer"
+required
+>
+
+</div>
+
+
+<div class="form-row">
+
+
+<div class="form-group">
+
+<label for="postalCode">
+Kod pocztowy
+</label>
+
+<input
+type="text"
+id="postalCode"
+name="Kod pocztowy"
+placeholder="00-000"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="city">
+Miasto
+</label>
+
+<input
+type="text"
+id="city"
+name="Miasto"
+required
+>
+
+</div>
+
+
+</div>
+
+
+<div class="form-group">
+
+<label for="delivery">
+Sposób dostawy
+</label>
+
+<select
+id="delivery"
+name="Dostawa"
+required
+>
+
+<option value="">
+Wybierz dostawę
+</option>
+
+<option value="Paczkomat">
+Paczkomat
+</option>
+
+<option value="Kurier">
+Kurier
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="notes">
+Dodatkowe informacje
+</label>
+
+<textarea
+id="notes"
+name="Uwagi"
+placeholder="Opcjonalnie..."
+></textarea>
+
+</div>
+
+
+<input
+type="hidden"
+name="Produkty"
+id="productsField"
+>
+
+<input
+type="hidden"
+name="Suma"
+id="totalField"
+>
+
+<input
+type="hidden"
+name="Numer zamówienia"
+id="orderNumberField"
+>
+
+
+<div class="order-summary">
+
+<h3>
+PODSUMOWANIE
+</h3>
+
+<div id="checkoutItems"></div>
+
+<div class="summary-total">
+
+Razem:
+<span id="checkoutTotal">
+0,00 zł
+</span>
+
+</div>
+
+</div>
+
+
+<button
+type="submit"
+class="submit-order"
+id="submitOrderButton"
+>
+PRZEJDŹ DO PŁATNOŚCI TESTOWEJ
+</button>
+
+
+</form>
+
+</div>
+
+
+
+<div
+id="successMessage"
+style="display:none"
+>
+
+<div class="success">
+
+<div class="success-icon">
+✓
+</div>
+
+<h2>
+PŁATNOŚĆ TESTOWA ZAKOŃCZONA
+</h2>
+
+<p>
+Dziękujemy za test zamówienia w NOIRCASE.
+</p>
+
+<p>
+Numer zamówienia:
+<strong id="orderNumber"></strong>
+</p>
+
+<button
+class="success-button"
+onclick="finishOrder()"
+>
+WRÓĆ DO SKLEPU
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
 <script>
 
-/* ==========================================
-   ZMIENNE
-========================================== */
-
 let cart = [];
+
 let selectedCase = "";
+
 let selectedPhone = "";
 
 
-/* ==========================================
-   WYBÓR ETUI
-========================================== */
+/*
+====================================================
+STRIPE TEST / SANDBOX
+====================================================
+*/
 
-function openModal(caseName) {
+const STRIPE_WORKER =
+"https://divine-lab-9cd4.czarekpawlowski22.workers.dev/";
 
-    selectedCase = caseName;
-    selectedPhone = "";
 
-    document
-        .getElementById("phoneModal")
-        .classList.add("active");
+/*
+====================================================
+WYBÓR ETUI
+====================================================
+*/
 
-    document
-        .getElementById("selectedProduct")
-        .innerHTML =
-        "Wybrane etui: <strong>" +
-        caseName +
-        "</strong><br><br>" +
-        "Wybierz model telefonu.";
+function openModal(caseName){
 
-    document
-        .getElementById("addCartButton")
-        .disabled = true;
+selectedCase = caseName;
 
-    document
-        .querySelectorAll(".phone")
-        .forEach(function(button) {
-            button.classList.remove("selected");
-        });
-}
-
-
-/* ==========================================
-   ZAMKNIJ MODAL
-========================================== */
-
-function closeModal() {
-
-    document
-        .getElementById("phoneModal")
-        .classList.remove("active");
-
-}
-
-
-/* ==========================================
-   WYBÓR TELEFONU
-========================================== */
-
-function selectPhone(phone, button) {
-
-    selectedPhone = phone;
-
-    document
-        .querySelectorAll(".phone")
-        .forEach(function(item) {
-            item.classList.remove("selected");
-        });
-
-    if (button) {
-        button.classList.add("selected");
-    }
-
-    document
-        .getElementById("selectedProduct")
-        .innerHTML =
-        "Etui: <strong>" +
-        selectedCase +
-        "</strong><br>" +
-        "Model: <strong>" +
-        selectedPhone +
-        "</strong>";
-
-    document
-        .getElementById("addCartButton")
-        .disabled = false;
-}
-
-
-/* ==========================================
-   DODAJ DO KOSZYKA
-========================================== */
-
-function addToCart() {
-
-    if (!selectedCase || !selectedPhone) {
-        return;
-    }
-
-    cart.push({
-        caseName: selectedCase,
-        phone: selectedPhone,
-        price: 79.99
-    });
-
-    updateCart();
-
-    closeModal();
-
-    openCart();
-}
-
-
-/* ==========================================
-   AKTUALIZACJA KOSZYKA
-========================================== */
-
-function updateCart() {
-
-    const cartItems =
-        document.getElementById("cartItems");
-
-    const cartCount =
-        document.getElementById("cartCount");
-
-    const cartTotal =
-        document.getElementById("cartTotal");
-
-    cartCount.innerText = cart.length;
-
-    if (cart.length === 0) {
-
-        cartItems.innerHTML =
-            '<div class="cart-empty">' +
-            'Twój koszyk jest pusty.' +
-            '</div>';
-
-        cartTotal.innerText = "0,00 zł";
-
-        return;
-    }
-
-    let total = 0;
-
-    cartItems.innerHTML = "";
-
-    cart.forEach(function(item, index) {
-
-        total += item.price;
-
-        cartItems.innerHTML += `
-
-            <div class="cart-item">
-
-                <h3>
-                    ${item.caseName}
-                </h3>
-
-                <p>
-                    Model: ${item.phone}
-                </p>
-
-                <p>
-                    ${item.price.toFixed(2).replace(".", ",")} zł
-                </p>
-
-                <button
-                    class="remove"
-                    onclick="removeItem(${index})"
-                >
-                    Usuń
-                </button>
-
-            </div>
-
-        `;
-    });
-
-    cartTotal.innerText =
-        total.toFixed(2).replace(".", ",") +
-        " zł";
-}
-
-
-/* ==========================================
-   USUWANIE
-========================================== */
-
-function removeItem(index) {
-
-    cart.splice(index, 1);
-
-    updateCart();
-}
-
-
-/* ==========================================
-   KOSZYK
-========================================== */
-
-function openCart() {
-
-    document
-        .getElementById("cart")
-        .classList.add("active");
-}
-
-
-function closeCart() {
-
-    document
-        .getElementById("cart")
-        .classList.remove("active");
-}
-
-
-/* ==========================================
-   CHECKOUT
-========================================== */
-
-function openCheckout() {
-
-    if (cart.length === 0) {
-
-        alert("Twój koszyk jest pusty.");
-
-        return;
-    }
-
-    closeCart();
-
-    document
-        .getElementById("checkoutModal")
-        .classList.add("active");
-
-    showCheckoutSummary();
-}
-
-
-/* ==========================================
-   ZAMKNIJ CHECKOUT
-========================================== */
-
-function closeCheckout() {
-
-    document
-        .getElementById("checkoutModal")
-        .classList.remove("active");
-}
-
-
-/* ==========================================
-   PODSUMOWANIE
-========================================== */
-
-function showCheckoutSummary() {
-
-    const container =
-        document.getElementById("checkoutItems");
-
-    const totalElement =
-        document.getElementById("checkoutTotal");
-
-    let total = 0;
-
-    let productsText = "";
-
-    container.innerHTML = "";
-
-    cart.forEach(function(item) {
-
-        total += item.price;
-
-        productsText +=
-            item.caseName +
-            " | " +
-            item.phone +
-            " | " +
-            "79,99 zł\n";
-
-        container.innerHTML += `
-
-            <div class="summary-item">
-
-                <strong>
-                    ${item.caseName}
-                </strong>
-
-                <br>
-
-                Model: ${item.phone}
-
-                <br>
-
-                79,99 zł
-
-            </div>
-
-        `;
-    });
-
-    totalElement.innerText =
-        total.toFixed(2).replace(".", ",") +
-        " zł";
-
-    document
-        .getElementById("productsField")
-        .value = productsText;
-
-    document
-        .getElementById("totalField")
-        .value =
-        total.toFixed(2) +
-        " zł";
-}
-
-
-/* ==========================================
-   WYSŁANIE DO FORMSPREE
-========================================== */
+selectedPhone = "";
 
 document
-    .getElementById("orderForm")
-    .addEventListener("submit", async function(event) {
-
-        event.preventDefault();
-
-        const form = event.target;
-
-        const button =
-            document.getElementById("submitOrderButton");
-
-        const errorBox =
-            document.getElementById("formError");
-
-        if (cart.length === 0) {
-
-            alert("Koszyk jest pusty.");
-
-            return;
-        }
-
-        errorBox.style.display = "none";
-        errorBox.innerText = "";
-
-        /*
-         * Generujemy numer zamówienia
-         */
-
-        const orderNumber =
-            "NC-" +
-            Math.floor(
-                10000000 +
-                Math.random() * 90000000
-            );
-
-        document
-            .getElementById("orderNumberField")
-            .value = orderNumber;
-
-        /*
-         * Ustawiamy email klienta
-         * jako Reply-To dla Formspree
-         */
-
-        const customerEmail =
-            document
-                .getElementById("email")
-                .value;
-
-        /*
-         * Tworzymy dane formularza
-         */
-
-        const formData =
-            new FormData(form);
-
-        formData.append(
-            "_replyto",
-            customerEmail
-        );
-
-        /*
-         * Blokujemy przycisk
-         */
-
-        button.disabled = true;
-
-        button.innerText =
-            "WYSYŁANIE...";
-
-        try {
-
-            const response =
-                await fetch(
-                    "https://formspree.io/f/myezewlp",
-                    {
-                        method: "POST",
-                        body: formData,
-                        headers: {
-                            "Accept":
-                                "application/json"
-                        }
-                    }
-                );
-
-            /*
-             * Jeśli Formspree zaakceptował
-             * formularz
-             */
-
-            if (response.ok) {
-
-                document
-                    .getElementById("orderSection")
-                    .style.display = "none";
-
-                document
-                    .getElementById("successMessage")
-                    .style.display = "block";
-
-                document
-                    .getElementById("orderNumber")
-                    .innerText =
-                    orderNumber;
-
-                cart = [];
-
-                updateCart();
-
-            } else {
-
-                let message =
-                    "Nie udało się wysłać zamówienia.";
-
-                try {
-
-                    const data =
-                        await response.json();
-
-                    if (
-                        data &&
-                        data.errors &&
-                        data.errors.length
-                    ) {
-
-                        message =
-                            data.errors
-                                .map(function(error) {
-                                    return error.message;
-                                })
-                                .join(", ");
-                    }
-
-                } catch (e) {
-                    /* nic */
-                }
-
-                errorBox.innerText =
-                    message +
-                    " Spróbuj ponownie.";
-
-                errorBox.style.display =
-                    "block";
-
-                button.disabled = false;
-
-                button.innerText =
-                    "POTWIERDŹ ZAMÓWIENIE";
-            }
-
-        } catch (error) {
-
-            errorBox.innerText =
-                "Nie udało się połączyć z serwerem. Sprawdź połączenie z internetem i spróbuj ponownie.";
-
-            errorBox.style.display =
-                "block";
-
-            button.disabled = false;
-
-            button.innerText =
-                "POTWIERDŹ ZAMÓWIENIE";
-        }
-
-    });
+.getElementById("phoneModal")
+.classList.add("active");
 
 
-/* ==========================================
-   ZAKOŃCZENIE ZAMÓWIENIA
-========================================== */
+document
+.getElementById("selectedProduct")
+.innerHTML =
+"Wybrane etui: <strong>"
++ caseName
++ "</strong><br><br>Wybierz model telefonu.";
 
-function finishOrder() {
 
-    closeCheckout();
+document
+.getElementById("addCartButton")
+.disabled = true;
 
-    document
-        .getElementById("orderForm")
-        .reset();
 
-    document
-        .getElementById("orderSection")
-        .style.display = "block";
+document
+.querySelectorAll(".phone")
+.forEach(function(button){
 
-    document
-        .getElementById("successMessage")
-        .style.display = "none";
+button.classList.remove("selected");
 
-    document
-        .getElementById("formError")
-        .style.display = "none";
+});
 
-    document
-        .getElementById("submitOrderButton")
-        .disabled = false;
+}
 
-    document
-        .getElementById("submitOrderButton")
-        .innerText =
-        "POTWIERDŹ ZAMÓWIENIE";
+
+function closeModal(){
+
+document
+.getElementById("phoneModal")
+.classList.remove("active");
+
+}
+
+
+/*
+====================================================
+WYBÓR TELEFONU
+====================================================
+*/
+
+function selectPhone(phone,button){
+
+selectedPhone = phone;
+
+
+document
+.querySelectorAll(".phone")
+.forEach(function(button){
+
+button.classList.remove("selected");
+
+});
+
+
+if(button){
+
+button.classList.add("selected");
+
+}
+
+
+document
+.getElementById("selectedProduct")
+.innerHTML =
+"Etui: <strong>"
++ selectedCase
++ "</strong><br>Model: <strong>"
++ selectedPhone
++ "</strong>";
+
+
+document
+.getElementById("addCartButton")
+.disabled = false;
+
+}
+
+
+/*
+====================================================
+DODANIE DO KOSZYKA
+====================================================
+*/
+
+function addToCart(){
+
+if(!selectedCase || !selectedPhone){
+
+return;
+
+}
+
+
+cart.push({
+
+caseName:selectedCase,
+
+phone:selectedPhone,
+
+price:79.99
+
+});
+
+
+updateCart();
+
+closeModal();
+
+openCart();
+
+}
+
+
+/*
+====================================================
+AKTUALIZACJA KOSZYKA
+====================================================
+*/
+
+function updateCart(){
+
+const items =
+document.getElementById("cartItems");
+
+const count =
+document.getElementById("cartCount");
+
+const totalEl =
+document.getElementById("cartTotal");
+
+
+count.innerText = cart.length;
+
+
+if(!cart.length){
+
+items.innerHTML =
+'<div class="cart-empty">Twój koszyk jest pusty.</div>';
+
+totalEl.innerText =
+"0,00 zł";
+
+return;
+
+}
+
+
+let total = 0;
+
+items.innerHTML = "";
+
+
+cart.forEach(function(item,index){
+
+total += item.price;
+
+
+items.innerHTML +=
+
+`<div class="cart-item">
+
+<h3>
+${item.caseName}
+</h3>
+
+<p>
+Model: ${item.phone}
+</p>
+
+<p>
+${item.price.toFixed(2).replace(".",",")} zł
+</p>
+
+<button
+class="remove"
+onclick="removeItem(${index})"
+>
+Usuń
+</button>
+
+</div>`;
+
+});
+
+
+totalEl.innerText =
+total.toFixed(2).replace(".",",")
++ " zł";
+
+}
+
+
+/*
+====================================================
+USUWANIE Z KOSZYKA
+====================================================
+*/
+
+function removeItem(index){
+
+cart.splice(index,1);
+
+updateCart();
+
+}
+
+
+/*
+====================================================
+KOSZYK
+====================================================
+*/
+
+function openCart(){
+
+document
+.getElementById("cart")
+.classList.add("active");
+
+}
+
+
+function closeCart(){
+
+document
+.getElementById("cart")
+.classList.remove("active");
+
+}
+
+
+/*
+====================================================
+CHECKOUT
+====================================================
+*/
+
+function openCheckout(){
+
+if(!cart.length){
+
+alert("Twój koszyk jest pusty.");
+
+return;
+
+}
+
+
+closeCart();
+
+
+document
+.getElementById("checkoutModal")
+.classList.add("active");
+
+
+showCheckoutSummary();
+
+}
+
+
+function closeCheckout(){
+
+document
+.getElementById("checkoutModal")
+.classList.remove("active");
+
+}
+
+
+/*
+====================================================
+PODSUMOWANIE
+====================================================
+*/
+
+function showCheckoutSummary(){
+
+const container =
+document.getElementById("checkoutItems");
+
+const totalElement =
+document.getElementById("checkoutTotal");
+
+
+let total = 0;
+
+let productsText = "";
+
+
+container.innerHTML = "";
+
+
+cart.forEach(function(item){
+
+total += item.price;
+
+
+productsText +=
+
+item.caseName
++ " | "
++ item.phone
++ " | 79,99 zł\n";
+
+
+container.innerHTML +=
+
+`<div class="summary-item">
+
+<strong>
+${item.caseName}
+</strong>
+
+<br>
+
+Model:
+${item.phone}
+
+<br>
+
+79,99 zł
+
+</div>`;
+
+});
+
+
+totalElement.innerText =
+total.toFixed(2).replace(".",",")
++ " zł";
+
+
+document
+.getElementById("productsField")
+.value = productsText;
+
+
+document
+.getElementById("totalField")
+.value =
+total.toFixed(2)
++ " zł";
+
+}
+
+
+/*
+====================================================
+FORMULARZ + STRIPE TEST
+====================================================
+*/
+
+document
+.getElementById("orderForm")
+.addEventListener(
+"submit",
+async function(event){
+
+event.preventDefault();
+
+
+const form = event.target;
+
+
+const button =
+document.getElementById("submitOrderButton");
+
+
+const errorBox =
+document.getElementById("formError");
+
+
+if(!cart.length){
+
+alert("Koszyk jest pusty.");
+
+return;
+
+}
+
+
+errorBox.style.display = "none";
+
+errorBox.innerText = "";
+
+
+/*
+NUMER TESTOWEGO ZAMÓWIENIA
+*/
+
+const orderNumber =
+"NC-"
++
+Math.floor(
+10000000
++
+Math.random()*90000000
+);
+
+
+document
+.getElementById("orderNumberField")
+.value =
+orderNumber;
+
+
+localStorage.setItem(
+"NOIRCASE_TEST_ORDER",
+orderNumber
+);
+
+
+const customerEmail =
+document.getElementById("email").value;
+
+
+const formData =
+new FormData(form);
+
+
+formData.append(
+"_replyto",
+customerEmail
+);
+
+
+button.disabled = true;
+
+button.innerText =
+"PRZYGOTOWYWANIE PŁATNOŚCI...";
+
+
+try{
+
+
+/*
+====================================================
+1. WYSŁANIE DANYCH DO FORMSPREE
+====================================================
+*/
+
+const formResponse =
+await fetch(
+"https://formspree.io/f/myezewlp",
+{
+method:"POST",
+
+body:formData,
+
+headers:{
+"Accept":"application/json"
+}
+}
+);
+
+
+if(!formResponse.ok){
+
+throw new Error(
+"Formspree nie przyjął formularza."
+);
+
+}
+
+
+/*
+====================================================
+2. UTWORZENIE STRIPE CHECKOUT TEST
+====================================================
+*/
+
+const stripeResponse =
+await fetch(
+STRIPE_WORKER,
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+order_id:orderNumber,
+
+quantity:cart.length
+
+})
+
+}
+);
+
+
+const stripeData =
+await stripeResponse.json();
+
+
+if(
+!stripeResponse.ok
+||
+!stripeData.url
+){
+
+throw new Error(
+
+stripeData.error?.message
+||
+stripeData.error
+||
+"Nie udało się utworzyć płatności testowej."
+
+);
+
+}
+
+
+/*
+====================================================
+3. PRZEJŚCIE DO STRIPE SANDBOX
+====================================================
+*/
+
+window.location.href =
+stripeData.url;
+
+
+}
+catch(error){
+
+
+errorBox.innerText =
+error.message
++
+" Spróbuj ponownie.";
+
+
+errorBox.style.display =
+"block";
+
+
+button.disabled = false;
+
+
+button.innerText =
+"PRZEJDŹ DO PŁATNOŚCI TESTOWEJ";
+
+}
+
+});
+
+
+/*
+====================================================
+EKRAN PO POWROCIE ZE STRIPE
+====================================================
+*/
+
+function showSuccess(){
+
+const order =
+localStorage.getItem(
+"NOIRCASE_TEST_ORDER"
+)
+||
+"TEST";
+
+
+document
+.getElementById("orderSection")
+.style.display =
+"none";
+
+
+document
+.getElementById("successMessage")
+.style.display =
+"block";
+
+
+document
+.getElementById("orderNumber")
+.innerText =
+order;
+
+
+cart = [];
+
+
+updateCart();
+
+}
+
+
+/*
+====================================================
+POWRÓT DO SKLEPU
+====================================================
+*/
+
+function finishOrder(){
+
+closeCheckout();
+
+
+document
+.getElementById("orderForm")
+.reset();
+
+
+document
+.getElementById("orderSection")
+.style.display =
+"block";
+
+
+document
+.getElementById("successMessage")
+.style.display =
+"none";
+
+
+document
+.getElementById("formError")
+.style.display =
+"none";
+
+
+document
+.getElementById("submitOrderButton")
+.disabled =
+false;
+
+
+document
+.getElementById("submitOrderButton")
+.innerText =
+"PRZEJDŹ DO PŁATNOŚCI TESTOWEJ";
+
+
+localStorage.removeItem(
+"NOIRCASE_TEST_ORDER"
+);
+
+}
+
+
+/*
+====================================================
+POWRÓT ZE STRIPE
+====================================================
+*/
+
+const paymentStatus =
+new URLSearchParams(
+window.location.search
+).get("payment");
+
+
+if(paymentStatus === "success"){
+
+openCheckout();
+
+showSuccess();
+
 }
 
 </script>
