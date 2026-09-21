@@ -54,6 +54,10 @@
       line-height: 1.5;
     }
 
+    body.cart-open {
+      overflow: hidden;
+    }
+
     button,
     input,
     textarea {
@@ -1287,7 +1291,7 @@
       position: fixed;
       inset: 0;
 
-      background: rgba(0,0,0,.5);
+      background: rgba(0,0,0,.52);
 
       z-index: 300;
 
@@ -1295,6 +1299,8 @@
       visibility: hidden;
 
       transition: .25s ease;
+
+      backdrop-filter: blur(3px);
     }
 
     .overlay.active {
@@ -1310,17 +1316,19 @@
       top: 0;
       right: 0;
 
-      width: min(440px, 100%);
+      width: min(470px, 100%);
       height: 100dvh;
 
       background: #fff;
 
       transform: translateX(100%);
 
-      transition: .3s ease;
+      transition: .32s cubic-bezier(.22,.61,.36,1);
 
       display: flex;
       flex-direction: column;
+
+      box-shadow: -20px 0 60px rgba(0,0,0,.15);
     }
 
     .cart-drawer.active {
@@ -1335,10 +1343,37 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      flex: 0 0 auto;
+    }
+
+    .cart-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .cart-header h3 {
       font-size: 20px;
+      letter-spacing: -.03em;
+    }
+
+    .cart-header-count {
+      min-width: 25px;
+      height: 25px;
+      padding: 0 7px;
+
+      border-radius: 999px;
+
+      background: #eaf3ff;
+      color: var(--blue);
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 11px;
+      font-weight: 900;
     }
 
     .close-cart {
@@ -1352,6 +1387,13 @@
       border-radius: 50%;
 
       font-size: 22px;
+
+      transition: .2s ease;
+    }
+
+    .close-cart:hover {
+      background: var(--soft-2);
+      transform: rotate(5deg);
     }
 
     .cart-content {
@@ -1362,50 +1404,129 @@
       padding: 22px;
     }
 
+    .cart-content::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .cart-content::-webkit-scrollbar-thumb {
+      background: #d8dbe0;
+      border-radius: 99px;
+    }
+
     .cart-empty {
+      min-height: 330px;
+
       text-align: center;
 
       color: var(--muted);
 
-      padding: 60px 20px;
-    }
-
-    .cart-item {
-      display: grid;
-
-      grid-template-columns: 70px 1fr auto;
-
-      gap: 13px;
-
-      align-items: center;
-
-      border-bottom: 1px solid var(--line);
-
-      padding-bottom: 17px;
-
-      margin-bottom: 17px;
-    }
-
-    .cart-thumb {
-      width: 70px;
-      height: 70px;
-
-      border-radius: 15px;
-
-      background: var(--soft);
+      padding: 90px 20px 50px;
 
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
     }
 
-    .cart-thumb-device {
-      width: 47px;
-      height: 34px;
+    .cart-empty-icon {
+      width: 65px;
+      height: 65px;
 
-      border-radius: 9px;
+      border-radius: 22px;
+
+      background: var(--soft);
+
+      display: grid;
+      place-items: center;
+
+      font-size: 27px;
+
+      margin-bottom: 16px;
+    }
+
+    .cart-empty strong {
+      color: var(--text);
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .cart-empty span {
+      font-size: 13px;
+    }
+
+    /* CART ITEM */
+
+    .cart-item {
+      display: grid;
+
+      grid-template-columns: 76px 1fr;
+
+      gap: 14px;
 
       position: relative;
+
+      border-bottom: 1px solid var(--line);
+
+      padding-bottom: 19px;
+
+      margin-bottom: 19px;
+    }
+
+    .cart-thumb {
+      width: 76px;
+      height: 76px;
+
+      border-radius: 18px;
+
+      background:
+        radial-gradient(
+          circle at 50% 40%,
+          #fff,
+          #eef0f4
+        );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--line);
+    }
+
+    .cart-thumb-device {
+      width: 50px;
+      height: 36px;
+
+      border-radius: 10px;
+
+      position: relative;
+
+      box-shadow:
+        inset 2px 2px 5px rgba(255,255,255,.3),
+        0 7px 12px rgba(0,0,0,.13);
+    }
+
+    .cart-thumb-device::before {
+      content: "";
+
+      position: absolute;
+
+      width: 17px;
+      height: 11px;
+
+      top: -7px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      border-radius: 4px 4px 2px 2px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #9ca1aa,
+          #f4f4f4,
+          #888e96
+        );
     }
 
     .cart-thumb-device::after {
@@ -1424,14 +1545,24 @@
       left: 50%;
 
       transform: translateX(-50%);
+
+      box-shadow:
+        0 0 8px rgba(22,119,255,.45);
+    }
+
+    .cart-info {
+      min-width: 0;
+      padding-right: 70px;
     }
 
     .cart-info strong {
       display: block;
 
-      font-size: 13px;
+      font-size: 14px;
 
-      margin-bottom: 3px;
+      line-height: 1.2;
+
+      margin-bottom: 5px;
     }
 
     .cart-info span {
@@ -1440,50 +1571,162 @@
     }
 
     .cart-item-price {
-      font-size: 13px;
-      font-weight: 900;
+      position: absolute;
+
+      right: 0;
+      top: 0;
+
+      font-size: 14px;
+
+      font-weight: 950;
 
       white-space: nowrap;
     }
 
+    /* CART QUANTITY */
+
+    .cart-item-bottom {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-top: 12px;
+    }
+
+    .cart-quantity {
+      display: inline-flex;
+
+      align-items: center;
+
+      border: 1px solid var(--line);
+
+      border-radius: 11px;
+
+      overflow: hidden;
+
+      background: #fff;
+    }
+
+    .cart-quantity button {
+      width: 31px;
+      height: 31px;
+
+      border: 0;
+
+      background: #fff;
+
+      font-size: 16px;
+      font-weight: 900;
+
+      color: var(--text);
+
+      transition: .15s ease;
+    }
+
+    .cart-quantity button:hover {
+      background: var(--soft);
+    }
+
+    .cart-quantity-number {
+      min-width: 30px;
+
+      text-align: center;
+
+      font-size: 12px;
+
+      font-weight: 900;
+    }
+
     .remove-item {
       border: 0;
+
       background: none;
 
       color: var(--danger);
 
       font-size: 11px;
 
-      margin-top: 5px;
+      font-weight: 800;
+
+      padding: 5px 0;
     }
+
+    .remove-item:hover {
+      text-decoration: underline;
+    }
+
+    /* CART FOOTER */
 
     .cart-footer {
       border-top: 1px solid var(--line);
 
-      padding: 20px 22px;
+      padding: 18px 22px 22px;
+
+      background: #fff;
+
+      flex: 0 0 auto;
+    }
+
+    .cart-summary-line {
+      display: flex;
+
+      justify-content: space-between;
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      margin-bottom: 8px;
     }
 
     .cart-total {
       display: flex;
+
       justify-content: space-between;
+
+      align-items: center;
 
       margin-bottom: 15px;
 
       font-weight: 900;
+
+      font-size: 17px;
     }
 
     .checkout-button {
       width: 100%;
 
       border: 0;
+
       border-radius: 15px;
 
-      padding: 16px;
+      padding: 17px;
 
       background: var(--black);
+
       color: #fff;
 
       font-weight: 900;
+
+      transition: .2s ease;
+    }
+
+    .checkout-button:hover:not(:disabled) {
+      background: var(--blue);
+
+      transform: translateY(-1px);
+    }
+
+    .checkout-button:disabled {
+      opacity: .45;
+
+      cursor: not-allowed;
+
+      transform: none;
     }
 
     /* =====================================================
@@ -1858,6 +2101,40 @@
         padding: 23px 18px;
         border-radius: 22px;
       }
+
+      .cart-drawer {
+        width: 100%;
+      }
+
+      .cart-content {
+        padding: 18px;
+      }
+
+      .cart-footer {
+        padding: 16px 18px 20px;
+      }
+
+      .cart-item {
+        grid-template-columns: 68px 1fr;
+        gap: 12px;
+      }
+
+      .cart-thumb {
+        width: 68px;
+        height: 68px;
+      }
+
+      .cart-info {
+        padding-right: 65px;
+      }
+
+      .cart-item-price {
+        font-size: 13px;
+      }
+
+      .cart-header {
+        padding: 18px;
+      }
     }
 
   </style>
@@ -2072,7 +2349,7 @@
 
     </section>
 
-    <!-- ===================================================
+    <!-- =====================================================
          PRODUCT
     ==================================================== -->
 
@@ -2290,7 +2567,10 @@
 
             <div class="quantity-controls">
 
-              <button onclick="changeQuantity(-1)">
+              <button
+                type="button"
+                onclick="changeQuantity(-1)"
+              >
                 −
               </button>
 
@@ -2301,7 +2581,10 @@
                 1
               </div>
 
-              <button onclick="changeQuantity(1)">
+              <button
+                type="button"
+                onclick="changeQuantity(1)"
+              >
                 +
               </button>
 
@@ -2311,6 +2594,7 @@
 
           <button
             class="add-button"
+            type="button"
             onclick="addToCart()"
           >
             Dodaj do koszyka
@@ -2533,6 +2817,7 @@
 
           <button
             class="faq-question"
+            type="button"
             onclick="toggleFaq(this)"
           >
 
@@ -2556,6 +2841,7 @@
 
           <button
             class="faq-question"
+            type="button"
             onclick="toggleFaq(this)"
           >
 
@@ -2578,6 +2864,7 @@
 
           <button
             class="faq-question"
+            type="button"
             onclick="toggleFaq(this)"
           >
 
@@ -2601,6 +2888,7 @@
 
           <button
             class="faq-question"
+            type="button"
             onclick="toggleFaq(this)"
           >
 
@@ -2624,6 +2912,7 @@
 
           <button
             class="faq-question"
+            type="button"
             onclick="toggleFaq(this)"
           >
 
@@ -2646,6 +2935,7 @@
 
           <button
             class="faq-question"
+            type="button"
             onclick="toggleFaq(this)"
           >
 
@@ -2776,13 +3066,26 @@
 
     <div class="cart-header">
 
-      <h3>
-        Twój koszyk
-      </h3>
+      <div class="cart-header-left">
+
+        <h3>
+          Twój koszyk
+        </h3>
+
+        <span
+          class="cart-header-count"
+          id="cartHeaderCount"
+        >
+          0
+        </span>
+
+      </div>
 
       <button
         class="close-cart"
+        type="button"
         onclick="closeCart()"
+        aria-label="Zamknij koszyk"
       >
         ×
       </button>
@@ -2795,12 +3098,36 @@
     >
 
       <div class="cart-empty">
-        Koszyk jest pusty.
+
+        <div class="cart-empty-icon">
+          🛒
+        </div>
+
+        <strong>
+          Twój koszyk jest pusty
+        </strong>
+
+        <span>
+          Dodaj produkt, aby kontynuować.
+        </span>
+
       </div>
 
     </div>
 
     <div class="cart-footer">
+
+      <div class="cart-summary-line">
+
+        <span>
+          Liczba produktów
+        </span>
+
+        <span id="cartItemsSummary">
+          0
+        </span>
+
+      </div>
 
       <div class="cart-total">
 
@@ -2816,7 +3143,10 @@
 
       <button
         class="checkout-button"
+        id="checkoutButton"
+        type="button"
         onclick="openCheckout()"
+        disabled
       >
         Przejdź do testowego zamówienia
       </button>
@@ -2838,7 +3168,9 @@
 
       <button
         class="close-checkout"
+        type="button"
         onclick="closeCheckout()"
+        aria-label="Zamknij formularz"
       >
         ×
       </button>
@@ -2961,9 +3293,25 @@
 
     let quantity = 1;
 
-    let cart = JSON.parse(
-      localStorage.getItem("safebat_test_cart") || "[]"
-    );
+    let cart = [];
+
+    try {
+
+      cart = JSON.parse(
+        localStorage.getItem(
+          "safebat_test_cart"
+        ) || "[]"
+      );
+
+      if (!Array.isArray(cart)) {
+        cart = [];
+      }
+
+    } catch (error) {
+
+      cart = [];
+
+    }
 
     /* =====================================================
        COLOR SELECTOR
@@ -2979,7 +3327,9 @@
         "Produkt • " + color;
 
       const device =
-        document.getElementById("productDevice");
+        document.getElementById(
+          "productDevice"
+        );
 
       if (color === "Black") {
 
@@ -3033,7 +3383,7 @@
     }
 
     /* =====================================================
-       QUANTITY
+       QUANTITY ON PRODUCT
     ===================================================== */
 
     function changeQuantity(change) {
@@ -3062,12 +3412,17 @@
 
       const existing =
         cart.find(
-          item => item.color === selectedColor
+          item =>
+            item.color === selectedColor
         );
 
       if (existing) {
 
         existing.quantity += quantity;
+
+        if (existing.quantity > 20) {
+          existing.quantity = 20;
+        }
 
       } else {
 
@@ -3126,6 +3481,14 @@
         "cartCount"
       ).textContent = cartCount;
 
+      document.getElementById(
+        "cartHeaderCount"
+      ).textContent = cartCount;
+
+      document.getElementById(
+        "cartItemsSummary"
+      ).textContent = cartCount;
+
       const content =
         document.getElementById(
           "cartContent"
@@ -3136,20 +3499,43 @@
           "cartTotal"
         );
 
+      const checkoutButton =
+        document.getElementById(
+          "checkoutButton"
+        );
+
       if (cart.length === 0) {
 
         content.innerHTML = `
+
           <div class="cart-empty">
-            Koszyk jest pusty.
+
+            <div class="cart-empty-icon">
+              🛒
+            </div>
+
+            <strong>
+              Twój koszyk jest pusty
+            </strong>
+
+            <span>
+              Dodaj produkt, aby kontynuować.
+            </span>
+
           </div>
+
         `;
 
         totalElement.textContent =
           "0,00 zł";
 
+        checkoutButton.disabled = true;
+
         return;
 
       }
+
+      checkoutButton.disabled = false;
 
       let total = 0;
 
@@ -3184,17 +3570,45 @@
 
                   <span>
                     Kolor: ${item.color}
-                    • Ilość: ${item.quantity}
                   </span>
 
-                  <br>
+                  <div class="cart-item-bottom">
 
-                  <button
-                    class="remove-item"
-                    onclick="removeItem(${index})"
-                  >
-                    Usuń
-                  </button>
+                    <div class="cart-quantity">
+
+                      <button
+                        type="button"
+                        onclick="changeCartQuantity(${index}, -1)"
+                        aria-label="Zmniejsz ilość"
+                      >
+                        −
+                      </button>
+
+                      <span
+                        class="cart-quantity-number"
+                      >
+                        ${item.quantity}
+                      </span>
+
+                      <button
+                        type="button"
+                        onclick="changeCartQuantity(${index}, 1)"
+                        aria-label="Zwiększ ilość"
+                      >
+                        +
+                      </button>
+
+                    </div>
+
+                    <button
+                      type="button"
+                      class="remove-item"
+                      onclick="removeItem(${index})"
+                    >
+                      Usuń
+                    </button>
+
+                  </div>
 
                 </div>
 
@@ -3222,6 +3636,50 @@
           .toFixed(2)
           .replace(".", ",") +
         " zł";
+
+    }
+
+    /* =====================================================
+       CHANGE CART QUANTITY
+    ===================================================== */
+
+    function changeCartQuantity(
+      index,
+      change
+    ) {
+
+      if (!cart[index]) {
+        return;
+      }
+
+      cart[index].quantity += change;
+
+      if (cart[index].quantity <= 0) {
+
+        cart.splice(index, 1);
+
+        showToast(
+          "Produkt usunięty z koszyka"
+        );
+
+      }
+
+      if (
+        cart[index] &&
+        cart[index].quantity > 20
+      ) {
+
+        cart[index].quantity = 20;
+
+        showToast(
+          "Maksymalnie 20 sztuk"
+        );
+
+      }
+
+      saveCart();
+
+      updateCart();
 
     }
 
@@ -3287,11 +3745,23 @@
 
     function removeItem(index) {
 
+      if (!cart[index]) {
+        return;
+      }
+
+      const removedColor =
+        cart[index].color;
+
       cart.splice(index, 1);
 
       saveCart();
 
       updateCart();
+
+      showToast(
+        removedColor +
+        " usunięto z koszyka"
+      );
 
     }
 
@@ -3308,6 +3778,10 @@
       document
         .getElementById("overlay")
         .classList.add("active");
+
+      document.body.classList.add(
+        "cart-open"
+      );
 
       updateCart();
 
@@ -3326,6 +3800,10 @@
       document
         .getElementById("overlay")
         .classList.remove("active");
+
+      document.body.classList.remove(
+        "cart-open"
+      );
 
     }
 
@@ -3374,6 +3852,18 @@
         function(event) {
 
           event.preventDefault();
+
+          if (cart.length === 0) {
+
+            showToast(
+              "Koszyk jest pusty"
+            );
+
+            closeCheckout();
+
+            return;
+
+          }
 
           const orderNumber =
             "SB-TEST-" +
