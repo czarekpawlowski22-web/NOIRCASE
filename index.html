@@ -493,6 +493,73 @@ padding:28px 20px
 }
 </style>
 <style>
+.dropshipping-banner{
+  background:#111;
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.dropshipping-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:11px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  text-align:left;
+}
+
+.dropshipping-icon{
+  width:30px;
+  height:30px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  font-size:12px;
+}
+
+.dropshipping-inner div{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.dropshipping-inner strong{
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.dropshipping-inner span:last-child{
+  color:#c9c9c9;
+  font-size:12px;
+}
+
+@media(max-width:700px){
+  .dropshipping-inner{
+    padding:10px 16px;
+    justify-content:flex-start;
+  }
+
+  .dropshipping-inner div{
+    display:block;
+  }
+
+  .dropshipping-inner strong{
+    display:block;
+    margin-bottom:3px;
+  }
+
+  .dropshipping-inner span:last-child{
+    line-height:1.4;
+  }
+}
+</style>
 :root{
   --noir:#0b0b0b;
   --ink:#151515;
