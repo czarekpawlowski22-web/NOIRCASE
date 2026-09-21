@@ -7,7 +7,6 @@
 <title>NOIRCASE — Minimalistyczne etui</title>
 
 <style>
-
 * {
     margin: 0;
     padding: 0;
@@ -18,6 +17,13 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background: #faf9f7;
     color: #111;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
 }
 
 /* HEADER */
@@ -235,7 +241,8 @@ header {
     cursor: pointer;
 }
 
-.phone:hover {
+.phone:hover,
+.phone.selected {
     background: #111;
     color: white;
 }
@@ -419,6 +426,11 @@ header {
     font-size: 13px;
 }
 
+.submit-order:disabled {
+    background: #777;
+    cursor: wait;
+}
+
 /* SUCCESS */
 
 .success {
@@ -427,17 +439,19 @@ header {
 }
 
 .success-icon {
-    font-size: 50px;
+    font-size: 60px;
     margin-bottom: 20px;
 }
 
 .success h2 {
     margin-bottom: 15px;
+    letter-spacing: 2px;
 }
 
 .success p {
     color: #666;
     line-height: 1.7;
+    margin-bottom: 8px;
 }
 
 .success-button {
@@ -447,6 +461,18 @@ header {
     background: #111;
     color: white;
     cursor: pointer;
+}
+
+/* ERROR */
+
+.form-error {
+    display: none;
+    background: #f8e5e5;
+    color: #8b2222;
+    padding: 15px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-size: 14px;
 }
 
 /* FOOTER */
@@ -499,8 +525,10 @@ footer p {
         grid-template-columns: 1fr;
     }
 
+    .modal-box {
+        padding: 28px 20px;
+    }
 }
-
 </style>
 </head>
 
@@ -518,7 +546,6 @@ footer p {
     </button>
 
 </header>
-
 
 <section class="hero">
 
@@ -538,7 +565,6 @@ footer p {
 
 </section>
 
-
 <section class="section" id="collection">
 
     <div class="section-title">
@@ -551,9 +577,7 @@ footer p {
 
     </div>
 
-
     <div class="products">
-
 
         <div class="product">
 
@@ -583,7 +607,6 @@ footer p {
 
         </div>
 
-
         <div class="product">
 
             <img
@@ -611,7 +634,6 @@ footer p {
             </div>
 
         </div>
-
 
         <div class="product">
 
@@ -641,11 +663,9 @@ footer p {
 
         </div>
 
-
     </div>
 
 </section>
-
 
 <section class="section about">
 
@@ -665,7 +685,6 @@ footer p {
 
 </section>
 
-
 <footer>
 
     <p>
@@ -673,7 +692,6 @@ footer p {
     </p>
 
 </footer>
-
 
 <!-- WYBÓR TELEFONU -->
 
@@ -693,52 +711,49 @@ footer p {
             Wybierz model telefonu dla swojego etui.
         </p>
 
-
         <div class="phone-list">
 
-            <button class="phone" onclick="selectPhone('iPhone 15')">
+            <button class="phone" onclick="selectPhone('iPhone 15', this)">
                 iPhone 15
             </button>
 
-            <button class="phone" onclick="selectPhone('iPhone 15 Pro')">
+            <button class="phone" onclick="selectPhone('iPhone 15 Pro', this)">
                 iPhone 15 Pro
             </button>
 
-            <button class="phone" onclick="selectPhone('iPhone 15 Pro Max')">
+            <button class="phone" onclick="selectPhone('iPhone 15 Pro Max', this)">
                 iPhone 15 Pro Max
             </button>
 
-            <button class="phone" onclick="selectPhone('iPhone 16')">
+            <button class="phone" onclick="selectPhone('iPhone 16', this)">
                 iPhone 16
             </button>
 
-            <button class="phone" onclick="selectPhone('iPhone 16 Pro')">
+            <button class="phone" onclick="selectPhone('iPhone 16 Pro', this)">
                 iPhone 16 Pro
             </button>
 
-            <button class="phone" onclick="selectPhone('iPhone 16 Pro Max')">
+            <button class="phone" onclick="selectPhone('iPhone 16 Pro Max', this)">
                 iPhone 16 Pro Max
             </button>
 
-            <button class="phone" onclick="selectPhone('iPhone 17')">
+            <button class="phone" onclick="selectPhone('iPhone 17', this)">
                 iPhone 17
             </button>
 
-            <button class="phone" onclick="selectPhone('iPhone 17 Pro')">
+            <button class="phone" onclick="selectPhone('iPhone 17 Pro', this)">
                 iPhone 17 Pro
             </button>
 
-            <button class="phone" onclick="selectPhone('iPhone 17 Pro Max')">
+            <button class="phone" onclick="selectPhone('iPhone 17 Pro Max', this)">
                 iPhone 17 Pro Max
             </button>
 
         </div>
 
-
         <div class="selected-product" id="selectedProduct">
             Wybierz model telefonu.
         </div>
-
 
         <button
             class="add-cart"
@@ -752,7 +767,6 @@ footer p {
     </div>
 
 </div>
-
 
 <!-- KOSZYK -->
 
@@ -770,7 +784,6 @@ footer p {
 
     </div>
 
-
     <div id="cartItems">
 
         <div class="cart-empty">
@@ -778,7 +791,6 @@ footer p {
         </div>
 
     </div>
-
 
     <div class="cart-total">
 
@@ -789,15 +801,13 @@ footer p {
 
     </div>
 
-
     <button class="checkout" onclick="openCheckout()">
         PRZEJDŹ DO ZAMÓWIENIA
     </button>
 
 </div>
 
-
-<!-- FORMULARZ ZAMÓWIENIA -->
+<!-- ZAMÓWIENIE -->
 
 <div class="modal" id="checkoutModal">
 
@@ -806,7 +816,6 @@ footer p {
         <button class="close" onclick="closeCheckout()">
             ×
         </button>
-
 
         <div id="orderSection">
 
@@ -818,21 +827,36 @@ footer p {
                 Uzupełnij dane do dostawy.
             </p>
 
-
-            <!-- FORMULARZ FORMSpree -->
+            <div
+                id="formError"
+                class="form-error"
+            ></div>
 
             <form
                 id="orderForm"
                 action="https://formspree.io/f/myezewlp"
                 method="POST"
-                onsubmit="submitOrder(event)"
             >
+
+                <!-- DODATKOWE USTAWIENIA FORMSPREE -->
+
+                <input
+                    type="hidden"
+                    name="_subject"
+                    value="Nowe zamówienie NOIRCASE"
+                >
+
+                <input
+                    type="hidden"
+                    name="_language"
+                    value="pl"
+                >
 
                 <div class="form-row">
 
                     <div class="form-group">
 
-                        <label>
+                        <label for="firstName">
                             Imię
                         </label>
 
@@ -845,10 +869,9 @@ footer p {
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label>
+                        <label for="lastName">
                             Nazwisko
                         </label>
 
@@ -863,10 +886,9 @@ footer p {
 
                 </div>
 
-
                 <div class="form-group">
 
-                    <label>
+                    <label for="email">
                         E-mail
                     </label>
 
@@ -880,10 +902,9 @@ footer p {
 
                 </div>
 
-
                 <div class="form-group">
 
-                    <label>
+                    <label for="phoneNumber">
                         Numer telefonu
                     </label>
 
@@ -897,10 +918,9 @@ footer p {
 
                 </div>
 
-
                 <div class="form-group">
 
-                    <label>
+                    <label for="street">
                         Ulica i numer
                     </label>
 
@@ -913,12 +933,11 @@ footer p {
 
                 </div>
 
-
                 <div class="form-row">
 
                     <div class="form-group">
 
-                        <label>
+                        <label for="postalCode">
                             Kod pocztowy
                         </label>
 
@@ -932,10 +951,9 @@ footer p {
 
                     </div>
 
-
                     <div class="form-group">
 
-                        <label>
+                        <label for="city">
                             Miasto
                         </label>
 
@@ -950,10 +968,9 @@ footer p {
 
                 </div>
 
-
                 <div class="form-group">
 
-                    <label>
+                    <label for="delivery">
                         Sposób dostawy
                     </label>
 
@@ -979,10 +996,9 @@ footer p {
 
                 </div>
 
-
                 <div class="form-group">
 
-                    <label>
+                    <label for="notes">
                         Dodatkowe informacje
                     </label>
 
@@ -994,8 +1010,7 @@ footer p {
 
                 </div>
 
-
-                <!-- UKRYTE DANE O PRODUKTACH -->
+                <!-- DANE ZAMÓWIENIA -->
 
                 <input
                     type="hidden"
@@ -1014,7 +1029,6 @@ footer p {
                     name="Numer zamówienia"
                     id="orderNumberField"
                 >
-
 
                 <div class="order-summary">
 
@@ -1035,19 +1049,17 @@ footer p {
 
                 </div>
 
-
                 <button
                     type="submit"
                     class="submit-order"
+                    id="submitOrderButton"
                 >
                     POTWIERDŹ ZAMÓWIENIE
                 </button>
 
-
             </form>
 
         </div>
-
 
         <!-- SUKCES -->
 
@@ -1063,7 +1075,7 @@ footer p {
                 </div>
 
                 <h2>
-                    ZAMÓWIENIE WYSŁANE
+                    ZAMÓWIENIE PRZYJĘTE
                 </h2>
 
                 <p>
@@ -1086,11 +1098,9 @@ footer p {
 
         </div>
 
-
     </div>
 
 </div>
-
 
 <script>
 
@@ -1099,9 +1109,7 @@ footer p {
 ========================================== */
 
 let cart = [];
-
 let selectedCase = "";
-
 let selectedPhone = "";
 
 
@@ -1112,14 +1120,11 @@ let selectedPhone = "";
 function openModal(caseName) {
 
     selectedCase = caseName;
-
     selectedPhone = "";
-
 
     document
         .getElementById("phoneModal")
         .classList.add("active");
-
 
     document
         .getElementById("selectedProduct")
@@ -1129,11 +1134,15 @@ function openModal(caseName) {
         "</strong><br><br>" +
         "Wybierz model telefonu.";
 
-
     document
         .getElementById("addCartButton")
         .disabled = true;
 
+    document
+        .querySelectorAll(".phone")
+        .forEach(function(button) {
+            button.classList.remove("selected");
+        });
 }
 
 
@@ -1154,10 +1163,19 @@ function closeModal() {
    WYBÓR TELEFONU
 ========================================== */
 
-function selectPhone(phone) {
+function selectPhone(phone, button) {
 
     selectedPhone = phone;
 
+    document
+        .querySelectorAll(".phone")
+        .forEach(function(item) {
+            item.classList.remove("selected");
+        });
+
+    if (button) {
+        button.classList.add("selected");
+    }
 
     document
         .getElementById("selectedProduct")
@@ -1169,11 +1187,9 @@ function selectPhone(phone) {
         selectedPhone +
         "</strong>";
 
-
     document
         .getElementById("addCartButton")
         .disabled = false;
-
 }
 
 
@@ -1187,24 +1203,17 @@ function addToCart() {
         return;
     }
 
-
     cart.push({
-
         caseName: selectedCase,
-
         phone: selectedPhone,
-
         price: 79.99
-
     });
-
 
     updateCart();
 
     closeModal();
 
     openCart();
-
 }
 
 
@@ -1217,18 +1226,13 @@ function updateCart() {
     const cartItems =
         document.getElementById("cartItems");
 
-
     const cartCount =
         document.getElementById("cartCount");
-
 
     const cartTotal =
         document.getElementById("cartTotal");
 
-
-    cartCount.innerText =
-        cart.length;
-
+    cartCount.innerText = cart.length;
 
     if (cart.length === 0) {
 
@@ -1237,24 +1241,18 @@ function updateCart() {
             'Twój koszyk jest pusty.' +
             '</div>';
 
-        cartTotal.innerText =
-            "0,00 zł";
+        cartTotal.innerText = "0,00 zł";
 
         return;
-
     }
-
 
     let total = 0;
 
-
     cartItems.innerHTML = "";
-
 
     cart.forEach(function(item, index) {
 
         total += item.price;
-
 
         cartItems.innerHTML += `
 
@@ -1269,9 +1267,7 @@ function updateCart() {
                 </p>
 
                 <p>
-                    ${item.price
-                        .toFixed(2)
-                        .replace(".", ",")} zł
+                    ${item.price.toFixed(2).replace(".", ",")} zł
                 </p>
 
                 <button
@@ -1284,14 +1280,11 @@ function updateCart() {
             </div>
 
         `;
-
     });
-
 
     cartTotal.innerText =
         total.toFixed(2).replace(".", ",") +
         " zł";
-
 }
 
 
@@ -1304,7 +1297,6 @@ function removeItem(index) {
     cart.splice(index, 1);
 
     updateCart();
-
 }
 
 
@@ -1317,7 +1309,6 @@ function openCart() {
     document
         .getElementById("cart")
         .classList.add("active");
-
 }
 
 
@@ -1326,7 +1317,6 @@ function closeCart() {
     document
         .getElementById("cart")
         .classList.remove("active");
-
 }
 
 
@@ -1338,25 +1328,18 @@ function openCheckout() {
 
     if (cart.length === 0) {
 
-        alert(
-            "Twój koszyk jest pusty."
-        );
+        alert("Twój koszyk jest pusty.");
 
         return;
-
     }
 
-
     closeCart();
-
 
     document
         .getElementById("checkoutModal")
         .classList.add("active");
 
-
     showCheckoutSummary();
-
 }
 
 
@@ -1369,7 +1352,6 @@ function closeCheckout() {
     document
         .getElementById("checkoutModal")
         .classList.remove("active");
-
 }
 
 
@@ -1382,30 +1364,25 @@ function showCheckoutSummary() {
     const container =
         document.getElementById("checkoutItems");
 
-
     const totalElement =
         document.getElementById("checkoutTotal");
-
 
     let total = 0;
 
     let productsText = "";
 
-
     container.innerHTML = "";
-
 
     cart.forEach(function(item) {
 
         total += item.price;
 
-
         productsText +=
             item.caseName +
             " | " +
             item.phone +
-            " | 79,99 zł\n";
-
+            " | " +
+            "79,99 zł\n";
 
         container.innerHTML += `
 
@@ -1426,151 +1403,227 @@ function showCheckoutSummary() {
             </div>
 
         `;
-
     });
-
 
     totalElement.innerText =
         total.toFixed(2).replace(".", ",") +
         " zł";
 
-
     document
         .getElementById("productsField")
         .value = productsText;
 
-
     document
         .getElementById("totalField")
         .value =
-        total.toFixed(2) + " zł";
-
-
+        total.toFixed(2) +
+        " zł";
 }
 
 
 /* ==========================================
-   WYSŁANIE ZAMÓWIENIA
+   WYSŁANIE DO FORMSPREE
 ========================================== */
 
-async function submitOrder(event) {
+document
+    .getElementById("orderForm")
+    .addEventListener("submit", async function(event) {
 
-    event.preventDefault();
+        event.preventDefault();
 
+        const form = event.target;
 
-    if (cart.length === 0) {
+        const button =
+            document.getElementById("submitOrderButton");
 
-        alert(
-            "Koszyk jest pusty."
-        );
+        const errorBox =
+            document.getElementById("formError");
 
-        return;
+        if (cart.length === 0) {
 
-    }
+            alert("Koszyk jest pusty.");
 
-
-    const orderNumber =
-        "NC-" +
-        Date.now()
-            .toString()
-            .slice(-8);
-
-
-    document
-        .getElementById("orderNumberField")
-        .value = orderNumber;
-
-
-    const form =
-        document.getElementById("orderForm");
-
-
-    const formData =
-        new FormData(form);
-
-
-    try {
-
-        const response =
-            await fetch(
-                form.action,
-                {
-                    method: "POST",
-                    body: formData,
-                    headers: {
-                        "Accept":
-                            "application/json"
-                    }
-                }
-            );
-
-
-        if (response.ok) {
-
-            document
-                .getElementById("orderSection")
-                .style.display = "none";
-
-
-            document
-                .getElementById("successMessage")
-                .style.display = "block";
-
-
-            document
-                .getElementById("orderNumber")
-                .innerText =
-                orderNumber;
-
-
-            cart = [];
-
-            updateCart();
-
-
-        } else {
-
-            alert(
-                "Nie udało się wysłać zamówienia. Spróbuj ponownie."
-            );
-
+            return;
         }
 
+        errorBox.style.display = "none";
+        errorBox.innerText = "";
 
-    } catch (error) {
+        /*
+         * Generujemy numer zamówienia
+         */
 
-        alert(
-            "Wystąpił problem z połączeniem. Spróbuj ponownie."
+        const orderNumber =
+            "NC-" +
+            Math.floor(
+                10000000 +
+                Math.random() * 90000000
+            );
+
+        document
+            .getElementById("orderNumberField")
+            .value = orderNumber;
+
+        /*
+         * Ustawiamy email klienta
+         * jako Reply-To dla Formspree
+         */
+
+        const customerEmail =
+            document
+                .getElementById("email")
+                .value;
+
+        /*
+         * Tworzymy dane formularza
+         */
+
+        const formData =
+            new FormData(form);
+
+        formData.append(
+            "_replyto",
+            customerEmail
         );
 
-    }
+        /*
+         * Blokujemy przycisk
+         */
 
-}
+        button.disabled = true;
+
+        button.innerText =
+            "WYSYŁANIE...";
+
+        try {
+
+            const response =
+                await fetch(
+                    "https://formspree.io/f/myezewlp",
+                    {
+                        method: "POST",
+                        body: formData,
+                        headers: {
+                            "Accept":
+                                "application/json"
+                        }
+                    }
+                );
+
+            /*
+             * Jeśli Formspree zaakceptował
+             * formularz
+             */
+
+            if (response.ok) {
+
+                document
+                    .getElementById("orderSection")
+                    .style.display = "none";
+
+                document
+                    .getElementById("successMessage")
+                    .style.display = "block";
+
+                document
+                    .getElementById("orderNumber")
+                    .innerText =
+                    orderNumber;
+
+                cart = [];
+
+                updateCart();
+
+            } else {
+
+                let message =
+                    "Nie udało się wysłać zamówienia.";
+
+                try {
+
+                    const data =
+                        await response.json();
+
+                    if (
+                        data &&
+                        data.errors &&
+                        data.errors.length
+                    ) {
+
+                        message =
+                            data.errors
+                                .map(function(error) {
+                                    return error.message;
+                                })
+                                .join(", ");
+                    }
+
+                } catch (e) {
+                    /* nic */
+                }
+
+                errorBox.innerText =
+                    message +
+                    " Spróbuj ponownie.";
+
+                errorBox.style.display =
+                    "block";
+
+                button.disabled = false;
+
+                button.innerText =
+                    "POTWIERDŹ ZAMÓWIENIE";
+            }
+
+        } catch (error) {
+
+            errorBox.innerText =
+                "Nie udało się połączyć z serwerem. Sprawdź połączenie z internetem i spróbuj ponownie.";
+
+            errorBox.style.display =
+                "block";
+
+            button.disabled = false;
+
+            button.innerText =
+                "POTWIERDŹ ZAMÓWIENIE";
+        }
+
+    });
 
 
 /* ==========================================
-   KONIEC
+   ZAKOŃCZENIE ZAMÓWIENIA
 ========================================== */
 
 function finishOrder() {
 
     closeCheckout();
 
-
     document
         .getElementById("orderForm")
         .reset();
-
 
     document
         .getElementById("orderSection")
         .style.display = "block";
 
-
     document
         .getElementById("successMessage")
         .style.display = "none";
 
+    document
+        .getElementById("formError")
+        .style.display = "none";
+
+    document
+        .getElementById("submitOrderButton")
+        .disabled = false;
+
+    document
+        .getElementById("submitOrderButton")
+        .innerText =
+        "POTWIERDŹ ZAMÓWIENIE";
 }
 
 </script>
