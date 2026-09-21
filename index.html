@@ -1828,10 +1828,13 @@ window.location.search
 
 if(paymentStatus === "success"){
 
-openCheckout();
+document
+.getElementById("checkoutModal")
+.classList.add("active");
 
 showSuccess();
 
+}
 }
 
 </script>
