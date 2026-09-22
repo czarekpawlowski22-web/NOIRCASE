@@ -15,17 +15,17 @@
 }
 
 :root{
-  --black:#05070a;
-  --dark:#0b1016;
-  --dark2:#111923;
-  --blue:#3f8cff;
-  --blue2:#72b5ff;
-  --silver:#dfe5eb;
-  --white:#ffffff;
-  --text:#111820;
-  --muted:#69727d;
-  --line:#dce2e8;
-  --soft:#f4f7fa;
+  --black:#08090b;
+  --dark:#101216;
+  --dark2:#171a20;
+  --card:#111419;
+  --line:rgba(255,255,255,.10);
+  --white:#f5f7fa;
+  --muted:#9ca3af;
+  --blue:#5fa8ff;
+  --silver:#c8cdd4;
+  --orange:#ff8a32;
+  --purple:#9b6cff;
 }
 
 html{
@@ -34,8 +34,8 @@ html{
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#fff;
-  color:var(--text);
+  background:#08090b;
+  color:var(--white);
   overflow-x:hidden;
 }
 
@@ -46,131 +46,128 @@ select{
   font-family:inherit;
 }
 
-/* =========================================================
-   TEST BAR
-========================================================= */
+/* TEST BAR */
 
 .test-bar{
-  background:#05070a;
-  color:#fff;
+  background:#050506;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  color:#bfc4cc;
   text-align:center;
   padding:9px 15px;
   font-size:11px;
   letter-spacing:1.5px;
-  font-weight:bold;
+  text-transform:uppercase;
 }
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* HEADER */
 
 header{
   position:sticky;
   top:0;
   z-index:900;
-  background:rgba(5,7,10,.94);
+  background:rgba(8,9,11,.94);
   backdrop-filter:blur(14px);
-  color:#fff;
-  min-height:72px;
-  padding:15px 6%;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  padding:18px 5%;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  border-bottom:1px solid rgba(255,255,255,.08);
+  justify-content:space-between;
 }
 
 .logo{
-  font-size:25px;
+  font-size:23px;
   font-weight:800;
-  letter-spacing:5px;
+  letter-spacing:6px;
 }
 
 .logo span{
-  color:var(--blue2);
+  color:var(--blue);
 }
 
 .cart-button{
-  border:1px solid rgba(255,255,255,.2);
+  border:1px solid rgba(255,255,255,.18);
   background:#fff;
-  color:#080b0f;
+  color:#08090b;
   border-radius:999px;
-  padding:11px 18px;
+  padding:11px 19px;
   cursor:pointer;
-  font-weight:bold;
   font-size:12px;
+  font-weight:bold;
   letter-spacing:1px;
   transition:.25s;
 }
 
 .cart-button:hover{
-  background:var(--blue);
+  background:#111;
   color:#fff;
-  border-color:var(--blue);
+  border-color:#fff;
 }
 
-/* =========================================================
-   HERO
-========================================================= */
+/* HERO */
 
 .hero{
-  position:relative;
-  min-height:680px;
-  background:
-    radial-gradient(circle at 50% 20%,rgba(78,151,255,.22),transparent 35%),
-    radial-gradient(circle at 20% 70%,rgba(255,255,255,.06),transparent 25%),
-    linear-gradient(135deg,#05070a,#101923 55%,#06080b);
-  color:#fff;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  overflow:hidden;
+  min-height:720px;
   padding:80px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 25%,rgba(95,168,255,.17),transparent 28%),
+    radial-gradient(circle at 20% 80%,rgba(155,108,255,.08),transparent 25%),
+    #08090b;
 }
 
-.hero:before{
+.hero::before{
   content:"";
   position:absolute;
-  width:520px;
-  height:520px;
+  width:550px;
+  height:550px;
   border-radius:50%;
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:
-    0 0 0 60px rgba(255,255,255,.015),
-    0 0 0 120px rgba(255,255,255,.01);
+  border:1px solid rgba(95,168,255,.08);
+  top:80px;
+  left:50%;
+  transform:translateX(-50%);
 }
 
 .hero-content{
   position:relative;
   z-index:2;
-  max-width:850px;
+  max-width:900px;
 }
 
-.hero-kicker{
-  color:var(--blue2);
-  font-size:12px;
-  letter-spacing:4px;
-  font-weight:bold;
-  margin-bottom:20px;
+.hero-label{
+  display:inline-block;
+  border:1px solid rgba(95,168,255,.25);
+  color:#9bcaff;
+  padding:8px 15px;
+  border-radius:999px;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:25px;
 }
 
 .hero h1{
-  font-size:clamp(48px,9vw,105px);
+  font-size:clamp(55px,11vw,125px);
+  line-height:.9;
   letter-spacing:8px;
-  margin-bottom:15px;
   font-weight:900;
+  margin-bottom:25px;
 }
 
 .hero h1 span{
-  color:#fff;
+  color:var(--blue);
 }
 
-.hero-subtitle{
-  color:#c9d1da;
-  max-width:680px;
-  margin:auto;
-  font-size:18px;
+.hero p{
+  max-width:650px;
+  margin:0 auto 35px;
+  color:#aeb5bf;
   line-height:1.7;
+  font-size:18px;
 }
 
 .hero-buttons{
@@ -178,866 +175,684 @@ header{
   justify-content:center;
   gap:12px;
   flex-wrap:wrap;
-  margin-top:35px;
 }
 
 .hero-button{
   display:inline-block;
   text-decoration:none;
-  background:#fff;
-  color:#080b0f;
-  padding:15px 26px;
   border-radius:999px;
+  padding:16px 28px;
   font-size:12px;
+  letter-spacing:2px;
   font-weight:bold;
-  letter-spacing:1.5px;
   transition:.25s;
 }
 
-.hero-button:hover{
-  background:var(--blue);
-  color:#fff;
-  transform:translateY(-2px);
+.hero-button.primary{
+  background:#fff;
+  color:#08090b;
 }
 
 .hero-button.secondary{
-  background:transparent;
+  border:1px solid rgba(255,255,255,.16);
   color:#fff;
-  border:1px solid rgba(255,255,255,.25);
 }
 
-/* =========================================================
-   PRODUCT VISUAL
-========================================================= */
-
-.hero-device{
-  width:245px;
-  height:180px;
-  position:absolute;
-  right:9%;
-  bottom:90px;
-  transform:rotate(-8deg);
-  opacity:.85;
+.hero-button:hover{
+  transform:translateY(-3px);
 }
 
-.device-body{
-  position:absolute;
-  width:190px;
-  height:125px;
-  right:0;
-  top:20px;
-  border-radius:28px;
-  background:
-    linear-gradient(135deg,#f7f9fb,#9ea7b0 55%,#e8edf1);
-  box-shadow:
-    0 30px 70px rgba(0,0,0,.5),
-    inset 0 2px 4px rgba(255,255,255,.9);
-}
-
-.device-port{
-  position:absolute;
-  left:-28px;
-  top:48px;
-  width:45px;
-  height:30px;
-  border-radius:7px;
-  background:#bbc3ca;
-  box-shadow:inset 0 0 0 7px #68727c;
-}
-
-.device-button{
-  position:absolute;
-  width:32px;
-  height:12px;
-  border-radius:8px;
-  background:#aeb6be;
-  top:20px;
-  left:35px;
-}
-
-.device-button.two{
-  top:auto;
-  bottom:20px;
-}
-
-.device-cable{
-  position:absolute;
-  width:90px;
-  height:80px;
-  border:8px solid #242a30;
-  border-left:0;
-  border-bottom:0;
-  border-radius:0 70px 0 0;
-  right:-50px;
-  top:-50px;
-  transform:rotate(15deg);
-}
-
-/* =========================================================
-   SECTIONS
-========================================================= */
+/* PRODUCT SECTION */
 
 .section{
-  padding:90px 6%;
+  max-width:1250px;
+  margin:auto;
+  padding:100px 24px;
 }
 
 .section-title{
-  max-width:850px;
-  margin:0 auto 45px;
   text-align:center;
+  margin-bottom:55px;
 }
 
 .section-title .eyebrow{
   color:var(--blue);
   font-size:11px;
-  font-weight:bold;
   letter-spacing:3px;
+  text-transform:uppercase;
   margin-bottom:12px;
 }
 
 .section-title h2{
-  font-size:clamp(30px,5vw,52px);
-  letter-spacing:2px;
+  font-size:clamp(34px,6vw,55px);
+  letter-spacing:3px;
   margin-bottom:15px;
 }
 
 .section-title p{
   color:var(--muted);
   line-height:1.7;
-  font-size:16px;
 }
 
-/* =========================================================
-   TRUST
-========================================================= */
+/* PRODUCT GRID */
 
-.trust{
-  background:#fff;
-  border-bottom:1px solid var(--line);
-  padding:25px 6%;
-}
-
-.trust-grid{
-  max-width:1100px;
-  margin:auto;
+.products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:15px;
+  gap:18px;
 }
 
-.trust-item{
-  text-align:center;
-  padding:12px;
+.product{
+  background:
+    linear-gradient(180deg,#15181d,#0e1014);
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+  transition:.3s;
 }
 
-.trust-item strong{
-  display:block;
-  font-size:13px;
-  margin-bottom:5px;
-}
-
-.trust-item span{
-  color:var(--muted);
-  font-size:12px;
-}
-
-/* =========================================================
-   PRODUCT
-========================================================= */
-
-.product-section{
-  background:var(--soft);
-}
-
-.product-box{
-  max-width:1150px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:45px;
-  align-items:center;
+.product:hover{
+  transform:translateY(-7px);
+  border-color:rgba(255,255,255,.2);
 }
 
 .product-visual{
-  min-height:500px;
-  border-radius:28px;
-  background:
-    radial-gradient(circle at 50% 30%,rgba(75,145,255,.2),transparent 35%),
-    linear-gradient(145deg,#05070a,#141c25);
-  position:relative;
+  height:320px;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
+  position:relative;
   overflow:hidden;
 }
 
-.big-device{
-  position:relative;
-  width:280px;
-  height:205px;
-  transform:rotate(-7deg);
-  filter:drop-shadow(0 30px 35px rgba(0,0,0,.45));
+.product-visual::before{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  filter:blur(55px);
+  opacity:.20;
 }
 
-.big-device-body{
-  position:absolute;
-  right:0;
-  top:30px;
-  width:230px;
-  height:155px;
-  border-radius:32px;
+.product.black .product-visual{
   background:
-    linear-gradient(135deg,#ffffff,#b6bec7 48%,#eef2f5);
+    radial-gradient(circle at center,rgba(255,255,255,.05),transparent 55%),
+    #0b0c0f;
+}
+
+.product.black .product-visual::before{
+  background:#fff;
+}
+
+.product.silver .product-visual{
+  background:
+    radial-gradient(circle at center,rgba(210,220,235,.12),transparent 55%),
+    #111419;
+}
+
+.product.silver .product-visual::before{
+  background:#dce5ef;
+}
+
+.product.orange .product-visual{
+  background:
+    radial-gradient(circle at center,rgba(255,138,50,.13),transparent 55%),
+    #111419;
+}
+
+.product.orange .product-visual::before{
+  background:#ff8a32;
+}
+
+.product.purple .product-visual{
+  background:
+    radial-gradient(circle at center,rgba(155,108,255,.14),transparent 55%),
+    #111419;
+}
+
+.product.purple .product-visual::before{
+  background:#9b6cff;
+}
+
+/* DEVICE MOCKUP */
+
+.device{
+  width:155px;
+  height:112px;
+  border-radius:27px;
+  position:relative;
+  transform:rotate(-7deg);
   box-shadow:
-    inset 0 2px 5px rgba(255,255,255,.95),
-    inset 0 -7px 15px rgba(0,0,0,.13);
+    0 25px 50px rgba(0,0,0,.5),
+    inset 0 1px 2px rgba(255,255,255,.25);
+  z-index:2;
 }
 
-.big-device-port{
+.black .device{
+  background:linear-gradient(145deg,#363a40,#08090b 70%);
+}
+
+.silver .device{
+  background:linear-gradient(145deg,#f0f3f6,#858b94);
+}
+
+.orange .device{
+  background:linear-gradient(145deg,#ffb16d,#e86113);
+}
+
+.purple .device{
+  background:linear-gradient(145deg,#c2a6ff,#7444db);
+}
+
+.device::before{
+  content:"";
   position:absolute;
-  left:-34px;
-  top:62px;
-  width:58px;
-  height:38px;
-  border-radius:8px;
-  background:#abb4bc;
-  box-shadow:inset 0 0 0 8px #59636c;
+  width:38px;
+  height:25px;
+  left:-10px;
+  top:43px;
+  border-radius:8px 3px 3px 8px;
+  background:currentColor;
+  box-shadow:
+    0 0 0 2px rgba(0,0,0,.15);
 }
 
-.big-device-button{
+.black .device::before{
+  color:#262a30;
+}
+
+.silver .device::before{
+  color:#cdd2d8;
+}
+
+.orange .device::before{
+  color:#ed731d;
+}
+
+.purple .device::before{
+  color:#8050e4;
+}
+
+.device::after{
+  content:"";
   position:absolute;
-  left:42px;
-  top:24px;
-  width:42px;
-  height:15px;
-  border-radius:8px;
-  background:#aab2bb;
+  width:21px;
+  height:12px;
+  border-radius:5px;
+  background:rgba(255,255,255,.25);
+  right:17px;
+  top:18px;
 }
 
-.big-device-button.bottom{
-  top:auto;
-  bottom:24px;
+.product-info{
+  padding:22px;
 }
 
-.big-cable{
-  position:absolute;
-  right:-65px;
-  top:-65px;
-  width:120px;
-  height:110px;
-  border:10px solid #252b31;
-  border-left:0;
-  border-bottom:0;
-  border-radius:0 100px 0 0;
-  transform:rotate(15deg);
+.product-color{
+  color:#8e96a2;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:8px;
 }
 
-.product-info-main h2{
-  font-size:clamp(32px,5vw,58px);
-  margin-bottom:15px;
-}
-
-.product-tag{
-  color:var(--blue);
-  font-size:11px;
-  font-weight:bold;
-  letter-spacing:3px;
+.product-info h3{
+  font-size:18px;
   margin-bottom:12px;
 }
 
-.product-description{
-  color:#626b75;
-  line-height:1.8;
-  font-size:16px;
-  margin-bottom:25px;
+.product-info p{
+  color:#9299a4;
+  font-size:13px;
+  line-height:1.6;
+  min-height:42px;
+}
+
+.product-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:20px;
 }
 
 .price{
-  font-size:31px;
-  font-weight:900;
-  margin-bottom:25px;
-}
-
-.product-note{
-  background:#fff;
-  border:1px solid var(--line);
-  padding:18px;
-  border-radius:15px;
-  color:#5f6872;
-  font-size:13px;
-  line-height:1.7;
-  margin-bottom:25px;
-}
-
-.buy-main{
-  border:0;
-  background:#05070a;
-  color:#fff;
-  border-radius:999px;
-  padding:16px 28px;
-  cursor:pointer;
+  font-size:20px;
   font-weight:bold;
-  letter-spacing:1.5px;
-  transition:.25s;
 }
 
-.buy-main:hover{
-  background:var(--blue);
-  transform:translateY(-2px);
-}
-
-/* =========================================================
-   DESCRIPTION
-========================================================= */
-
-.description-section{
+.buy{
+  border:0;
   background:#fff;
+  color:#08090b;
+  border-radius:999px;
+  padding:11px 16px;
+  cursor:pointer;
+  font-size:11px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+/* PRODUCT DESCRIPTION */
+
+.description{
+  background:#0e1014;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
 }
 
 .description-grid{
-  max-width:1100px;
-  margin:auto;
   display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:25px;
+  grid-template-columns:1.1fr .9fr;
+  gap:70px;
+  align-items:center;
+}
+
+.description-text .eyebrow{
+  color:var(--blue);
+  letter-spacing:3px;
+  font-size:11px;
+  text-transform:uppercase;
+  margin-bottom:15px;
+}
+
+.description-text h2{
+  font-size:clamp(35px,5vw,60px);
+  line-height:1;
+  margin-bottom:25px;
+}
+
+.description-text p{
+  color:#a7adb7;
+  line-height:1.85;
+  margin-bottom:20px;
 }
 
 .description-card{
   border:1px solid var(--line);
-  border-radius:20px;
+  border-radius:25px;
   padding:30px;
-  background:#fff;
-}
-
-.description-card.dark{
-  background:#080b0f;
-  color:#fff;
-  border-color:#080b0f;
+  background:#111419;
 }
 
 .description-card h3{
-  font-size:18px;
+  margin-bottom:20px;
+  font-size:16px;
   letter-spacing:1px;
-  margin-bottom:15px;
 }
 
-.description-card p{
-  color:#69727d;
-  line-height:1.8;
-  font-size:15px;
-}
-
-.description-card.dark p{
-  color:#b7c0ca;
-}
-
-.description-card ul{
+.spec-list{
   list-style:none;
-  margin-top:15px;
 }
 
-.description-card li{
-  padding:11px 0;
-  border-bottom:1px solid rgba(0,0,0,.08);
-  color:#5f6872;
-  line-height:1.5;
+.spec-list li{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  color:#aeb5bf;
+  font-size:14px;
 }
 
-.description-card.dark li{
-  border-color:rgba(255,255,255,.1);
-  color:#c6cdd5;
-}
-
-.description-card li:last-child{
+.spec-list li:last-child{
   border-bottom:0;
 }
 
-/* =========================================================
-   FEATURES
-========================================================= */
-
-.features{
-  background:#080b0f;
+.spec-list strong{
   color:#fff;
+  text-align:right;
 }
 
-.features .section-title p{
-  color:#aeb7c1;
-}
+/* BENEFITS */
 
-.features-grid{
-  max-width:1100px;
-  margin:auto;
+.benefits{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
 
-.feature{
+.benefit{
+  background:#101216;
+  border:1px solid var(--line);
+  border-radius:20px;
   padding:30px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:18px;
-  background:rgba(255,255,255,.025);
 }
 
-.feature-number{
-  color:var(--blue2);
-  font-weight:bold;
+.benefit-number{
+  color:var(--blue);
   font-size:12px;
   letter-spacing:2px;
   margin-bottom:20px;
 }
 
-.feature h3{
-  font-size:17px;
+.benefit h3{
+  font-size:18px;
   margin-bottom:12px;
 }
 
-.feature p{
-  color:#aab3bd;
+.benefit p{
+  color:#9299a4;
   line-height:1.7;
   font-size:14px;
 }
 
-/* =========================================================
-   HOW IT WORKS
-========================================================= */
+/* HOW IT WORKS */
 
-.how-section{
-  background:#f7f9fb;
+.how{
+  background:#0d0f13;
 }
 
 .steps{
-  max-width:1000px;
+  max-width:950px;
   margin:auto;
   display:grid;
-  grid-template-columns:repeat(4,1fr);
   gap:15px;
 }
 
 .step{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:18px;
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:20px;
+  align-items:start;
   padding:25px;
+  border:1px solid var(--line);
+  background:#111419;
+  border-radius:18px;
 }
 
 .step-number{
-  width:38px;
-  height:38px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  width:55px;
+  height:55px;
   border-radius:50%;
-  background:#080b0f;
-  color:#fff;
+  border:1px solid rgba(95,168,255,.35);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--blue);
   font-weight:bold;
-  margin-bottom:18px;
 }
 
 .step h3{
-  font-size:15px;
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
 .step p{
-  color:#69727d;
+  color:#959ca7;
   line-height:1.7;
-  font-size:13px;
-}
-
-/* =========================================================
-   SPECIFICATION
-========================================================= */
-
-.spec-section{
-  background:#fff;
-}
-
-.spec-box{
-  max-width:950px;
-  margin:auto;
-  border:1px solid var(--line);
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.spec-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  border-bottom:1px solid var(--line);
-}
-
-.spec-row:last-child{
-  border-bottom:0;
-}
-
-.spec-row div{
-  padding:16px 20px;
-}
-
-.spec-row div:first-child{
-  background:#f5f7f9;
-  font-weight:bold;
-}
-
-.spec-row div:last-child{
-  color:#5f6872;
-}
-
-/* =========================================================
-   INSTRUCTION
-========================================================= */
-
-.instruction{
-  background:#f4f7fa;
-}
-
-.instruction-box{
-  max-width:900px;
-  margin:auto;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:35px;
-}
-
-.instruction-box h3{
-  font-size:21px;
-  margin-bottom:20px;
-}
-
-.instruction-box ol{
-  padding-left:20px;
-}
-
-.instruction-box li{
-  padding:9px 0;
-  color:#626c77;
-  line-height:1.7;
-}
-
-/* =========================================================
-   WARNINGS
-========================================================= */
-
-.warning-section{
-  background:#fff;
-}
-
-.warning-box{
-  max-width:950px;
-  margin:auto;
-  border:1px solid #dfe3e7;
-  border-left:5px solid #111820;
-  border-radius:15px;
-  padding:25px;
-}
-
-.warning-box h3{
-  margin-bottom:15px;
-}
-
-.warning-box p{
-  color:#626c77;
-  line-height:1.8;
   font-size:14px;
 }
 
-.warning-box ul{
-  padding-left:20px;
-  margin-top:12px;
+/* INSTRUCTION */
+
+.instruction{
+  background:#f4f5f7;
+  color:#101216;
+  max-width:none;
 }
 
-.warning-box li{
-  margin-bottom:8px;
-  color:#626c77;
-  line-height:1.6;
-}
-
-/* =========================================================
-   INFO
-========================================================= */
-
-.info-section{
-  background:#f5f7f9;
-}
-
-.info-grid{
-  max-width:1100px;
+.instruction-inner{
+  max-width:1050px;
   margin:auto;
+}
+
+.instruction .section-title p{
+  color:#6b7280;
+}
+
+.instruction-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(2,1fr);
   gap:18px;
 }
 
-.info-card{
+.instruction-card{
   background:#fff;
-  border:1px solid var(--line);
-  border-radius:18px;
+  border:1px solid #e2e5e9;
+  border-radius:20px;
+  padding:30px;
+}
+
+.instruction-card h3{
+  margin-bottom:15px;
+}
+
+.instruction-card p,
+.instruction-card li{
+  color:#626a75;
+  line-height:1.75;
+  font-size:14px;
+}
+
+.instruction-card ul{
+  padding-left:20px;
+}
+
+/* WARNING */
+
+.warning{
+  border:1px solid rgba(255,170,70,.25);
+  background:rgba(255,145,40,.05);
+  border-radius:20px;
   padding:25px;
+  margin-top:18px;
 }
 
-.info-card h3{
-  font-size:13px;
-  letter-spacing:1.5px;
-  margin-bottom:12px;
+.warning h3{
+  color:#ffad5e;
+  margin-bottom:10px;
 }
 
-.info-card p{
-  color:#69727d;
+.warning p{
+  color:#a9afb8;
   line-height:1.7;
   font-size:14px;
 }
 
-/* =========================================================
-   FAQ
-========================================================= */
-
-.faq-section{
-  background:#fff;
-}
+/* FAQ */
 
 .faq{
   max-width:900px;
   margin:auto;
 }
 
-.faq-item{
-  border-bottom:1px solid var(--line);
+details{
+  border:1px solid var(--line);
+  background:#101216;
+  border-radius:16px;
+  margin-bottom:12px;
+  overflow:hidden;
 }
 
-.faq-question{
-  width:100%;
-  padding:22px 0;
-  border:0;
-  background:none;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  text-align:left;
+summary{
+  padding:22px;
   cursor:pointer;
-  font-size:15px;
   font-weight:bold;
-  color:#111820;
+  list-style:none;
 }
 
-.faq-question span:last-child{
-  font-size:23px;
-  font-weight:normal;
-  color:#65707b;
-}
-
-.faq-answer{
+summary::-webkit-details-marker{
   display:none;
-  padding:0 0 22px;
-  color:#69727d;
-  line-height:1.8;
+}
+
+details p{
+  padding:0 22px 22px;
+  color:#969da8;
+  line-height:1.7;
   font-size:14px;
 }
 
-.faq-item.active .faq-answer{
-  display:block;
-}
-
-/* =========================================================
-   TEST INFO
-========================================================= */
-
-.test-section{
-  background:#080b0f;
-  color:#fff;
-  text-align:center;
-}
-
-.test-section p{
-  max-width:800px;
-  margin:auto;
-  color:#adb6bf;
-  line-height:1.8;
-  font-size:14px;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
+/* FOOTER */
 
 footer{
-  background:#030507;
-  color:#fff;
-  padding:45px 6%;
+  border-top:1px solid var(--line);
+  background:#050608;
+  padding:55px 20px;
   text-align:center;
 }
 
 .footer-logo{
-  font-size:23px;
+  font-size:22px;
   font-weight:bold;
   letter-spacing:5px;
   margin-bottom:15px;
 }
 
-footer p{
-  color:#7f8994;
-  line-height:1.7;
-  font-size:12px;
+.footer-logo span{
+  color:var(--blue);
 }
 
-/* =========================================================
-   CART
-========================================================= */
+footer p{
+  color:#747b86;
+  font-size:12px;
+  line-height:1.7;
+}
+
+/* OVERLAY */
 
 .overlay{
+  display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.55);
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(5px);
   z-index:1000;
 }
 
 .overlay.active{
-  opacity:1;
-  pointer-events:auto;
+  display:block;
 }
+
+/* CART */
 
 .cart-drawer{
   position:fixed;
+  right:0;
   top:0;
-  right:-450px;
-  width:min(450px,100%);
-  height:100vh;
-  background:#fff;
+  height:100%;
+  width:430px;
+  max-width:100%;
+  background:#101216;
+  border-left:1px solid var(--line);
   z-index:1100;
+  transform:translateX(100%);
   transition:.3s;
   display:flex;
   flex-direction:column;
-  box-shadow:-20px 0 60px rgba(0,0,0,.2);
 }
 
 .cart-drawer.active{
-  right:0;
+  transform:translateX(0);
 }
 
 .cart-header{
   padding:22px;
-  border-bottom:1px solid var(--line);
   display:flex;
   justify-content:space-between;
   align-items:center;
+  border-bottom:1px solid var(--line);
 }
 
 .cart-header h2{
-  font-size:18px;
+  font-size:17px;
+  letter-spacing:2px;
 }
 
 .close-cart{
   border:0;
   background:none;
-  font-size:28px;
+  color:#fff;
+  font-size:25px;
   cursor:pointer;
 }
 
 .cart-content{
   flex:1;
-  overflow:auto;
-  padding:22px;
+  overflow-y:auto;
+  padding:20px;
 }
 
 .cart-empty{
   text-align:center;
-  color:#78828d;
-  padding:60px 10px;
+  color:#7f8792;
+  padding:70px 20px;
 }
 
 .cart-item{
-  display:grid;
-  grid-template-columns:80px 1fr;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:15px;
+  margin-bottom:12px;
+}
+
+.cart-item-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
   gap:15px;
-  padding:15px 0;
-  border-bottom:1px solid var(--line);
 }
 
-.cart-thumb{
-  width:80px;
-  height:80px;
-  border-radius:14px;
-  background:
-    linear-gradient(135deg,#f4f7fa,#aab3bc);
-  position:relative;
+.cart-color{
+  font-size:11px;
+  color:#8e96a2;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:5px;
 }
 
-.cart-thumb:after{
-  content:"";
-  position:absolute;
-  width:35px;
-  height:24px;
-  left:22px;
-  top:28px;
-  border-radius:7px;
-  background:#555f68;
+.cart-item h3{
+  font-size:15px;
+  margin-bottom:5px;
 }
 
-.cart-info h3{
-  font-size:14px;
-  margin-bottom:7px;
-}
-
-.cart-info p{
-  color:#6d7680;
+.cart-item p{
+  color:#9299a4;
   font-size:13px;
-  line-height:1.6;
 }
 
 .remove-item{
   border:0;
   background:none;
-  color:#8a929a;
-  text-decoration:underline;
+  color:#777f8a;
   cursor:pointer;
-  margin-top:8px;
   font-size:12px;
 }
 
 .cart-footer{
+  padding:20px;
   border-top:1px solid var(--line);
-  padding:22px;
 }
 
 .cart-total{
   display:flex;
   justify-content:space-between;
-  font-size:19px;
-  font-weight:bold;
   margin-bottom:15px;
+  font-size:18px;
+  font-weight:bold;
 }
 
 .checkout-button{
   width:100%;
   border:0;
   border-radius:999px;
-  background:#080b0f;
-  color:#fff;
-  padding:16px;
-  cursor:pointer;
+  padding:17px;
+  background:#fff;
+  color:#08090b;
   font-weight:bold;
+  cursor:pointer;
   letter-spacing:1px;
 }
 
-.checkout-button:hover{
-  background:var(--blue);
-}
-
-/* =========================================================
-   CHECKOUT MODAL
-========================================================= */
+/* MODAL */
 
 .modal{
+  display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.68);
   z-index:1200;
-  display:none;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(7px);
   align-items:center;
   justify-content:center;
   padding:20px;
@@ -1048,18 +863,20 @@ footer p{
 }
 
 .modal-box{
-  background:#fff;
-  width:min(700px,100%);
+  width:100%;
+  max-width:650px;
   max-height:92vh;
-  overflow:auto;
-  border-radius:22px;
+  overflow-y:auto;
+  background:#f7f7f8;
+  color:#101216;
+  border-radius:24px;
   padding:30px;
   position:relative;
 }
 
-.close{
+.modal-close{
   position:absolute;
-  top:15px;
+  top:14px;
   right:18px;
   border:0;
   background:none;
@@ -1072,27 +889,79 @@ footer p{
 }
 
 .modal-box > p{
-  color:#707984;
-  margin-bottom:25px;
+  color:#717985;
+  font-size:14px;
   line-height:1.6;
+  margin-bottom:25px;
 }
 
+/* COLOR SELECTOR */
+
+.color-selector{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
+  margin:15px 0 25px;
+}
+
+.color-option{
+  border:1px solid #ddd;
+  background:#fff;
+  border-radius:12px;
+  padding:12px 5px;
+  cursor:pointer;
+  text-align:center;
+  font-size:11px;
+  font-weight:bold;
+  transition:.2s;
+}
+
+.color-option.active{
+  border-color:#111;
+  box-shadow:0 0 0 2px #111;
+}
+
+.color-dot{
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  margin:0 auto 7px;
+  border:1px solid rgba(0,0,0,.15);
+}
+
+.dot-black{
+  background:#111;
+}
+
+.dot-silver{
+  background:linear-gradient(135deg,#fff,#9ca3af);
+}
+
+.dot-orange{
+  background:#ff8a32;
+}
+
+.dot-purple{
+  background:#9b6cff;
+}
+
+/* FORM */
+
 .form-group{
-  margin-bottom:17px;
+  margin-bottom:15px;
 }
 
 .form-group label{
   display:block;
+  margin-bottom:7px;
   font-size:12px;
   font-weight:bold;
-  margin-bottom:7px;
 }
 
 .form-group input,
-.form-group textarea,
-.form-group select{
+.form-group textarea{
   width:100%;
-  border:1px solid #d9dfe5;
+  border:1px solid #ddd;
   border-radius:10px;
   padding:13px;
   font-size:14px;
@@ -1107,29 +976,28 @@ footer p{
 .form-row{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:10px;
 }
 
+/* DELIVERY */
+
 .delivery-box{
-  margin:22px 0;
-  padding:18px;
-  background:#f5f7f9;
-  border-radius:15px;
+  margin:20px 0;
 }
 
 .delivery-box h3{
   font-size:14px;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 
 .delivery-option{
   display:flex;
-  gap:12px;
   align-items:flex-start;
-  background:#fff;
-  border:1px solid #dce2e8;
+  gap:10px;
+  padding:15px;
+  border:1px solid #ddd;
   border-radius:12px;
-  padding:14px;
+  background:#fff;
 }
 
 .delivery-option input{
@@ -1138,85 +1006,63 @@ footer p{
 
 .delivery-option strong{
   display:block;
-  font-size:14px;
-  margin-bottom:5px;
+  margin-bottom:4px;
+  font-size:13px;
 }
 
 .delivery-option span{
-  display:block;
-  color:#6c7680;
+  color:#777;
   font-size:12px;
   line-height:1.5;
 }
 
+/* SUMMARY */
+
 .order-summary{
-  background:#f4f6f8;
-  padding:20px;
-  border-radius:15px;
-  margin:22px 0;
+  background:#eceef1;
+  border-radius:14px;
+  padding:18px;
+  margin:20px 0;
 }
 
 .order-summary h3{
+  margin-bottom:10px;
   font-size:14px;
-  margin-bottom:15px;
 }
 
-.summary-item{
-  padding:10px 0;
-  border-bottom:1px solid #dce1e5;
+.summary-line{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:7px 0;
   font-size:13px;
-  line-height:1.6;
+  color:#606873;
 }
 
 .summary-total{
-  padding-top:15px;
   display:flex;
   justify-content:space-between;
-  font-size:19px;
+  border-top:1px solid #d5d8dc;
+  margin-top:8px;
+  padding-top:14px;
   font-weight:bold;
+  font-size:18px;
+  color:#101216;
 }
 
 .submit-order{
   width:100%;
   border:0;
+  background:#08090b;
+  color:#fff;
   border-radius:999px;
   padding:17px;
-  background:#080b0f;
-  color:#fff;
   cursor:pointer;
   font-weight:bold;
   letter-spacing:1px;
 }
 
-.submit-order:disabled{
-  opacity:.6;
-  cursor:wait;
-}
-
-.form-error{
-  display:none;
-  background:#fff0f0;
-  color:#9c2929;
-  padding:14px;
-  border-radius:10px;
-  margin-bottom:18px;
-  font-size:13px;
-  line-height:1.5;
-}
-
-.test-checkout-note{
-  margin-top:15px;
-  padding:13px;
-  background:#eef5ff;
-  color:#4e6175;
-  border-radius:10px;
-  font-size:11px;
-  line-height:1.6;
-}
-
-/* =========================================================
-   SUCCESS
-========================================================= */
+/* SUCCESS */
 
 .success{
   text-align:center;
@@ -1224,176 +1070,106 @@ footer p{
 }
 
 .success-icon{
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  background:#080b0f;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0 auto 20px;
-  font-size:32px;
-}
-
-.success h2{
+  font-size:55px;
   margin-bottom:15px;
 }
 
 .success p{
-  color:#6c7680;
+  color:#666;
   line-height:1.7;
-  margin-bottom:8px;
+  font-size:14px;
 }
 
-.success-button{
-  margin-top:22px;
-  border:0;
-  background:#080b0f;
-  color:#fff;
-  padding:14px 25px;
-  border-radius:999px;
-  cursor:pointer;
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .description-grid{
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+
+  .benefits{
+    grid-template-columns:1fr;
+  }
+
 }
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:850px){
+@media(max-width:600px){
 
   header{
-    padding:14px 18px;
+    padding:15px 16px;
   }
 
   .logo{
-    font-size:19px;
+    font-size:18px;
     letter-spacing:4px;
   }
 
   .cart-button{
     padding:10px 13px;
-    font-size:11px;
+    font-size:10px;
   }
 
   .hero{
-    min-height:600px;
-    padding:70px 18px;
+    min-height:650px;
+    padding:60px 18px;
   }
 
   .hero h1{
-    font-size:52px;
-    letter-spacing:5px;
+    font-size:55px;
+    letter-spacing:4px;
   }
 
-  .hero-subtitle{
+  .hero p{
     font-size:15px;
   }
 
-  .hero-device{
-    opacity:.35;
-    right:-45px;
-    bottom:45px;
-  }
-
-  .trust-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .product-box{
-    grid-template-columns:1fr;
-  }
-
-  .product-visual{
-    min-height:420px;
-  }
-
-  .description-grid{
-    grid-template-columns:1fr;
-  }
-
-  .features-grid{
-    grid-template-columns:1fr;
-  }
-
-  .steps{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .info-grid{
-    grid-template-columns:1fr;
-  }
-
-}
-
-@media(max-width:560px){
-
   .section{
-    padding:65px 18px;
+    padding:75px 17px;
   }
 
-  .trust{
-    padding:20px 12px;
-  }
-
-  .trust-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .trust-item strong{
-    font-size:11px;
-  }
-
-  .hero{
-    min-height:560px;
-  }
-
-  .hero h1{
-    font-size:45px;
+  .products{
+    grid-template-columns:1fr;
   }
 
   .product-visual{
-    min-height:350px;
+    height:300px;
   }
 
-  .big-device{
-    transform:scale(.78) rotate(-7deg);
-  }
-
-  .description-card,
-  .instruction-box,
-  .warning-box{
-    padding:22px;
-  }
-
-  .steps{
+  .instruction-grid{
     grid-template-columns:1fr;
   }
 
-  .spec-row{
-    grid-template-columns:1fr;
+  .step{
+    grid-template-columns:55px 1fr;
+    padding:20px;
   }
 
-  .spec-row div:first-child{
-    padding-bottom:7px;
-  }
-
-  .spec-row div:last-child{
-    padding-top:7px;
+  .step-number{
+    width:45px;
+    height:45px;
   }
 
   .form-row{
     grid-template-columns:1fr;
   }
 
-  .modal{
-    padding:8px;
+  .color-selector{
+    grid-template-columns:repeat(2,1fr);
   }
 
   .modal-box{
+    padding:25px 18px;
     border-radius:18px;
-    padding:23px 17px;
-    max-height:95vh;
+  }
+
+  .cart-drawer{
+    width:100%;
   }
 
 }
@@ -1403,17 +1179,13 @@ footer p{
 
 <body>
 
-<!-- =========================================================
-     TEST BAR
-========================================================= -->
+<!-- TEST -->
 
 <div class="test-bar">
   SAFEBAT • WERSJA TESTOWA • SPRZEDAŻ RZECZYWISTA NIE JEST URUCHOMIONA
 </div>
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
+<!-- HEADER -->
 
 <header>
 
@@ -1421,253 +1193,320 @@ footer p{
     SAFE<span>BAT</span>
   </div>
 
-  <button
-    class="cart-button"
-    onclick="openCart()"
-  >
-    🛒 KOSZYK
-    (<span id="cartCount">0</span>)
+  <button class="cart-button" onclick="openCart()">
+    🛒 KOSZYK (<span id="cartCount">0</span>)
   </button>
 
 </header>
 
-<!-- =========================================================
-     HERO
-========================================================= -->
+<!-- HERO -->
 
 <section class="hero">
 
   <div class="hero-content">
 
-    <div class="hero-kicker">
+    <div class="hero-label">
       SAFEBAT POWERGUARD
     </div>
 
     <h1>
-      ŁADUJ.<br>
-      <span>ODŁĄCZAJ.</span>
+      CHARGE.<br>
+      <span>SEPARATE.</span><br>
+      PROTECT.
     </h1>
 
-    <p class="hero-subtitle">
-      Kompaktowy separator ładowania z deklarowaną
-      funkcją automatycznego odłączenia po wykryciu
-      pełnego lub prawie pełnego naładowania.
+    <p>
+      Kompaktowy adapter z funkcją automatycznego odłączenia
+      przeznaczony do ładowania kompatybilnych urządzeń.
+      Produkt został zaprojektowany z myślą o wygodniejszym
+      korzystaniu z ładowania, również podczas nocnego ładowania.
     </p>
 
     <div class="hero-buttons">
 
-      <a
-        href="#product"
-        class="hero-button"
-      >
-        POZNAJ POWERGUARD
+      <a href="#products" class="hero-button primary">
+        WYBIERZ WARIANT
       </a>
 
-      <a
-        href="#how"
-        class="hero-button secondary"
-      >
-        JAK TO DZIAŁA
+      <a href="#description" class="hero-button secondary">
+        DOWIEDZ SIĘ WIĘCEJ
       </a>
 
     </div>
 
   </div>
 
-  <div class="hero-device">
-
-    <div class="device-body">
-
-      <div class="device-port"></div>
-
-      <div class="device-button"></div>
-      <div class="device-button two"></div>
-
-    </div>
-
-    <div class="device-cable"></div>
-
-  </div>
-
 </section>
 
-<!-- =========================================================
-     TRUST
-========================================================= -->
+<!-- PRODUCTS -->
 
-<section class="trust">
-
-  <div class="trust-grid">
-
-    <div class="trust-item">
-      <strong>DO 140 W*</strong>
-      <span>deklarowane wsparcie</span>
-    </div>
-
-    <div class="trust-item">
-      <strong>AUTO ODŁĄCZENIE*</strong>
-      <span>po wykryciu pełnego ładowania</span>
-    </div>
-
-    <div class="trust-item">
-      <strong>USB-C</strong>
-      <span>kompaktowe rozwiązanie</span>
-    </div>
-
-    <div class="trust-item">
-      <strong>4,2 × 3,5 × 2 CM</strong>
-      <span>wymiary wg materiałów</span>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =========================================================
-     PRODUCT
-========================================================= -->
-
-<section
-  class="section product-section"
-  id="product"
->
-
-  <div class="product-box">
-
-    <div class="product-visual">
-
-      <div class="big-device">
-
-        <div class="big-device-body">
-
-          <div class="big-device-port"></div>
-
-          <div class="big-device-button"></div>
-          <div class="big-device-button bottom"></div>
-
-        </div>
-
-        <div class="big-cable"></div>
-
-      </div>
-
-    </div>
-
-    <div class="product-info-main">
-
-      <div class="product-tag">
-        SAFEBAT / POWERGUARD
-      </div>
-
-      <h2>
-        Inteligentny separator ładowania.
-      </h2>
-
-      <p class="product-description">
-        SAFEBAT PowerGuard to kompaktowy adapter przeznaczony
-        do urządzeń wyposażonych w odpowiednie połączenie USB-C.
-        Według materiałów producenta urządzenie wykrywa pełne
-        lub prawie pełne naładowanie i automatycznie rozłącza
-        połączenie z urządzeniem.
-      </p>
-
-      <div class="price">
-        79,99 zł
-      </div>
-
-      <div class="product-note">
-        <strong>Ważne:</strong><br>
-        Parametry takie jak 140 W, 5 A oraz automatyczne
-        odłączenie są deklaracjami przedstawionymi
-        w materiałach produktu. Rzeczywista moc ładowania
-        zależy również od ładowarki, przewodu i urządzenia.
-      </div>
-
-      <button
-        class="buy-main"
-        onclick="addProductToCart()"
-      >
-        DODAJ DO KOSZYKA
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =========================================================
-     DESCRIPTION
-========================================================= -->
-
-<section class="section description-section">
+<section class="section" id="products">
 
   <div class="section-title">
 
     <div class="eyebrow">
-      POZNAJ PRODUKT
+      SAFEBAT POWERGUARD
     </div>
 
-    <h2>
-      PowerGuard w prosty sposób.
-    </h2>
+    <h2>WYBIERZ KOLOR</h2>
 
     <p>
-      Zebraliśmy informacje widoczne w materiałach produktu
-      i przetłumaczyliśmy je na normalny, czytelny język.
+      Ten sam produkt. Cztery warianty kolorystyczne.
     </p>
 
   </div>
 
+  <div class="products">
+
+    <!-- BLACK -->
+
+    <div class="product black">
+
+      <div class="product-visual">
+
+        <div class="device"></div>
+
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-color">
+          WARIANT 01
+        </div>
+
+        <h3>POWERGUARD — BLACK</h3>
+
+        <p>
+          Klasyczny czarny wariant urządzenia.
+        </p>
+
+        <div class="product-bottom">
+
+          <div class="price">
+            79,99 zł
+          </div>
+
+          <button
+            class="buy"
+            onclick="selectProduct('BLACK')"
+          >
+            WYBIERZ
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SILVER -->
+
+    <div class="product silver">
+
+      <div class="product-visual">
+
+        <div class="device"></div>
+
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-color">
+          WARIANT 02
+        </div>
+
+        <h3>POWERGUARD — SILVER</h3>
+
+        <p>
+          Jasny, metaliczny wariant urządzenia.
+        </p>
+
+        <div class="product-bottom">
+
+          <div class="price">
+            79,99 zł
+          </div>
+
+          <button
+            class="buy"
+            onclick="selectProduct('SILVER')"
+          >
+            WYBIERZ
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ORANGE -->
+
+    <div class="product orange">
+
+      <div class="product-visual">
+
+        <div class="device"></div>
+
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-color">
+          WARIANT 03
+        </div>
+
+        <h3>POWERGUARD — ORANGE</h3>
+
+        <p>
+          Wyrazisty pomarańczowy wariant urządzenia.
+        </p>
+
+        <div class="product-bottom">
+
+          <div class="price">
+            79,99 zł
+          </div>
+
+          <button
+            class="buy"
+            onclick="selectProduct('ORANGE')"
+          >
+            WYBIERZ
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- PURPLE -->
+
+    <div class="product purple">
+
+      <div class="product-visual">
+
+        <div class="device"></div>
+
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-color">
+          WARIANT 04
+        </div>
+
+        <h3>POWERGUARD — PURPLE</h3>
+
+        <p>
+          Fioletowy wariant urządzenia.
+        </p>
+
+        <div class="product-bottom">
+
+          <div class="price">
+            79,99 zł
+          </div>
+
+          <button
+            class="buy"
+            onclick="selectProduct('PURPLE')"
+          >
+            WYBIERZ
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- DESCRIPTION -->
+
+<section class="section description" id="description">
+
   <div class="description-grid">
 
-    <div class="description-card">
+    <div class="description-text">
 
-      <h3>
-        Automatyczne odłączenie*
-      </h3>
+      <div class="eyebrow">
+        POZNAJ POWERGUARD
+      </div>
+
+      <h2>
+        ŁADOWANIE<br>
+        Z AUTOMATYCZNYM<br>
+        ODŁĄCZENIEM
+      </h2>
 
       <p>
-        Według materiałów producenta PowerGuard został
-        zaprojektowany tak, aby po wykryciu pełnego lub
-        prawie pełnego naładowania automatycznie rozłączyć
-        połączenie z urządzeniem.
+        SAFEBAT PowerGuard to kompaktowy adapter przeznaczony
+        do ładowania kompatybilnych urządzeń. Według informacji
+        producenta urządzenie może automatycznie odłączyć
+        połączenie po wykryciu pełnego lub prawie pełnego
+        naładowania.
       </p>
 
-      <p style="margin-top:15px;">
-        W materiałach produktu funkcja ta jest przedstawiana
-        jako rozwiązanie przeznaczone m.in. do ładowania
-        urządzeń podczas nocy.
+      <p>
+        Konstrukcja wykorzystuje fizyczny mechanizm rozłączania,
+        dzięki któremu po aktywacji mechanizmu połączenie
+        z urządzeniem zostaje fizycznie przerwane.
+      </p>
+
+      <p>
+        Produkt może być wykorzystywany m.in. przy ładowaniu
+        smartfonów, tabletów i innych kompatybilnych urządzeń
+        wyposażonych w odpowiednie złącze.
       </p>
 
     </div>
 
-    <div class="description-card dark">
+    <div class="description-card">
 
       <h3>
-        Najważniejsze informacje
+        PARAMETRY DEKLAROWANE PRZEZ PRODUCENTA
       </h3>
 
-      <ul>
+      <ul class="spec-list">
 
         <li>
-          Deklarowane wsparcie ładowania do 140 W*
+          <span>Maksymalna deklarowana moc</span>
+          <strong>do 140 W</strong>
         </li>
 
         <li>
-          Deklarowany rdzeń 5 A*
+          <span>Deklarowane wsparcie przewodu</span>
+          <strong>do 100 W</strong>
         </li>
 
         <li>
-          Automatyczne fizyczne rozłączenie*
+          <span>Rdzeń przewodzący</span>
+          <strong>5 A</strong>
         </li>
 
         <li>
-          Konstrukcja z Memory Silicone Pad
+          <span>Materiał obudowy</span>
+          <strong>PC</strong>
         </li>
 
         <li>
-          Kompaktowe wymiary 4,2 × 3,5 × 2 cm
+          <span>Wymiary</span>
+          <strong>4,2 × 3,5 × 2 cm</strong>
+        </li>
+
+        <li>
+          <span>Mechanizm</span>
+          <strong>automatyczne odłączenie</strong>
+        </li>
+
+        <li>
+          <span>Warianty</span>
+          <strong>Black / Silver / Orange / Purple</strong>
         </li>
 
       </ul>
@@ -1678,135 +1517,79 @@ footer p{
 
 </section>
 
-<!-- =========================================================
-     FEATURES
-========================================================= -->
+<!-- BENEFITS -->
 
-<section class="section features">
+<section class="section">
 
   <div class="section-title">
 
     <div class="eyebrow">
-      POWERGUARD
+      NAJWAŻNIEJSZE INFORMACJE
     </div>
 
     <h2>
-      Co pokazują materiały produktu?
+      CO OFERUJE POWERGUARD?
     </h2>
 
     <p>
-      Poniższe informacje zostały opracowane na podstawie
-      przesłanych przez Ciebie materiałów dostawcy.
+      Funkcje przedstawione na podstawie materiałów produktu.
     </p>
 
   </div>
 
-  <div class="features-grid">
+  <div class="benefits">
 
-    <div class="feature">
+    <div class="benefit">
 
-      <div class="feature-number">
+      <div class="benefit-number">
         01 / AUTO SEPARATION
       </div>
 
       <h3>
-        Automatyczne rozłączenie
+        Automatyczne odłączenie
       </h3>
 
       <p>
-        Producent deklaruje automatyczne odłączenie
+        Producent deklaruje automatyczne rozłączenie
         po wykryciu pełnego lub prawie pełnego
-        naładowania urządzenia.
+        naładowania kompatybilnego urządzenia.
       </p>
 
     </div>
 
-    <div class="feature">
+    <div class="benefit">
 
-      <div class="feature-number">
-        02 / 140 W
+      <div class="benefit-number">
+        02 / PHYSICAL DISCONNECT
       </div>
 
       <h3>
-        Deklarowane wsparcie do 140 W
+        Fizyczne rozłączenie
       </h3>
 
       <p>
-        Materiały produktu wskazują obsługę ładowania
-        do 140 W. Nie oznacza to, że każde urządzenie
-        będzie ładowane z mocą 140 W.
+        Materiały produktu opisują mechanizm,
+        który fizycznie odłącza połączenie,
+        zamiast jedynie zatrzymywać przepływ
+        energii elektronicznie.
       </p>
 
     </div>
 
-    <div class="feature">
+    <div class="benefit">
 
-      <div class="feature-number">
-        03 / MEMORY PAD
+      <div class="benefit-number">
+        03 / COMPACT DESIGN
       </div>
 
       <h3>
-        Memory Silicone Pad
+        Kompaktowa konstrukcja
       </h3>
 
       <p>
-        W konstrukcji zastosowano silikonową podkładkę,
-        którą materiały producenta opisują jako element
-        mający chronić połączenie.
-      </p>
-
-    </div>
-
-    <div class="feature">
-
-      <div class="feature-number">
-        04 / DUAL CURRENT
-      </div>
-
-      <h3>
-        Podwójny tryb rozdzielenia
-      </h3>
-
-      <p>
-        Materiały opisują konstrukcję jako Dual Current
-        Separation Mode — niezależne rozdzielenie
-        torów prądowych.
-      </p>
-
-    </div>
-
-    <div class="feature">
-
-      <div class="feature-number">
-        05 / COMPACT
-      </div>
-
-      <h3>
-        Mały format
-      </h3>
-
-      <p>
-        Według dostarczonego opisu urządzenie ma około
-        4,2 × 3,5 × 2 cm, dzięki czemu jest łatwe
-        do przechowywania i transportu.
-      </p>
-
-    </div>
-
-    <div class="feature">
-
-      <div class="feature-number">
-        06 / USB-C
-      </div>
-
-      <h3>
-        Urządzenia USB-C
-      </h3>
-
-      <p>
-        Produkt jest przedstawiany jako rozwiązanie
-        przeznaczone do urządzeń wykorzystujących
-        odpowiednie połączenie USB-C.
+        Niewielkie wymiary sprawiają, że urządzenie
+        można wygodnie przechowywać i zabierać
+        ze sobą podczas codziennego użytkowania.
       </p>
 
     </div>
@@ -1815,14 +1598,9 @@ footer p{
 
 </section>
 
-<!-- =========================================================
-     HOW IT WORKS
-========================================================= -->
+<!-- HOW IT WORKS -->
 
-<section
-  class="section how-section"
-  id="how"
->
+<section class="section how">
 
   <div class="section-title">
 
@@ -1831,11 +1609,11 @@ footer p{
     </div>
 
     <h2>
-      Cztery proste kroki.
+      PROSTY PROCES
     </h2>
 
     <p>
-      Idea działania PowerGuard według materiałów produktu.
+      Zgodnie z opisem producenta.
     </p>
 
   </div>
@@ -1845,68 +1623,86 @@ footer p{
     <div class="step">
 
       <div class="step-number">
-        1
+        01
       </div>
 
-      <h3>
-        Podłącz
-      </h3>
+      <div>
 
-      <p>
-        Podłącz PowerGuard pomiędzy ładowarkę,
-        przewód i kompatybilne urządzenie.
-      </p>
+        <h3>
+          Podłącz PowerGuard
+        </h3>
+
+        <p>
+          Podłącz adapter pomiędzy źródłem zasilania
+          a kompatybilnym urządzeniem zgodnie z
+          rodzajem zastosowanego złącza.
+        </p>
+
+      </div>
 
     </div>
 
     <div class="step">
 
       <div class="step-number">
-        2
+        02
       </div>
 
-      <h3>
-        Ładuj
-      </h3>
+      <div>
 
-      <p>
-        Urządzenie rozpoczyna ładowanie zgodnie
-        z możliwościami całego zestawu.
-      </p>
+        <h3>
+          Rozpocznij ładowanie
+        </h3>
+
+        <p>
+          Urządzenie rozpoczyna proces ładowania
+          zgodnie z możliwościami zastosowanej
+          ładowarki, przewodu oraz urządzenia.
+        </p>
+
+      </div>
 
     </div>
 
     <div class="step">
 
       <div class="step-number">
-        3
+        03
       </div>
 
-      <h3>
-        Wykrycie poziomu
-      </h3>
+      <div>
 
-      <p>
-        Według producenta PowerGuard wykrywa pełne
-        lub prawie pełne naładowanie.
-      </p>
+        <h3>
+          Wykrycie pełnego naładowania
+        </h3>
+
+        <p>
+          Według materiałów producenta PowerGuard
+          wykrywa pełne lub prawie pełne naładowanie.
+        </p>
+
+      </div>
 
     </div>
 
     <div class="step">
 
       <div class="step-number">
-        4
+        04
       </div>
 
-      <h3>
-        Automatyczne rozłączenie*
-      </h3>
+      <div>
 
-      <p>
-        Po wykryciu wskazanego stanu następuje
-        deklarowane automatyczne fizyczne rozłączenie.
-      </p>
+        <h3>
+          Automatyczne odłączenie
+        </h3>
+
+        <p>
+          Po aktywacji mechanizmu połączenie zostaje
+          fizycznie rozłączone.
+        </p>
+
+      </div>
 
     </div>
 
@@ -1914,260 +1710,100 @@ footer p{
 
 </section>
 
-<!-- =========================================================
-     SPECIFICATION
-========================================================= -->
-
-<section class="section spec-section">
-
-  <div class="section-title">
-
-    <div class="eyebrow">
-      SPECYFIKACJA
-    </div>
-
-    <h2>
-      Dane produktu
-    </h2>
-
-  </div>
-
-  <div class="spec-box">
-
-    <div class="spec-row">
-      <div>Produkt</div>
-      <div>SAFEBAT PowerGuard</div>
-    </div>
-
-    <div class="spec-row">
-      <div>Typ</div>
-      <div>Separator / automatyczne rozłączenie ładowania</div>
-    </div>
-
-    <div class="spec-row">
-      <div>Złącze</div>
-      <div>USB-C</div>
-    </div>
-
-    <div class="spec-row">
-      <div>Deklarowana moc</div>
-      <div>Do 140 W*</div>
-    </div>
-
-    <div class="spec-row">
-      <div>Deklarowany rdzeń</div>
-      <div>5 A*</div>
-    </div>
-
-    <div class="spec-row">
-      <div>Podkładka</div>
-      <div>Memory Silicone Pad</div>
-    </div>
-
-    <div class="spec-row">
-      <div>Materiał</div>
-      <div>PC — zgodnie z opisem dostawcy</div>
-    </div>
-
-    <div class="spec-row">
-      <div>Wymiary</div>
-      <div>około 4,2 × 3,5 × 2 cm*</div>
-    </div>
-
-    <div class="spec-row">
-      <div>Automatyczne odłączenie</div>
-      <div>Tak — funkcja deklarowana przez producenta*</div>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =========================================================
-     INSTRUCTION
-========================================================= -->
+<!-- INSTRUCTION -->
 
 <section class="section instruction">
 
-  <div class="section-title">
+  <div class="instruction-inner">
 
-    <div class="eyebrow">
-      INSTRUKCJA
-    </div>
+    <div class="section-title">
 
-    <h2>
-      Jak korzystać z PowerGuard?
-    </h2>
+      <div class="eyebrow">
+        INSTRUKCJA
+      </div>
 
-    <p>
-      Prosta instrukcja przygotowana na podstawie
-      przesłanych materiałów produktu.
-    </p>
-
-  </div>
-
-  <div class="instruction-box">
-
-    <h3>
-      Podstawowe użytkowanie
-    </h3>
-
-    <ol>
-
-      <li>
-        Upewnij się, że używana ładowarka i przewód
-        są kompatybilne z Twoim urządzeniem.
-      </li>
-
-      <li>
-        Podłącz PowerGuard do odpowiedniego połączenia
-        ładowania.
-      </li>
-
-      <li>
-        Podłącz urządzenie i rozpocznij ładowanie.
-      </li>
-
-      <li>
-        Pozostaw urządzenie do momentu osiągnięcia
-        pełnego lub prawie pełnego naładowania.
-      </li>
-
-      <li>
-        Według deklaracji producenta PowerGuard wykryje
-        odpowiedni stan i automatycznie rozłączy połączenie.
-      </li>
-
-      <li>
-        Po użyciu sprawdź stan przewodu i złączy przed
-        kolejnym podłączeniem.
-      </li>
-
-    </ol>
-
-  </div>
-
-</section>
-
-<!-- =========================================================
-     WARNINGS
-========================================================= -->
-
-<section class="section warning-section">
-
-  <div class="section-title">
-
-    <div class="eyebrow">
-      WAŻNE
-    </div>
-
-    <h2>
-      Informacje dotyczące użytkowania
-    </h2>
-
-  </div>
-
-  <div class="warning-box">
-
-    <h3>
-      Przed użyciem
-    </h3>
-
-    <p>
-      Materiały dostawcy przedstawiają PowerGuard jako
-      rozwiązanie do automatycznego rozłączania ładowania.
-      Nie zastępuje on ładowarki ani odpowiedniego przewodu.
-    </p>
-
-    <ul>
-
-      <li>
-        Nie używaj uszkodzonych przewodów, ładowarek
-        ani złączy.
-      </li>
-
-      <li>
-        Sprawdź kompatybilność produktu z używanym
-        urządzeniem i akcesoriami.
-      </li>
-
-      <li>
-        Rzeczywista moc ładowania zależy od urządzenia,
-        ładowarki, przewodu oraz obsługiwanych standardów.
-      </li>
-
-      <li>
-        Deklaracja 140 W nie oznacza gwarantowanego
-        ładowania każdego urządzenia z mocą 140 W.
-      </li>
-
-      <li>
-        Nie korzystaj z produktu, jeśli obudowa,
-        przewód lub złącze są uszkodzone.
-      </li>
-
-    </ul>
-
-  </div>
-
-</section>
-
-<!-- =========================================================
-     INFORMATION
-========================================================= -->
-
-<section class="section info-section">
-
-  <div class="section-title">
-
-    <div class="eyebrow">
-      INFORMACJE
-    </div>
-
-    <h2>
-      Wszystko w jednym miejscu.
-    </h2>
-
-  </div>
-
-  <div class="info-grid">
-
-    <div class="info-card">
-
-      <h3>
-        DOSTAWA
-      </h3>
+      <h2>
+        JAK KORZYSTAĆ?
+      </h2>
 
       <p>
-        W obecnej wersji testowej pokazujemy dostawę
-        zgodną z ofertą, którą przesłałeś z AliExpress:
-        AliExpress Selection Standard — 0,00 zł.
+        Prosta instrukcja użytkowania na podstawie
+        przesłanych materiałów produktu.
       </p>
 
     </div>
 
-    <div class="info-card">
+    <div class="instruction-grid">
 
-      <h3>
-        PRODUKT
-      </h3>
+      <div class="instruction-card">
 
-      <p>
-        Opis i parametry na tej stronie zostały przygotowane
-        na podstawie materiałów produktu, które nam przesłałeś.
-      </p>
+        <h3>
+          1. Podłączenie
+        </h3>
+
+        <p>
+          Podłącz PowerGuard do kompatybilnego
+          urządzenia oraz odpowiedniego źródła
+          zasilania.
+        </p>
+
+      </div>
+
+      <div class="instruction-card">
+
+        <h3>
+          2. Ładowanie
+        </h3>
+
+        <p>
+          Pozostaw urządzenie podłączone podczas
+          normalnego procesu ładowania.
+        </p>
+
+      </div>
+
+      <div class="instruction-card">
+
+        <h3>
+          3. Automatyczne rozłączenie
+        </h3>
+
+        <p>
+          Zgodnie z opisem produktu mechanizm może
+          automatycznie odłączyć urządzenie po
+          wykryciu pełnego lub prawie pełnego
+          naładowania.
+        </p>
+
+      </div>
+
+      <div class="instruction-card">
+
+        <h3>
+          4. Ponowne ładowanie
+        </h3>
+
+        <p>
+          Aby rozpocząć kolejne ładowanie, należy
+          ponownie prawidłowo podłączyć urządzenie.
+        </p>
+
+      </div>
 
     </div>
 
-    <div class="info-card">
+    <div class="warning">
 
       <h3>
-        WERSJA TESTOWA
+        ⚠ WAŻNE
       </h3>
 
       <p>
-        Ta strona służy obecnie wyłącznie do testów.
-        Nie prowadzimy na niej rzeczywistej sprzedaży.
+        Parametry oraz działanie przedstawione na stronie
+        są oparte na materiałach dostarczonych wraz z ofertą
+        produktu. Przed rzeczywistą sprzedażą należy potwierdzić
+        specyfikację, kompatybilność oraz dokumentację produktu
+        u producenta lub dostawcy.
       </p>
 
     </div>
@@ -2176,11 +1812,9 @@ footer p{
 
 </section>
 
-<!-- =========================================================
-     FAQ
-========================================================= -->
+<!-- FAQ -->
 
-<section class="section faq-section">
+<section class="section">
 
   <div class="section-title">
 
@@ -2189,252 +1823,158 @@ footer p{
     </div>
 
     <h2>
-      Najczęstsze pytania
+      NAJCZĘSTSZE PYTANIA
     </h2>
 
     <p>
-      Na tym etapie to wersja robocza FAQ.
-      Później możemy ją jeszcze dopracować na podstawie
-      pełnej instrukcji i dokumentacji produktu.
+      Wersja robocza FAQ — później możemy ją dopracować
+      na podstawie pełnej instrukcji producenta.
     </p>
 
   </div>
 
   <div class="faq">
 
-    <div class="faq-item">
+    <details>
 
-      <button
-        class="faq-question"
-        onclick="toggleFaq(this)"
-      >
-        <span>
-          Czy PowerGuard automatycznie odłącza ładowanie?
-        </span>
+      <summary>
+        Co to jest SAFEBAT PowerGuard?
+      </summary>
 
-        <span>+</span>
-      </button>
+      <p>
+        To kompaktowy adapter do ładowania kompatybilnych
+        urządzeń, wyposażony według materiałów producenta
+        w funkcję automatycznego odłączenia po wykryciu
+        pełnego lub prawie pełnego naładowania.
+      </p>
 
-      <div class="faq-answer">
-        Według materiałów producenta urządzenie wykrywa
-        pełne lub prawie pełne naładowanie i automatycznie
-        rozłącza połączenie z urządzeniem.
-      </div>
+    </details>
 
-    </div>
+    <details>
 
-    <div class="faq-item">
+      <summary>
+        Jak działa automatyczne odłączenie?
+      </summary>
 
-      <button
-        class="faq-question"
-        onclick="toggleFaq(this)"
-      >
-        <span>
-          Czy PowerGuard obsługuje 140 W?
-        </span>
+      <p>
+        Według opisu produktu adapter wykrywa stan
+        pełnego lub prawie pełnego naładowania, a następnie
+        uruchamia mechanizm fizycznego rozłączenia.
+      </p>
 
-        <span>+</span>
-      </button>
+    </details>
 
-      <div class="faq-answer">
-        Producent deklaruje wsparcie do 140 W. Jest to
-        maksymalna deklarowana wartość produktu, a rzeczywista
-        moc zależy również od ładowarki, przewodu i urządzenia.
-      </div>
+    <details>
 
-    </div>
+      <summary>
+        Czy PowerGuard obsługuje 140 W?
+      </summary>
 
-    <div class="faq-item">
+      <p>
+        Materiały producenta deklarują obsługę mocy do 140 W.
+        Rzeczywista moc ładowania zależy również od ładowarki,
+        przewodu, urządzenia oraz zastosowanego standardu
+        ładowania.
+      </p>
 
-      <button
-        class="faq-question"
-        onclick="toggleFaq(this)"
-      >
-        <span>
-          Czy każde urządzenie będzie ładowane z mocą 140 W?
-        </span>
+    </details>
 
-        <span>+</span>
-      </button>
+    <details>
 
-      <div class="faq-answer">
-        Nie. Rzeczywista moc ładowania zależy od możliwości
-        urządzenia, ładowarki, przewodu oraz obsługiwanych
-        standardów ładowania.
-      </div>
+      <summary>
+        Czy przewód obsługuje 100 W?
+      </summary>
 
-    </div>
+      <p>
+        W materiałach produktu znajduje się deklaracja wsparcia
+        przewodu do 100 W. Jest to parametr deklarowany przez
+        producenta i nie oznacza, że każde urządzenie będzie
+        ładowane z taką mocą.
+      </p>
 
-    <div class="faq-item">
+    </details>
 
-      <button
-        class="faq-question"
-        onclick="toggleFaq(this)"
-      >
-        <span>
-          Czy można używać PowerGuard podczas ładowania nocą?
-        </span>
+    <details>
 
-        <span>+</span>
-      </button>
+      <summary>
+        Czy nadaje się do ładowania telefonu w nocy?
+      </summary>
 
-      <div class="faq-answer">
-        Materiały produktu przedstawiają funkcję automatycznego
-        rozłączenia jako rozwiązanie przeznaczone również
-        do ładowania nocnego.
-      </div>
+      <p>
+        Materiały produktu przedstawiają zastosowanie podczas
+        nocnego ładowania i funkcję automatycznego odłączenia.
+        Nie należy jednak traktować urządzenia jako gwarancji
+        bezpieczeństwa ani pozostawiać ładowanego sprzętu
+        bez zachowania podstawowych zasad bezpieczeństwa.
+      </p>
 
-    </div>
+    </details>
 
-    <div class="faq-item">
+    <details>
 
-      <button
-        class="faq-question"
-        onclick="toggleFaq(this)"
-      >
-        <span>
-          Czy PowerGuard zastępuje ładowarkę?
-        </span>
+      <summary>
+        Jakie kolory są dostępne?
+      </summary>
 
-        <span>+</span>
-      </button>
+      <p>
+        W naszej wersji testowej dostępne są cztery warianty:
+        Black, Silver, Orange oraz Purple.
+      </p>
 
-      <div class="faq-answer">
-        Nie. PowerGuard jest elementem toru ładowania.
-        Potrzebujesz odpowiedniej ładowarki i przewodu.
-      </div>
+    </details>
 
-    </div>
+    <details>
 
-    <div class="faq-item">
+      <summary>
+        Jak wygląda dostawa?
+      </summary>
 
-      <button
-        class="faq-question"
-        onclick="toggleFaq(this)"
-      >
-        <span>
-          Jakie ma wymiary?
-        </span>
+      <p>
+        W obecnej wersji testowej pokazujemy metodę
+        AliExpress Selection Standard z kosztem 0,00 zł.
+        Rzeczywisty przewoźnik oraz termin dostawy mogą
+        zależeć od aktualnej oferty dostawcy i trasy przesyłki.
+      </p>
 
-        <span>+</span>
-      </button>
-
-      <div class="faq-answer">
-        W dostarczonym opisie podano wymiary około
-        4,2 × 3,5 × 2 cm.
-      </div>
-
-    </div>
-
-    <div class="faq-item">
-
-      <button
-        class="faq-question"
-        onclick="toggleFaq(this)"
-      >
-        <span>
-          Z czego wykonany jest produkt?
-        </span>
-
-        <span>+</span>
-      </button>
-
-      <div class="faq-answer">
-        W materiałach dostawcy wskazano materiał PC.
-        Dokładne informacje materiałowe i dokumentację
-        produktu będziemy mogli uzupełnić po otrzymaniu
-        pełnej dokumentacji producenta.
-      </div>
-
-    </div>
-
-    <div class="faq-item">
-
-      <button
-        class="faq-question"
-        onclick="toggleFaq(this)"
-      >
-        <span>
-          Jaka dostawa jest obecnie pokazana?
-        </span>
-
-        <span>+</span>
-      </button>
-
-      <div class="faq-answer">
-        W wersji testowej pokazujemy AliExpress Selection
-        Standard z kosztem 0,00 zł, zgodnie ze screenem
-        oferty, który nam przesłałeś. Warunki dostawy mogą
-        się zmieniać w zależności od aktualnej oferty dostawcy.
-      </div>
-
-    </div>
+    </details>
 
   </div>
 
 </section>
 
-<!-- =========================================================
-     TEST
-========================================================= -->
-
-<section class="section test-section">
-
-  <div class="section-title">
-
-    <div class="eyebrow">
-      SAFEBAT
-    </div>
-
-    <h2>
-      Wersja testowa
-    </h2>
-
-  </div>
-
-  <p>
-    Ta strona jest obecnie projektem testowym. Formularz,
-    koszyk i proces zamówienia służą do sprawdzania działania
-    sklepu. Sprzedaż rzeczywista nie została uruchomiona.
-  </p>
-
-</section>
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
+<!-- FOOTER -->
 
 <footer>
 
   <div class="footer-logo">
-    SAFEBAT
+    SAFE<span>BAT</span>
   </div>
 
   <p>
-    PowerGuard — wersja testowa.
+    SAFEBAT PowerGuard — wersja testowa.
     <br>
     Sprzedaż rzeczywista nie została uruchomiona.
+    <br><br>
+    Parametry produktu przedstawione na stronie
+    wymagają potwierdzenia dokumentacją producenta
+    przed rozpoczęciem rzeczywistej sprzedaży.
   </p>
 
 </footer>
 
-<!-- =========================================================
-     CART OVERLAY
-========================================================= -->
+<!-- OVERLAY -->
 
 <div
   class="overlay"
-  id="cartOverlay"
+  id="overlay"
   onclick="closeCart()"
 ></div>
 
-<!-- =========================================================
-     CART
-========================================================= -->
+<!-- CART -->
 
 <div
   class="cart-drawer"
-  id="cart"
+  id="cartDrawer"
 >
 
   <div class="cart-header">
@@ -2454,21 +1994,15 @@ footer p{
 
   <div
     class="cart-content"
-    id="cartItems"
-  >
-
-    <div class="cart-empty">
-      Twój koszyk jest pusty.
-    </div>
-
-  </div>
+    id="cartContent"
+  ></div>
 
   <div class="cart-footer">
 
     <div class="cart-total">
 
       <span>
-        Razem
+        SUMA
       </span>
 
       <span id="cartTotal">
@@ -2488,9 +2022,7 @@ footer p{
 
 </div>
 
-<!-- =========================================================
-     CHECKOUT
-========================================================= -->
+<!-- CHECKOUT -->
 
 <div
   class="modal"
@@ -2500,60 +2032,94 @@ footer p{
   <div class="modal-box">
 
     <button
-      class="close"
+      class="modal-close"
       onclick="closeCheckout()"
     >
       ×
     </button>
 
-    <div id="orderSection">
+    <div id="checkoutSection">
 
       <h2>
-        CHECKOUT
+        CHECKOUT TESTOWY
       </h2>
 
       <p>
-        Uzupełnij dane do testowego zamówienia.
+        To jest wersja testowa. Dane nie są obecnie
+        wysyłane do AliExpress, przewoźnika ani systemu
+        płatności.
       </p>
 
-      <div
-        class="form-error"
-        id="formError"
-      ></div>
+      <!-- COLOR -->
 
-      <form
-        id="orderForm"
-      >
+      <div class="form-group">
 
-        <div class="form-row">
+        <label>
+          KOLOR
+        </label>
 
-          <div class="form-group">
+        <div class="color-selector">
 
-            <label for="firstName">
-              Imię
-            </label>
+          <button
+            type="button"
+            class="color-option active"
+            data-color="BLACK"
+            onclick="setCheckoutColor('BLACK')"
+          >
+            <div class="color-dot dot-black"></div>
+            BLACK
+          </button>
 
-            <input
-              type="text"
-              id="firstName"
-              required
-            >
+          <button
+            type="button"
+            class="color-option"
+            data-color="SILVER"
+            onclick="setCheckoutColor('SILVER')"
+          >
+            <div class="color-dot dot-silver"></div>
+            SILVER
+          </button>
 
-          </div>
+          <button
+            type="button"
+            class="color-option"
+            data-color="ORANGE"
+            onclick="setCheckoutColor('ORANGE')"
+          >
+            <div class="color-dot dot-orange"></div>
+            ORANGE
+          </button>
 
-          <div class="form-group">
+          <button
+            type="button"
+            class="color-option"
+            data-color="PURPLE"
+            onclick="setCheckoutColor('PURPLE')"
+          >
+            <div class="color-dot dot-purple"></div>
+            PURPLE
+          </button>
 
-            <label for="lastName">
-              Nazwisko
-            </label>
+        </div>
 
-            <input
-              type="text"
-              id="lastName"
-              required
-            >
+      </div>
 
-          </div>
+      <!-- FORM -->
+
+      <form id="orderForm">
+
+        <div class="form-group">
+
+          <label for="name">
+            Imię i nazwisko
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            required
+            placeholder="Jan Kowalski"
+          >
 
         </div>
 
@@ -2564,10 +2130,10 @@ footer p{
           </label>
 
           <input
-            type="email"
             id="email"
-            placeholder="twoj@email.pl"
+            type="email"
             required
+            placeholder="twoj@email.pl"
           >
 
         </div>
@@ -2575,14 +2141,14 @@ footer p{
         <div class="form-group">
 
           <label for="phone">
-            Numer telefonu
+            Telefon
           </label>
 
           <input
-            type="tel"
             id="phone"
-            placeholder="123 456 789"
+            type="tel"
             required
+            placeholder="123 456 789"
           >
 
         </div>
@@ -2594,8 +2160,8 @@ footer p{
           </label>
 
           <input
-            type="text"
             id="street"
+            type="text"
             required
           >
 
@@ -2610,10 +2176,10 @@ footer p{
             </label>
 
             <input
-              type="text"
               id="postal"
-              placeholder="00-000"
+              type="text"
               required
+              placeholder="00-000"
             >
 
           </div>
@@ -2625,8 +2191,8 @@ footer p{
             </label>
 
             <input
-              type="text"
               id="city"
+              type="text"
               required
             >
 
@@ -2634,12 +2200,12 @@ footer p{
 
         </div>
 
-        <!-- DOSTAWA -->
+        <!-- DELIVERY -->
 
         <div class="delivery-box">
 
           <h3>
-            SPOSÓB DOSTAWY
+            DOSTAWA
           </h3>
 
           <label class="delivery-option">
@@ -2650,38 +2216,29 @@ footer p{
               value="AliExpress Selection Standard"
               data-price="0"
               checked
+              onchange="updateCheckoutSummary()"
             >
 
-            <span>
+            <div>
 
               <strong>
                 AliExpress Selection Standard — 0,00 zł
               </strong>
 
               <span>
-                Szacowany termin dostawy zależny od aktualnej
-                oferty dostawcy. Przewoźnik zależny od trasy
-                i dostępnej metody, np. InPost / DHL.
+                Szacowany termin oraz przewoźnik zależą
+                od aktualnej oferty dostawcy i trasy.
+                Możliwi przewoźnicy mogą obejmować m.in.
+                InPost lub DHL.
               </span>
 
-            </span>
+            </div>
 
           </label>
 
         </div>
 
-        <div class="form-group">
-
-          <label for="notes">
-            Dodatkowe informacje
-          </label>
-
-          <textarea
-            id="notes"
-            placeholder="Opcjonalnie..."
-          ></textarea>
-
-        </div>
+        <!-- SUMMARY -->
 
         <div class="order-summary">
 
@@ -2689,18 +2246,50 @@ footer p{
             PODSUMOWANIE
           </h3>
 
-          <div id="checkoutItems"></div>
+          <div class="summary-line">
 
-          <div class="summary-item">
+            <span>
+              Produkt
+            </span>
 
-            <strong>
+            <span id="summaryProduct">
+              SAFEBAT PowerGuard
+            </span>
+
+          </div>
+
+          <div class="summary-line">
+
+            <span>
+              Kolor
+            </span>
+
+            <span id="summaryColor">
+              BLACK
+            </span>
+
+          </div>
+
+          <div class="summary-line">
+
+            <span>
+              Produkt
+            </span>
+
+            <span id="summaryProductPrice">
+              79,99 zł
+            </span>
+
+          </div>
+
+          <div class="summary-line">
+
+            <span>
               Dostawa
-            </strong>
+            </span>
 
-            <br>
-
-            <span id="checkoutDelivery">
-              AliExpress Selection Standard — 0,00 zł
+            <span id="summaryDelivery">
+              0,00 zł
             </span>
 
           </div>
@@ -2708,33 +2297,22 @@ footer p{
           <div class="summary-total">
 
             <span>
-              Razem
+              RAZEM
             </span>
 
-            <span id="checkoutTotal">
-              0,00 zł
+            <span id="summaryTotal">
+              79,99 zł
             </span>
 
           </div>
 
         </div>
 
-        <div class="test-checkout-note">
-
-          TEST: dane wpisane tutaj służą wyłącznie
-          do sprawdzenia działania formularza.
-          W tej wersji nie składamy rzeczywistego
-          zamówienia u dostawcy i nie wysyłamy danych
-          do AliExpress.
-
-        </div>
-
         <button
           type="submit"
           class="submit-order"
-          id="submitOrderButton"
         >
-          ZAPISZ ZAMÓWIENIE TESTOWE
+          ZAPISZ TESTOWE ZAMÓWIENIE
         </button>
 
       </form>
@@ -2744,37 +2322,36 @@ footer p{
     <!-- SUCCESS -->
 
     <div
-      id="successMessage"
+      id="successSection"
+      class="success"
       style="display:none"
     >
 
-      <div class="success">
-
-        <div class="success-icon">
-          ✓
-        </div>
-
-        <h2>
-          ZAMÓWIENIE TESTOWE ZAPISANE
-        </h2>
-
-        <p>
-          Proces testowy zakończył się poprawnie.
-        </p>
-
-        <p>
-          Numer zamówienia:
-          <strong id="orderNumber"></strong>
-        </p>
-
-        <button
-          class="success-button"
-          onclick="finishOrder()"
-        >
-          WRÓĆ DO SKLEPU
-        </button>
-
+      <div class="success-icon">
+        ✓
       </div>
+
+      <h2>
+        TEST ZAKOŃCZONY
+      </h2>
+
+      <p>
+        Testowe zamówienie zostało zapisane lokalnie
+        w tej przeglądarce.
+      </p>
+
+      <p>
+        Numer testowy:
+        <strong id="testOrderNumber"></strong>
+      </p>
+
+      <button
+        class="submit-order"
+        style="margin-top:20px"
+        onclick="finishTest()"
+      >
+        ZAMKNIJ
+      </button>
 
     </div>
 
@@ -2782,197 +2359,262 @@ footer p{
 
 </div>
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-
 <script>
 
-let cart = [];
+/* =========================================
+   SAFEBAT TEST CART
+========================================= */
 
-const PRODUCT = {
-  name:"SAFEBAT PowerGuard",
-  price:79.99
-};
+let cart =
+  JSON.parse(
+    localStorage.getItem("safebat_test_cart") || "[]"
+  );
 
-const STORAGE_KEY = "safebat_test_cart";
-const ORDER_KEY = "safebat_test_order";
+let selectedColor = "BLACK";
 
-function money(value){
+const PRODUCT_NAME =
+  "SAFEBAT PowerGuard";
 
-  return Number(value)
+const PRODUCT_PRICE =
+  79.99;
+
+
+/* =========================================
+   FORMAT PRICE
+========================================= */
+
+function formatPrice(value){
+
+  return value
     .toFixed(2)
-    .replace(".",",") + " zł";
+    .replace(".", ",") + " zł";
 
 }
+
+
+/* =========================================
+   SAVE CART
+========================================= */
 
 function saveCart(){
 
   localStorage.setItem(
-    STORAGE_KEY,
+    "safebat_test_cart",
     JSON.stringify(cart)
   );
 
 }
 
-function loadCart(){
 
-  try{
+/* =========================================
+   SELECT PRODUCT
+========================================= */
 
-    const saved =
-      localStorage.getItem(STORAGE_KEY);
+function selectProduct(color){
 
-    if(saved){
+  selectedColor = color;
 
-      const parsed =
-        JSON.parse(saved);
-
-      if(Array.isArray(parsed)){
-        cart = parsed;
-      }
-
-    }
-
-  }catch(error){
-
-    cart = [];
-
-  }
-
-  updateCart();
+  addToCart(color);
 
 }
 
-function addProductToCart(){
 
-  cart.push({
+/* =========================================
+   ADD TO CART
+========================================= */
 
-    id:Date.now(),
+function addToCart(color){
 
-    name:PRODUCT.name,
+  const existing =
+    cart.find(
+      item => item.color === color
+    );
 
-    price:PRODUCT.price
+  if(existing){
 
-  });
+    existing.quantity += 1;
+
+  }else{
+
+    cart.push({
+
+      name:PRODUCT_NAME,
+      color:color,
+      price:PRODUCT_PRICE,
+      quantity:1
+
+    });
+
+  }
 
   saveCart();
-
   updateCart();
-
   openCart();
 
 }
 
-function updateCart(){
 
-  const items =
-    document.getElementById("cartItems");
-
-  const count =
-    document.getElementById("cartCount");
-
-  const totalEl =
-    document.getElementById("cartTotal");
-
-  count.textContent =
-    cart.length;
-
-  if(cart.length === 0){
-
-    items.innerHTML =
-      '<div class="cart-empty">Twój koszyk jest pusty.</div>';
-
-  }else{
-
-    items.innerHTML =
-      cart.map(function(item,index){
-
-        return `
-
-          <div class="cart-item">
-
-            <div class="cart-thumb"></div>
-
-            <div class="cart-info">
-
-              <h3>
-                ${escapeHtml(item.name)}
-              </h3>
-
-              <p>
-                Produkt testowy
-                <br>
-                ${money(item.price)}
-              </p>
-
-              <button
-                class="remove-item"
-                onclick="removeItem(${index})"
-              >
-                Usuń
-              </button>
-
-            </div>
-
-          </div>
-
-        `;
-
-      }).join("");
-
-  }
-
-  const total =
-    cart.reduce(function(sum,item){
-
-      return sum + Number(item.price);
-
-    },0);
-
-  totalEl.textContent =
-    money(total);
-
-}
+/* =========================================
+   REMOVE
+========================================= */
 
 function removeItem(index){
 
   cart.splice(index,1);
 
   saveCart();
-
   updateCart();
 
 }
 
+
+/* =========================================
+   CART TOTAL
+========================================= */
+
+function getCartTotal(){
+
+  return cart.reduce(
+    (total,item) =>
+      total +
+      item.price *
+      item.quantity,
+    0
+  );
+
+}
+
+
+/* =========================================
+   UPDATE CART
+========================================= */
+
+function updateCart(){
+
+  const content =
+    document.getElementById("cartContent");
+
+  const count =
+    cart.reduce(
+      (total,item) =>
+        total + item.quantity,
+      0
+    );
+
+  document.getElementById(
+    "cartCount"
+  ).textContent = count;
+
+  document.getElementById(
+    "cartTotal"
+  ).textContent =
+    formatPrice(getCartTotal());
+
+  if(cart.length === 0){
+
+    content.innerHTML = `
+      <div class="cart-empty">
+        Koszyk jest pusty.
+      </div>
+    `;
+
+    return;
+
+  }
+
+  content.innerHTML =
+    cart.map(
+      (item,index) => `
+
+        <div class="cart-item">
+
+          <div class="cart-item-top">
+
+            <div>
+
+              <div class="cart-color">
+                ${item.color}
+              </div>
+
+              <h3>
+                ${item.name}
+              </h3>
+
+              <p>
+                Ilość: ${item.quantity}
+              </p>
+
+              <p>
+                ${formatPrice(
+                  item.price *
+                  item.quantity
+                )}
+              </p>
+
+            </div>
+
+            <button
+              class="remove-item"
+              onclick="removeItem(${index})"
+            >
+              Usuń
+            </button>
+
+          </div>
+
+        </div>
+
+      `
+    ).join("");
+
+}
+
+
+/* =========================================
+   OPEN CART
+========================================= */
+
 function openCart(){
 
   document
-    .getElementById("cart")
+    .getElementById("overlay")
     .classList.add("active");
 
   document
-    .getElementById("cartOverlay")
+    .getElementById("cartDrawer")
     .classList.add("active");
 
 }
+
+
+/* =========================================
+   CLOSE CART
+========================================= */
 
 function closeCart(){
 
   document
-    .getElementById("cart")
+    .getElementById("overlay")
     .classList.remove("active");
 
   document
-    .getElementById("cartOverlay")
+    .getElementById("cartDrawer")
     .classList.remove("active");
 
 }
+
+
+/* =========================================
+   OPEN CHECKOUT
+========================================= */
 
 function openCheckout(){
 
   if(cart.length === 0){
 
-    alert("Koszyk jest pusty.");
+    alert(
+      "Najpierw dodaj produkt do koszyka."
+    );
 
     return;
 
@@ -2980,13 +2622,23 @@ function openCheckout(){
 
   closeCart();
 
-  renderCheckout();
+  selectedColor =
+    cart[0].color;
+
+  updateColorButtons();
+
+  updateCheckoutSummary();
 
   document
     .getElementById("checkoutModal")
     .classList.add("active");
 
 }
+
+
+/* =========================================
+   CLOSE CHECKOUT
+========================================= */
 
 function closeCheckout(){
 
@@ -2996,6 +2648,47 @@ function closeCheckout(){
 
 }
 
+
+/* =========================================
+   SET CHECKOUT COLOR
+========================================= */
+
+function setCheckoutColor(color){
+
+  selectedColor = color;
+
+  updateColorButtons();
+
+  updateCheckoutSummary();
+
+}
+
+
+/* =========================================
+   UPDATE COLOR BUTTONS
+========================================= */
+
+function updateColorButtons(){
+
+  document
+    .querySelectorAll(".color-option")
+    .forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.color ===
+        selectedColor
+      );
+
+    });
+
+}
+
+
+/* =========================================
+   DELIVERY
+========================================= */
+
 function getDeliveryPrice(){
 
   const selected =
@@ -3004,7 +2697,9 @@ function getDeliveryPrice(){
     );
 
   if(!selected){
+
     return 0;
+
   }
 
   return Number(
@@ -3013,148 +2708,63 @@ function getDeliveryPrice(){
 
 }
 
-function getDeliveryName(){
 
-  const selected =
-    document.querySelector(
-      'input[name="delivery"]:checked'
-    );
+/* =========================================
+   CHECKOUT SUMMARY
+========================================= */
 
-  if(!selected){
-    return "AliExpress Selection Standard";
-  }
-
-  return selected.value;
-
-}
-
-function renderCheckout(){
-
-  const list =
-    document.getElementById("checkoutItems");
-
-  list.innerHTML =
-    cart.map(function(item){
-
-      return `
-
-        <div class="summary-item">
-
-          <strong>
-            ${escapeHtml(item.name)}
-          </strong>
-
-          <br>
-
-          ${money(item.price)}
-
-        </div>
-
-      `;
-
-    }).join("");
-
-  updateCheckoutTotal();
-
-}
-
-function updateCheckoutTotal(){
-
-  const productsTotal =
-    cart.reduce(function(sum,item){
-
-      return sum + Number(item.price);
-
-    },0);
+function updateCheckoutSummary(){
 
   const delivery =
     getDeliveryPrice();
 
   const total =
-    productsTotal + delivery;
+    PRODUCT_PRICE +
+    delivery;
 
-  document
-    .getElementById("checkoutDelivery")
-    .textContent =
-      getDeliveryName() +
-      " — " +
-      money(delivery);
+  document.getElementById(
+    "summaryColor"
+  ).textContent =
+    selectedColor;
 
-  document
-    .getElementById("checkoutTotal")
-    .textContent =
-      money(total);
+  document.getElementById(
+    "summaryProductPrice"
+  ).textContent =
+    formatPrice(PRODUCT_PRICE);
+
+  document.getElementById(
+    "summaryDelivery"
+  ).textContent =
+    formatPrice(delivery);
+
+  document.getElementById(
+    "summaryTotal"
+  ).textContent =
+    formatPrice(total);
 
 }
+
+
+/* =========================================
+   GENERATE TEST ORDER
+========================================= */
 
 function generateOrderNumber(){
 
-  return "SB-TEST-" +
-    Date.now()
-      .toString()
-      .slice(-8);
-
-}
-
-function escapeHtml(value){
-
-  return String(value).replace(
-    /[&<>"']/g,
-    function(char){
-
-      return {
-
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-
-      }[char];
-
-    }
-  );
-
-}
-
-function showFormError(message){
-
-  const box =
-    document.getElementById("formError");
-
-  box.textContent =
-    message;
-
-  box.style.display =
-    "block";
-
-}
-
-function hideFormError(){
-
-  const box =
-    document.getElementById("formError");
-
-  box.textContent =
-    "";
-
-  box.style.display =
-    "none";
-
-}
-
-document
-  .querySelectorAll(
-    'input[name="delivery"]'
-  )
-  .forEach(function(input){
-
-    input.addEventListener(
-      "change",
-      updateCheckoutTotal
+  const random =
+    Math.floor(
+      100000 +
+      Math.random() * 900000
     );
 
-  });
+  return "SB-TEST-" + random;
+
+}
+
+
+/* =========================================
+   SUBMIT TEST ORDER
+========================================= */
 
 document
   .getElementById("orderForm")
@@ -3164,245 +2774,100 @@ document
 
       event.preventDefault();
 
-      hideFormError();
-
-      if(cart.length === 0){
-
-        showFormError(
-          "Koszyk jest pusty."
-        );
-
-        return;
-
-      }
-
-      const button =
-        document.getElementById(
-          "submitOrderButton"
-        );
-
-      button.disabled =
-        true;
-
-      button.textContent =
-        "ZAPISYWANIE TESTU...";
-
       const orderNumber =
         generateOrderNumber();
 
-      const productsTotal =
-        cart.reduce(
-          function(sum,item){
-
-            return sum + Number(item.price);
-
-          },
-          0
+      const delivery =
+        document.querySelector(
+          'input[name="delivery"]:checked'
         );
 
-      const delivery =
-        getDeliveryPrice();
+      const orderData = {
 
-      const total =
-        productsTotal + delivery;
-
-      const testOrder = {
-
-        orderNumber,
+        orderNumber:
+          orderNumber,
 
         product:
-          PRODUCT.name,
+          PRODUCT_NAME,
+
+        color:
+          selectedColor,
 
         quantity:
           cart.length,
 
         delivery:
-          getDeliveryName(),
+          delivery
+            ? delivery.value
+            : "AliExpress Selection Standard",
 
         deliveryPrice:
-          delivery,
+          getDeliveryPrice(),
 
-        total,
-
-        customer:{
-
-          firstName:
-            document.getElementById(
-              "firstName"
-            ).value,
-
-          lastName:
-            document.getElementById(
-              "lastName"
-            ).value,
-
-          email:
-            document.getElementById(
-              "email"
-            ).value,
-
-          phone:
-            document.getElementById(
-              "phone"
-            ).value,
-
-          street:
-            document.getElementById(
-              "street"
-            ).value,
-
-          postal:
-            document.getElementById(
-              "postal"
-            ).value,
-
-          city:
-            document.getElementById(
-              "city"
-            ).value,
-
-          notes:
-            document.getElementById(
-              "notes"
-            ).value
-
-        },
+        total:
+          PRODUCT_PRICE +
+          getDeliveryPrice(),
 
         createdAt:
           new Date().toISOString(),
 
-        testOnly:true
+        testOnly:
+          true
 
       };
 
       localStorage.setItem(
-        ORDER_KEY,
-        JSON.stringify(testOrder)
+        "safebat_test_order",
+        JSON.stringify(orderData)
       );
 
-      document
-        .getElementById(
-          "orderNumber"
-        )
-        .textContent =
-          orderNumber;
+      document.getElementById(
+        "checkoutSection"
+      ).style.display = "none";
 
-      document
-        .getElementById(
-          "orderSection"
-        )
-        .style.display =
-          "none";
+      document.getElementById(
+        "successSection"
+      ).style.display = "block";
 
-      document
-        .getElementById(
-          "successMessage"
-        )
-        .style.display =
-          "block";
-
-      cart = [];
-
-      saveCart();
-
-      updateCart();
-
-      button.disabled =
-        false;
-
-      button.textContent =
-        "ZAPISZ ZAMÓWIENIE TESTOWE";
+      document.getElementById(
+        "testOrderNumber"
+      ).textContent =
+        orderNumber;
 
     }
   );
 
-function finishOrder(){
+
+/* =========================================
+   FINISH TEST
+========================================= */
+
+function finishTest(){
+
+  document.getElementById(
+    "successSection"
+  ).style.display = "none";
+
+  document.getElementById(
+    "checkoutSection"
+  ).style.display = "block";
 
   document
-    .getElementById(
-      "successMessage"
-    )
-    .style.display =
-      "none";
+    .getElementById("checkoutModal")
+    .classList.remove("active");
 
   document
-    .getElementById(
-      "orderSection"
-    )
-    .style.display =
-      "block";
-
-  document
-    .getElementById(
-      "checkoutModal"
-    )
-    .classList.remove(
-      "active"
-    );
-
-  document
-    .getElementById(
-      "orderForm"
-    )
+    .getElementById("orderForm")
     .reset();
 
-  updateCheckoutTotal();
-
 }
 
-function toggleFaq(button){
 
-  const item =
-    button.closest(
-      ".faq-item"
-    );
+/* =========================================
+   INITIALIZE
+========================================= */
 
-  const wasActive =
-    item.classList.contains(
-      "active"
-    );
-
-  document
-    .querySelectorAll(
-      ".faq-item"
-    )
-    .forEach(function(el){
-
-      el.classList.remove(
-        "active"
-      );
-
-      const plus =
-        el.querySelector(
-          ".faq-question span:last-child"
-        );
-
-      if(plus){
-        plus.textContent = "+";
-      }
-
-    });
-
-  if(!wasActive){
-
-    item.classList.add(
-      "active"
-    );
-
-    const plus =
-      button.querySelector(
-        "span:last-child"
-      );
-
-    if(plus){
-      plus.textContent = "−";
-    }
-
-  }
-
-}
-
-loadCart();
+updateCart();
 
 </script>
 
